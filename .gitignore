@@ -1,0 +1,5 @@
+local-only/
+.env
+.env.*
+node_modules/
+*.log
