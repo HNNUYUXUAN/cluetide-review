@@ -1,0 +1,80 @@
+{
+  "schema_version": "cluetide-bot-real-business-receipt/v1",
+  "observed_at_utc": "2026-10-07T16:10:22+00:00",
+  "observed_at_beijing": "2026-10-08T00:10:22+08:00",
+  "execution_scope": "bot_testnet_968",
+  "prepared_public_request": {
+    "chain_id": 968,
+    "action": "create_case",
+    "account": "0x054801af006663b16b84cee370267eca2b94686c",
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "case_id": "gcc-uniswap93-adaptive-20261007",
+    "local_version_id": 32
+  },
+  "verification": {
+    "status": "verified",
+    "transaction_hash": "0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+    "tx_link": "https://scan.bohr.life/tx/0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+    "confirmations": 134,
+    "minimum_confirmations": 3,
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "getter_state": {
+      "case": {
+        "author": "0x054801af006663b16b84cee370267eca2b94686c",
+        "head_version_id": "1",
+        "version_count": "1",
+        "review_count": "0",
+        "created_at": "1791389318"
+      },
+      "version": {
+        "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+        "version_id": "1",
+        "parent_version_id": "0",
+        "author": "0x054801af006663b16b84cee370267eca2b94686c",
+        "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+        "schema_version": "cluetide.evidence.v1",
+        "evidence_uri": "urn:cluetide:manifest:a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+        "created_at": "1791389318"
+      }
+    },
+    "onchain_ids": {
+      "version_id": "1"
+    },
+    "artifact": {
+      "contract_name": "ClueTideRegistry",
+      "compiler": "0.8.30+commit.73712a01",
+      "evm_version": "paris",
+      "source_sha256": "a41cd6a0eb310d63096db94cca9621cc70b1d963e4dd067fdbcaeca063dd6f64",
+      "artifact_sha256": "47330ce0eeb728bf1bbd7d897138d9757726708800057619a0d904e75315c6a3",
+      "bytecode_sha256": "9de904beee921c340dd3873f6f12e7896dd88a35eedda228dbb67b558b739ee3",
+      "runtime_sha256": "aad97004150622ee20c060b8ffc4c16ba0a809b7df94db6dd57f3297f85f4a63"
+    },
+    "commitments": {
+      "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+      "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+      "local_version_id": 32
+    },
+    "verification_scope": "canonical_at_read_time_with_confirmations",
+    "gas_used": "412892",
+    "effective_gas_price_wei": "20000000000",
+    "actual_fee_wei": "8257840000000000",
+    "gas_price_source": "receipt_effective_gas_price",
+    "block_number": "26039779",
+    "block_hash": "0x0f81c5054f30f6aa1085f5fc3b44b7dea0b0b1a64ee4b789d47b4badabdfd5a0",
+    "read_observed_at_utc": "2026-10-07T16:10:19+00:00"
+  },
+  "tx_url": "https://scan.bohr.life/tx/0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+  "receipt": {
+    "transaction_hash": "0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+    "status": 1,
+    "block_number": 26039779,
+    "block_hash": "0x0f81c5054f30f6aa1085f5fc3b44b7dea0b0b1a64ee4b789d47b4badabdfd5a0",
+    "from": "0x054801af006663b16b84cee370267eca2b94686c",
+    "to": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "gas_used": 412892,
+    "effective_gas_price_wei": "20000000000",
+    "fee_wei": "8257840000000000",
+    "nonce": 2,
+    "value_wei": "0"
+  }
+}

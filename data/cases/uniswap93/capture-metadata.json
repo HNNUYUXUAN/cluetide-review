@@ -1,0 +1,55 @@
+{
+  "read_attempts": 3,
+  "finished_at_utc": "2026-10-06T17:52:11.0267562Z",
+  "observations": [
+    {
+      "block_hash": "0xc8810025143c010a6daa496d0435688d58a3f213fd992fdc9cf4b3b5bab67e29",
+      "http_status": 200,
+      "request_file": "raw/metadata-end-decimals.request.json",
+      "captured_at_utc": "2026-10-06T17:52:08.0632957Z",
+      "require_canonical": true,
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "block_selection": "EIP-1898",
+      "name": "metadata-end-decimals",
+      "method": "eth_call",
+      "selector": "0x313ce567",
+      "result_kind": "result",
+      "response_file": "raw/metadata-end-decimals.response.json",
+      "response_sha256": "d697207a9137973f2dd578ed6c157f1f6c07e644146c5e6a101e73fbeebd14ea",
+      "block_number_hex": "0x16fd594"
+    },
+    {
+      "block_hash": "0xc8810025143c010a6daa496d0435688d58a3f213fd992fdc9cf4b3b5bab67e29",
+      "http_status": 200,
+      "request_file": "raw/metadata-end-symbol.request.json",
+      "captured_at_utc": "2026-10-06T17:52:09.1759893Z",
+      "require_canonical": true,
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "block_selection": "EIP-1898",
+      "name": "metadata-end-symbol",
+      "method": "eth_call",
+      "selector": "0x95d89b41",
+      "result_kind": "result",
+      "response_file": "raw/metadata-end-symbol.response.json",
+      "response_sha256": "697eae3dc5bdc7630b1372d733e8dc6b0f6bc0d5f9421b32adb42d15d3c37f7a",
+      "block_number_hex": "0x16fd594"
+    },
+    {
+      "block_hash": "0xc8810025143c010a6daa496d0435688d58a3f213fd992fdc9cf4b3b5bab67e29",
+      "http_status": 200,
+      "request_file": "raw/metadata-end-name.request.json",
+      "captured_at_utc": "2026-10-06T17:52:10.0693034Z",
+      "require_canonical": true,
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "block_selection": "EIP-1898",
+      "name": "metadata-end-name",
+      "method": "eth_call",
+      "selector": "0x06fdde03",
+      "result_kind": "result",
+      "response_file": "raw/metadata-end-name.response.json",
+      "response_sha256": "45d1f9cac769de94554e078977809d6f3013b62bb689cbe33eb8f7cff9bf121a",
+      "block_number_hex": "0x16fd594"
+    }
+  ],
+  "schema_version": "cluetide.capture.v1"
+}

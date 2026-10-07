@@ -1,0 +1,212 @@
+{
+  "schema_version": "cluetide-bot-story/v1",
+  "observed_at_beijing": "2026-10-08T00:24:25+08:00",
+  "case_id": "gcc-uniswap93-adaptive-20261007",
+  "title": "一亿 UNI 转账，从模型判断到可追溯更正",
+  "chain_id": 968,
+  "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+  "wallet": "0x054801af006663b16b84cee370267eca2b94686c",
+  "contract_url": "https://scan.bohr.life/address/0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+  "business_fee_testnet_bot": "0.02209022",
+  "identity_note": "本案例作者与链上复核者使用同一钱包；本地复核标签为 local-semantic-reviewer。该流程展示版本复核，未建立独立身份认证。",
+  "evidence_note": "归档状态记录 BOT 测试网 968 当时的回执与内容承诺核验。哈希证明对应文件字节；报告引用结构仍有两项待复核，事实与解释需按证据范围理解。完整历史证据包通过本地应用 API 按 revision 下载。",
+  "source_files": [
+    {
+      "path": "data/demo/bot-testnet-workflow-20261008.json",
+      "sha256": "830292728dfec89c933c3ee83d300764c63dd54c7796b1e6d78b8e758a3ff6bf"
+    },
+    {
+      "path": "data/demo/gcc-saved-model-review-20261007.json",
+      "sha256": "bcc78c74e33a0e148dbc759b40ee10801f27f9aa38d1e6e855ecc00807c66adc"
+    },
+    {
+      "path": "data/demo/bundles/gcc-uniswap93-adaptive-v1.zip",
+      "sha256": "37e6d1adab334a751a93da1cc5d7f8401229b333f3e3ce50353f650123c67e4b"
+    },
+    {
+      "path": "data/demo/bundles/gcc-uniswap93-adaptive-v2.zip",
+      "sha256": "b8f918413e79f797b3a3606c835d64b79919ca5ecdc369e28723dffa112037d6"
+    },
+    {
+      "path": "data/demo/bot-testnet-v1-receipt-20261008.json",
+      "sha256": "05cc69d12f753544fc4bdb2ab1a1cd8845839d411c6b4daea960da8a8eef6462"
+    },
+    {
+      "path": "data/demo/bot-testnet-review-receipt-20261008.json",
+      "sha256": "36032e6a0e78a86cfce0957fa412a967ea41277c00cd79084c0e37740eda82e0"
+    },
+    {
+      "path": "data/demo/bot-testnet-v2-receipt-20261008.json",
+      "sha256": "b233969d745bddaec0bd2a567d82ab34fc16453f1954cb8e6cb80ea111c6da9b"
+    }
+  ],
+  "steps": [
+    {
+      "key": "v1",
+      "title": "原始模型报告",
+      "subtitle": "首次登记 · 链上版本 1",
+      "summary": "在区块24106378，UNI代币合约0x1f9840a85d5af5bf1d1762f925bdaddc4201f984发生一笔100,000,000 UNI（100000000000000000000000000原始单位）从0x1a9c8182c09f50c8318d769245bea52c32be35bc转移到销毁地址0x000...dead的交易。该交易由合约0x408ed6354d4973f66138c91495f2f2fcbd8724c3执行，状态成功。",
+      "source_label": "原始模型报告原文 · v1",
+      "local_version_id": 32,
+      "version_id": "1",
+      "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+      "transaction_hash": "0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+      "tx_url": "https://scan.bohr.life/tx/0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+      "archived_status": "verified",
+      "prepared": {
+        "chain_id": 968,
+        "action": "create_case",
+        "account": "0x054801af006663b16b84cee370267eca2b94686c",
+        "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "case_id": "gcc-uniswap93-adaptive-20261007",
+        "local_version_id": 32
+      },
+      "bundle_url": "/api/investigations/gcc-uniswap93-adaptive-20261007/bundle?revision=1",
+      "explanation": "保存当时的模型判断与证据内容承诺，让之后的复核有明确对象。",
+      "report_claims": [
+        "交易0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e在区块24106378执行了100,000,000 UNI代币从0x1a9c8182c09f50c8318d769245bea52c32be35bc到销毁地址0x000...dead的转移",
+        "Uniswap治理提案93明确指定了向销毁地址转移100,000,000 UNI的操作，这与观察到的转移金额和地址匹配",
+        "交易由合约0x408ed6354d4973f66138c91495f2f2fcbd8724c3执行，状态成功，表明治理提案被正确执行"
+      ],
+      "limitations": [
+        "调查受限于4次模型请求预算，无法获取转移前后的代币状态进行比较",
+        "未验证治理提案93在链上的实际执行授权和投票结果",
+        "未检查发送方地址0x1a9c8182c09f50c8318d769245bea52c32be35bc的权限和角色",
+        "治理来源文本为外部快照，未独立验证其完整性和准确性",
+        "未确认销毁地址转移是否确实导致总供应量永久减少",
+        "调查范围仅限于观察到的单笔转移，未检查同一交易中的其他日志（如第二个Transfer事件）"
+      ],
+      "evidence_quality": {
+        "review_status": "needs_review",
+        "quality_status": "no_flags_detected",
+        "quality_scope": "Limited checks of units, attack exclusion and contract-wide burn wording in summary, claims and supported explanations; semantic support requires review, no factual verification.",
+        "citation_status": "needs_review",
+        "citation_issues": [
+          "missing_agent_rpc_observation · agent.evidence[3].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation.",
+          "missing_agent_rpc_observation · agent.evidence[4].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation."
+        ],
+        "citation_scope": "Bounded structural checks of claim and directed candidate-explanation references to successful Agent evidence, explanation-status bindings, Transfer links to supplied RPC observations, and receipt/transaction identity consistency. No factual verification, source authenticity, completeness, or reviewer independence is established.",
+        "factual_verification": false,
+        "source_authenticity_verified": false,
+        "assessment_statuses": {
+          "governance_execution": "supported",
+          "supply_decrease": "unknown"
+        }
+      },
+      "receipt_observed_at_beijing": "2026-10-08T00:10:22+08:00",
+      "parent_version_id": "0"
+    },
+    {
+      "key": "review",
+      "title": "指定版本复核",
+      "subtitle": "请求更正 · 绑定版本 1",
+      "summary": "将成功回执、治理解释与授权范围分开，保留未核验事项。",
+      "source_label": "本地复核意见原文",
+      "local_version_id": 32,
+      "version_id": "1",
+      "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+      "transaction_hash": "0x1c59b8810f17ffbe8d3bc1dc002ec2e8edfa792dab0db0bc9e38a6a6082ca33b",
+      "tx_url": "https://scan.bohr.life/tx/0x1c59b8810f17ffbe8d3bc1dc002ec2e8edfa792dab0db0bc9e38a6a6082ca33b",
+      "archived_status": "verified",
+      "prepared": {
+        "chain_id": 968,
+        "action": "add_review",
+        "account": "0x054801af006663b16b84cee370267eca2b94686c",
+        "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "case_id": "gcc-uniswap93-adaptive-20261007",
+        "local_version_id": 32,
+        "onchain_version_id": "1",
+        "local_review_id": 7
+      },
+      "bundle_url": "/api/investigations/gcc-uniswap93-adaptive-20261007/bundle?revision=1",
+      "explanation": "复核意见绑定原始报告的内容哈希，明确指出需要收敛的结论范围。",
+      "report_claims": [],
+      "limitations": [
+        "调查受限于4次模型请求预算，无法获取转移前后的代币状态进行比较",
+        "未验证治理提案93在链上的实际执行授权和投票结果",
+        "未检查发送方地址0x1a9c8182c09f50c8318d769245bea52c32be35bc的权限和角色",
+        "治理来源文本为外部快照，未独立验证其完整性和准确性",
+        "未确认销毁地址转移是否确实导致总供应量永久减少",
+        "调查范围仅限于观察到的单笔转移，未检查同一交易中的其他日志（如第二个Transfer事件）"
+      ],
+      "evidence_quality": {
+        "review_status": "needs_review",
+        "quality_status": "no_flags_detected",
+        "quality_scope": "Limited checks of units, attack exclusion and contract-wide burn wording in summary, claims and supported explanations; semantic support requires review, no factual verification.",
+        "citation_status": "needs_review",
+        "citation_issues": [
+          "missing_agent_rpc_observation · agent.evidence[3].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation.",
+          "missing_agent_rpc_observation · agent.evidence[4].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation."
+        ],
+        "citation_scope": "Bounded structural checks of claim and directed candidate-explanation references to successful Agent evidence, explanation-status bindings, Transfer links to supplied RPC observations, and receipt/transaction identity consistency. No factual verification, source authenticity, completeness, or reviewer independence is established.",
+        "factual_verification": false,
+        "source_authenticity_verified": false,
+        "assessment_statuses": {
+          "governance_execution": "supported",
+          "supply_decrease": "unknown"
+        }
+      },
+      "receipt_observed_at_beijing": "2026-10-08T00:12:10+08:00",
+      "review_id": "1",
+      "local_review_id": 7,
+      "review_hash": "c226b90aead3c2e77941b9deeaa77f87be71d1a55c3c90597f6b81fff5a590af",
+      "decision": "correction_requested"
+    },
+    {
+      "key": "v2",
+      "title": "更正后的报告",
+      "subtitle": "追加登记 · 版本 2 → 版本 1",
+      "summary": "区块24106378观察到国库地址向dead转移1亿UNI。交易与回执、提案93材料支持有限治理解释；本轮Agent未读取历史供应getter，供应变化保持未知。",
+      "source_label": "人工复核更正报告原文 · v2",
+      "local_version_id": 33,
+      "version_id": "2",
+      "content_hash": "b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+      "transaction_hash": "0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+      "tx_url": "https://scan.bohr.life/tx/0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+      "archived_status": "verified",
+      "prepared": {
+        "chain_id": 968,
+        "action": "append_version",
+        "account": "0x054801af006663b16b84cee370267eca2b94686c",
+        "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "case_id": "gcc-uniswap93-adaptive-20261007",
+        "local_version_id": 33,
+        "onchain_version_id": "1"
+      },
+      "bundle_url": "/api/investigations/gcc-uniswap93-adaptive-20261007/bundle?revision=2",
+      "explanation": "把可观察事实与解释、未知分开，追加更正版本并保留完整父版本关系。",
+      "report_claims": [
+        "交易0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e在区块24106378执行了100,000,000 UNI代币从0x1a9c8182c09f50c8318d769245bea52c32be35bc到销毁地址0x000...dead的转移",
+        "Uniswap治理提案93明确指定了向销毁地址转移100,000,000 UNI的操作，这与观察到的转移金额和地址匹配",
+        "交易to字段为0x408ed6354d4973f66138c91495f2f2fcbd8724c3，input末32字节为0x5d，回执status为成功。执行授权和其他治理动作需另行核验。"
+      ],
+      "limitations": [
+        "调查受限于4次模型请求预算，无法获取转移前后的代币状态进行比较",
+        "未验证治理提案93在链上的实际执行授权和投票结果",
+        "未检查发送方地址0x1a9c8182c09f50c8318d769245bea52c32be35bc的权限和角色",
+        "治理来源文本为外部快照，未独立验证其完整性和准确性",
+        "未确认销毁地址转移是否确实导致总供应量永久减少",
+        "调查范围仅限于观察到的单笔转移，未检查同一交易中的其他日志（如第二个Transfer事件）"
+      ],
+      "evidence_quality": {
+        "review_status": "needs_review",
+        "quality_status": "no_flags_detected",
+        "quality_scope": "Limited checks of units, attack exclusion and contract-wide burn wording in summary, claims and supported explanations; semantic support requires review, no factual verification.",
+        "citation_status": "needs_review",
+        "citation_issues": [
+          "missing_agent_rpc_observation · agent.evidence[3].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation.",
+          "missing_agent_rpc_observation · agent.evidence[4].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation."
+        ],
+        "citation_scope": "Bounded structural checks of claim and directed candidate-explanation references to successful Agent evidence, explanation-status bindings, Transfer links to supplied RPC observations, and receipt/transaction identity consistency. No factual verification, source authenticity, completeness, or reviewer independence is established.",
+        "factual_verification": false,
+        "source_authenticity_verified": false,
+        "assessment_statuses": {
+          "governance_execution": "supported",
+          "supply_decrease": "unknown"
+        }
+      },
+      "receipt_observed_at_beijing": "2026-10-08T00:19:52+08:00",
+      "parent_version_id": "1"
+    }
+  ]
+}

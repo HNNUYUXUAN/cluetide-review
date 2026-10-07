@@ -1,0 +1,334 @@
+{
+  "schema_version": "cluetide-bot-real-workflow/v1",
+  "observed_at_utc": "2026-10-07T16:24:25+00:00",
+  "observed_at_beijing": "2026-10-08T00:24:25+08:00",
+  "execution_scope": "bot_testnet_968",
+  "chain_id": 968,
+  "rpc_url": "https://rpc.bohr.life",
+  "wallet": "0x054801af006663b16b84cee370267eca2b94686c",
+  "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+  "contract_url": "https://scan.bohr.life/address/0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+  "deployment": {
+    "transaction_hash": "0xb63f9e55bb812ab58ef9cdf10538896d012d234a830e47ace835613f7fa2cc22",
+    "tx_url": "https://scan.bohr.life/tx/0xb63f9e55bb812ab58ef9cdf10538896d012d234a830e47ace835613f7fa2cc22",
+    "status": 1,
+    "block_number": 26036303,
+    "confirmations": 2765,
+    "gas_used": 1147062,
+    "effective_gas_price_wei": "20000000000",
+    "fee_wei": "22941240000000000",
+    "creation_bytecode_matches": true,
+    "runtime_matches": true,
+    "runtime_sha256": "aad97004150622ee20c060b8ffc4c16ba0a809b7df94db6dd57f3297f85f4a63"
+  },
+  "deployment_source_snapshot": "data/demo/bot-testnet-workflow-20261007-ready.json",
+  "case_id": "gcc-uniswap93-adaptive-20261007",
+  "local_to_onchain": {
+    "v1": {
+      "local_version_id": 32,
+      "version_id": "1",
+      "parent_version_id": "0"
+    },
+    "review": {
+      "local_review_id": 7,
+      "local_version_id": 32,
+      "review_id": "1",
+      "version_id": "1"
+    },
+    "v2": {
+      "local_version_id": 33,
+      "local_parent_version_id": 32,
+      "version_id": "2",
+      "parent_version_id": "1"
+    }
+  },
+  "workflow": [
+    {
+      "step": "v1",
+      "action": "create_case",
+      "receipt_path": "data/demo/bot-testnet-v1-receipt-20261008.json",
+      "receipt_sha256": "05cc69d12f753544fc4bdb2ab1a1cd8845839d411c6b4daea960da8a8eef6462",
+      "transaction_hash": "0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+      "tx_url": "https://scan.bohr.life/tx/0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "1"
+      },
+      "confirmations_at_receipt_archive": 134,
+      "actual_fee_wei": "8257840000000000",
+      "actual_fee_testnet_bot": "0.00825784"
+    },
+    {
+      "step": "review",
+      "action": "add_review",
+      "receipt_path": "data/demo/bot-testnet-review-receipt-20261008.json",
+      "receipt_sha256": "36032e6a0e78a86cfce0957fa412a967ea41277c00cd79084c0e37740eda82e0",
+      "transaction_hash": "0x1c59b8810f17ffbe8d3bc1dc002ec2e8edfa792dab0db0bc9e38a6a6082ca33b",
+      "tx_url": "https://scan.bohr.life/tx/0x1c59b8810f17ffbe8d3bc1dc002ec2e8edfa792dab0db0bc9e38a6a6082ca33b",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "1",
+        "review_id": "1"
+      },
+      "confirmations_at_receipt_archive": 34,
+      "actual_fee_wei": "7390720000000000",
+      "actual_fee_testnet_bot": "0.00739072"
+    },
+    {
+      "step": "v2",
+      "action": "append_version",
+      "receipt_path": "data/demo/bot-testnet-v2-receipt-20261008.json",
+      "receipt_sha256": "b233969d745bddaec0bd2a567d82ab34fc16453f1954cb8e6cb80ea111c6da9b",
+      "transaction_hash": "0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+      "tx_url": "https://scan.bohr.life/tx/0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "2"
+      },
+      "confirmations_at_receipt_archive": 50,
+      "actual_fee_wei": "6441660000000000",
+      "actual_fee_testnet_bot": "0.00644166"
+    }
+  ],
+  "final_case_getter": {
+    "network": {
+      "chain_id": 968,
+      "chain_id_hex": "0x3c8",
+      "name": "BOT Chain Testnet",
+      "rpc_url": "https://rpc.bohr.life",
+      "explorer_url": "https://scan.bohr.life",
+      "native_currency": {
+        "name": "BOT",
+        "symbol": "BOT",
+        "decimals": 18
+      },
+      "native_currency_status": "official_testnet_metadata",
+      "warnings": []
+    },
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+    "getter_state": {
+      "case": {
+        "author": "0x054801af006663b16b84cee370267eca2b94686c",
+        "head_version_id": "2",
+        "version_count": "2",
+        "review_count": "1",
+        "created_at": "1791389318"
+      },
+      "versions": [
+        {
+          "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+          "version_id": "1",
+          "parent_version_id": "0",
+          "author": "0x054801af006663b16b84cee370267eca2b94686c",
+          "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+          "schema_version": "cluetide.evidence.v1",
+          "evidence_uri": "urn:cluetide:manifest:a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+          "created_at": "1791389318"
+        },
+        {
+          "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+          "version_id": "2",
+          "parent_version_id": "1",
+          "author": "0x054801af006663b16b84cee370267eca2b94686c",
+          "content_hash": "b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+          "schema_version": "cluetide.evidence.v1",
+          "evidence_uri": "urn:cluetide:manifest:b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+          "created_at": "1791389947"
+        }
+      ],
+      "reviews": [
+        {
+          "review_id": "1",
+          "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+          "version_id": "1",
+          "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+          "reviewer": "0x054801af006663b16b84cee370267eca2b94686c",
+          "decision": "correction_requested",
+          "review_hash": "c226b90aead3c2e77941b9deeaa77f87be71d1a55c3c90597f6b81fff5a590af",
+          "review_uri": "urn:cluetide:review:c226b90aead3c2e77941b9deeaa77f87be71d1a55c3c90597f6b81fff5a590af",
+          "created_at": "1791389501"
+        }
+      ],
+      "inventory": {
+        "versions": {
+          "offset": "0",
+          "total_count": "2",
+          "next_offset": null,
+          "complete": true
+        },
+        "reviews": {
+          "offset": "0",
+          "total_count": "1",
+          "next_offset": null,
+          "complete": true
+        }
+      }
+    },
+    "artifact": {
+      "contract_name": "ClueTideRegistry",
+      "compiler": "0.8.30+commit.73712a01",
+      "evm_version": "paris",
+      "source_sha256": "a41cd6a0eb310d63096db94cca9621cc70b1d963e4dd067fdbcaeca063dd6f64",
+      "artifact_sha256": "47330ce0eeb728bf1bbd7d897138d9757726708800057619a0d904e75315c6a3",
+      "bytecode_sha256": "9de904beee921c340dd3873f6f12e7896dd88a35eedda228dbb67b558b739ee3",
+      "runtime_sha256": "aad97004150622ee20c060b8ffc4c16ba0a809b7df94db6dd57f3297f85f4a63"
+    },
+    "case_status": "registered",
+    "read_block_number": "26041021",
+    "verification_scope": "getter_values_at_read_block",
+    "read_observed_at_utc": "2026-10-07T16:24:13+00:00"
+  },
+  "repeat_prepare_checks": {
+    "v1": {
+      "http_status": 409,
+      "response": {
+        "detail": "case_exists"
+      },
+      "transaction_sent": false
+    },
+    "review": {
+      "http_status": 409,
+      "response": {
+        "detail": "review_exists"
+      },
+      "transaction_sent": false
+    },
+    "v2": {
+      "http_status": 409,
+      "response": {
+        "detail": "stale_parent"
+      },
+      "transaction_sent": false
+    }
+  },
+  "account_nonce": {
+    "latest": 5,
+    "pending": 5
+  },
+  "no_pending_nonce_gap": true,
+  "account_balance_wei": "9932027300000000000",
+  "business_actual_fee_wei": "22090220000000000",
+  "business_actual_fee_testnet_bot": "0.02209022",
+  "referenced_deployment_fee_wei": "22941240000000000",
+  "referenced_deployment_plus_business_fee_wei": "45031460000000000",
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "rpc_available": true,
+    "paid_agent_available": false,
+    "live_agent_available": false,
+    "model_budget": {
+      "cap_rmb": "10",
+      "reserved_rmb": "9.586344",
+      "remaining_rmb": "0.413656",
+      "reported_usage_rmb": "0.532097",
+      "requests_reserved": 60,
+      "account_balance_verified": false
+    },
+    "registry_mode": "local_state_simulation",
+    "publication_storage": "sqlite_atomic",
+    "registry_mirror_pending": false,
+    "network_scope": "loopback",
+    "paid_agent_reason": "Session authorization, current route quote, spendable balance and the shared hard budget are checked before paid execution."
+  },
+  "saved_case_count": 29,
+  "browser_validation": {
+    "browser": "Chrome",
+    "viewport": "1062x658 actual screenshot",
+    "refresh_restore_v2_without_wallet_connection": "passed",
+    "confirmations_at_browser_refresh_verify": 168,
+    "original_deployment_restore": "passed",
+    "full_inventory_read": "passed",
+    "application_error_logs": [],
+    "screenshot_local_path": "local-data/bot-testnet-flow-final-20261008.png"
+  },
+  "independent_review": {
+    "reviewer": "Codex case_audit subagent",
+    "source": "official RPC and local saved bundles",
+    "receipts_canonical_blocks_runtime_calldata_events_receipt_block_getters": "passed",
+    "v1_v2_raw_evidence_and_original_model_preservation": "passed",
+    "review_hash_and_exact_v1_binding": "passed"
+  },
+  "engineering_validation": {
+    "source_commit": "2401abf8f74d53cd9426106110d462f6ec5cdcaf",
+    "affected_bot_tests": 100,
+    "affected_bot_tests_seconds": 8.84,
+    "typescript_vite_production_build": "passed",
+    "scope": "affected BOT tests, full suite results remain attributed to their archived source commits"
+  },
+  "identity_disclosure": {
+    "case_author_and_onchain_reviewer_same_wallet": true,
+    "local_reviewer_label": "local-semantic-reviewer",
+    "independent_identity_certification": false
+  },
+  "evidence_access": {
+    "uri_type": "urn commitment locator",
+    "real_bundles_access": "local application API",
+    "public_real_bundle_download": "not_verified",
+    "public_static_demo": "synthetic v1/v2 fixtures"
+  },
+  "local_registry": "SQLite records kept separately from BOT testnet getter state",
+  "mainnet": {
+    "chain_id": 677,
+    "transactions_sent_in_this_session": 0,
+    "status": "outside_this_testnet_session"
+  },
+  "model_requests_in_this_session": 0,
+  "remaining_tasks": [
+    "Provide an authorized public real-evidence download if needed for reviewers.",
+    "Add verified testnet links and the user-selected Telegram or Wechat to the existing Gas draft.",
+    "Handle mainnet 677 deployment and verification under a separate authorized session."
+  ],
+  "limits": [
+    "Nonce equality is an official node observation; wallet UI activity was reviewed by the user.",
+    "Chrome URL policy blocks wallet extension pages; the user confirmed all three requests in MetaMask.",
+    "Recorded confirmations describe the canonical chain at read time."
+  ],
+  "explorer_browser_validation": {
+    "browser": "Chrome",
+    "batch_completed_at_beijing": "2026-10-08T00:31:18+08:00",
+    "all_three_transaction_links_accessible": true,
+    "observations": [
+      {
+        "step": "v2",
+        "url": "https://scan.bohr.life/tx/0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+        "status_label": "Success",
+        "testnet_notice": "This is a testnet transaction only",
+        "block_number": 26040618,
+        "confirmations_at_page_read": 783,
+        "actual_fee_testnet_bot": "0.00644166",
+        "from": "0x054801af006663b16b84cee370267eca2b94686c",
+        "to": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "screenshot_local_path": "local-data/bot-testnet-v2-explorer-20261008.png"
+      },
+      {
+        "step": "review",
+        "url": "https://scan.bohr.life/tx/0x1c59b8810f17ffbe8d3bc1dc002ec2e8edfa792dab0db0bc9e38a6a6082ca33b",
+        "status_label": "Success",
+        "testnet_notice": "This is a testnet transaction only",
+        "block_number": 26040024,
+        "confirmations_at_page_read": 1419,
+        "actual_fee_testnet_bot": "0.00739072",
+        "from": "0x054801af006663b16b84cee370267eca2b94686c",
+        "to": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "screenshot_local_path": "local-data/bot-testnet-review-explorer-20261008.png"
+      },
+      {
+        "step": "v1",
+        "url": "https://scan.bohr.life/tx/0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90",
+        "status_label": "Success",
+        "testnet_notice": "This is a testnet transaction only",
+        "block_number": 26039779,
+        "confirmations_at_page_read": 1712,
+        "actual_fee_testnet_bot": "0.00825784",
+        "from": "0x054801af006663b16b84cee370267eca2b94686c",
+        "to": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "screenshot_local_path": "local-data/bot-testnet-v1-explorer-20261008.png"
+      }
+    ]
+  }
+}

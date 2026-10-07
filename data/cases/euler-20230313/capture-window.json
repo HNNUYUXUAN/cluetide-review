@@ -1,0 +1,106 @@
+{
+  "model_requests": 0,
+  "phase": "Window",
+  "observations": [
+    {
+      "name": "start-block",
+      "response_file": "raw/start-block.response.json",
+      "http_status": 200,
+      "result_kind": "result",
+      "method": "eth_getBlockByNumber",
+      "request_file": "raw/start-block.request.json",
+      "request_sha256": "6facf2d12eaa98b2d5ab26a6817f9b9898daf67e94ab6d1df2a4f7339c4b9fea",
+      "response_sha256": "d402f9094cfb1e4782dfc71bf6f237e7f72b8b2366198921edeba78d11342ccf",
+      "captured_at_utc": "2026-10-07T03:50:05.9774827Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co"
+    },
+    {
+      "name": "case-block",
+      "response_file": "raw/case-block.response.json",
+      "http_status": 200,
+      "result_kind": "result",
+      "method": "eth_getBlockByNumber",
+      "request_file": "raw/case-block.request.json",
+      "request_sha256": "7df0474c79680499bf36f436c69c00ff23c091ecc9ae0a4a8fbe781b2d2bb370",
+      "response_sha256": "f589450b9a9c5318160589cca80f3fb0ae7f32eb036c54bdcfbe4a4bb5f7bd62",
+      "captured_at_utc": "2026-10-07T03:50:07.0544661Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co"
+    },
+    {
+      "name": "end-block",
+      "response_file": "raw/end-block.response.json",
+      "http_status": 200,
+      "result_kind": "result",
+      "method": "eth_getBlockByNumber",
+      "request_file": "raw/end-block.request.json",
+      "request_sha256": "7fa49299c43f2c7a63c146cd14e99864c05578febea42fa056b59b0585aed66d",
+      "response_sha256": "9d5d95c8e4efff31d5f3f08c9e557d4c492e8155d456c0b97ec1f0eb0e7b4037",
+      "captured_at_utc": "2026-10-07T03:50:08.1763414Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co"
+    },
+    {
+      "name": "logs-out",
+      "response_file": "raw/logs-out.response.json",
+      "http_status": 200,
+      "result_kind": "result",
+      "method": "eth_getLogs",
+      "request_file": "raw/logs-out.request.json",
+      "request_sha256": "28660143af920839d893f68b464702e90818866ed96b27fc3f64d77f79437e8c",
+      "response_sha256": "13a34c020774decdcee09758c0e9d26c57a1049f00366086199e95758521c7c6",
+      "captured_at_utc": "2026-10-07T03:50:09.1806357Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co"
+    },
+    {
+      "name": "logs-in",
+      "response_file": "raw/logs-in.response.json",
+      "http_status": 200,
+      "result_kind": "result",
+      "method": "eth_getLogs",
+      "request_file": "raw/logs-in.request.json",
+      "request_sha256": "1e0d81c6a6e64836ef7c02d606d8fc134e9505edb8ccab57b7b393fd36e41f2b",
+      "response_sha256": "b32a1004a1107201a098d6784709100f19e79b19c58ac4b88def72f829fdd511",
+      "captured_at_utc": "2026-10-07T03:50:10.1885130Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co"
+    },
+    {
+      "name": "metadata-decimals",
+      "response_file": "raw/metadata-decimals.response.json",
+      "http_status": 200,
+      "result_kind": "result",
+      "method": "eth_call",
+      "request_file": "raw/metadata-decimals.request.json",
+      "request_sha256": "1cf7c70619d1394164e7e5175a668d4ed124dd8d2acf33bf16e9b7be4c6d8716",
+      "response_sha256": "d697207a9137973f2dd578ed6c157f1f6c07e644146c5e6a101e73fbeebd14ea",
+      "captured_at_utc": "2026-10-07T03:50:11.2481594Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co"
+    },
+    {
+      "name": "metadata-symbol",
+      "response_file": "raw/metadata-symbol.response.json",
+      "http_status": 200,
+      "result_kind": "result",
+      "method": "eth_call",
+      "request_file": "raw/metadata-symbol.request.json",
+      "request_sha256": "8026e58d5cabe58b881af3fde4f5c4b84f39826da8e991dbab4e905e55c81983",
+      "response_sha256": "e83f1e0660f22a3c6462aaf150f0a4ff327135194db4d7b81aa42c3c3f1ddf94",
+      "captured_at_utc": "2026-10-07T03:50:12.1463987Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co"
+    },
+    {
+      "name": "metadata-name",
+      "response_file": "raw/metadata-name.response.json",
+      "http_status": 200,
+      "result_kind": "result",
+      "method": "eth_call",
+      "request_file": "raw/metadata-name.request.json",
+      "request_sha256": "60096dac3279afe1bab5e172dbb14117aa4a716cf2c79ab9e50190db9dc56598",
+      "response_sha256": "86409d82d09831fd5f59be404630b553e7939e812e54ee2a4d8aa55d9d75f329",
+      "captured_at_utc": "2026-10-07T03:50:13.0625055Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co"
+    }
+  ],
+  "finished_at_utc": "2026-10-07T03:50:13.9723980Z",
+  "transactions_signed_or_broadcast": 0,
+  "read_attempts": 8,
+  "schema_version": "cluetide.public-capture/v1"
+}

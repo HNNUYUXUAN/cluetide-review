@@ -1,0 +1,47 @@
+[
+  {
+    "chain_id": 1,
+    "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+    "from_address": "0x583c21631c48d442b5c0e605d624f54a0b366c72",
+    "to_address": "0x27182842e098f60e3d576794a5bffb0777e025d3",
+    "value_raw": "20000000000000000000000000",
+    "block_number": 16817996,
+    "block_hash": "0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859",
+    "transaction_hash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+    "log_index": 5,
+    "transaction_index": 0,
+    "directions": [
+      "in"
+    ]
+  },
+  {
+    "chain_id": 1,
+    "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+    "from_address": "0x583c21631c48d442b5c0e605d624f54a0b366c72",
+    "to_address": "0x27182842e098f60e3d576794a5bffb0777e025d3",
+    "value_raw": "10000000000000000000000000",
+    "block_number": 16817996,
+    "block_hash": "0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859",
+    "transaction_hash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+    "log_index": 17,
+    "transaction_index": 0,
+    "directions": [
+      "in"
+    ]
+  },
+  {
+    "chain_id": 1,
+    "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+    "from_address": "0x27182842e098f60e3d576794a5bffb0777e025d3",
+    "to_address": "0xa0b3ee897f233f385e5d61086c32685257d4f12b",
+    "value_raw": "38904507348306697267428294",
+    "block_number": 16817996,
+    "block_hash": "0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859",
+    "transaction_hash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+    "log_index": 46,
+    "transaction_index": 0,
+    "directions": [
+      "out"
+    ]
+  }
+]

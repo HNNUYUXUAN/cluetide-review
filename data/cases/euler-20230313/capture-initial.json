@@ -1,0 +1,58 @@
+{
+  "transactions_signed_or_broadcast": 0,
+  "schema_version": "cluetide.public-capture/v1",
+  "observations": [
+    {
+      "name": "chain-id",
+      "request_sha256": "bcc4504e53110e54da45d7f352be75d98cd1d71f19a518f0b788e19bb7e6677f",
+      "request_file": "raw/chain-id.request.json",
+      "captured_at_utc": "2026-10-07T03:49:38.9013563Z",
+      "method": "eth_chainId",
+      "response_file": "raw/chain-id.response.json",
+      "result_kind": "result",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "http_status": 200,
+      "response_sha256": "79226432df73e05966f20e4d291fb5048bfef1138d7078f8feab534126df1aa5"
+    },
+    {
+      "name": "receipt",
+      "request_sha256": "2b44f9c55702343cfae0f9712ffca59373bde48e7e581417410b07920cf91202",
+      "request_file": "raw/receipt.request.json",
+      "captured_at_utc": "2026-10-07T03:49:39.9497904Z",
+      "method": "eth_getTransactionReceipt",
+      "response_file": "raw/receipt.response.json",
+      "result_kind": "result",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "http_status": 200,
+      "response_sha256": "741d5ed74c8535e1001b5528a46500e4b4337ef812c34ff464f16f82899a9371"
+    },
+    {
+      "name": "transaction",
+      "request_sha256": "9a72ad6a00f57988a831644739b18b2aaa98c7d863aa9647621d1a98f216820e",
+      "request_file": "raw/transaction.request.json",
+      "captured_at_utc": "2026-10-07T03:49:41.3999849Z",
+      "method": "eth_getTransactionByHash",
+      "response_file": "raw/transaction.response.json",
+      "result_kind": "result",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "http_status": 200,
+      "response_sha256": "c1d27ec65227939ec61b753b5d7fe17342370b03d8d4f90275ae0f27576c268d"
+    },
+    {
+      "name": "finalized",
+      "request_sha256": "f8974fcaed4e67849cb37202741e28389d9986d44b76d41c3aa9a170a0412dff",
+      "request_file": "raw/finalized.request.json",
+      "captured_at_utc": "2026-10-07T03:49:42.2795443Z",
+      "method": "eth_getBlockByNumber",
+      "response_file": "raw/finalized.response.json",
+      "result_kind": "result",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "http_status": 200,
+      "response_sha256": "8593bf7419042215891c3ca627a087768582cd0cd2b7f9c230cbf813df13da65"
+    }
+  ],
+  "read_attempts": 4,
+  "phase": "Initial",
+  "finished_at_utc": "2026-10-07T03:49:43.2107194Z",
+  "model_requests": 0
+}

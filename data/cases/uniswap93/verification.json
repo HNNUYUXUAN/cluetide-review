@@ -1,0 +1,31 @@
+{
+  "schema_version": "cluetide.fixture-verification.v1",
+  "verified_at_utc": "2026-10-06T17:53:17.103802Z",
+  "checks": [
+    "chain_id_1",
+    "successful_receipt",
+    "two_provider_receipt_logs_match",
+    "transaction_in_case_block",
+    "receipt_transaction_block_hash_match",
+    "governor_execute_93_input",
+    "bounded_unique_transfer_logs",
+    "subject_outgoing_one_incoming_zero",
+    "amount_uint256_exact",
+    "decimals_18",
+    "total_supply_getters_unchanged",
+    "governor_state_executed",
+    "captured_finalized_anchor_exceeds_window",
+    "three_metadata_queries_pinned_end_block_hash",
+    "metadata_name_symbol_decimals_exact"
+  ],
+  "receipt_difference": "Tenderly includes blobGasUsed=0x0; dRPC omits that optional field. All receipt logs are identical.",
+  "amount_raw": "100000000000000000000000000",
+  "total_supply_before_raw": "1000000000000000000000000000",
+  "total_supply_after_raw": "1000000000000000000000000000",
+  "remaining_blockers": [],
+  "limitations": [
+    "Provider-reported data, without a cryptographic inclusion or consensus proof.",
+    "Token-state reads are end-of-block reads at 24106377 and 24106378, rather than intra-transaction reads.",
+    "Single-provider successful bounded getLogs response establishes query coverage, not independent evidence that the provider never omitted a log."
+  ]
+}

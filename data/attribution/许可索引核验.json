@@ -1,0 +1,39 @@
+{
+  "schema_version": "cluetide.attribution-verification.v1",
+  "checked_at_beijing": "2026-10-07T12:22:59+08:00",
+  "source_head_commit": "ae59d6920f87384a90ffc159429ead6f350d7fb9",
+  "result": "verified_with_declared_scope",
+  "summary": {
+    "python_locked_distributions": 84,
+    "python_license_original_packages": 83,
+    "npm_locked_packages": 119,
+    "npm_installed_packages": 69,
+    "npm_license_original_packages": 66,
+    "isolated_build_backend_license_originals": 17,
+    "preserved_license_files": 203
+  },
+  "license_files_reopened_and_sha256_verified": 203,
+  "python_lock_version_mismatches": 0,
+  "npm_installed_lock_version_mismatches": 0,
+  "network_requests": 0,
+  "model_requests": 0,
+  "chain_rpc_calls": 0,
+  "unknown_license_originals": [
+    {
+      "ecosystem": "python",
+      "name": "logfire-api",
+      "version": "5.1.1",
+      "evidence": "installed_metadata_only",
+      "official_release_read": {
+        "archive_url": "https://files.pythonhosted.org/packages/ec/57/cad073851d8ed046314bc99161f94cd495f41c0a96e9960ece81f09b381b/logfire_api-5.1.1.tar.gz",
+        "archive_sha256": "3b0b6130ff43fe3570aaaa86ca4db9527c697f11c30157a644a41e702987eb8b",
+        "archive_kind": "sdist",
+        "license_declaration": "MIT",
+        "license_evidence": "official_pypi_release_archive_without_license_original",
+        "license_originals": []
+      }
+    }
+  ],
+  "npm_locked_but_not_installed": 50,
+  "npm_native_metadata_with_main_package_license_relation": 3
+}

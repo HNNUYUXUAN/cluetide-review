@@ -1,0 +1,83 @@
+{
+  "schema_version": "cluetide-bot-real-business-receipt/v1",
+  "observed_at_utc": "2026-10-07T16:19:52+00:00",
+  "observed_at_beijing": "2026-10-08T00:19:52+08:00",
+  "execution_scope": "bot_testnet_968",
+  "prepared_public_request": {
+    "chain_id": 968,
+    "action": "append_version",
+    "account": "0x054801af006663b16b84cee370267eca2b94686c",
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "case_id": "gcc-uniswap93-adaptive-20261007",
+    "local_version_id": 33,
+    "onchain_version_id": "1"
+  },
+  "verification": {
+    "status": "verified",
+    "transaction_hash": "0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+    "tx_link": "https://scan.bohr.life/tx/0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+    "confirmations": 50,
+    "minimum_confirmations": 3,
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "getter_state": {
+      "case": {
+        "author": "0x054801af006663b16b84cee370267eca2b94686c",
+        "head_version_id": "2",
+        "version_count": "2",
+        "review_count": "1",
+        "created_at": "1791389318"
+      },
+      "version": {
+        "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+        "version_id": "2",
+        "parent_version_id": "1",
+        "author": "0x054801af006663b16b84cee370267eca2b94686c",
+        "content_hash": "b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+        "schema_version": "cluetide.evidence.v1",
+        "evidence_uri": "urn:cluetide:manifest:b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+        "created_at": "1791389947"
+      }
+    },
+    "onchain_ids": {
+      "version_id": "2"
+    },
+    "artifact": {
+      "contract_name": "ClueTideRegistry",
+      "compiler": "0.8.30+commit.73712a01",
+      "evm_version": "paris",
+      "source_sha256": "a41cd6a0eb310d63096db94cca9621cc70b1d963e4dd067fdbcaeca063dd6f64",
+      "artifact_sha256": "47330ce0eeb728bf1bbd7d897138d9757726708800057619a0d904e75315c6a3",
+      "bytecode_sha256": "9de904beee921c340dd3873f6f12e7896dd88a35eedda228dbb67b558b739ee3",
+      "runtime_sha256": "aad97004150622ee20c060b8ffc4c16ba0a809b7df94db6dd57f3297f85f4a63"
+    },
+    "commitments": {
+      "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+      "content_hash": "b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+      "local_version_id": 33,
+      "onchain_version_id": "1",
+      "parent_content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb"
+    },
+    "verification_scope": "canonical_at_read_time_with_confirmations",
+    "gas_used": "322083",
+    "effective_gas_price_wei": "20000000000",
+    "actual_fee_wei": "6441660000000000",
+    "gas_price_source": "receipt_effective_gas_price",
+    "block_number": "26040618",
+    "block_hash": "0x0803fc8b86dc6467a2fd7751990690e2643fdf6109c01685429c4a2e4b9c4959",
+    "read_observed_at_utc": "2026-10-07T16:19:45+00:00"
+  },
+  "tx_url": "https://scan.bohr.life/tx/0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+  "receipt": {
+    "transaction_hash": "0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f",
+    "status": 1,
+    "block_number": 26040618,
+    "block_hash": "0x0803fc8b86dc6467a2fd7751990690e2643fdf6109c01685429c4a2e4b9c4959",
+    "from": "0x054801af006663b16b84cee370267eca2b94686c",
+    "to": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "gas_used": 322083,
+    "effective_gas_price_wei": "20000000000",
+    "fee_wei": "6441660000000000",
+    "nonce": 4,
+    "value_wei": "0"
+  }
+}

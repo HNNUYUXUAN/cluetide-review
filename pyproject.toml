@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cluetide"
+version = "0.1.0"
+description = "Bounded Ethereum event investigation and collaborative review"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "pydantic-ai-slim[openai]==2.54.0",
+  "fastapi",
+  "uvicorn",
+  "httpx",
+  "python-dotenv",
+  "python-multipart",
+  "rfc8785",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio", "web3", "eth-tester", "py-evm", "py-solc-x", "playwright"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

@@ -1,0 +1,50 @@
+{
+  "phase": "Initial",
+  "finished_at_utc": "2026-10-07T03:48:46.8531523Z",
+  "model_requests": 0,
+  "schema_version": "cluetide.public-capture/v1",
+  "read_attempts": 4,
+  "observations": [
+    {
+      "request_file": "raw/chain-id.request.json",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "request_sha256": "88bc5a26ab0c412c0f633777395e45f63127cce1b0c1b80cbb447d75ff81b7ab",
+      "method": "eth_chainId",
+      "captured_at_utc": "2026-10-07T03:48:46.7316185Z",
+      "error": "Public read transport failed; TLS validation was preserved.",
+      "name": "chain-id",
+      "result_kind": "transport_error"
+    },
+    {
+      "request_file": "raw/receipt.request.json",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "request_sha256": "76e03198891ea317df0755f31526883b6b15067ff1b813845a9fd90603ef19c9",
+      "method": "eth_getTransactionReceipt",
+      "captured_at_utc": "2026-10-07T03:48:46.8294342Z",
+      "error": "Public read transport failed; TLS validation was preserved.",
+      "name": "receipt",
+      "result_kind": "transport_error"
+    },
+    {
+      "request_file": "raw/transaction.request.json",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "request_sha256": "36db421cd2f81e216fb509b685f36c0b4d14812fa91397eb700937779e3980ee",
+      "method": "eth_getTransactionByHash",
+      "captured_at_utc": "2026-10-07T03:48:46.8390610Z",
+      "error": "Public read transport failed; TLS validation was preserved.",
+      "name": "transaction",
+      "result_kind": "transport_error"
+    },
+    {
+      "request_file": "raw/finalized.request.json",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "request_sha256": "9051713ddc8f3c74124bdb2a0c9123a10d09ae198dd6a4059ed69da2fcb391ca",
+      "method": "eth_getBlockByNumber",
+      "captured_at_utc": "2026-10-07T03:48:46.8473382Z",
+      "error": "Public read transport failed; TLS validation was preserved.",
+      "name": "finalized",
+      "result_kind": "transport_error"
+    }
+  ],
+  "transactions_signed_or_broadcast": 0
+}

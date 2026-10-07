@@ -1,0 +1,59 @@
+{
+  "source": "data/demo/gcc-evaluation-20261007-uniswap93-02.json",
+  "source_sha256": "d48517153ac018095e5e9ec69f51f13943bb63ac191948cac820676372c668a5",
+  "model_requests_in_this_script": 0,
+  "external_rpc_reads_in_this_script": 0,
+  "roles": "Controlled local reviewer and author; independent verification is not established.",
+  "cases": [
+    {
+      "case_id": "gcc-uniswap93-adaptive-20261007",
+      "strategy": "adaptive",
+      "archives": [
+        {
+          "revision": 1,
+          "path": "data/demo/bundles/gcc-uniswap93-adaptive-v1.zip",
+          "sha256": "37e6d1adab334a751a93da1cc5d7f8401229b333f3e3ce50353f650123c67e4b",
+          "manifest_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+          "version_id": 32,
+          "parent_version_id": 0
+        },
+        {
+          "revision": 2,
+          "path": "data/demo/bundles/gcc-uniswap93-adaptive-v2.zip",
+          "sha256": "b8f918413e79f797b3a3606c835d64b79919ca5ecdc369e28723dffa112037d6",
+          "manifest_hash": "b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+          "version_id": 33,
+          "parent_version_id": 32
+        }
+      ],
+      "original_agent_preserved": true,
+      "review_count": 1,
+      "quality_status": "no_flags_detected"
+    },
+    {
+      "case_id": "gcc-uniswap93-one_shot-20261007",
+      "strategy": "one_shot",
+      "archives": [
+        {
+          "revision": 1,
+          "path": "data/demo/bundles/gcc-uniswap93-one_shot-v1.zip",
+          "sha256": "2d6f0e757a41f4ef47ad579e6cef34eaba6ca000ab7ec6df096c01b3115dc019",
+          "manifest_hash": "389af493af0f9af9672d6367d3e6fe1eaa15805a6d6baaadf6d36aa806f2ef5a",
+          "version_id": 34,
+          "parent_version_id": 0
+        },
+        {
+          "revision": 2,
+          "path": "data/demo/bundles/gcc-uniswap93-one_shot-v2.zip",
+          "sha256": "87f5533b5f7ffa8ca1174fb8628a1484214e78bcbe9107add1e4069942b7b8c5",
+          "manifest_hash": "050c61b16bce7ecba3e5bb0efc6c87f0378cb1be6440b1e8bcd79591aa966829",
+          "version_id": 35,
+          "parent_version_id": 34
+        }
+      ],
+      "original_agent_preserved": true,
+      "review_count": 1,
+      "quality_status": "no_flags_detected"
+    }
+  ]
+}

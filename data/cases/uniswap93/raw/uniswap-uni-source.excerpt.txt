@@ -1,0 +1,1 @@
+emit Transfer(src, dst, amount);

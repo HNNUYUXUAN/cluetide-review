@@ -1,0 +1,44 @@
+{
+  "case_id": "uniswap93",
+  "title": "UNIfication: treasury UNI transfer to dead address",
+  "request": {
+    "chain_id": 1,
+    "subject_address": "0x1a9c8182c09f50c8318d769245bea52c32be35bc",
+    "token_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+    "start_block": 24106368,
+    "end_block": 24106388,
+    "transaction_hash": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e"
+  },
+  "verified_transfer": {
+    "chain_id": 1,
+    "token_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+    "from_address": "0x1a9c8182c09f50c8318d769245bea52c32be35bc",
+    "to_address": "0x000000000000000000000000000000000000dead",
+    "amount_raw": "100000000000000000000000000",
+    "amount_display": "100000000",
+    "decimals": 18,
+    "transaction_hash": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+    "block_number": 24106378,
+    "block_hash": "0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14",
+    "log_index": 11,
+    "transaction_index": 2,
+    "receipt_status": "success",
+    "block_timestamp_utc": "2025-12-27T20:33:11Z",
+    "outer_transaction_sender": "0x1a13c53d516f6e8321e9903f224861e74bbd7aa0",
+    "outer_transaction_target": "0x408ed6354d4973f66138c91495f2f2fcbd8724c3",
+    "governor_proposal_id": "93"
+  },
+  "coverage": {
+    "status": "complete_query_response",
+    "scope": "UNI Transfer events for the inclusive bounded window; subject subsets locally filtered from the complete returned token log list",
+    "from_block": 24106368,
+    "to_block": 24106388,
+    "total_blocks": 21,
+    "all_token_transfer_count": 5,
+    "subject_outgoing_count": 1,
+    "subject_incoming_count": 0,
+    "log_source": "tenderly-logs-all",
+    "missing_ranges": [],
+    "finality_basis": "Captured provider-reported finalized block, whose height exceeds the requested window; no independently verified header ancestry or consensus proof is included."
+  }
+}
