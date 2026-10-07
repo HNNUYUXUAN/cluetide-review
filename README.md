@@ -70,3 +70,5 @@ Content hashes commit to bytes and version relationships; factual interpretation
 ClueTide 自有源码沿用 [MIT 许可](LICENSE)；第三方依赖及证据素材的来源和适用声明随各赛道提供。
 
 ClueTide's own source follows the [MIT License](LICENSE). Each track includes attribution and applicable notices for third-party dependencies and evidence sources.
+
+[发布验收与提交号 / Release verification and commits](docs/release.md)
