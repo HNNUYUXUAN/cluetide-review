@@ -1,0 +1,73 @@
+{
+  "case_id": "euler-20230313",
+  "request": {
+    "chain_id": 1,
+    "subject_address": "0x27182842e098f60e3d576794a5bffb0777e025d3",
+    "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+    "start_block": 16817995,
+    "end_block": 16817997,
+    "transaction_hash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d"
+  },
+  "transaction_status": "success",
+  "transaction_block": 16817996,
+  "transaction_block_hash": "0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859",
+  "block_timestamp_utc": "2023-03-13T08:50:59Z",
+  "coverage": {
+    "status": "complete_query_response",
+    "from_block": 16817995,
+    "to_block": 16817997,
+    "subject_outgoing_count": 1,
+    "subject_incoming_count": 2,
+    "missing_ranges": [],
+    "scope": "Two successful directional DAI Transfer filters for the Euler subject in an inclusive three-block window.",
+    "finality_basis": "Provider-reported finalized anchor, plus adjacent local window header links; no independent consensus proof."
+  },
+  "transfers": [
+    {
+      "chain_id": 1,
+      "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "from_address": "0x583c21631c48d442b5c0e605d624f54a0b366c72",
+      "to_address": "0x27182842e098f60e3d576794a5bffb0777e025d3",
+      "value_raw": "20000000000000000000000000",
+      "block_number": 16817996,
+      "block_hash": "0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859",
+      "transaction_hash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+      "log_index": 5,
+      "transaction_index": 0,
+      "directions": [
+        "in"
+      ]
+    },
+    {
+      "chain_id": 1,
+      "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "from_address": "0x583c21631c48d442b5c0e605d624f54a0b366c72",
+      "to_address": "0x27182842e098f60e3d576794a5bffb0777e025d3",
+      "value_raw": "10000000000000000000000000",
+      "block_number": 16817996,
+      "block_hash": "0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859",
+      "transaction_hash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+      "log_index": 17,
+      "transaction_index": 0,
+      "directions": [
+        "in"
+      ]
+    },
+    {
+      "chain_id": 1,
+      "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "from_address": "0x27182842e098f60e3d576794a5bffb0777e025d3",
+      "to_address": "0xa0b3ee897f233f385e5d61086c32685257d4f12b",
+      "value_raw": "38904507348306697267428294",
+      "block_number": 16817996,
+      "block_hash": "0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859",
+      "transaction_hash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+      "log_index": 46,
+      "transaction_index": 0,
+      "directions": [
+        "out"
+      ]
+    }
+  ],
+  "investigation_boundary": "A single historical DAI transaction related to Euler V1; observed transfers do not by themselves reconstruct all internal calls, debt health, total incident loss or recovery."
+}

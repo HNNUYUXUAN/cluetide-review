@@ -1,0 +1,32 @@
+{
+  "schema_version": "cluetide.fixture-verification.v1",
+  "verified_at_utc": "2026-10-07T04:01:47.063404Z",
+  "checks": [
+    "chain_id_1",
+    "successful_receipt",
+    "transaction_receipt_block_hash_match",
+    "transaction_in_block",
+    "adjacent_window_header_links",
+    "provider_finalized_height_exceeds_window",
+    "directional_logs_match_receipt",
+    "subject_one_outgoing_two_incoming",
+    "exact_uint256_strings",
+    "metadata_pinned_end_block_hash"
+  ],
+  "source_linked_transaction_hash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+  "outgoing_raw": "38904507348306697267428294",
+  "incoming_raw": "30000000000000000000000000",
+  "net_transfer_flow_raw": "-8904507348306697267428294",
+  "read_attempts": 18,
+  "successful_reads": 14,
+  "initial_local_transport_failures": 4,
+  "remaining_blockers": [],
+  "total_supply_before_raw": "6250900648863044172620917232",
+  "total_supply_after_raw": "6250900648863044172620917232",
+  "limitations": [
+    "One provider's successful responses; no independent consensus or inclusion proof.",
+    "No trace RPC or exploit execution was performed; internal debt health is source interpretation.",
+    "DAI net flow is a transfer-derived subject flow, not token balance, USD profit or aggregate incident loss.",
+    "The V1 address page was obtained as an indexed official extract; its live URL now redirects."
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "schema_version": "cluetide.fixture-manifest.v1",
+  "recorded_at_utc": "2026-10-07T04:01:47.063404Z",
+  "files": [
+    {
+      "path": "capture-initial-local-original.json",
+      "bytes": 2104,
+      "sha256": "41a249795e877f0f5fec2ef8e93eda27937955ee4a7176dec58adde2792d67fe"
+    },
+    {
+      "path": "capture-initial-local.json",
+      "bytes": 2511,
+      "sha256": "a608382dc2568e91d0c47c69b45143f5df39a552e9f0df3c86d5c9aeea1dd2af"
+    },
+    {
+      "path": "capture-initial.json",
+      "bytes": 2455,
+      "sha256": "a9967fb506c8be9be04f8196d16de2e00fa495be59eafb37ecbcd3dbb9d29d50"
+    },
+    {
+      "path": "capture-state.json",
+      "bytes": 1419,
+      "sha256": "0a0cf868757bfd90b3eb7b28e321f88f7659fabdaa50177cf2c3009e9238e180"
+    },
+    {
+      "path": "capture-window.json",
+      "bytes": 4669,
+      "sha256": "c4e88b2a43286088f21079cc4989da89e27a31706817351a8959d90bc37647ec"
+    },
+    {
+      "path": "case.json",
+      "bytes": 3136,
+      "sha256": "55a8af13d0123dd169ddffdbe10c016025d545a552c31d91e0659c8118e00b68"
+    },
+    {
+      "path": "normalized-transfers.json",
+      "bytes": 1760,
+      "sha256": "3ca75ef61c228e61d237b830550639ccd8aa9733e430970deda24260571aa9a0"
+    },
+    {
+      "path": "raw/case-block.request.json",
+      "bytes": 85,
+      "sha256": "7df0474c79680499bf36f436c69c00ff23c091ecc9ae0a4a8fbe781b2d2bb370"
+    },
+    {
+      "path": "raw/case-block.response.json",
+      "bytes": 12178,
+      "sha256": "f589450b9a9c5318160589cca80f3fb0ae7f32eb036c54bdcfbe4a4bb5f7bd62"
+    },
+    {
+      "path": "raw/chain-id.request.json",
+      "bytes": 59,
+      "sha256": "bcc4504e53110e54da45d7f352be75d98cd1d71f19a518f0b788e19bb7e6677f"
+    },
+    {
+      "path": "raw/chain-id.response.json",
+      "bytes": 39,
+      "sha256": "79226432df73e05966f20e4d291fb5048bfef1138d7078f8feab534126df1aa5"
+    },
+    {
+      "path": "raw/end-block.request.json",
+      "bytes": 85,
+      "sha256": "7fa49299c43f2c7a63c146cd14e99864c05578febea42fa056b59b0585aed66d"
+    },
+    {
+      "path": "raw/end-block.response.json",
+      "bytes": 14564,
+      "sha256": "9d5d95c8e4efff31d5f3f08c9e557d4c492e8155d456c0b97ec1f0eb0e7b4037"
+    },
+    {
+      "path": "raw/euler-labs-recovery-retrospective.excerpt.txt",
+      "bytes": 35,
+      "sha256": "9cc4aed80ad629327c287d991631633d45e82a9e350effba26a7daabd11ad5ba"
+    },
+    {
+      "path": "raw/euler-v1-addresses.excerpt.txt",
+      "bytes": 49,
+      "sha256": "e9cd8f97b9449e1645a468ecd4207b9cc8d5a38a1c46b2a8aac3febe42fc6c2b"
+    },
+    {
+      "path": "raw/euler-v1-donation-code.excerpt.txt",
+      "bytes": 82,
+      "sha256": "ae4a8be450c77dc400c795540ceffb22e93ab3434e0db6cb8192062282f94a94"
+    },
+    {
+      "path": "raw/finalized.request.json",
+      "bytes": 85,
+      "sha256": "f8974fcaed4e67849cb37202741e28389d9986d44b76d41c3aa9a170a0412dff"
+    },
+    {
+      "path": "raw/finalized.response.json",
+      "bytes": 18831,
+      "sha256": "8593bf7419042215891c3ca627a087768582cd0cd2b7f9c230cbf813df13da65"
+    },
+    {
+      "path": "raw/local-chain-id.request.json",
+      "bytes": 59,
+      "sha256": "88bc5a26ab0c412c0f633777395e45f63127cce1b0c1b80cbb447d75ff81b7ab"
+    },
+    {
+      "path": "raw/local-finalized.request.json",
+      "bytes": 85,
+      "sha256": "9051713ddc8f3c74124bdb2a0c9123a10d09ae198dd6a4059ed69da2fcb391ca"
+    },
+    {
+      "path": "raw/local-receipt.request.json",
+      "bytes": 141,
+      "sha256": "76e03198891ea317df0755f31526883b6b15067ff1b813845a9fd90603ef19c9"
+    },
+    {
+      "path": "raw/local-transaction.request.json",
+      "bytes": 140,
+      "sha256": "36db421cd2f81e216fb509b685f36c0b4d14812fa91397eb700937779e3980ee"
+    },
+    {
+      "path": "raw/logs-in.request.json",
+      "bytes": 315,
+      "sha256": "1e0d81c6a6e64836ef7c02d606d8fc134e9505edb8ccab57b7b393fd36e41f2b"
+    },
+    {
+      "path": "raw/logs-in.response.json",
+      "bytes": 1302,
+      "sha256": "b32a1004a1107201a098d6784709100f19e79b19c58ac4b88def72f829fdd511"
+    },
+    {
+      "path": "raw/logs-out.request.json",
+      "bytes": 315,
+      "sha256": "28660143af920839d893f68b464702e90818866ed96b27fc3f64d77f79437e8c"
+    },
+    {
+      "path": "raw/logs-out.response.json",
+      "bytes": 669,
+      "sha256": "13a34c020774decdcee09758c0e9d26c57a1049f00366086199e95758521c7c6"
+    },
+    {
+      "path": "raw/metadata-decimals.request.json",
+      "bytes": 234,
+      "sha256": "1cf7c70619d1394164e7e5175a668d4ed124dd8d2acf33bf16e9b7be4c6d8716"
+    },
+    {
+      "path": "raw/metadata-decimals.response.json",
+      "bytes": 102,
+      "sha256": "d697207a9137973f2dd578ed6c157f1f6c07e644146c5e6a101e73fbeebd14ea"
+    },
+    {
+      "path": "raw/metadata-name.request.json",
+      "bytes": 234,
+      "sha256": "60096dac3279afe1bab5e172dbb14117aa4a716cf2c79ab9e50190db9dc56598"
+    },
+    {
+      "path": "raw/metadata-name.response.json",
+      "bytes": 230,
+      "sha256": "86409d82d09831fd5f59be404630b553e7939e812e54ee2a4d8aa55d9d75f329"
+    },
+    {
+      "path": "raw/metadata-symbol.request.json",
+      "bytes": 234,
+      "sha256": "8026e58d5cabe58b881af3fde4f5c4b84f39826da8e991dbab4e905e55c81983"
+    },
+    {
+      "path": "raw/metadata-symbol.response.json",
+      "bytes": 230,
+      "sha256": "e83f1e0660f22a3c6462aaf150f0a4ff327135194db4d7b81aa42c3c3f1ddf94"
+    },
+    {
+      "path": "raw/omniscia-euler-postmortem.excerpt.txt",
+      "bytes": 42,
+      "sha256": "e56aef4bf4cd138e6cdc8b5ba2a4278f4ccd85583da31c343fbad17ebc80d572"
+    },
+    {
+      "path": "raw/receipt.request.json",
+      "bytes": 141,
+      "sha256": "2b44f9c55702343cfae0f9712ffca59373bde48e7e581417410b07920cf91202"
+    },
+    {
+      "path": "raw/receipt.response.json",
+      "bytes": 39482,
+      "sha256": "741d5ed74c8535e1001b5528a46500e4b4337ef812c34ff464f16f82899a9371"
+    },
+    {
+      "path": "raw/start-block.request.json",
+      "bytes": 85,
+      "sha256": "6facf2d12eaa98b2d5ab26a6817f9b9898daf67e94ab6d1df2a4f7339c4b9fea"
+    },
+    {
+      "path": "raw/start-block.response.json",
+      "bytes": 8560,
+      "sha256": "d402f9094cfb1e4782dfc71bf6f237e7f72b8b2366198921edeba78d11342ccf"
+    },
+    {
+      "path": "raw/state-total-supply-after.request.json",
+      "bytes": 234,
+      "sha256": "e2c2d6d22203b4c9ee20a59aa1af854ccc8f277e66a61a0d5911201a482237a1"
+    },
+    {
+      "path": "raw/state-total-supply-after.response.json",
+      "bytes": 102,
+      "sha256": "3f8d0105300c4bf2d186d337694a391ebde26b006a26f8b4630bcde51269b2d9"
+    },
+    {
+      "path": "raw/state-total-supply-before.request.json",
+      "bytes": 234,
+      "sha256": "032293fb0a02938201c93476b76ab6bcd7bf06c5af46117db3871178b43673ef"
+    },
+    {
+      "path": "raw/state-total-supply-before.response.json",
+      "bytes": 102,
+      "sha256": "3f8d0105300c4bf2d186d337694a391ebde26b006a26f8b4630bcde51269b2d9"
+    },
+    {
+      "path": "raw/transaction.request.json",
+      "bytes": 140,
+      "sha256": "9a72ad6a00f57988a831644739b18b2aaa98c7d863aa9647621d1a98f216820e"
+    },
+    {
+      "path": "raw/transaction.response.json",
+      "bytes": 719,
+      "sha256": "c1d27ec65227939ec61b753b5d7fe17342370b03d8d4f90275ae0f27576c268d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4242,
+      "sha256": "e97d900a1c5c248b7eaf1592059a2a2368273fa641723c5e5d11906fecb0cd0c"
+    },
+    {
+      "path": "rpc.json",
+      "bytes": 123704,
+      "sha256": "c18e1905e2818958fd26756e68eba8f0fc7f4dada3eb23efd07ddfb7654f049c"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 6304,
+      "sha256": "e40f25ba16570cf774c19cfa0dc4fe59b8195ef5087ad4c319132b32cc9f181b"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 1434,
+      "sha256": "dff75087fd08f30d17d3463cb18f8ca3449ea68c163075e943f43b2ad71bbaa8"
+    }
+  ],
+  "scope": "Retained public evidence bytes; collection/assembly scripts and this manifest excluded.",
+  "integrity_statement": "Hashes detect changes to retained bytes, not source authenticity or factual truth."
+}

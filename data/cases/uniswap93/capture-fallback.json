@@ -1,0 +1,70 @@
+{
+  "observations": [
+    {
+      "name": "publicnode-block-receipts",
+      "http_status": 200,
+      "request_file": "raw/publicnode-block-receipts.request.json",
+      "result_kind": "null_result",
+      "endpoint": "https://ethereum-rpc.publicnode.com",
+      "response_file": "raw/publicnode-block-receipts.response.json",
+      "response_sha256": "1b9f3e593e73354720f2329c7bc53c56abf4ef1c4ce38ecc7d6aa26c211b9685",
+      "captured_at_utc": "2026-10-06T17:40:37.1222178Z",
+      "method": "eth_getBlockReceipts"
+    },
+    {
+      "name": "drpc-receipt",
+      "http_status": 200,
+      "request_file": "raw/drpc-receipt.request.json",
+      "result_kind": "result",
+      "endpoint": "https://eth.drpc.org",
+      "response_file": "raw/drpc-receipt.response.json",
+      "response_sha256": "06a360ba32123b0093239a3fc329eb61ff016884ef5aeee89eb45bc24c3db03b",
+      "captured_at_utc": "2026-10-06T17:40:38.6520022Z",
+      "method": "eth_getTransactionReceipt"
+    },
+    {
+      "error": "Response status code does not indicate success: 400 (Bad Request).",
+      "request_file": "raw/drpc-logs-all.request.json",
+      "name": "drpc-logs-all",
+      "endpoint": "https://eth.drpc.org",
+      "result_kind": "transport_error",
+      "method": "eth_getLogs",
+      "captured_at_utc": "2026-10-06T17:40:39.6184881Z"
+    },
+    {
+      "name": "drpc-decimals",
+      "http_status": 200,
+      "request_file": "raw/drpc-decimals.request.json",
+      "result_kind": "result",
+      "endpoint": "https://eth.drpc.org",
+      "response_file": "raw/drpc-decimals.response.json",
+      "response_sha256": "d697207a9137973f2dd578ed6c157f1f6c07e644146c5e6a101e73fbeebd14ea",
+      "captured_at_utc": "2026-10-06T17:40:40.4208861Z",
+      "method": "eth_call"
+    },
+    {
+      "name": "flashbots-receipt",
+      "http_status": 200,
+      "request_file": "raw/flashbots-receipt.request.json",
+      "result_kind": "null_result",
+      "endpoint": "https://rpc.flashbots.net",
+      "response_file": "raw/flashbots-receipt.response.json",
+      "response_sha256": "ca3db3fe00f86a9485058afc1daf2f0547027fc3262b67c570f89d0b4638c8c6",
+      "captured_at_utc": "2026-10-06T17:40:41.2196697Z",
+      "method": "eth_getTransactionReceipt"
+    },
+    {
+      "name": "tenderly-receipt",
+      "http_status": 200,
+      "request_file": "raw/tenderly-receipt.request.json",
+      "result_kind": "result",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "response_file": "raw/tenderly-receipt.response.json",
+      "response_sha256": "c2540dc74fecdf21c40a5aa5826eafea8f74bf3f57126ae9b0290985be34160c",
+      "captured_at_utc": "2026-10-06T17:40:43.1970051Z",
+      "method": "eth_getTransactionReceipt"
+    }
+  ],
+  "schema_version": "cluetide.capture.v1",
+  "finished_at_utc": "2026-10-06T17:40:44.2392855Z"
+}

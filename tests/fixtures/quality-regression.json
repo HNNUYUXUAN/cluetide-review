@@ -1,0 +1,420 @@
+{
+  "quantity": {
+    "report": {
+      "summary": "交易 0x091f…2c1e 在区块 24106378 执行了从 Uniswap 时间锁（0x1a9c…35bc）向销毁地址（0xdead）的 100,000,000 UNI 转账。该转账与治理提案 93 中指定的 1 亿 UNI 销毁操作相符，且由 GovernorBravo（0x408e…24c3）调用。然而，在转账前后的两个区块（24106377 和 24106378）中，UNI 的 totalSupply 读取值均为 \"1000000000000000000000000000\"（100 亿），未观察到总供应量减少。",
+      "classification": "unresolved",
+      "claims": [
+        {
+          "text": "交易 0x091f…2c1e 在区块 24106378 包含一次从 0x1a9c…35bc（Uniswap 时间锁）向销毁地址 0xdead 的 UNI 转账，金额为 100,000,000 UNI（原始值 1000000000000000000000000000）。",
+          "evidence_ids": [
+            "transfer:1:0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e:11",
+            "derived:transfer-amounts"
+          ],
+          "interpretation": false
+        },
+        {
+          "text": "该交易由 GovernorBravo（0x408e…24c3）执行，调用数据包含提案 ID 93（0xfe0d94c1…5d），与 Uniswap 治理技术参考中列出的活跃治理合约地址一致。",
+          "evidence_ids": [
+            "transaction:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+            "source:uniswap-governance-contracts"
+          ],
+          "interpretation": false
+        },
+        {
+          "text": "在转账发生前的区块 24106377 和发生后的区块 24106378，UNI 代币的 totalSupply 读取值均为 \"1000000000000000000000000000\"（100 亿），表明在这两个观测点之间总供应量未减少。",
+          "evidence_ids": [
+            "state:0x1f9840a85d5af5bf1d1762f925bdaddc4201f984:24106377",
+            "state:0x1f9840a85d5af5bf1d1762f925bdaddc4201f984:24106378"
+          ],
+          "interpretation": false
+        }
+      ],
+      "limitations": [
+        "证据范围仅限于区块 24106368 至 24106388 内的转账日志和两个特定区块的代币状态读取，未检查该窗口外的供应量变化",
+        "治理来源（提案页面、博客、文档）为公开快照，其完整性和实时状态未独立验证",
+        "未获取 GovernorBravo 提案执行事件（如 ProposalExecuted）以确认提案 ID 93 的成功执行",
+        "未检查代币合约的销毁或供应量更新机制（如是否通过 _burn 函数更新 totalSupply）",
+        "调查仅针对观察到的单笔交易，未分析同一提案中可能存在的其他操作（如协议费用配置、归属批准等）",
+        "所有证据均为只读观察，未验证任何参与方的意图或授权"
+      ],
+      "assessments": [
+        {
+          "explanation_id": "governance_execution",
+          "explanation": "该转账是 Uniswap 治理提案 93（UNIfication）的预期执行操作，旨在从国库销毁 1 亿 UNI 作为追溯性销毁。",
+          "status": "supported",
+          "support_evidence_ids": [
+            "source:uniswap-proposal-93",
+            "source:uniswap-unification-blog",
+            "transaction:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+            "transfer:1:0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e:11"
+          ],
+          "counter_evidence_ids": [],
+          "unknowns": [
+            "提案 93 的投票结果和法定人数满足状态未在本证据中验证",
+            "GovernorBravo 对提案 ID 93 的调用授权未通过事件日志独立验证"
+          ],
+          "checks": [
+            "观察到的转账金额（100,000,000 UNI）与提案中指定的 \"100_000_000 ether\" 相符",
+            "交易调用数据包含提案 ID 93（0xfe0d94c1…5d）",
+            "发送方地址（0x1a9c…35bc）与官方文档中的 Timelock 地址匹配",
+            "接收方为销毁地址（0xdead）"
+          ]
+        },
+        {
+          "explanation_id": "supply_decrease",
+          "explanation": "该转账导致 UNI 代币的总供应量（totalSupply）永久减少。",
+          "status": "refuted",
+          "support_evidence_ids": [],
+          "counter_evidence_ids": [
+            "state:0x1f9840a85d5af5bf1d1762f925bdaddc4201f984:24106377",
+            "state:0x1f9840a85d5af5bf1d1762f925bdaddc4201f984:24106378"
+          ],
+          "unknowns": [
+            "totalSupply 是否在后续区块中被更新（例如通过销毁机制）",
+            "代币合约的 totalSupply 更新逻辑未检查"
+          ],
+          "checks": [
+            "比较区块 24106377（转账前）和 24106378（转账后）的 totalSupply 读取值，两者均为 \"1000000000000000000000000000\"",
+            "观察到的转账金额（100,000,000 UNI）未反映在这两个区块的 totalSupply 差值中"
+          ]
+        }
+      ]
+    },
+    "evidence": [
+      {
+        "evidence_id": "transfer:1:0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e:11",
+        "kind": "transfer",
+        "payload": {
+          "evidence_id": "transfer:1:0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e:11",
+          "chain_id": 1,
+          "token_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+          "block_number": 24106378,
+          "block_hash": "0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14",
+          "transaction_hash": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+          "log_index": 11,
+          "transaction_index": 2,
+          "from_address": "0x1a9c8182c09f50c8318d769245bea52c32be35bc",
+          "to_address": "0x000000000000000000000000000000000000dead",
+          "value_raw": "100000000000000000000000000",
+          "directions": [
+            "out"
+          ],
+          "observation_ids": [
+            "rpc:4"
+          ]
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "derived:transfer-amounts",
+        "kind": "transfer_amounts",
+        "payload": [
+          {
+            "evidence_id": "transfer:1:0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e:11",
+            "token_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+            "raw_amount": "100000000000000000000000000",
+            "decimals": 18,
+            "formatted_amount": "100000000",
+            "symbol": "UNI",
+            "unit": "ERC-20 token units",
+            "formatting_status": "formatted",
+            "decimals_observation_ids": [
+              "rpc:6"
+            ]
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "evidence_id": "collection:coverage",
+        "kind": "collection_coverage",
+        "payload": {
+          "status": "complete",
+          "requested_from_block": 24106368,
+          "requested_to_block": 24106388,
+          "planned_queries": 2,
+          "completed_queries": 2,
+          "queries": [
+            {
+              "direction": "outgoing",
+              "from_block": 24106368,
+              "to_block": 24106388,
+              "status": "complete",
+              "observation_id": "rpc:4",
+              "returned_logs": 1,
+              "accepted_logs": 1,
+              "rejected_logs": 0,
+              "error": null
+            },
+            {
+              "direction": "incoming",
+              "from_block": 24106368,
+              "to_block": 24106388,
+              "status": "complete",
+              "observation_id": "rpc:5",
+              "returned_logs": 0,
+              "accepted_logs": 0,
+              "rejected_logs": 0,
+              "error": null
+            }
+          ],
+          "issues": [],
+          "statement": "Coverage describes returned RPC data within the requested window."
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "receipt:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+        "kind": "receipt",
+        "payload": {
+          "transactionHash": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+          "blockHash": "0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14",
+          "blockNumber": "0x16fd58a",
+          "status": "0x1",
+          "from": "0x1a13c53d516f6e8321e9903f224861e74bbd7aa0",
+          "to": "0x408ed6354d4973f66138c91495f2f2fcbd8724c3",
+          "logs": [
+            {
+              "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+              "topics": [
+                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                "0x0000000000000000000000001a9c8182c09f50c8318d769245bea52c32be35bc",
+                "0x000000000000000000000000000000000000000000000000000000000000dead"
+              ],
+              "data": "0x00000000000000000000000000000000000000000052b7d2dcc80cd2e4000000",
+              "blockNumber": "0x16fd58a",
+              "transactionHash": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+              "transactionIndex": "0x2",
+              "blockHash": "0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14",
+              "logIndex": "0xb",
+              "blockTimestamp": "0x69504287",
+              "removed": false
+            },
+            {
+              "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+              "topics": [
+                "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+                "0x0000000000000000000000001a9c8182c09f50c8318d769245bea52c32be35bc",
+                "0x000000000000000000000000ca046a83edb78f74ae338bb5a291bf6fdac9e1d2"
+              ],
+              "data": "0x0000000000000000000000000000000000000000002116545850052128000000",
+              "blockNumber": "0x16fd58a",
+              "transactionHash": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+              "transactionIndex": "0x2",
+              "blockHash": "0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14",
+              "logIndex": "0x11",
+              "blockTimestamp": "0x69504287",
+              "removed": false
+            }
+          ],
+          "projection": "Selected receipt fields and requested-token logs; full receipt retained in raw agent RPC observations."
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "transaction:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+        "kind": "transaction",
+        "payload": {
+          "hash": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+          "blockHash": "0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14",
+          "blockNumber": "0x16fd58a",
+          "from": "0x1a13c53d516f6e8321e9903f224861e74bbd7aa0",
+          "to": "0x408ed6354d4973f66138c91495f2f2fcbd8724c3",
+          "input": "0xfe0d94c1000000000000000000000000000000000000000000000000000000000000005d",
+          "value": "0x0"
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "state:0x1f9840a85d5af5bf1d1762f925bdaddc4201f984:24106377",
+        "kind": "token_state",
+        "payload": {
+          "block_number": 24106377,
+          "block_hash": null,
+          "total_supply_raw": "1000000000000000000000000000",
+          "block_selection": "number",
+          "require_canonical": false,
+          "anchor_status": "hash_unavailable",
+          "rpc_observation_index": 2
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "state:0x1f9840a85d5af5bf1d1762f925bdaddc4201f984:24106378",
+        "kind": "token_state",
+        "payload": {
+          "block_number": 24106378,
+          "block_hash": "0xdffacec5530523a39bbb539d65518cdcb754b67369477767586f1ad66d596f14",
+          "total_supply_raw": "1000000000000000000000000000",
+          "block_selection": "EIP-1898",
+          "require_canonical": true,
+          "anchor_status": "hash_pinned",
+          "rpc_observation_index": 3
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "source:uniswap-proposal-93",
+        "kind": "governance_source",
+        "payload": {
+          "source_id": "uniswap-proposal-93",
+          "url": "https://vote.uniswapfoundation.org/proposals/93",
+          "title": "UNIfication — Uniswap proposal 93",
+          "publisher": "Uniswap governance / Agora",
+          "locator": "Proposal Spec: first UNI.transfer action; proposal status",
+          "excerpt": "UNI.transfer(0xdead, 100_000_000 ether);",
+          "summary": "Proposal 93 specifies eight governance calls including a transfer of 100 million UNI to the dead address, protocol-fee configuration, UNI vesting approval, and agreement attestations. Its page presents the proposal as executed.",
+          "interpretation": "The specified transfer and successful GovernorBravo execute(93) transaction support a governance-execution explanation for the alert.",
+          "observation_note": "The current Agora display showed Executed 11:58 pm Dec 28, 2025 when viewed. The captured block timestamp is Dec 27, 2025 20:33:11 UTC; the display is not used as the chain-time authority.",
+          "observed_on_date_utc": "2026-10-06",
+          "recorded_at_utc": "2026-10-06T17:53:17.103802Z",
+          "retrieval_method": "web tool open; short manually selected excerpt retained",
+          "scope": "Excerpt snapshot and source pointer; entire page is not included",
+          "excerpt_file": "raw/uniswap-proposal-93.excerpt.txt",
+          "excerpt_sha256": "0013a09123bc844c0f896f85bca6ad4d8a8ba4c5cf10a0352aa2a0c20cfe9aa6",
+          "category": "governance"
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "source:uniswap-unification-blog",
+        "kind": "governance_source",
+        "payload": {
+          "source_id": "uniswap-unification-blog",
+          "url": "https://blog.uniswap.org/unification",
+          "title": "UNIfication",
+          "publisher": "Uniswap Labs",
+          "published_date": "2025-11-10",
+          "locator": "Retroactive Burn",
+          "excerpt": "We propose a retroactive burn of 100 million UNI from the treasury.",
+          "summary": "The joint Labs/Foundation proposal describes the one-time treasury transfer as an estimate of fees that could have accumulated since token launch, alongside enabling protocol fees and UNI burn mechanisms.",
+          "interpretation": "The blog supplies the governance rationale; it does not by itself establish the actual receipt or the ERC-20 totalSupply getter change.",
+          "observed_on_date_utc": "2026-10-06",
+          "recorded_at_utc": "2026-10-06T17:53:17.103802Z",
+          "retrieval_method": "web tool open; short manually selected excerpt retained",
+          "scope": "Excerpt snapshot and source pointer; entire page is not included",
+          "excerpt_file": "raw/uniswap-unification-blog.excerpt.txt",
+          "excerpt_sha256": "20df41faa166c3faaf7673d5cc517e4cde8800be0df0dcaccd2a09951d7d4378",
+          "category": "governance"
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "source:uniswap-governance-contracts",
+        "kind": "governance_source",
+        "payload": {
+          "source_id": "uniswap-governance-contracts",
+          "url": "https://developers.uniswap.org/docs/ecosystem/governance/technical-reference",
+          "title": "Uniswap governance Technical Reference",
+          "publisher": "Uniswap Labs developer documentation",
+          "locator": "Active Governance Contracts",
+          "excerpt": "UNI Token: 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984\nTimelock: 0x1a9C8182C09F50C8318d769245beA52c32BE35BC\nGovernorBravo: 0x408ED6354d4973f66138C91495F2f2FCbd8724C3",
+          "summary": "The official Ethereum mainnet contract table identifies the UNI event emitter, the treasury Timelock sender, and the GovernorBravo execution target found in the captured transaction.",
+          "observed_on_date_utc": "2026-10-06",
+          "recorded_at_utc": "2026-10-06T17:53:17.103802Z",
+          "retrieval_method": "web tool open; short manually selected excerpt retained",
+          "scope": "Excerpt snapshot and source pointer; entire page is not included",
+          "excerpt_file": "raw/uniswap-governance-contracts.excerpt.txt",
+          "excerpt_sha256": "13791442bdf2fe5f058481a49f28616b2b701463f7735c857663c6f00a31a994",
+          "category": "governance"
+        },
+        "status": "ok"
+      },
+      {
+        "evidence_id": "source:uniswap-uni-source",
+        "kind": "governance_source",
+        "payload": {
+          "source_id": "uniswap-uni-source",
+          "url": "https://github.com/Uniswap/governance/blob/master/contracts/Uni.sol",
+          "title": "Uniswap governance — contracts/Uni.sol",
+          "publisher": "Uniswap official GitHub organization",
+          "locator": "transfer and _transferTokens functions",
+          "excerpt": "emit Transfer(src, dst, amount);",
+          "summary": "The published UNI transfer path debits and credits balances, emits Transfer, and updates delegate votes. It does not assign totalSupply on that path. The captured historical totalSupply getter reads independently establish unchanged values across the two block states.",
+          "interpretation": "A dead-address transfer and a decrease in the totalSupply getter are distinct claims.",
+          "observed_on_date_utc": "2026-10-06",
+          "recorded_at_utc": "2026-10-06T17:53:17.103802Z",
+          "retrieval_method": "web tool open; short manually selected excerpt retained",
+          "scope": "Excerpt snapshot and source pointer; entire page is not included",
+          "excerpt_file": "raw/uniswap-uni-source.excerpt.txt",
+          "excerpt_sha256": "41956d7fb33d3a3ed259da429a65f80311c0eecb89aaae8f74d7cd2beb741dd5",
+          "category": "governance"
+        },
+        "status": "ok"
+      }
+    ]
+  },
+  "execution": {
+    "report": {
+      "summary": "在区块16817996中，一笔交易涉及DAI代币的多笔转移：从0x583c21631c48d442b5c0e605d624f54a0b366c72向0x27182842e098f60e3d576794a5bffb0777e025d3转入3000万DAI，随后转出约3890万DAI至0xa0b3ee897f233f385e5d61086c32685257d4f12b。交易由0x5f259d0b76665c337c6104145894f4d1d2758b8c发起至0xebc29199c817dc47ba12e3f86102564d640cbf99合约。",
+      "classification": "unresolved",
+      "claims": [
+        {
+          "text": "交易0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d在区块16817996执行成功，涉及DAI代币转移",
+          "evidence_ids": [
+            "receipt:0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+            "transaction:0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d"
+          ],
+          "interpretation": false
+        },
+        {
+          "text": "观察到三笔DAI转移：两笔转入合计3000万DAI（2000万+1000万），一笔转出约3890万DAI",
+          "evidence_ids": [
+            "transfer:1:0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859:0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d:5",
+            "transfer:1:0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859:0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d:17",
+            "transfer:1:0xde714b65354d54e684a95d80a1da7f668e8b2ee6ae8b5779f69ab9e04468b859:0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d:46"
+          ],
+          "interpretation": false
+        },
+        {
+          "text": "区块16817995时DAI总供应量为6250900648863044172620917232（约62.5亿DAI），但无法获取区块16817997的供应量进行对比",
+          "evidence_ids": [
+            "state:0x6b175474e89094c44da98b954eedeac495271d0f:16817995"
+          ],
+          "interpretation": false
+        }
+      ],
+      "limitations": [
+        "无法获取区块16817997的DAI代币状态，供应量变化无法确定",
+        "合约0xebc29199c817dc47ba12e3f86102564d640cbf99的功能和目的未知",
+        "交易输入0x863df8af对应的函数签名和参数未知",
+        "未检查治理来源以确定是否为计划内操作",
+        "调查范围仅限该交易，未分析相关地址的其他活动"
+      ],
+      "assessments": [
+        {
+          "explanation_id": "supply_decrease",
+          "explanation": "DAI总供应量在交易后减少",
+          "status": "unknown",
+          "support_evidence_ids": [],
+          "counter_evidence_ids": [],
+          "unknowns": [
+            "缺少区块16817997的DAI总供应量数据，无法比较交易前后供应量变化"
+          ],
+          "checks": [
+            "检查了区块16817995的DAI总供应量：6250900648863044172620917232",
+            "尝试获取区块16817997的供应量但失败"
+          ]
+        },
+        {
+          "explanation_id": "contract_execution",
+          "explanation": "正常合约调用执行代币转移操作",
+          "status": "supported",
+          "support_evidence_ids": [
+            "receipt:0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+            "transaction:0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d"
+          ],
+          "counter_evidence_ids": [],
+          "unknowns": [
+            "合约0xebc29199c817dc47ba12e3f86102564d640cbf99的具体功能未知",
+            "交易输入0x863df8af对应的函数签名未知"
+          ],
+          "checks": [
+            "交易执行成功（status=0x1）",
+            "观察到多笔DAI转移日志"
+          ]
+        }
+      ]
+    }
+  }
+}

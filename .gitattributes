@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.pdf binary
+
+# Evidence, licenses and frozen artifacts retain their source bytes.
+data/** -text
+/frontend/public/gcc-demo/** -text
+/frontend/public/licenses/** -text
+/LICENSE -text

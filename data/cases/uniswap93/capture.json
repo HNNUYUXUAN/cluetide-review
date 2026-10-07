@@ -1,0 +1,139 @@
+{
+  "finished_at_utc": "2026-10-06T17:39:31.1320788Z",
+  "observations": [
+    {
+      "response_sha256": "208c0be5a34cd9b241311e625b3035aa89cb237969cbc1a0c9cbd8c8517087eb",
+      "result_kind": "result",
+      "captured_at_utc": "2026-10-06T17:39:18.3591653Z",
+      "method": "eth_chainId",
+      "http_status": 200,
+      "request_file": "raw/chain-id.request.json",
+      "response_file": "raw/chain-id.response.json",
+      "name": "chain-id",
+      "endpoint": "https://ethereum-rpc.publicnode.com"
+    },
+    {
+      "response_sha256": "92b70c85173783d6762895e6f95f281d0510443c8ecebf0b5ba1bc2734d130e1",
+      "result_kind": "result",
+      "captured_at_utc": "2026-10-06T17:39:19.4105603Z",
+      "method": "eth_getTransactionByHash",
+      "http_status": 200,
+      "request_file": "raw/transaction.request.json",
+      "response_file": "raw/transaction.response.json",
+      "name": "transaction",
+      "endpoint": "https://ethereum-rpc.publicnode.com"
+    },
+    {
+      "response_sha256": "1b9f3e593e73354720f2329c7bc53c56abf4ef1c4ce38ecc7d6aa26c211b9685",
+      "result_kind": "null_result",
+      "captured_at_utc": "2026-10-06T17:39:20.3289609Z",
+      "method": "eth_getTransactionReceipt",
+      "http_status": 200,
+      "request_file": "raw/receipt.request.json",
+      "response_file": "raw/receipt.response.json",
+      "name": "receipt",
+      "endpoint": "https://ethereum-rpc.publicnode.com"
+    },
+    {
+      "response_sha256": "83689b8fb585015de5a216d5f329154eb7628f870dfbfe75ae58604ea4c94513",
+      "result_kind": "result",
+      "captured_at_utc": "2026-10-06T17:39:21.4382273Z",
+      "method": "eth_getBlockByNumber",
+      "http_status": 200,
+      "request_file": "raw/case-block.request.json",
+      "response_file": "raw/case-block.response.json",
+      "name": "case-block",
+      "endpoint": "https://ethereum-rpc.publicnode.com"
+    },
+    {
+      "response_sha256": "2c014fe0263aa544ed57c61a9676dfa3d0cbad88208d0fcbc63e2498e574a041",
+      "result_kind": "result",
+      "captured_at_utc": "2026-10-06T17:39:22.4569204Z",
+      "method": "eth_getBlockByNumber",
+      "http_status": 200,
+      "request_file": "raw/start-block.request.json",
+      "response_file": "raw/start-block.response.json",
+      "name": "start-block",
+      "endpoint": "https://ethereum-rpc.publicnode.com"
+    },
+    {
+      "response_sha256": "3091ab198f29bc7a6a329d91fce526f982ba0219ca79f6ce91fc35e02a7c1247",
+      "result_kind": "result",
+      "captured_at_utc": "2026-10-06T17:39:23.5061139Z",
+      "method": "eth_getBlockByNumber",
+      "http_status": 200,
+      "request_file": "raw/end-block.request.json",
+      "response_file": "raw/end-block.response.json",
+      "name": "end-block",
+      "endpoint": "https://ethereum-rpc.publicnode.com"
+    },
+    {
+      "response_sha256": "718b0b5c197b1d6e9c416f8f632bea47ec58751df0089c284a77e2709fb00cab",
+      "result_kind": "result",
+      "captured_at_utc": "2026-10-06T17:39:24.5707473Z",
+      "method": "eth_getBlockByNumber",
+      "http_status": 200,
+      "request_file": "raw/finalized.request.json",
+      "response_file": "raw/finalized.response.json",
+      "name": "finalized",
+      "endpoint": "https://ethereum-rpc.publicnode.com"
+    },
+    {
+      "request_file": "raw/logs-all.request.json",
+      "error": "Response status code does not indicate success: 403 (Forbidden).",
+      "captured_at_utc": "2026-10-06T17:39:25.4490099Z",
+      "result_kind": "transport_error",
+      "endpoint": "https://ethereum-rpc.publicnode.com",
+      "method": "eth_getLogs",
+      "name": "logs-all"
+    },
+    {
+      "request_file": "raw/logs-out.request.json",
+      "error": "Response status code does not indicate success: 403 (Forbidden).",
+      "captured_at_utc": "2026-10-06T17:39:26.5596681Z",
+      "result_kind": "transport_error",
+      "endpoint": "https://ethereum-rpc.publicnode.com",
+      "method": "eth_getLogs",
+      "name": "logs-out"
+    },
+    {
+      "request_file": "raw/logs-in.request.json",
+      "error": "Response status code does not indicate success: 403 (Forbidden).",
+      "captured_at_utc": "2026-10-06T17:39:27.4700801Z",
+      "result_kind": "transport_error",
+      "endpoint": "https://ethereum-rpc.publicnode.com",
+      "method": "eth_getLogs",
+      "name": "logs-in"
+    },
+    {
+      "request_file": "raw/decimals.request.json",
+      "error": "Response status code does not indicate success: 403 (Forbidden).",
+      "captured_at_utc": "2026-10-06T17:39:28.3355973Z",
+      "result_kind": "transport_error",
+      "endpoint": "https://ethereum-rpc.publicnode.com",
+      "method": "eth_call",
+      "name": "decimals"
+    },
+    {
+      "request_file": "raw/total-supply-before.request.json",
+      "error": "Response status code does not indicate success: 403 (Forbidden).",
+      "captured_at_utc": "2026-10-06T17:39:29.3794472Z",
+      "result_kind": "transport_error",
+      "endpoint": "https://ethereum-rpc.publicnode.com",
+      "method": "eth_call",
+      "name": "total-supply-before"
+    },
+    {
+      "request_file": "raw/total-supply-after.request.json",
+      "error": "Response status code does not indicate success: 403 (Forbidden).",
+      "captured_at_utc": "2026-10-06T17:39:30.2240965Z",
+      "result_kind": "transport_error",
+      "endpoint": "https://ethereum-rpc.publicnode.com",
+      "method": "eth_call",
+      "name": "total-supply-after"
+    }
+  ],
+  "endpoint": "https://ethereum-rpc.publicnode.com",
+  "started_at_utc": "2026-10-06T17:39:18.3071238Z",
+  "schema_version": "cluetide.capture.v1"
+}

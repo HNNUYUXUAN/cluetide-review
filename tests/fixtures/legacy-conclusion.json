@@ -1,0 +1,50 @@
+{
+  "summary": "对交易0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e的调查显示，这是Uniswap治理提案93（UNIfication）在以太坊主网上的执行。该交易调用了官方GovernorBravo合约的execute函数，提案ID为93，导致从Timelock国库向死地址转账1亿UNI代币。转账金额与提案93指定的100_000_000 ether相符，Timelock和GovernorBravo地址均与Uniswap官方文档中的治理合约地址一致。事件解释为已批准的治理操作执行，而非攻击或异常活动。",
+  "classification": "governance_explained",
+  "claims": [
+    {
+      "text": "交易0x091f...是对Uniswap GovernorBravo合约0x408ED6354d4973f66138C91495F2f2FCbd8724C3的调用，函数选择器为execute(uint256)，参数0x5d对应提案ID 93",
+      "evidence_ids": [
+        "transaction:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e"
+      ],
+      "interpretation": true
+    },
+    {
+      "text": "交易日志中包含从Timelock地址0x1a9C8182C09F50C8318d769245beA52c32BE35BC到死地址0xdead的UNI转账事件，金额为100,000,000e18 wei（1亿UNI）",
+      "evidence_ids": [
+        "receipt:0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e"
+      ],
+      "interpretation": false
+    },
+    {
+      "text": "Uniswap治理提案93（UNIfication）包含UNI.transfer(0xdead, 100_000_000 ether)操作，且提案状态显示为已执行",
+      "evidence_ids": [
+        "source:uniswap-proposal-93"
+      ],
+      "interpretation": false
+    },
+    {
+      "text": "Timelock地址0x1a9C8182C09F50C8318d769245beA52c32BE35BC和GovernorBravo地址0x408ED6354d4973f66138C91495F2f2FCbd8724C3与Uniswap官方文档中公布的治理合约地址一致",
+      "evidence_ids": [
+        "source:uniswap-governance-contracts"
+      ],
+      "interpretation": false
+    },
+    {
+      "text": "UNI代币的transfer函数流程会发出Transfer事件但不更新totalSupply；totalSupply变化需要独立验证",
+      "evidence_ids": [
+        "source:uniswap-uni-source"
+      ],
+      "interpretation": false
+    }
+  ],
+  "limitations": [
+    "未调用代币状态读取功能来验证totalSupply在事件前后是否实际减少",
+    "未验证提案93的投票状态和时间锁延迟期，仅依据治理页面显示的\"已执行\"状态",
+    "未检查Timelock对GovernorBravo的授权关系或代理执行模式",
+    "未分析交易中可能的其他治理操作（提案93包含八个调用）",
+    "证据基于第三方资料的可信快照，未进行链上验证的独立交叉核对",
+    "调查范围受限于from_block和to_block边界，未检查更广泛的上下文",
+    "无法确认UNI持有者投票参与度或提案合法性，仅依赖可见的治理流程"
+  ]
+}

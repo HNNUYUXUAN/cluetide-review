@@ -1,0 +1,61 @@
+{
+  "schema_version": "cluetide.capture.v1",
+  "finished_at_utc": "2026-10-06T17:42:25.0811189Z",
+  "observations": [
+    {
+      "response_file": "raw/tenderly-logs-all.response.json",
+      "captured_at_utc": "2026-10-06T17:42:20.1649400Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "method": "eth_getLogs",
+      "request_file": "raw/tenderly-logs-all.request.json",
+      "response_sha256": "3f0c2290db3ffa92836d5099f320c8b1c190698924b36d0ca19b5af17b5d7690",
+      "http_status": 200,
+      "result_kind": "result",
+      "name": "tenderly-logs-all"
+    },
+    {
+      "response_file": "raw/tenderly-total-supply-before.response.json",
+      "captured_at_utc": "2026-10-06T17:42:21.3631230Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "method": "eth_call",
+      "request_file": "raw/tenderly-total-supply-before.request.json",
+      "response_sha256": "c246b76a086839ea8ee44de616317a5a95acb90bda1a5186275df5d2a765764e",
+      "http_status": 200,
+      "result_kind": "result",
+      "name": "tenderly-total-supply-before"
+    },
+    {
+      "response_file": "raw/tenderly-total-supply-after.response.json",
+      "captured_at_utc": "2026-10-06T17:42:22.4095540Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "method": "eth_call",
+      "request_file": "raw/tenderly-total-supply-after.request.json",
+      "response_sha256": "c246b76a086839ea8ee44de616317a5a95acb90bda1a5186275df5d2a765764e",
+      "http_status": 200,
+      "result_kind": "result",
+      "name": "tenderly-total-supply-after"
+    },
+    {
+      "response_file": "raw/tenderly-decimals.response.json",
+      "captured_at_utc": "2026-10-06T17:42:23.2755991Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "method": "eth_call",
+      "request_file": "raw/tenderly-decimals.request.json",
+      "response_sha256": "d697207a9137973f2dd578ed6c157f1f6c07e644146c5e6a101e73fbeebd14ea",
+      "http_status": 200,
+      "result_kind": "result",
+      "name": "tenderly-decimals"
+    },
+    {
+      "response_file": "raw/tenderly-governor-state.response.json",
+      "captured_at_utc": "2026-10-06T17:42:24.1985391Z",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "method": "eth_call",
+      "request_file": "raw/tenderly-governor-state.request.json",
+      "response_sha256": "e81c91af6081e0a727d312b77460253bbf8b022ce92c7344590e9f456bfdc3ed",
+      "http_status": 200,
+      "result_kind": "result",
+      "name": "tenderly-governor-state"
+    }
+  ]
+}

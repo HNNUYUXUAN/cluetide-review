@@ -1,0 +1,1 @@
+{"method":"eth_getBlockByNumber","id":1,"jsonrpc":"2.0","params":["finalized",false]}

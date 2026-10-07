@@ -1,0 +1,16 @@
+local-only/
+local-data/
+.venv/
+node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+*.egg-info/
+__pycache__/
+.pytest_cache/
+.env
+.env.*
+*.log
+*.pem
+*.key
+*.p12
+*.pfx

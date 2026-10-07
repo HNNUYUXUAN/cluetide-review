@@ -1,0 +1,34 @@
+{
+  "model_requests": 0,
+  "phase": "State",
+  "transactions_signed_or_broadcast": 0,
+  "read_attempts": 2,
+  "observations": [
+    {
+      "result_kind": "result",
+      "request_sha256": "032293fb0a02938201c93476b76ab6bcd7bf06c5af46117db3871178b43673ef",
+      "captured_at_utc": "2026-10-07T03:55:18.2778456Z",
+      "response_file": "raw/state-total-supply-before.response.json",
+      "method": "eth_call",
+      "http_status": 200,
+      "name": "state-total-supply-before",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "request_file": "raw/state-total-supply-before.request.json",
+      "response_sha256": "3f8d0105300c4bf2d186d337694a391ebde26b006a26f8b4630bcde51269b2d9"
+    },
+    {
+      "result_kind": "result",
+      "request_sha256": "e2c2d6d22203b4c9ee20a59aa1af854ccc8f277e66a61a0d5911201a482237a1",
+      "captured_at_utc": "2026-10-07T03:55:19.4693356Z",
+      "response_file": "raw/state-total-supply-after.response.json",
+      "method": "eth_call",
+      "http_status": 200,
+      "name": "state-total-supply-after",
+      "endpoint": "https://mainnet.gateway.tenderly.co",
+      "request_file": "raw/state-total-supply-after.request.json",
+      "response_sha256": "3f8d0105300c4bf2d186d337694a391ebde26b006a26f8b4630bcde51269b2d9"
+    }
+  ],
+  "schema_version": "cluetide.public-capture/v1",
+  "finished_at_utc": "2026-10-07T03:55:20.3592021Z"
+}
