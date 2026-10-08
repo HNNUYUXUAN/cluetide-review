@@ -5,6 +5,7 @@ import StoryPage from "./gcc/StoryPage";
 import ReplayPage from "./gcc/ReplayPage";
 import Workspace from "./gcc/Workspace";
 import BundleTools from "./gcc/BundleTools";
+import PublicWorkspace from "./gcc/PublicWorkspace";
 import "./gcc/gcc.css";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
   const demo = (caseId: "uniswap93" | "euler-20230313" = "uniswap93") => navigate({ page: "demo", client, caseId });
   const workbench = () => navigate({ page: "home", client });
   const tools = () => navigate({ page: "tools", client });
+  const publicOnly = import.meta.env.VITE_STATIC_DEMO === "1";
   useEffect(() => {
     document.title = `${route.page === "landing" ? "带着证据，判断链上异动" : route.page === "demo" ? "公开案例回放" : "调查工作台"} | ClueTide`;
     const keyboard = (event: KeyboardEvent) => { if (["Tab", "Enter", " "].includes(event.key)) document.documentElement.dataset.input = "keyboard"; };
@@ -35,7 +37,7 @@ export default function App() {
       {route.page === "landing" ? <StoryPage onDemo={demo} onWorkbench={workbench} onTools={tools} /> :
         route.page === "demo" ? <ReplayPage key={route.caseId} caseId={route.caseId} onWorkbench={workbench} onTools={tools} /> :
         route.page === "not-found" ? <section className="gcc-empty"><h1>这个页面尚未找到</h1><p>从案例目录重新选择一份调查。</p><button className="gcc-primary" onClick={workbench}>打开工作台</button></section> :
-        route.page === "tools" ? <BundleTools serverInitially={!!route.caseId}><Workspace route={route} navigate={navigate} onDemo={demo} /></BundleTools> : <Workspace route={route} navigate={navigate} onDemo={demo} />}
+        route.page === "tools" ? <BundleTools serverInitially={!!route.caseId}>{publicOnly ? <PublicWorkspace onDemo={demo} /> : <Workspace route={route} navigate={navigate} onDemo={demo} />}</BundleTools> : publicOnly ? <PublicWorkspace onDemo={demo} /> : <Workspace route={route} navigate={navigate} onDemo={demo} />}
     </main>
     <footer className="gcc-footer"><span>ClueTide · Ethereum 事件调查与协作复核</span><a href="https://github.com/HNNUYUXUAN/cluetide-review/tree/GCC" target="_blank" rel="noreferrer">源码与复现说明</a></footer>
   </div>;

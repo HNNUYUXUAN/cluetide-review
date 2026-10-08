@@ -96,6 +96,26 @@ def test_function_model_selects_second_tool_from_receipt_observation(hint, expec
     assert outcome.report.claims[0].evidence_ids[-1] in {item.evidence_id for item in outcome.evidence}
 
 
+def test_progress_is_observed_before_completion_and_detached():
+    snapshots = []
+    def observe(value):
+        snapshots.append(json.loads(json.dumps(value)))
+        value["trace"].clear()
+    outcome = asyncio.run(run_investigation(FunctionModel(dynamic_model), Backend(), request(), progress_callback=observe))
+    assert outcome.status == "completed"
+    assert snapshots[0]["model_requests"] == 1 and snapshots[0]["tool_attempts"] == 0
+    assert any(row["stage"] == "reading" for row in snapshots)
+    assert any(row["trace"][-1]["event"] == "tool_observed" for row in snapshots)
+    assert outcome.trace and outcome.model_requests == 3
+
+
+def test_progress_observer_failure_preserves_execution():
+    def observe(_):
+        raise RuntimeError("Synthetic observer failure")
+    outcome = asyncio.run(run_investigation(FunctionModel(dynamic_model), Backend(), request(), progress_callback=observe))
+    assert outcome.status == "completed" and outcome.model_requests == 3
+
+
 def test_failed_read_is_an_observation_and_counts_as_attempt():
     def response(messages, info):
         if len(messages) == 1:

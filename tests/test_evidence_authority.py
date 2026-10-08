@@ -238,7 +238,7 @@ def test_imported_paid_permission_and_cap_do_not_change_execution_gate(imported_
     assert ledger.snapshot() == before and transports == []
     with pytest.raises(ValueError):
         BudgetLedger(tmp_path / "unapproved-budget.sqlite3", cap_rmb=Decimal(observation["payload"]["cap_rmb"]))
-    assert HARD_CAP_RMB == Decimal("10")
+    assert HARD_CAP_RMB == Decimal("20")
 
 
 @pytest.mark.parametrize("method", ["eth_sendRawTransaction", "eth_sendTransaction", "eth_sign", "personal_sign", "wallet_sendCalls"])

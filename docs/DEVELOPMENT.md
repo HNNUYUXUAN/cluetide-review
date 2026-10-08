@@ -25,6 +25,8 @@ Run backend tests with `CLUETIDE_DATA_DIR` set to a new directory under `local-o
 
 ## 服务与状态 / Service and state
 
+实时执行配置、共享预算账本、实际进度和公开构建开关见 [LIVE-DEMO.md](LIVE-DEMO.md). Live setup, the shared ledger, observed progress and static-build configuration are maintained in that guide.
+
 FastAPI serves both `frontend/dist` and `/api` on loopback port **5186**. Build before starting the service. The default launcher selects public-cache evidence and an offline model. Development **5187** and preview **4187** proxy `/api` to 5186; proxy guards validate loopback Host, Origin and Fetch Metadata.
 
 `local-data/cases.sqlite3` stores cases and publication state in one transaction. The JSON registry mirror can be recovered from committed state. A state directory has one service lease. Evidence versions retain distinct ZIP bytes and parent digests. GET polling is read-only. Export remains available for saved partial, stopped or failed investigation results, with their actual status.

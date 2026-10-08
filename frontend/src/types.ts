@@ -157,6 +157,8 @@ export interface Review {
   created_at?: string;
 }
 export interface Investigation {
+  created_at?: string;
+  progress?: {stage: string; model_requests: number; tool_attempts: number; trace: JsonRecord[]; updated_at: string};
   id: string;
   title?: string;
   status: string;
@@ -205,6 +207,8 @@ export interface VerifiedImport {
   transfer_facts?: TransferFact[];
 }
 export interface HistoryItem {
+  input?: Scope;
+  agent?: Agent | null;
   id: string;
   title?: string;
   status?: string;

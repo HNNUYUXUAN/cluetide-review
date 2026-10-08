@@ -1,6 +1,6 @@
 {
   "format": "cluetide-gcc-source-manifest/v1",
-  "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
+  "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
   "research_baseline": "cf19b51af64fa289de19ccd70ab26425c09584d3",
   "scope": "Selected product source, public evidence, test fixtures and attribution; preserved source digests and current release digests are distinct.",
   "files": [
@@ -3483,12 +3483,12 @@
     {
       "path": "frontend/src/App.tsx",
       "source_path": "frontend/src/App.tsx",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "aae2fb3715fabbd55ac5f1b9c6574495b2ab58fb933652e03c0ad25294720be1",
-      "source_bytes": 3263,
-      "sha256": "93968b42fef1e738545f633e15a56ada42a06c0d8086ff265c9a54fc9976b99a",
-      "bytes": 3275,
-      "derivation": "release_adaptation"
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "764fcb1f3afc7c7b9ac3bb26efe6b117223824b315bf725becb649a8d3e75a95",
+      "source_bytes": 3491,
+      "sha256": "764fcb1f3afc7c7b9ac3bb26efe6b117223824b315bf725becb649a8d3e75a95",
+      "bytes": 3491,
+      "derivation": "preserved_bytes"
     },
     {
       "path": "frontend/src/api.ts",
@@ -3513,11 +3513,11 @@
     {
       "path": "frontend/src/components/AgentTrace.tsx",
       "source_path": "frontend/src/components/AgentTrace.tsx",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "f45c772600fa1fc0e484cddda2853314208f4567943d38eaa2793b89a43b2aa0",
-      "source_bytes": 3768,
-      "sha256": "f45c772600fa1fc0e484cddda2853314208f4567943d38eaa2793b89a43b2aa0",
-      "bytes": 3768,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "52aa5a1e7c9b69aa31c33ecc84b15eef2bc0d3b1f95f45c5c570fb531f1fd615",
+      "source_bytes": 4668,
+      "sha256": "52aa5a1e7c9b69aa31c33ecc84b15eef2bc0d3b1f95f45c5c570fb531f1fd615",
+      "bytes": 4668,
       "derivation": "preserved_bytes"
     },
     {
@@ -3583,11 +3583,11 @@
     {
       "path": "frontend/src/components/InvestigationView.tsx",
       "source_path": "frontend/src/components/InvestigationView.tsx",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "e9f85e8768c5d5a5ca7717a746d5dfe570f490823303c03748ad5d241b4d6fae",
-      "source_bytes": 11585,
-      "sha256": "e9f85e8768c5d5a5ca7717a746d5dfe570f490823303c03748ad5d241b4d6fae",
-      "bytes": 11585,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "0d18286edd491407898cc9562f12ba53d89e75b52864eeecda26e83415851233",
+      "source_bytes": 12080,
+      "sha256": "0d18286edd491407898cc9562f12ba53d89e75b52864eeecda26e83415851233",
+      "bytes": 12080,
       "derivation": "preserved_bytes"
     },
     {
@@ -3603,11 +3603,11 @@
     {
       "path": "frontend/src/components/Sidebar.tsx",
       "source_path": "frontend/src/components/Sidebar.tsx",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "99b5e96bc21640dd2a70fa90ceb292b60235fcc6b2041cd545b773cfbbc6f57a",
-      "source_bytes": 8455,
-      "sha256": "99b5e96bc21640dd2a70fa90ceb292b60235fcc6b2041cd545b773cfbbc6f57a",
-      "bytes": 8455,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "3fc9d12ef77e2bf6e239d37afbfc8c11fedeb1caa9d5cca360f4bfc3e8d35a26",
+      "source_bytes": 9246,
+      "sha256": "3fc9d12ef77e2bf6e239d37afbfc8c11fedeb1caa9d5cca360f4bfc3e8d35a26",
+      "bytes": 9246,
       "derivation": "preserved_bytes"
     },
     {
@@ -3663,21 +3663,21 @@
     {
       "path": "frontend/src/gcc/Workspace.tsx",
       "source_path": "frontend/src/gcc/Workspace.tsx",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "13f262990317d273e3856da221a0cb6f114f03e94c4fd920219dbd606332da09",
-      "source_bytes": 15164,
-      "sha256": "13f262990317d273e3856da221a0cb6f114f03e94c4fd920219dbd606332da09",
-      "bytes": 15164,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "12a7aa0b95e1d33f12d16c238f1ec1de83e87a43e9122b4712879534976669cd",
+      "source_bytes": 17441,
+      "sha256": "12a7aa0b95e1d33f12d16c238f1ec1de83e87a43e9122b4712879534976669cd",
+      "bytes": 17441,
       "derivation": "preserved_bytes"
     },
     {
       "path": "frontend/src/gcc/gcc.css",
       "source_path": "frontend/src/gcc/gcc.css",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "8be512bd8e100a05b6b20ddec7bd78e20d84510a15df034676b310d63ebb82ab",
-      "source_bytes": 9671,
-      "sha256": "8be512bd8e100a05b6b20ddec7bd78e20d84510a15df034676b310d63ebb82ab",
-      "bytes": 9671,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "3dfeee8e25bf8bd8bd4ac969fe965ec6abf524b78067afaf3f85d714e7114ccb",
+      "source_bytes": 14250,
+      "sha256": "3dfeee8e25bf8bd8bd4ac969fe965ec6abf524b78067afaf3f85d714e7114ccb",
+      "bytes": 14250,
       "derivation": "preserved_bytes"
     },
     {
@@ -3813,11 +3813,11 @@
     {
       "path": "frontend/src/types.ts",
       "source_path": "frontend/src/types.ts",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "8a39325b403985a23a9aa0e9dabaaa507180c704a1fea710f10b45e99bd4189f",
-      "source_bytes": 5576,
-      "sha256": "8a39325b403985a23a9aa0e9dabaaa507180c704a1fea710f10b45e99bd4189f",
-      "bytes": 5576,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "83f6eb1ec0b186c24efb3f1cc37960d24ba08aa389f5facb676e358780d3372b",
+      "source_bytes": 5758,
+      "sha256": "83f6eb1ec0b186c24efb3f1cc37960d24ba08aa389f5facb676e358780d3372b",
+      "bytes": 5758,
       "derivation": "preserved_bytes"
     },
     {
@@ -4023,30 +4023,30 @@
     {
       "path": "src/cluetide/agent.py",
       "source_path": "src/cluetide/agent.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "48f6dfdf01f65f515d7e89aebab8d9cbcb06c836169829a9a6916bb92c621586",
-      "source_bytes": 49833,
-      "sha256": "48f6dfdf01f65f515d7e89aebab8d9cbcb06c836169829a9a6916bb92c621586",
-      "bytes": 49833,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "02cdb44c6deff266a0253c8552b78edbaa0f79dd5de640e5315c00f1f27a235c",
+      "source_bytes": 50769,
+      "sha256": "02cdb44c6deff266a0253c8552b78edbaa0f79dd5de640e5315c00f1f27a235c",
+      "bytes": 50769,
       "derivation": "preserved_bytes"
     },
     {
       "path": "src/cluetide/app.py",
       "source_path": "src/cluetide/app.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "4862ed5dbfeed69491081203810ba3cd156789bacdf3c5d603890dc5d8785e0f",
-      "source_bytes": 42890,
-      "sha256": "4862ed5dbfeed69491081203810ba3cd156789bacdf3c5d603890dc5d8785e0f",
-      "bytes": 42890,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "454408c439ddf272ba31cf3de29f0db6ede20422318deff811ad478d4dccdd08",
+      "source_bytes": 43570,
+      "sha256": "454408c439ddf272ba31cf3de29f0db6ede20422318deff811ad478d4dccdd08",
+      "bytes": 43570,
       "derivation": "preserved_bytes"
     },
     {
       "path": "src/cluetide/budget.py",
       "source_path": "src/cluetide/budget.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "39dba62010c602c9778544b7167efc507222ef751868f02133207e9d13bd8143",
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "4cb994c42cc431c065cf436a5b7f060396e1d9bf35d0e5d885cbc75cfdd3bc11",
       "source_bytes": 16297,
-      "sha256": "39dba62010c602c9778544b7167efc507222ef751868f02133207e9d13bd8143",
+      "sha256": "4cb994c42cc431c065cf436a5b7f060396e1d9bf35d0e5d885cbc75cfdd3bc11",
       "bytes": 16297,
       "derivation": "preserved_bytes"
     },
@@ -4133,11 +4133,11 @@
     {
       "path": "src/cluetide/live.py",
       "source_path": "src/cluetide/live.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "caea2e99f41b7574d0e822f6f072c60ffb655bf572c2ea5cf945ec87c7d2bae6",
-      "source_bytes": 5601,
-      "sha256": "caea2e99f41b7574d0e822f6f072c60ffb655bf572c2ea5cf945ec87c7d2bae6",
-      "bytes": 5601,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "ed5fa3913eff3939c6ee0c7c324c7771d1e875c1d9d4e1b30aff22a35febfa12",
+      "source_bytes": 5968,
+      "sha256": "ed5fa3913eff3939c6ee0c7c324c7771d1e875c1d9d4e1b30aff22a35febfa12",
+      "bytes": 5968,
       "derivation": "preserved_bytes"
     },
     {
@@ -4259,11 +4259,11 @@
     {
       "path": "tests/test_agent_budget.py",
       "source_path": "tests/test_agent_budget.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "140ebb9db1de99955486f5a4d86bbed2ec6adfe099b414537ed6395435fc63e3",
-      "source_bytes": 10763,
-      "sha256": "140ebb9db1de99955486f5a4d86bbed2ec6adfe099b414537ed6395435fc63e3",
-      "bytes": 10763,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "89e0820e17791c8473bbe4b839dcdd1b7aa3a4868ff277cf79355f28b5834024",
+      "source_bytes": 10791,
+      "sha256": "89e0820e17791c8473bbe4b839dcdd1b7aa3a4868ff277cf79355f28b5834024",
+      "bytes": 10791,
       "derivation": "preserved_bytes"
     },
     {
@@ -4279,21 +4279,21 @@
     {
       "path": "tests/test_agent_runtime.py",
       "source_path": "tests/test_agent_runtime.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "ac42010eba79d14b1ff6cd8df9ad5eb175c0915ae5be3211677e9169c5a42ccb",
-      "source_bytes": 23218,
-      "sha256": "ac42010eba79d14b1ff6cd8df9ad5eb175c0915ae5be3211677e9169c5a42ccb",
-      "bytes": 23218,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "7a586323df9c17d797edef0d41039d260c16eb19ae7d96be3edb186809bdb981",
+      "source_bytes": 24201,
+      "sha256": "7a586323df9c17d797edef0d41039d260c16eb19ae7d96be3edb186809bdb981",
+      "bytes": 24201,
       "derivation": "preserved_bytes"
     },
     {
       "path": "tests/test_api_workflow.py",
       "source_path": "tests/test_api_workflow.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "15b32b724243dfa24256ce8a14ce908df5430b3a325df7cfd16917b74aa9f78f",
-      "source_bytes": 9195,
-      "sha256": "15b32b724243dfa24256ce8a14ce908df5430b3a325df7cfd16917b74aa9f78f",
-      "bytes": 9195,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "815330ae10c77465b91bba86024e1ef55266f92c1eea1bd4ff0dbcc8e71c2904",
+      "source_bytes": 9256,
+      "sha256": "815330ae10c77465b91bba86024e1ef55266f92c1eea1bd4ff0dbcc8e71c2904",
+      "bytes": 9256,
       "derivation": "preserved_bytes"
     },
     {
@@ -4409,10 +4409,10 @@
     {
       "path": "tests/test_evidence_authority.py",
       "source_path": "tests/test_evidence_authority.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "99faeb15fa82e8990bd9318f936749236cb46437e37703b697ef2e9b494d60d5",
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "90c42ce2cb9f7ba237b3de59b86084ba10551a399728928bccf6e5f854b84062",
       "source_bytes": 14014,
-      "sha256": "99faeb15fa82e8990bd9318f936749236cb46437e37703b697ef2e9b494d60d5",
+      "sha256": "90c42ce2cb9f7ba237b3de59b86084ba10551a399728928bccf6e5f854b84062",
       "bytes": 14014,
       "derivation": "preserved_bytes"
     },
@@ -4489,11 +4489,11 @@
     {
       "path": "tests/test_investigation_execution.py",
       "source_path": "tests/test_investigation_execution.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "cfd29d348f15390970b1c09f2007cabe25178ab621ba013f02ed3d219157edc7",
-      "source_bytes": 13693,
-      "sha256": "cfd29d348f15390970b1c09f2007cabe25178ab621ba013f02ed3d219157edc7",
-      "bytes": 13693,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "bd6854d8e6e80404eed85920f3902ea0668537757f461c603f4d633ffd68ce99",
+      "source_bytes": 15136,
+      "sha256": "bd6854d8e6e80404eed85920f3902ea0668537757f461c603f4d633ffd68ce99",
+      "bytes": 15136,
       "derivation": "preserved_bytes"
     },
     {
@@ -4509,11 +4509,11 @@
     {
       "path": "tests/test_live_safety.py",
       "source_path": "tests/test_live_safety.py",
-      "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
-      "source_sha256": "237949d9c578276a3d8fb345ce6e668247d7de444a9390420bd2f300b402af38",
-      "source_bytes": 13399,
-      "sha256": "237949d9c578276a3d8fb345ce6e668247d7de444a9390420bd2f300b402af38",
-      "bytes": 13399,
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "f009eec3e0ddd252e44cb2bb2c129ec15555a14b13e949edee8c8b0f829381e1",
+      "source_bytes": 14276,
+      "sha256": "f009eec3e0ddd252e44cb2bb2c129ec15555a14b13e949edee8c8b0f829381e1",
+      "bytes": 14276,
       "derivation": "preserved_bytes"
     },
     {
@@ -4621,8 +4621,8 @@
       "source_path": null,
       "source_commit": null,
       "derivation": "release_documentation",
-      "bytes": 6998,
-      "sha256": "3f98db50cd7712b1c7cc3c587cb6ae7e8dc793748ad669592fb09dca96031fb1"
+      "bytes": 7246,
+      "sha256": "fb3fba5913cb75e8bdacb312d5e4e014c7b95ee56213e4cad14b6205ce565495"
     },
     {
       "path": "README.md",
@@ -4631,8 +4631,8 @@
       "source_sha256": "20d126fb02d6867a6dc87dc2898d9af5b44681143ef00a598873aac2e7216d02",
       "source_bytes": 10864,
       "derivation": "release_documentation",
-      "bytes": 5681,
-      "sha256": "ad9b7843f364415885f6149df4b3b2dcedff52b50409dec1e2cfd697355d1d71"
+      "bytes": 5884,
+      "sha256": "fa03c4f5bd1efbe5e8f5231be53fa8c562de7ddf90391df53ec37e6e129e0d5f"
     },
     {
       "path": "SOURCE.md",
@@ -4641,8 +4641,8 @@
       "source_sha256": "f29131fa380b0476ca992fb2babd41e1f6f32635422a8fb466f183bf7c886232",
       "source_bytes": 4633,
       "derivation": "release_documentation",
-      "bytes": 4919,
-      "sha256": "605d0cd3f7d267b1fcfbbc7740af2043d10720a914ac4631ffb8c5be1ba607a0"
+      "bytes": 5129,
+      "sha256": "0d2452d33655bf9d8a5ddd20d628570bdf13e9ffa418f832790dc2aed803432d"
     },
     {
       "path": "data/attribution/README.md",
@@ -4660,9 +4660,9 @@
       "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
       "source_sha256": "943aa8dc66f6674bc741d15ca582708f3e3d671b7054528cecee89d52f6516d4",
       "source_bytes": 5074,
-      "derivation": "preserved_release_file",
-      "bytes": 5071,
-      "sha256": "3daa03e3ca5988c2325181f725a944a8c4f50d81404603f2e3c1117c93376d75"
+      "derivation": "release_documentation",
+      "bytes": 5291,
+      "sha256": "f89bf6e78eab7a97db729287214e18f7fd063105cf4bc3fa5c05fe6c0d882fda"
     },
     {
       "path": "docs/REVIEW.md",
@@ -4690,9 +4690,9 @@
       "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
       "source_sha256": "4d0265da5f07ec1dd6bf1e1b49a7ccd6046ca14e1d58393ae7257b2f66cf42ff",
       "source_bytes": 3397,
-      "derivation": "preserved_release_file",
-      "bytes": 3397,
-      "sha256": "4d0265da5f07ec1dd6bf1e1b49a7ccd6046ca14e1d58393ae7257b2f66cf42ff"
+      "derivation": "release_documentation",
+      "bytes": 5168,
+      "sha256": "88de32091fbdbf119e1b2837b8ca0fd1a6ebe884a72aac69b62812637f8a8c0a"
     },
     {
       "path": "docs/images/readme/hero.png",
@@ -4793,6 +4793,44 @@
       "derivation": "preserved_release_file",
       "bytes": 1056,
       "sha256": "e494471347dce120566d44f192f3cec3992dfe58c5b2be90e890e9073313ea88"
+    },
+    {
+      "path": "docs/LIVE-DEMO.md",
+      "source_path": null,
+      "source_commit": null,
+      "bytes": 3250,
+      "sha256": "471d88aff0c699caaa53f28c19c9cf11a63fc8f04f89fda4ab799807d281c92c",
+      "derivation": "release_documentation"
+    },
+    {
+      "path": "frontend/src/gcc/InvestigationProgress.tsx",
+      "source_path": "frontend/src/gcc/InvestigationProgress.tsx",
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "30201c4e95a78eb34de4febfe73650a5ce758f2726b45a040bf87102546c8384",
+      "source_bytes": 2973,
+      "sha256": "30201c4e95a78eb34de4febfe73650a5ce758f2726b45a040bf87102546c8384",
+      "bytes": 2973,
+      "derivation": "preserved_bytes"
+    },
+    {
+      "path": "frontend/src/gcc/PublicWorkspace.tsx",
+      "source_path": "frontend/src/gcc/PublicWorkspace.tsx",
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "369e3f5302d346dd2bde8bd978168265f99aa7419d7faa8017d7ac47cc48814c",
+      "source_bytes": 1884,
+      "sha256": "369e3f5302d346dd2bde8bd978168265f99aa7419d7faa8017d7ac47cc48814c",
+      "bytes": 1884,
+      "derivation": "preserved_bytes"
+    },
+    {
+      "path": "frontend/src/state/execution.ts",
+      "source_path": "frontend/src/state/execution.ts",
+      "source_commit": "0f54c626574996ce2883d3f5091dc86d97c13e1d",
+      "source_sha256": "c29ea96410f766f539ba1a2952a56c163a477937cbf0e623c1a03920ad4df81e",
+      "source_bytes": 2234,
+      "sha256": "c29ea96410f766f539ba1a2952a56c163a477937cbf0e623c1a03920ad4df81e",
+      "bytes": 2234,
+      "derivation": "preserved_bytes"
     }
   ]
 }

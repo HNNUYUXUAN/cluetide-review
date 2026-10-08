@@ -17,7 +17,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from uuid import uuid4
 
-HARD_CAP_RMB = Decimal("10")
+HARD_CAP_RMB = Decimal("20")
 MICRO_RMB = Decimal("1000000")
 SUPPORTED_MODELS = frozenset({"deepseek-v3.2", "minimax-m2.7"})
 

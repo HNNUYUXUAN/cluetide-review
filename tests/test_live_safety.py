@@ -17,6 +17,7 @@ from cluetide.budget import HARD_CAP_RMB, BudgetLedger
 
 @pytest.fixture(autouse=True)
 def isolated_paid_helpers(monkeypatch, tmp_path):
+    monkeypatch.delenv("CLUETIDE_BUDGET_PATH", raising=False)
     monkeypatch.setattr(live, "LOCAL_DATA", tmp_path)
     monkeypatch.setattr(live, "gateway_key", lambda: "synthetic-key-for-tests")
     monkeypatch.setattr(live, "paid_session_available", lambda: True)
@@ -38,6 +39,21 @@ def isolated_paid_helpers(monkeypatch, tmp_path):
     monkeypatch.setattr(live, "create_gateway_model", lambda *args, **kwargs: object())
     with models.override_allow_model_requests(False):
         yield
+
+
+def test_shared_budget_path_preserves_existing_accounting(monkeypatch, tmp_path):
+    shared = tmp_path / "shared" / "model-budget.sqlite3"
+    shared.parent.mkdir()
+    ledger = BudgetLedger(shared)
+    quote = PriceQuote("deepseek-v3.2", Decimal("1.6"), Decimal("2.4"),
+        "https://tokendance.space/portal/api/models/deepseek-v3.2/endpoints/stats",
+        datetime.now(timezone.utc), verified=True, source_sha256="a" * 64)
+    ledger.reserve(quote, input_tokens=1000, output_tokens=1024)
+    monkeypatch.setenv("CLUETIDE_BUDGET_PATH", str(shared))
+    monkeypatch.setattr(live, "preview_only", lambda: False)
+    assert live.budget_ledger_path() == shared.resolve()
+    assert live.budget_snapshot() == ledger.snapshot()
+    assert live.budget_snapshot()["requests_reserved"] == 1
 
 
 def test_preflight_failure_sends_no_model_request(monkeypatch):
@@ -188,7 +204,7 @@ def isolated_workbench(monkeypatch, tmp_path):
 async def test_app_interruption_retains_counts_raw_and_cleans_state(isolated_workbench, monkeypatch, interruption):
     module = isolated_workbench
     entered = asyncio.Event()
-    async def interrupted_paid(backend, request, *, stop_event, deadline_seconds, outcome_callback):
+    async def interrupted_paid(backend, request, *, stop_event, deadline_seconds, outcome_callback, progress_callback=None):
         backend.observations.append({"method": "eth_getTransactionReceipt", "params": [request.tx_hash],
                                      "result": {"transactionHash": request.tx_hash, "status": "0x1"}})
         entered.set()

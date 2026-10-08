@@ -36,6 +36,30 @@ def fields():
     return {key: module.PRESET[key] for key in ("address", "token_address", "from_block", "to_block")}
 
 
+@pytest.mark.asyncio
+async def test_running_progress_is_readable_before_report_and_polling_is_read_only(isolated_execution, monkeypatch):
+    observed, release = asyncio.Event(), asyncio.Event()
+    async def runtime(backend, request, *, progress_callback, **kwargs):
+        progress_callback({"stage":"reading", "model_requests":1, "tool_attempts":1,
+                           "trace":[{"event":"tool_selected", "tool":"get_receipt"}]})
+        observed.set()
+        await release.wait()
+        return AgentOutcome(status="partial", model_requests=1, tool_attempts=1, stop_reason="synthetic_end")
+    monkeypatch.setattr(module, "run_paid", runtime)
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=module.app), base_url="http://127.0.0.1:5186") as client:
+        started = (await client.post("/api/investigations", json={**fields(), "agent_mode":"live"})).json()
+        try:
+            await asyncio.wait_for(observed.wait(), 2)
+            before = module.store.get(started["id"])
+            doc = (await client.get(f"/api/investigations/{started['id']}")).json()
+            assert doc["status"] == "running" and doc["report"] is None
+            assert doc["progress"]["model_requests"] == 1 and doc["progress"]["stage"] == "reading"
+            assert doc["created_at"] and module.store.get(started["id"]) == before
+        finally:
+            release.set()
+            await finished(client, started["id"])
+
+
 async def finished(client, case_id):
     for _ in range(200):
         document = (await client.get(f"/api/investigations/{case_id}")).json()

@@ -8,6 +8,7 @@ import re
 import sqlite3
 import time
 import uuid
+from datetime import datetime, timezone
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
@@ -387,6 +388,9 @@ async def execute(case_id: str, start: StartRequest):
     def capture_outcome(value):
         nonlocal outcome_snapshot
         outcome_snapshot = value.model_dump(mode="json")
+    def capture_progress(value):
+        document["progress"] = {**value, "updated_at": datetime.now(timezone.utc).isoformat()}
+        store.put(case_id, document)
     started = time.monotonic()
     try:
         try:
@@ -411,6 +415,8 @@ async def execute(case_id: str, start: StartRequest):
                 evidence.sources = sources
                 document.update(evidence=evidence.model_dump(mode="json"), investigation_scope=scope)
                 store.put(case_id, document)
+                capture_progress({"stage": "preflight" if start.agent_mode == "live" else "reasoning",
+                                  "model_requests": 0, "tool_attempts": 0, "trace": []})
                 if evidence.coverage.status == "empty" and evidence.finalized_anchor:
                     outcome = empty_window_outcome(evidence)
                 elif not selected_tx or not evidence.finalized_anchor:
@@ -442,10 +448,10 @@ async def execute(case_id: str, start: StartRequest):
                     if remaining <= 0:
                         raise TimeoutError
                     if start.agent_mode == "live":
-                        value = await run_paid(backend, agent_request, stop_event=stops[case_id], deadline_seconds=remaining, outcome_callback=capture_outcome)
+                        value = await run_paid(backend, agent_request, stop_event=stops[case_id], deadline_seconds=remaining, outcome_callback=capture_outcome, progress_callback=capture_progress)
                     else:
                         value = await run_investigation(build_offline_model(), backend, agent_request, stop_event=stops[case_id],
-                            limits=RuntimeLimits(deadline_seconds=remaining), outcome_callback=capture_outcome)
+                            limits=RuntimeLimits(deadline_seconds=remaining), outcome_callback=capture_outcome, progress_callback=capture_progress)
                     outcome = value.model_dump(mode="json")
         except asyncio.CancelledError as exc:
             reason = "user_stop" if stops.get(case_id) and stops[case_id].is_set() else "service_shutdown" if exc.args == ("service_shutdown",) else "externally_cancelled"
@@ -541,6 +547,8 @@ async def start_investigation(start: StartRequest):
         raise HTTPException(429, "At most two local investigations may run concurrently")
     case_id = uuid.uuid4().hex
     document = {"id": case_id, "title": selected_preset["title"] if selected_preset else "Ethereum 调查", "status": "running", "input": start.model_dump(), "evidence": None, "agent": None, "report": None, "registry": None, "versions": [], "reviews": []}
+    document["created_at"] = datetime.now(timezone.utc).isoformat()
+    document["progress"] = {"stage": "collecting", "model_requests": 0, "tool_attempts": 0, "trace": [], "updated_at": document["created_at"]}
     store.put(case_id, document)
     stops[case_id] = asyncio.Event()
     tasks[case_id] = asyncio.create_task(execute(case_id, start))

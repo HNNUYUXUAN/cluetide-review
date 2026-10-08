@@ -1,13 +1,21 @@
 """Session-limited paid execution under one shared conservative budget."""
 import asyncio
 import json
+import os
 import time
+from pathlib import Path
 from collections.abc import Callable
 from datetime import datetime, timezone
 
 from .agent import AgentOutcome, RuntimeLimits, create_gateway_model, run_investigation
 from .budget import HARD_CAP_RMB, BudgetLedger, fetch_official_price_quote, read_gateway_balance
 from .settings import LOCAL_DATA, gateway_key, preview_only
+
+
+def budget_ledger_path() -> Path:
+    """Share cumulative spending across independently stored product cases."""
+    configured = os.environ.get("CLUETIDE_BUDGET_PATH")
+    return Path(configured).resolve() if configured else LOCAL_DATA / "model-budget.sqlite3"
 
 
 def paid_session_available() -> bool:
@@ -33,10 +41,11 @@ def budget_snapshot() -> dict:
             pass
         return {"mode": "offline_preview", "execution_enabled": False, "historical_budget": history,
                 "scope": "Historical reservations are a reference; this preview grants no spending allowance."}
-    return BudgetLedger(LOCAL_DATA / "model-budget.sqlite3").snapshot()
+    return BudgetLedger(budget_ledger_path()).snapshot()
 
 
 async def run_paid(backend, request, *, stop_event, deadline_seconds: float,
+                   progress_callback: Callable[[dict], None] | None = None,
                    outcome_callback: Callable[[AgentOutcome], None] | None = None) -> AgentOutcome:
     import httpx
     # Validate before any account or pricing read. The deadline starts before
@@ -65,7 +74,7 @@ async def run_paid(backend, request, *, stop_event, deadline_seconds: float,
             if not paid_session_available():
                 return AgentOutcome(status="partial", stop_reason="paid_session_unavailable")
             async with httpx.AsyncClient(timeout=20, follow_redirects=False) as client:
-                ledger = BudgetLedger(LOCAL_DATA / "model-budget.sqlite3", cap_rmb=HARD_CAP_RMB)
+                ledger = BudgetLedger(budget_ledger_path(), cap_rmb=HARD_CAP_RMB)
                 balance_baseline = ledger.balance_reservation_baseline()
                 balance = await read_gateway_balance(gateway_key(), http_client=client)
                 quotes = {}
@@ -79,7 +88,7 @@ async def run_paid(backend, request, *, stop_event, deadline_seconds: float,
                     return AgentOutcome(status="stopped", stop_reason="user_stop")
                 if not paid_session_available():
                     return AgentOutcome(status="partial", stop_reason="paid_session_unavailable")
-                ledger = BudgetLedger(LOCAL_DATA / "model-budget.sqlite3", cap_rmb=HARD_CAP_RMB,
+                ledger = BudgetLedger(budget_ledger_path(), cap_rmb=HARD_CAP_RMB,
                     spendable_micro_rmb=balance["balance_micro_rmb"],
                     spendable_at_reserved_micro_rmb=balance_baseline["reserved_micro_rmb"],
                     spendable_pending_micro_rmb=balance_baseline["pending_micro_rmb"])
@@ -88,7 +97,7 @@ async def run_paid(backend, request, *, stop_event, deadline_seconds: float,
                 remaining = deadline_seconds - (time.monotonic() - started)
                 if remaining <= 0:
                     return AgentOutcome(status="partial", stop_reason="deadline_exceeded")
-                return await run_investigation(primary, backend, request, limits=RuntimeLimits(deadline_seconds=remaining, max_output_tokens=4096), stop_event=stop_event, ledger=ledger, price_quotes=quotes, fallback_model=fallback, paid_enabled=True, outcome_callback=capture_outcome)
+                return await run_investigation(primary, backend, request, limits=RuntimeLimits(deadline_seconds=remaining, max_output_tokens=4096), stop_event=stop_event, ledger=ledger, price_quotes=quotes, fallback_model=fallback, paid_enabled=True, outcome_callback=capture_outcome, progress_callback=progress_callback)
     except TimeoutError:
         return partial_outcome("deadline_exceeded")
     except Exception:

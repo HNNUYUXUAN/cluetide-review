@@ -44,6 +44,10 @@ export default function InvestigationView({
       </>
     );
   const evidence = investigation.evidence;
+  const visibleAgent = busy && investigation.progress ? {
+    status: "running", evidence: [], trace: investigation.progress.trace,
+    model_requests: investigation.progress.model_requests, tool_attempts: investigation.progress.tool_attempts,
+  } : investigation.agent;
   const coverage = evidence.coverage;
   const coverageComplete = coverage.status === "complete" || coverage.status === "empty";
   const hasFinalizedAnchor = typeof evidence.finalized_anchor?.number === "number" &&
@@ -67,7 +71,7 @@ export default function InvestigationView({
     return index < 0 ? shortHash(id, 8) : `E${index + 1}`;
   };
   if (tab === "trace")
-    return <AgentTrace agent={investigation.agent} executionMode={investigation.report?.execution_mode} detailed />;
+    return <AgentTrace agent={visibleAgent} executionMode={investigation.report?.execution_mode ?? (investigation.input?.agent_mode === "offline" ? "FunctionModel" : (visibleAgent?.model_requests ?? 0) > 0 ? "Real model," : "no model request sent")} detailed />;
   if (tab === "evidence")
     return (
       <>
@@ -232,7 +236,7 @@ export default function InvestigationView({
           <CandidateAssessments value={report?.assessments} onEvidence={onEvidence} evidenceLabel={evidenceLabel} />
           <EvidenceIndex investigation={investigation} onSelect={onEvidence} />
         </section>
-        <AgentTrace agent={investigation.agent} executionMode={investigation.report?.execution_mode} />
+        <AgentTrace agent={visibleAgent} executionMode={investigation.report?.execution_mode ?? (investigation.input?.agent_mode === "offline" ? "FunctionModel" : "Real model,")} />
       </div>
       <section className="panel table-panel">
         <div className="section-title">

@@ -77,3 +77,5 @@ CLUETIDE_PREVIEW_ONLY=1 .venv/bin/python -m uvicorn cluetide.app:app --host 127.
 We retain the [UNI evidence](data/cases/uniswap93/README.md), [Euler evidence](data/cases/euler-20230313/README.md) and [source manifest](source-manifest.json) for further inspection. [SOURCE.md](SOURCE.md) identifies the source baseline and evidence provenance. Our code uses the [MIT license](LICENSE), with original [third-party attribution and terms](data/attribution/README.md) preserved. The [walkthrough](docs/REVIEW.md) provides a fuller route through the product.
 
 [Image sources](docs/readme-assets.md)
+
+Live investigations show observed stages, model requests and tool attempts, with direct paths to citations and exact-version review. See the [live investigation guide](docs/LIVE-DEMO.md) for local configuration and the hosted demo's capabilities.

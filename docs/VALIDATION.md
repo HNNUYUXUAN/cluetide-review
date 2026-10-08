@@ -2,6 +2,26 @@
 
 验证日期 / Checked: **2026-10-08 (Asia/Shanghai)**.
 
+## 实时体验更新 / Live experience update
+
+维护源码 `0f54c626574996ce2883d3f5091dc86d97c13e1d` 的实时进度、模式保留、完成后入口和公开工作台已同步至本版。
+
+| Check / 检查 | Result / 结果 | Scope / 范围 |
+| --- | --- | --- |
+| Full backend suite / 后端全量 | 884 passed / 884 项通过 | GCC public checkout, independent state; 58.12 s |
+| Frontend tests / 前端测试 | 28 passed, 0 failed, 0 skipped | Node and Chrome component tests in this checkout |
+| TypeScript and production build / 类型与构建 | Passed / 通过 | 62 modules, local and static deployment builds |
+| Real model workflow / 真实模型链路 | Completed / 完成 | Maintained local service, public UNI observations, 6 model requests, 5 tool attempts, saved v1 |
+| Chrome interaction / 浏览器操作 | Passed / 通过 | Case switch preserves live mode; progress, report citation, version selection and scope reuse |
+| Responsive UI / 响应布局 | Passed / 通过 | 1294×746 desktop, 820×1180 tablet, 390×844 mobile; no horizontal overflow at smaller sizes |
+| Console / 控制台 | No application errors / 无应用错误 | Extension-origin warnings excluded |
+
+The live run validates execution and UI behavior. Two historical token-state reads were unavailable; the report retained supply change as unknown. It is not a model-accuracy benchmark. Public replay ZIPs and license originals retain their existing bytes. The hosted update is verified against its deployed assets separately.
+
+真实运行验证调用及交互链路。两次历史代币状态读取未取得结果，报告保留供应量未知项。公开回放继续标注合成报告。下文保留初始版本的独立安装验收范围。
+
+## 初始版本 / Initial release
+
 Platform / 平台: **Windows**. The Linux/macOS command recipe has not been executed on those platforms. / Linux 与 macOS 命令尚待对应平台验证。
 
 This record describes checks performed from the GCC review checkout. Source identifiers and preserved-byte mappings are in [SOURCE.md](../SOURCE.md). Model-quality claims require their own evaluation evidence.

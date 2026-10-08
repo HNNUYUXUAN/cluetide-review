@@ -1,5 +1,20 @@
 import type { Agent } from "../types";
 import { integer, shortHash, statusName, toolName } from "../format";
+import { stopExplanation } from "../state/execution";
+
+const eventLabels: Record<string, string> = {
+  investigation_strategy: "确定调查策略",
+  final_report_required: "汇总现有证据并形成报告",
+  report_validation_retry: "核对并修正报告引用",
+  model_failure: "模型请求未完成",
+  outcome_callback_failed: "保存执行结果遇到问题",
+};
+
+const eventDescriptions: Record<string, string> = {
+  investigation_strategy: "按当前事件与有限区块窗口，选择需要补查的证据。",
+  final_report_required: "在本轮请求额度内整理结论、引用和仍待核实的问题。",
+  report_validation_retry: "检查报告结构与证据引用，要求模型修正后再保存。",
+};
 
 function argumentsDescription(value: unknown, detailed: boolean): string {
   if (!value || typeof value !== "object") return "";
@@ -63,7 +78,7 @@ export default function AgentTrace({
                       ? `${toolName(row.tool)} · ${statusName(String(row.status))}`
                       : row.event === "tool_rejected"
                         ? "工具调用受限"
-                        : toolName(row.tool ?? row.event)}
+                        : eventLabels[String(row.event)] ?? toolName(row.tool ?? row.event)}
                 </h3>
                 <p title={JSON.stringify(row.arguments ?? {})}>
                   {row.event === "model_request"
@@ -74,7 +89,7 @@ export default function AgentTrace({
                         ? String(row.reason ?? "")
                         : row.arguments
                           ? argumentsDescription(row.arguments, detailed)
-                          : String(row.reason ?? "")}
+                          : eventDescriptions[String(row.event)] ?? String(row.reason ?? "")}
                 </p>
                 {detailed && (
                   <details>
@@ -88,7 +103,7 @@ export default function AgentTrace({
         </ol>
       )}
       {agent?.stop_reason && (
-        <p className="inline-notice">停止原因：{agent.stop_reason}</p>
+        <div className="inline-notice"><p>{stopExplanation(agent.stop_reason)}</p><details><summary>技术原因</summary><code>{agent.stop_reason}</code></details></div>
       )}
     </section>
   );

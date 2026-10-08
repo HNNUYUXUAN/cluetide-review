@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Health, HistoryItem, Preset, Scope, Screen } from "../types";
 import Icon from "./Icon";
+import { executionDescription, liveAvailable as canRunLive } from "../state/execution";
 
 interface Props {
   screen: Screen;
@@ -20,6 +21,7 @@ interface Props {
 }
 export default function Sidebar(props: Props) {
   const [formError, setFormError] = useState("");
+  const [showScope, setShowScope] = useState(false);
   const selectedPreset = props.presets.find((item) =>
     item.address.toLowerCase() === props.scope.address.toLowerCase() &&
     item.token_address.toLowerCase() === props.scope.token_address.toLowerCase() &&
@@ -37,6 +39,7 @@ export default function Sidebar(props: Props) {
       !/^0x[0-9a-fA-F]{40}$/.test(props.scope.token_address)
     ) {
       setFormError("地址须为 0x 开头的 40 位十六进制字符。");
+      setShowScope(true);
       return;
     }
     if (
@@ -47,6 +50,7 @@ export default function Sidebar(props: Props) {
       props.scope.to_block - props.scope.from_block + 1 > 2000
     ) {
       setFormError("区块须为非负整数，窗口有序且不超过 2,000 区块。");
+      setShowScope(true);
       return;
     }
     setFormError("");
@@ -55,10 +59,7 @@ export default function Sidebar(props: Props) {
   const rpcAvailable =
     props.health?.rpc_available === true ||
     props.health?.capabilities?.rpc_available === true;
-  const liveAvailable =
-    props.health?.live_available === true ||
-    props.health?.live_agent_available === true ||
-    props.health?.capabilities?.live_agent_available === true;
+  const liveAvailable = canRunLive(props.health);
   return (
     <aside className="sidebar">
       <a className="brand" href="/" aria-label="ClueTide 调查工作台">
@@ -87,14 +88,14 @@ export default function Sidebar(props: Props) {
       {props.screen === "workbench" && (
         <form className="scope-form" onSubmit={submit}>
           <div className="scope-title">
-            <h2>调查范围</h2>
+            <h2>开始一项调查</h2>
             <button
               type="button"
               className="text-button light"
               onClick={() => props.onPreset(selectedPreset || "uniswap93")}
               disabled={props.busy || props.presetLoading}
             >
-              加载案例
+              重置范围
             </button>
           </div>
           <label>
@@ -110,6 +111,7 @@ export default function Sidebar(props: Props) {
               {props.presets.map((item) => <option key={item.case_id} value={item.case_id}>{item.title}</option>)}
             </select>
           </label>
+          <details className="gcc-scope-details" open={showScope} onToggle={event => setShowScope(event.currentTarget.open)}><summary>核对或修改地址与区块范围</summary>
           <label>
             地址 / 合约
             <input
@@ -160,6 +162,8 @@ export default function Sidebar(props: Props) {
               />
             </label>
           </div>
+          </details>
+          <div className="gcc-mode-grid">
           <label>
             读取模式
             <select
@@ -186,6 +190,9 @@ export default function Sidebar(props: Props) {
               </option>
             </select>
           </label>
+          </div>
+          <p className="gcc-mode-description">{executionDescription(props.scope)}</p>
+          {liveAvailable && props.scope.agent_mode === "offline" && <button type="button" className="gcc-live-choice" disabled={props.busy || props.presetLoading} onClick={() => set("agent_mode", "live")}>使用实时 Agent</button>}
           {formError && (
             <p className="form-error" role="alert">
               {formError}
@@ -200,12 +207,13 @@ export default function Sidebar(props: Props) {
             className="button primary start-button"
             type="submit"
             disabled={
+              !props.health ||
               props.busy ||
               props.presetLoading ||
               (props.scope.agent_mode === "live" && !liveAvailable)
             }
           >
-            {props.busy ? "调查中…" : "开始调查"}
+            {props.busy ? "正在启动调查…" : !props.health ? "等待服务连接" : props.scope.agent_mode === "live" ? "开始实时调查" : "开始离线调查"}
           </button>
           {props.busy && (
             <button

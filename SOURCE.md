@@ -4,6 +4,7 @@
 
 | Baseline / 基线 | Commit / 提交 | Role / 用途 |
 | --- | --- | --- |
+| Live investigation update / 实时体验更新 | `0f54c626574996ce2883d3f5091dc86d97c13e1d` | Progress, execution modes, public entry and corresponding tests / 进度、执行方式、公开入口及测试 |
 | GCC maintained product / GCC 维护源码 | `1b2fdd5d152f51e99d28563e10db39c94d015e3f` | Selected runtime, UI, tests, public evidence and attribution / 本版选取来源 |
 | Shared research baseline / 共同研究起点 | `cf19b51af64fa289de19ccd70ab26425c09584d3` | Original GCC frontend and common investigation core / 前端与共同调查核心 |
 | Independently packaged GCC / 独立打包来源 | `f21485d7078912c5894f4d599be26314a8b24782` | Historical independently reproduced product / 历史独立复现版本 |

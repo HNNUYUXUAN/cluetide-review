@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import asyncio
+import copy
 import inspect
 import json
 import re
@@ -286,6 +287,17 @@ class _State:
     queries: set[str] = field(default_factory=set)
     model_names: list[str] = field(default_factory=list)
     reads_started: int = 0
+    progress_callback: Callable[[dict[str, Any]], None] | None = None
+
+    def publish_progress(self, stage: str) -> None:
+        if self.progress_callback is not None:
+            try:
+                self.progress_callback({"stage": stage, "model_requests": self.model_requests,
+                    "tool_attempts": self.tool_attempts, "observations": self.reads_started,
+                    "trace": copy.deepcopy(self.trace)})
+            except Exception:
+                # Progress observers must not change model or budget execution.
+                pass
 
     def check(self) -> None:
         if self.stop_event is not None and self.stop_event.is_set():
@@ -344,6 +356,7 @@ class _State:
             # Normalize before framework validation and execution.
             part.args = args
             self.trace.append({"event": "tool_selected", "tool": part.tool_name, "arguments": args})
+            self.publish_progress("reading")
 
     async def execute(self, name: str, args: dict[str, Any]) -> dict[str, Any]:
         self.check()
@@ -378,6 +391,7 @@ class _State:
         self.evidence.append(evidence)
         self.trace.append({"event": "tool_observed", "tool": name,
                            "evidence_id": evidence.evidence_id, "status": evidence.status})
+        self.publish_progress("reasoning")
         return evidence.model_dump(mode="json")
 
 
@@ -455,6 +469,7 @@ class _BoundedModel(WrapperModel):
                 settings.pop("tool_choice", None)
                 self.state.trace.append({"event": "final_report_required", "reason": "remaining_budget"})
             remaining = self.state.limits.deadline_seconds - (time.monotonic() - self.state.started)
+            self.state.publish_progress("reporting" if report_required else "reasoning")
             try:
                 response = await asyncio.wait_for(model.request(request_messages, settings, parameters),
                                                    timeout=min(remaining, self.state.limits.request_timeout_seconds))
@@ -546,6 +561,7 @@ async def run_investigation(model: Model, backend: ToolBackend, request: AgentRe
                             ledger: BudgetLedger | None = None, price_quotes: dict[str, PriceQuote] | None = None,
                             fallback_model: Model | None = None, paid_enabled: bool = False,
                             outcome_callback: Callable[[AgentOutcome], None] | None = None,
+                            progress_callback: Callable[[dict[str, Any]], None] | None = None,
                             strategy: Literal["adaptive", "one_shot"] = "adaptive") -> AgentOutcome:
     """Run the bounded agent and publish one public final/cancellation snapshot.
 
@@ -558,7 +574,7 @@ async def run_investigation(model: Model, backend: ToolBackend, request: AgentRe
     limits = limits or RuntimeLimits()
     if strategy == "one_shot":
         limits = replace(limits, max_model_requests=1)
-    state = _State(backend, request, limits, stop_event, strategy=strategy)
+    state = _State(backend, request, limits, stop_event, strategy=strategy, progress_callback=progress_callback)
     state.trace.append({"event": "investigation_strategy", "strategy": strategy})
     # Only evidence-shaped initial observations may support final claims.
     for item in request.initial_observations:
@@ -615,6 +631,7 @@ async def run_investigation(model: Model, backend: ToolBackend, request: AgentRe
         def retry(reason: str, code: str) -> ModelRetry:
             ctx.deps.trace.append({"event": "report_validation_retry", "reason": code,
                                    "after_model_request": ctx.deps.model_requests})
+            ctx.deps.publish_progress("validating")
             return ModelRetry(reason + " Successful evidence references (IDs and kinds): "
                               + json.dumps(successful, ensure_ascii=False)
                               + ". Keep failed or empty reads in unknowns or limitations.")

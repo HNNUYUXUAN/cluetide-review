@@ -121,9 +121,9 @@ async def test_stop_immediately_and_refresh(local_app, monkeypatch):
 async def test_paid_api_wiring_without_external_requests(local_app, monkeypatch):
     from cluetide.agent import run_investigation, build_offline_model
     calls = []
-    async def fake_paid(backend, request, *, stop_event, deadline_seconds, outcome_callback=None):
+    async def fake_paid(backend, request, *, stop_event, deadline_seconds, outcome_callback=None, progress_callback=None):
         calls.append(request)
-        return await run_investigation(build_offline_model(), backend, request, stop_event=stop_event, outcome_callback=outcome_callback)
+        return await run_investigation(build_offline_model(), backend, request, stop_event=stop_event, outcome_callback=outcome_callback, progress_callback=progress_callback)
     monkeypatch.setattr(module, "paid_session_available", lambda: True)
     monkeypatch.setattr(module, "run_paid", fake_paid)
     async with httpx.AsyncClient(transport=httpx.ASGITransport(app=local_app), base_url="http://127.0.0.1:5186") as client:

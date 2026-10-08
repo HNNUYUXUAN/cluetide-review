@@ -42,7 +42,7 @@ def test_budget_is_atomic_across_concurrent_reservations(tmp_path):
     assert Decimal(ledger.snapshot()["reserved_rmb"]) <= Decimal("0.02")
 
 
-@pytest.mark.parametrize("cap", ["-1", "0", "10.01", "NaN", "Infinity"])
+@pytest.mark.parametrize("cap", ["-1", "0", str(HARD_CAP_RMB + Decimal("0.01")), "NaN", "Infinity"])
 def test_cap_is_positive_finite_and_within_authorization(tmp_path, cap):
     with pytest.raises(ValueError):
         BudgetLedger(tmp_path / "budget.sqlite3", cap_rmb=Decimal(cap))
