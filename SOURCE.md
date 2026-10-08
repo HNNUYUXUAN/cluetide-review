@@ -2,7 +2,7 @@
 
 This BOT review release derives from the ClueTide BOT maintenance baseline `f88009336bb548d782b70124e1740535020caefd`, which follows the common research baseline `cf19b51af64fa289de19ccd70ab26425c09584d3`.
 
-The English product implementation is recorded in maintenance commit `8a688ada3a2376280e7d60d47f5a92254c5e6590`. The release carries the product runtime, tests, Solidity contract and artifact, public Ethereum case snapshots, selected immutable evidence bundles, archived BOT Testnet receipts, and upstream license notices.
+The English product implementation is recorded in maintenance commit `8a688ada3a2376280e7d60d47f5a92254c5e6590`. The mainnet product and its verified receipt archive derive from maintenance commit `31c7cd7912ca22eb6ccabd159c0f4076d9dfd41d`. The release carries the product runtime, tests, Solidity contract and artifact, public Ethereum case snapshots, selected immutable evidence bundles, verified BOT Mainnet 677 receipts, historical BOT Testnet 968 receipts, and upstream license notices.
 
 Release adaptations include the English product shell and route model, English workspace controls, static demo assets, portable setup documentation, and a release-specific package definition. Compatibility and quality tests use the original reports extracted into `tests/fixtures/legacy-conclusion.json` and `tests/fixtures/quality-regression.json`; their hashes are checked directly by the tests. The dependency lock limits pywin32 to Windows. Windows was tested; the POSIX commands are provided for reproduction.
 

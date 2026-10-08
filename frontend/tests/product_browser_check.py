@@ -4,9 +4,10 @@ import json
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "local-only" / "product-qa"
+OUT = ROOT / "local-only" / "mainnet-product-qa"
 OUT.mkdir(parents=True, exist_ok=True)
 BASE = "http://127.0.0.1:5173/bot.html"
+STORY = json.loads((ROOT / "frontend/src/bot-mainnet-story-data.json").read_text(encoding="utf-8"))
 checks = []
 
 with sync_playwright() as browser_api:
@@ -16,6 +17,8 @@ with sync_playwright() as browser_api:
     page.on("pageerror", lambda error: errors.append(str(error)))
     page.goto(BASE)
     page.get_by_role("heading", name="Every claim. A traceable history.").wait_for()
+    assert "BOT Mainnet 677" in page.locator(".ct-proof-strip").inner_text()
+    assert page.get_by_role("link", name="View contract", exact=True).get_attribute("href") == STORY["contract_url"]
     page.locator(".ct-hero-media img").evaluate("img => img.decode()")
     page.screenshot(path=str(OUT / "home-desktop.png"))
     page.get_by_role("link", name="Explore the UNI case").click()
@@ -31,7 +34,19 @@ with sync_playwright() as browser_api:
     page.go_forward()
     page.get_by_role("heading", name="What changed in v2").wait_for()
     checks.append("exact version route, reload, back and forward")
+    for step in STORY["steps"]:
+        page.goto(BASE + "#/cases/uniswap93?step=" + step["key"])
+        assert "BOT Mainnet 677" in page.locator(".ct-chain-rows").inner_text()
+        assert page.locator(".ct-explorer-link").get_attribute("href") == step["tx_url"]
+        assert "BOT Mainnet 677" in page.locator(".ct-footer").inner_text()
+    checks.append("three case routes preserve verified mainnet transaction identity")
+    page.goto(BASE + "#/developers")
+    assert "BOT Mainnet" in page.locator(".ct-network").inner_text()
+    assert page.get_by_role("link", name="View verified deployment").get_attribute("href") == STORY["deployment"]["tx_url"]
+    assert page.get_by_role("link", name="Archived testnet contract · 968").get_attribute("href").startswith("https://scan.bohr.life/address/")
+    checks.append("mainnet deployment link and separate testnet archive remain accessible")
     page.locator('.ct-header nav').get_by_role("link", name="Verify", exact=True).click()
+    assert "BOT Mainnet 677" in page.locator(".ct-sample-bundles").inner_text()
     for index, version in enumerate(["v1", "v2"]):
         page.locator(".ct-bundle-row").nth(index).get_by_role("button", name="Verify", exact=True).click()
         page.get_by_role("heading", name="File integrity verified").wait_for()

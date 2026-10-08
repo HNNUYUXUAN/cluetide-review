@@ -1,9 +1,15 @@
-import snapshot from "../bot-story-data.json";
+import snapshot from "../bot-mainnet-story-data.json";
 import type { BotPrepareRequest } from "../bot-types";
 import type { StepKey } from "./routes";
 
 export const story = snapshot;
-export const archiveDate = "8 Oct 2026";
+export const archiveDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Shanghai" }).format(new Date(story.observed_at_beijing));
+export const recordedNetwork = story.chain_id === 677
+  ? { name: "BOT Mainnet", chainId: 677, rpc: "https://rpc.botchain.ai", explorer: "https://scan.botchain.ai" }
+  : { name: "BOT Testnet", chainId: 968, rpc: "https://rpc.bohr.life", explorer: "https://scan.bohr.life" };
+export const networkLabel = `${recordedNetwork.name} ${recordedNetwork.chainId}`;
+export const deployment = "deployment" in snapshot ? snapshot.deployment as { tx_url: string; transaction_hash: string; block_number: string; confirmations: number; receipt_observed_at_beijing: string } : null;
+export const testnetContractUrl = "https://scan.bohr.life/address/0x951f7b5c68adba4cefd7fa851cb8e030426e81aa";
 export const shortHash = (value: string) => `${value.slice(0, 10)}…${value.slice(-8)}`;
 export const assetUrl = (name: string) => new URL(`bot-demo/${name}`, document.baseURI).href;
 export const steps = ["v1", "review", "v2"] as const;
@@ -31,7 +37,7 @@ export const chapterCopy = {
     observed: "Successful transaction and receipt",
     interpretation: "Correction requested for the execution claim",
     unknown: "Governance authorization and supply change",
-    note: "Review 1 stays attached to version 1, even as the report develops.",
+    note: "The review stays attached to the original version, even as the report develops.",
   },
   v2: {
     heading: "What changed in v2",

@@ -1,0 +1,244 @@
+{
+  "schema_version": "cluetide-bot-story/v2",
+  "observed_at_beijing": "2026-10-08T09:19:29+08:00",
+  "case_id": "gcc-uniswap93-adaptive-20261007",
+  "title": "一亿 UNI 转账，从模型判断到可追溯更正",
+  "chain_id": 677,
+  "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+  "wallet": "0x054801af006663b16b84cee370267eca2b94686c",
+  "contract_url": "https://scan.botchain.ai/address/0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+  "identity_note": "本案例作者与链上复核者使用同一钱包；本地复核标签为 local-semantic-reviewer。该流程展示版本复核，未建立独立身份认证。",
+  "evidence_note": "归档状态记录 BOT 主网 677 当时的回执与内容承诺核验。哈希证明对应文件字节；报告引用结构仍有两项待复核，事实与解释需按证据范围理解。完整历史证据包保留原始字节。",
+  "source_files": [
+    {
+      "path": "data/demo/bot-mainnet-workflow-20261008.json",
+      "sha256": "0178d2bf0da11b16f9b55f7214e58ac576274f52a4eac04652e6bb240509adf9"
+    },
+    {
+      "path": "data/demo/gcc-saved-model-review-20261007.json",
+      "sha256": "bcc78c74e33a0e148dbc759b40ee10801f27f9aa38d1e6e855ecc00807c66adc"
+    },
+    {
+      "path": "data/demo/bundles/gcc-uniswap93-adaptive-v1.zip",
+      "sha256": "37e6d1adab334a751a93da1cc5d7f8401229b333f3e3ce50353f650123c67e4b"
+    },
+    {
+      "path": "data/demo/bundles/gcc-uniswap93-adaptive-v2.zip",
+      "sha256": "b8f918413e79f797b3a3606c835d64b79919ca5ecdc369e28723dffa112037d6"
+    },
+    {
+      "path": "data/demo/bot-mainnet-v1-receipt-20261008.json",
+      "sha256": "3f64e0b6fe4412b2cfa8199c5d4767f78922cc6f0918f13d35889206593f0d86"
+    },
+    {
+      "path": "data/demo/bot-mainnet-review-receipt-20261008.json",
+      "sha256": "41a7aaa52116a18114fcf58e78286df9bae06440487a1f651b123b815805b07b"
+    },
+    {
+      "path": "data/demo/bot-mainnet-v2-receipt-20261008.json",
+      "sha256": "09bb006485511b4854ac4f423b918eae5c7998403e59cabafa889629a38812ab"
+    },
+    {
+      "path": "data/demo/bot-mainnet-deploy-receipt-20261008.json",
+      "sha256": "d5a5b6dc77f1b22cc06e11eb9f7dfcd21dae3a8eee9a89cf8302940eeb32a624"
+    },
+    {
+      "path": "contracts/artifacts/ClueTideRegistry.json",
+      "sha256": "47330ce0eeb728bf1bbd7d897138d9757726708800057619a0d904e75315c6a3"
+    },
+    {
+      "path": "contracts/ClueTideRegistry.sol",
+      "sha256": "a41cd6a0eb310d63096db94cca9621cc70b1d963e4dd067fdbcaeca063dd6f64"
+    }
+  ],
+  "steps": [
+    {
+      "key": "v1",
+      "title": "原始模型报告",
+      "subtitle": "首次登记 · 链上版本 1",
+      "summary": "在区块24106378，UNI代币合约0x1f9840a85d5af5bf1d1762f925bdaddc4201f984发生一笔100,000,000 UNI（100000000000000000000000000原始单位）从0x1a9c8182c09f50c8318d769245bea52c32be35bc转移到销毁地址0x000...dead的交易。该交易由合约0x408ed6354d4973f66138c91495f2f2fcbd8724c3执行，状态成功。",
+      "source_label": "原始模型报告原文 · v1",
+      "local_version_id": 32,
+      "version_id": "1",
+      "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+      "transaction_hash": "0x936c81539bfeafbc14cdd83ee27059d9979262267b74d3062aaef1e37804d398",
+      "tx_url": "https://scan.botchain.ai/tx/0x936c81539bfeafbc14cdd83ee27059d9979262267b74d3062aaef1e37804d398",
+      "archived_status": "verified",
+      "prepared": {
+        "chain_id": 677,
+        "action": "create_case",
+        "account": "0x054801af006663b16b84cee370267eca2b94686c",
+        "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "case_id": "gcc-uniswap93-adaptive-20261007",
+        "local_version_id": 32,
+        "evidence_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v1.zip"
+      },
+      "bundle_url": "/api/investigations/gcc-uniswap93-adaptive-20261007/bundle?revision=1",
+      "explanation": "保存当时的模型判断与证据内容承诺，让之后的复核有明确对象。",
+      "report_claims": [
+        "交易0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e在区块24106378执行了100,000,000 UNI代币从0x1a9c8182c09f50c8318d769245bea52c32be35bc到销毁地址0x000...dead的转移",
+        "Uniswap治理提案93明确指定了向销毁地址转移100,000,000 UNI的操作，这与观察到的转移金额和地址匹配",
+        "交易由合约0x408ed6354d4973f66138c91495f2f2fcbd8724c3执行，状态成功，表明治理提案被正确执行"
+      ],
+      "limitations": [
+        "调查受限于4次模型请求预算，无法获取转移前后的代币状态进行比较",
+        "未验证治理提案93在链上的实际执行授权和投票结果",
+        "未检查发送方地址0x1a9c8182c09f50c8318d769245bea52c32be35bc的权限和角色",
+        "治理来源文本为外部快照，未独立验证其完整性和准确性",
+        "未确认销毁地址转移是否确实导致总供应量永久减少",
+        "调查范围仅限于观察到的单笔转移，未检查同一交易中的其他日志（如第二个Transfer事件）"
+      ],
+      "evidence_quality": {
+        "review_status": "needs_review",
+        "quality_status": "no_flags_detected",
+        "quality_scope": "Limited checks of units, attack exclusion and contract-wide burn wording in summary, claims and supported explanations; semantic support requires review, no factual verification.",
+        "citation_status": "needs_review",
+        "citation_issues": [
+          "missing_agent_rpc_observation · agent.evidence[3].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation.",
+          "missing_agent_rpc_observation · agent.evidence[4].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation."
+        ],
+        "citation_scope": "Bounded structural checks of claim and directed candidate-explanation references to successful Agent evidence, explanation-status bindings, Transfer links to supplied RPC observations, and receipt/transaction identity consistency. No factual verification, source authenticity, completeness, or reviewer independence is established.",
+        "factual_verification": false,
+        "source_authenticity_verified": false,
+        "assessment_statuses": {
+          "governance_execution": "supported",
+          "supply_decrease": "unknown"
+        }
+      },
+      "receipt_observed_at_beijing": "2026-10-08T09:11:33+08:00",
+      "parent_version_id": "0"
+    },
+    {
+      "key": "review",
+      "title": "指定版本复核",
+      "subtitle": "请求更正 · 绑定版本 1",
+      "summary": "将成功回执、治理解释与授权范围分开，保留未核验事项。",
+      "source_label": "本地复核意见原文",
+      "local_version_id": 32,
+      "version_id": "1",
+      "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+      "transaction_hash": "0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+      "tx_url": "https://scan.botchain.ai/tx/0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+      "archived_status": "verified",
+      "prepared": {
+        "chain_id": 677,
+        "action": "add_review",
+        "account": "0x054801af006663b16b84cee370267eca2b94686c",
+        "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "case_id": "gcc-uniswap93-adaptive-20261007",
+        "local_version_id": 32,
+        "onchain_version_id": "1",
+        "local_review_id": 7,
+        "evidence_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v2.zip"
+      },
+      "bundle_url": "/api/investigations/gcc-uniswap93-adaptive-20261007/bundle?revision=1",
+      "explanation": "复核意见绑定原始报告的内容哈希，明确指出需要收敛的结论范围。",
+      "report_claims": [],
+      "limitations": [
+        "调查受限于4次模型请求预算，无法获取转移前后的代币状态进行比较",
+        "未验证治理提案93在链上的实际执行授权和投票结果",
+        "未检查发送方地址0x1a9c8182c09f50c8318d769245bea52c32be35bc的权限和角色",
+        "治理来源文本为外部快照，未独立验证其完整性和准确性",
+        "未确认销毁地址转移是否确实导致总供应量永久减少",
+        "调查范围仅限于观察到的单笔转移，未检查同一交易中的其他日志（如第二个Transfer事件）"
+      ],
+      "evidence_quality": {
+        "review_status": "needs_review",
+        "quality_status": "no_flags_detected",
+        "quality_scope": "Limited checks of units, attack exclusion and contract-wide burn wording in summary, claims and supported explanations; semantic support requires review, no factual verification.",
+        "citation_status": "needs_review",
+        "citation_issues": [
+          "missing_agent_rpc_observation · agent.evidence[3].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation.",
+          "missing_agent_rpc_observation · agent.evidence[4].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation."
+        ],
+        "citation_scope": "Bounded structural checks of claim and directed candidate-explanation references to successful Agent evidence, explanation-status bindings, Transfer links to supplied RPC observations, and receipt/transaction identity consistency. No factual verification, source authenticity, completeness, or reviewer independence is established.",
+        "factual_verification": false,
+        "source_authenticity_verified": false,
+        "assessment_statuses": {
+          "governance_execution": "supported",
+          "supply_decrease": "unknown"
+        }
+      },
+      "receipt_observed_at_beijing": "2026-10-08T09:17:19+08:00",
+      "review_id": "1",
+      "local_review_id": 7,
+      "review_hash": "c226b90aead3c2e77941b9deeaa77f87be71d1a55c3c90597f6b81fff5a590af",
+      "decision": "correction_requested"
+    },
+    {
+      "key": "v2",
+      "title": "更正后的报告",
+      "subtitle": "追加登记 · 版本 2 → 版本 1",
+      "summary": "区块24106378观察到国库地址向dead转移1亿UNI。交易与回执、提案93材料支持有限治理解释；本轮Agent未读取历史供应getter，供应变化保持未知。",
+      "source_label": "人工复核更正报告原文 · v2",
+      "local_version_id": 33,
+      "version_id": "2",
+      "content_hash": "b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+      "transaction_hash": "0xb1a45ace22fee58c97a0c218cb67deeea07cc5b778fa13371e730c56bda72328",
+      "tx_url": "https://scan.botchain.ai/tx/0xb1a45ace22fee58c97a0c218cb67deeea07cc5b778fa13371e730c56bda72328",
+      "archived_status": "verified",
+      "prepared": {
+        "chain_id": 677,
+        "action": "append_version",
+        "account": "0x054801af006663b16b84cee370267eca2b94686c",
+        "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+        "case_id": "gcc-uniswap93-adaptive-20261007",
+        "local_version_id": 33,
+        "onchain_version_id": "1",
+        "evidence_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v2.zip"
+      },
+      "bundle_url": "/api/investigations/gcc-uniswap93-adaptive-20261007/bundle?revision=2",
+      "explanation": "把可观察事实与解释、未知分开，追加更正版本并保留完整父版本关系。",
+      "report_claims": [
+        "交易0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e在区块24106378执行了100,000,000 UNI代币从0x1a9c8182c09f50c8318d769245bea52c32be35bc到销毁地址0x000...dead的转移",
+        "Uniswap治理提案93明确指定了向销毁地址转移100,000,000 UNI的操作，这与观察到的转移金额和地址匹配",
+        "交易to字段为0x408ed6354d4973f66138c91495f2f2fcbd8724c3，input末32字节为0x5d，回执status为成功。执行授权和其他治理动作需另行核验。"
+      ],
+      "limitations": [
+        "调查受限于4次模型请求预算，无法获取转移前后的代币状态进行比较",
+        "未验证治理提案93在链上的实际执行授权和投票结果",
+        "未检查发送方地址0x1a9c8182c09f50c8318d769245bea52c32be35bc的权限和角色",
+        "治理来源文本为外部快照，未独立验证其完整性和准确性",
+        "未确认销毁地址转移是否确实导致总供应量永久减少",
+        "调查范围仅限于观察到的单笔转移，未检查同一交易中的其他日志（如第二个Transfer事件）"
+      ],
+      "evidence_quality": {
+        "review_status": "needs_review",
+        "quality_status": "no_flags_detected",
+        "quality_scope": "Limited checks of units, attack exclusion and contract-wide burn wording in summary, claims and supported explanations; semantic support requires review, no factual verification.",
+        "citation_status": "needs_review",
+        "citation_issues": [
+          "missing_agent_rpc_observation · agent.evidence[3].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation.",
+          "missing_agent_rpc_observation · agent.evidence[4].payload: Successful receipt or transaction evidence lacks a matching raw RPC observation."
+        ],
+        "citation_scope": "Bounded structural checks of claim and directed candidate-explanation references to successful Agent evidence, explanation-status bindings, Transfer links to supplied RPC observations, and receipt/transaction identity consistency. No factual verification, source authenticity, completeness, or reviewer independence is established.",
+        "factual_verification": false,
+        "source_authenticity_verified": false,
+        "assessment_statuses": {
+          "governance_execution": "supported",
+          "supply_decrease": "unknown"
+        }
+      },
+      "receipt_observed_at_beijing": "2026-10-08T09:19:19+08:00",
+      "parent_version_id": "1"
+    }
+  ],
+  "network": {
+    "name": "BOT Mainnet",
+    "chain_id": 677,
+    "rpc_url": "https://rpc.botchain.ai",
+    "explorer_url": "https://scan.botchain.ai"
+  },
+  "deployment": {
+    "transaction_hash": "0xd7d4d91b0b4158adb4da9cdccb0d71739fc670ba7801f382eb08742d3274fe8c",
+    "tx_url": "https://scan.botchain.ai/tx/0xd7d4d91b0b4158adb4da9cdccb0d71739fc670ba7801f382eb08742d3274fe8c",
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "archived_status": "verified",
+    "block_number": "25916175",
+    "confirmations": 390,
+    "actual_fee_wei": "22941240000000000",
+    "runtime_sha256": "aad97004150622ee20c060b8ffc4c16ba0a809b7df94db6dd57f3297f85f4a63",
+    "receipt_observed_at_beijing": "2026-10-08T09:10:39+08:00"
+  },
+  "business_fee_native_units_18": "0.02207558"
+}

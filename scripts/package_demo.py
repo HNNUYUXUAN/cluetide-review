@@ -33,7 +33,7 @@ DIRECTORIES = {
     'data/cases/euler-20230313': frozenset(('.json', '.txt', '.md', '.py', '.ps1')),
     'data/attribution': frozenset(('', '.apache', '.apache2', '.bsd', '.json', '.license', '.md', '.mit', '.psf', '.py', '.rst', '.txt')),
 }
-DEMO_FILES = ('data/demo/bot-testnet-review-receipt-20261008.json', 'data/demo/bot-testnet-v1-receipt-20261008.json', 'data/demo/bot-testnet-v2-receipt-20261008.json', 'data/demo/bot-testnet-workflow-20261008.json', 'data/demo/gcc-saved-model-review-20261007.json')
+DEMO_FILES = ('data/demo/bot-mainnet-deploy-receipt-20261008.json', 'data/demo/bot-mainnet-v1-receipt-20261008.json', 'data/demo/bot-mainnet-review-receipt-20261008.json', 'data/demo/bot-mainnet-v2-receipt-20261008.json', 'data/demo/bot-mainnet-workflow-20261008.json', 'data/demo/bot-testnet-review-receipt-20261008.json', 'data/demo/bot-testnet-v1-receipt-20261008.json', 'data/demo/bot-testnet-v2-receipt-20261008.json', 'data/demo/bot-testnet-workflow-20261008.json', 'data/demo/gcc-saved-model-review-20261007.json')
 FORBIDDEN_PARTS = frozenset({
     ".git", ".env", "node_modules", "local-only", "local-data", ".tools", ".venv",
     "__pycache__", ".pytest_cache", "literature", "references", "sources", "incoming",

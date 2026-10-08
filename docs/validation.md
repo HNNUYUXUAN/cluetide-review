@@ -1,5 +1,26 @@
 # Release validation
 
+## Mainnet update — 8 October 2026
+
+The current release presents **BOT Mainnet 677**. Four user-signed transactions were independently verified through the official RPC: registry deployment, v1, a review bound to v1, and v2 with parent v1. The complete final getter snapshot at block 25917270 contains two versions and one review, with version 2 as the head. The deployment creation and runtime bytecode match the included artifact.
+
+| Current update check | Result |
+| --- | --- |
+| Release story and package regression tests | 28 passed |
+| Frontend Node tests | 8 passed |
+| TypeScript and Vite production build | Passed; 63 modules |
+| Original testnet snapshot regeneration | Exact byte match |
+| Mainnet snapshot and immutable archive check | Passed; four distinct successful transactions |
+| Public-content package dry run | 518 files; no missing optional files |
+| Product browser flows | 9 passed; zero page errors |
+| Production-origin live UI readback | v1, review and v2 passed on chain 677 |
+
+The readback checks observed 1,254 confirmations for v1, 859 for the review, and 470 for v2. Confirmation counts record their respective observation times. Mainnet transaction costs total 0.04501682 BOT, including deployment. The Chrome explorer also showed v2 as successful at block 25917190 with a fee of 0.00643662 BOT.
+
+Current screenshots were captured from the mainnet product and visually inspected on desktop and mobile. The historical testnet snapshot, original evidence ZIPs, and previous validation scope below retain their original identities. The full 1,078-test suite below belongs to the preceding release; this update reran the affected story, package and frontend tests.
+
+## Previous English product release
+
 Validated on 8 October 2026 on Windows, Python 3.12 and Node.js 24.14.0, using this release's independent virtual environment and dependency installation.
 
 | Check | Result |

@@ -1,0 +1,263 @@
+{
+  "schema_version": "cluetide-bot-real-workflow/v1",
+  "observed_at_utc": "2026-10-08T01:19:29+00:00",
+  "observed_at_beijing": "2026-10-08T09:19:29+08:00",
+  "execution_scope": "bot_mainnet_677",
+  "chain_id": 677,
+  "rpc_url": "https://rpc.botchain.ai",
+  "wallet": "0x054801af006663b16b84cee370267eca2b94686c",
+  "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+  "contract_url": "https://scan.botchain.ai/address/0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+  "case_id": "gcc-uniswap93-adaptive-20261007",
+  "deployment": {
+    "step": "deploy",
+    "action": "deploy",
+    "receipt_path": "data/demo/bot-mainnet-deploy-receipt-20261008.json",
+    "receipt_sha256": "d5a5b6dc77f1b22cc06e11eb9f7dfcd21dae3a8eee9a89cf8302940eeb32a624",
+    "transaction_hash": "0xd7d4d91b0b4158adb4da9cdccb0d71739fc670ba7801f382eb08742d3274fe8c",
+    "tx_url": "https://scan.botchain.ai/tx/0xd7d4d91b0b4158adb4da9cdccb0d71739fc670ba7801f382eb08742d3274fe8c",
+    "status": "verified",
+    "receipt_status": 1,
+    "onchain_ids": {},
+    "confirmations_at_receipt_archive": 390,
+    "actual_fee_wei": "22941240000000000",
+    "creation_bytecode_matches": true,
+    "runtime_matches": true,
+    "verification_basis": "BotService verified deployment calldata, sender, canonical receipt and runtime",
+    "contract_name": "ClueTideRegistry",
+    "compiler": "0.8.30+commit.73712a01",
+    "evm_version": "paris",
+    "source_sha256": "a41cd6a0eb310d63096db94cca9621cc70b1d963e4dd067fdbcaeca063dd6f64",
+    "artifact_sha256": "47330ce0eeb728bf1bbd7d897138d9757726708800057619a0d904e75315c6a3",
+    "bytecode_sha256": "9de904beee921c340dd3873f6f12e7896dd88a35eedda228dbb67b558b739ee3",
+    "runtime_sha256": "aad97004150622ee20c060b8ffc4c16ba0a809b7df94db6dd57f3297f85f4a63"
+  },
+  "deployment_source_snapshot": "data/demo/bot-mainnet-deploy-receipt-20261008.json",
+  "workflow": [
+    {
+      "step": "v1",
+      "action": "create_case",
+      "receipt_path": "data/demo/bot-mainnet-v1-receipt-20261008.json",
+      "receipt_sha256": "3f64e0b6fe4412b2cfa8199c5d4767f78922cc6f0918f13d35889206593f0d86",
+      "transaction_hash": "0x936c81539bfeafbc14cdd83ee27059d9979262267b74d3062aaef1e37804d398",
+      "tx_url": "https://scan.botchain.ai/tx/0x936c81539bfeafbc14cdd83ee27059d9979262267b74d3062aaef1e37804d398",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "1"
+      },
+      "confirmations_at_receipt_archive": 247,
+      "actual_fee_wei": "8252800000000000"
+    },
+    {
+      "step": "review",
+      "action": "add_review",
+      "receipt_path": "data/demo/bot-mainnet-review-receipt-20261008.json",
+      "receipt_sha256": "41a7aaa52116a18114fcf58e78286df9bae06440487a1f651b123b815805b07b",
+      "transaction_hash": "0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+      "tx_url": "https://scan.botchain.ai/tx/0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "1",
+        "review_id": "1"
+      },
+      "confirmations_at_receipt_archive": 307,
+      "actual_fee_wei": "7386160000000000"
+    },
+    {
+      "step": "v2",
+      "action": "append_version",
+      "receipt_path": "data/demo/bot-mainnet-v2-receipt-20261008.json",
+      "receipt_sha256": "09bb006485511b4854ac4f423b918eae5c7998403e59cabafa889629a38812ab",
+      "transaction_hash": "0xb1a45ace22fee58c97a0c218cb67deeea07cc5b778fa13371e730c56bda72328",
+      "tx_url": "https://scan.botchain.ai/tx/0xb1a45ace22fee58c97a0c218cb67deeea07cc5b778fa13371e730c56bda72328",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "2"
+      },
+      "confirmations_at_receipt_archive": 70,
+      "actual_fee_wei": "6436620000000000"
+    }
+  ],
+  "all_receipts": [
+    {
+      "step": "deploy",
+      "action": "deploy",
+      "receipt_path": "data/demo/bot-mainnet-deploy-receipt-20261008.json",
+      "receipt_sha256": "d5a5b6dc77f1b22cc06e11eb9f7dfcd21dae3a8eee9a89cf8302940eeb32a624",
+      "transaction_hash": "0xd7d4d91b0b4158adb4da9cdccb0d71739fc670ba7801f382eb08742d3274fe8c",
+      "tx_url": "https://scan.botchain.ai/tx/0xd7d4d91b0b4158adb4da9cdccb0d71739fc670ba7801f382eb08742d3274fe8c",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {},
+      "confirmations_at_receipt_archive": 390,
+      "actual_fee_wei": "22941240000000000"
+    },
+    {
+      "step": "v1",
+      "action": "create_case",
+      "receipt_path": "data/demo/bot-mainnet-v1-receipt-20261008.json",
+      "receipt_sha256": "3f64e0b6fe4412b2cfa8199c5d4767f78922cc6f0918f13d35889206593f0d86",
+      "transaction_hash": "0x936c81539bfeafbc14cdd83ee27059d9979262267b74d3062aaef1e37804d398",
+      "tx_url": "https://scan.botchain.ai/tx/0x936c81539bfeafbc14cdd83ee27059d9979262267b74d3062aaef1e37804d398",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "1"
+      },
+      "confirmations_at_receipt_archive": 247,
+      "actual_fee_wei": "8252800000000000"
+    },
+    {
+      "step": "review",
+      "action": "add_review",
+      "receipt_path": "data/demo/bot-mainnet-review-receipt-20261008.json",
+      "receipt_sha256": "41a7aaa52116a18114fcf58e78286df9bae06440487a1f651b123b815805b07b",
+      "transaction_hash": "0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+      "tx_url": "https://scan.botchain.ai/tx/0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "1",
+        "review_id": "1"
+      },
+      "confirmations_at_receipt_archive": 307,
+      "actual_fee_wei": "7386160000000000"
+    },
+    {
+      "step": "v2",
+      "action": "append_version",
+      "receipt_path": "data/demo/bot-mainnet-v2-receipt-20261008.json",
+      "receipt_sha256": "09bb006485511b4854ac4f423b918eae5c7998403e59cabafa889629a38812ab",
+      "transaction_hash": "0xb1a45ace22fee58c97a0c218cb67deeea07cc5b778fa13371e730c56bda72328",
+      "tx_url": "https://scan.botchain.ai/tx/0xb1a45ace22fee58c97a0c218cb67deeea07cc5b778fa13371e730c56bda72328",
+      "status": "verified",
+      "receipt_status": 1,
+      "onchain_ids": {
+        "version_id": "2"
+      },
+      "confirmations_at_receipt_archive": 70,
+      "actual_fee_wei": "6436620000000000"
+    }
+  ],
+  "local_to_onchain": {
+    "v1": {
+      "local_version_id": 32,
+      "version_id": "1",
+      "parent_version_id": "0"
+    },
+    "review": {
+      "local_review_id": 7,
+      "local_version_id": 32,
+      "review_id": "1",
+      "version_id": "1"
+    },
+    "v2": {
+      "local_version_id": 33,
+      "local_parent_version_id": 32,
+      "version_id": "2",
+      "parent_version_id": "1"
+    }
+  },
+  "final_case_getter": {
+    "network": {
+      "chain_id": 677,
+      "chain_id_hex": "0x2a5",
+      "name": "BOT Chain Mainnet",
+      "rpc_url": "https://rpc.botchain.ai",
+      "explorer_url": "https://scan.botchain.ai",
+      "native_currency": {
+        "name": "BOT",
+        "symbol": "BOT",
+        "decimals": 18
+      },
+      "native_currency_status": "inferred_from_official_testnet_and_client_units",
+      "warnings": [
+        "mainnet_currency_metadata_inferred"
+      ]
+    },
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+    "getter_state": {
+      "case": {
+        "author": "0x054801af006663b16b84cee370267eca2b94686c",
+        "head_version_id": "2",
+        "version_count": "2",
+        "review_count": "1",
+        "created_at": "1791421702"
+      },
+      "versions": [
+        {
+          "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+          "version_id": "1",
+          "parent_version_id": "0",
+          "author": "0x054801af006663b16b84cee370267eca2b94686c",
+          "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+          "schema_version": "cluetide.evidence.v1",
+          "evidence_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v1.zip",
+          "created_at": "1791421702"
+        },
+        {
+          "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+          "version_id": "2",
+          "parent_version_id": "1",
+          "author": "0x054801af006663b16b84cee370267eca2b94686c",
+          "content_hash": "b012792582b0121bfd9a9223904541e89e4bba6f89dfd66208e8889ccc2223ef",
+          "schema_version": "cluetide.evidence.v1",
+          "evidence_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v2.zip",
+          "created_at": "1791422303"
+        }
+      ],
+      "reviews": [
+        {
+          "review_id": "1",
+          "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+          "version_id": "1",
+          "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+          "reviewer": "0x054801af006663b16b84cee370267eca2b94686c",
+          "decision": "correction_requested",
+          "review_hash": "c226b90aead3c2e77941b9deeaa77f87be71d1a55c3c90597f6b81fff5a590af",
+          "review_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v2.zip",
+          "created_at": "1791422005"
+        }
+      ],
+      "inventory": {
+        "versions": {
+          "offset": "0",
+          "total_count": "2",
+          "next_offset": null,
+          "complete": true
+        },
+        "reviews": {
+          "offset": "0",
+          "total_count": "1",
+          "next_offset": null,
+          "complete": true
+        }
+      }
+    },
+    "artifact": {
+      "contract_name": "ClueTideRegistry",
+      "compiler": "0.8.30+commit.73712a01",
+      "evm_version": "paris",
+      "source_sha256": "a41cd6a0eb310d63096db94cca9621cc70b1d963e4dd067fdbcaeca063dd6f64",
+      "artifact_sha256": "47330ce0eeb728bf1bbd7d897138d9757726708800057619a0d904e75315c6a3",
+      "bytecode_sha256": "9de904beee921c340dd3873f6f12e7896dd88a35eedda228dbb67b558b739ee3",
+      "runtime_sha256": "aad97004150622ee20c060b8ffc4c16ba0a809b7df94db6dd57f3297f85f4a63"
+    },
+    "case_status": "registered",
+    "read_block_number": "25917270",
+    "read_block_hash": "0x7e907e12e8864ed1cde0505e295a1ae91ce6d4aeb633dd88d5e3c19bbe92f9bd",
+    "verification_scope": "getter_values_at_read_block",
+    "read_observed_at_utc": "2026-10-08T01:19:29+00:00"
+  },
+  "business_actual_fee_wei": "22075580000000000",
+  "deployment_actual_fee_wei": "22941240000000000",
+  "total_actual_fee_wei": "45016820000000000",
+  "business_actual_fee_native_units_18": "0.02207558",
+  "total_actual_fee_native_units_18": "0.04501682",
+  "fee_unit_scope": "Receipt wei and 18-decimal native units; no fiat valuation.",
+  "verification_scope": "Four separately archived verified transactions and complete getter inventory at the recorded read blocks."
+}

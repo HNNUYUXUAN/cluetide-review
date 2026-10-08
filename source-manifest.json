@@ -3,6 +3,7 @@
   "track": "BOT",
   "source_baseline": "f88009336bb548d782b70124e1740535020caefd",
   "english_product_commit": "8a688ada3a2376280e7d60d47f5a92254c5e6590",
+  "mainnet_product_commit": "31c7cd7912ca22eb6ccabd159c0f4076d9dfd41d",
   "scope": "Final review release files excluding this manifest. Release adaptations are documented in SOURCE.md.",
   "files": [
     {
@@ -27,13 +28,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 8165,
-      "sha256": "11ddd55d75624d09dd2919e7751df4a80bd334b5180ff4b1741db95eacf3df5d"
+      "bytes": 9359,
+      "sha256": "9026359b63a6ea4ab8bf23c5be53a7dcf5333690721b6dc6b1411506a51fe038"
     },
     {
       "path": "SOURCE.md",
-      "bytes": 1833,
-      "sha256": "6e4235f11ab3c8493e7a7ced4f75cfe02bca07ab8acf60654636dd455bde63bd"
+      "bytes": 2002,
+      "sha256": "7c02a3810622e801474e4afa25f511ddde0b74c8711b813734afbf7f5be3ff22"
     },
     {
       "path": "contracts/ClueTideRegistry.sol",
@@ -1666,6 +1667,31 @@
       "sha256": "4cb3bccfe8d82b012c309ed468d66b9d67b5cd7dd2170779ccdcdc7103092302"
     },
     {
+      "path": "data/demo/bot-mainnet-deploy-receipt-20261008.json",
+      "bytes": 15715,
+      "sha256": "d5a5b6dc77f1b22cc06e11eb9f7dfcd21dae3a8eee9a89cf8302940eeb32a624"
+    },
+    {
+      "path": "data/demo/bot-mainnet-review-receipt-20261008.json",
+      "bytes": 8483,
+      "sha256": "41a7aaa52116a18114fcf58e78286df9bae06440487a1f651b123b815805b07b"
+    },
+    {
+      "path": "data/demo/bot-mainnet-v1-receipt-20261008.json",
+      "bytes": 8380,
+      "sha256": "3f64e0b6fe4412b2cfa8199c5d4767f78922cc6f0918f13d35889206593f0d86"
+    },
+    {
+      "path": "data/demo/bot-mainnet-v2-receipt-20261008.json",
+      "bytes": 7826,
+      "sha256": "09bb006485511b4854ac4f423b918eae5c7998403e59cabafa889629a38812ab"
+    },
+    {
+      "path": "data/demo/bot-mainnet-workflow-20261008.json",
+      "bytes": 11029,
+      "sha256": "0178d2bf0da11b16f9b55f7214e58ac576274f52a4eac04652e6bb240509adf9"
+    },
+    {
       "path": "data/demo/bot-testnet-review-receipt-20261008.json",
       "bytes": 4377,
       "sha256": "36032e6a0e78a86cfce0957fa412a967ea41277c00cd79084c0e37740eda82e0"
@@ -1737,23 +1763,23 @@
     },
     {
       "path": "docs/images/bot-case.jpg",
-      "bytes": 158586,
-      "sha256": "1d00a5caa158a175e862c00fe915350406e97cd1051d5eca67e675bfad8762ff"
+      "bytes": 130513,
+      "sha256": "a6a8127a6c4bd4f1dab333643417296bd758371640d49a320e8629012922e0c8"
     },
     {
       "path": "docs/images/bot-mobile.jpg",
-      "bytes": 82202,
-      "sha256": "19a4facc97e885455b24a3f9bcdd7cb72afbf115d8e46d987fb247d1b48d0575"
+      "bytes": 39756,
+      "sha256": "7098fdbb5a0f63a9504cb1f6bccfc8993a9ef4d904cf86c48cc344e92619c71a"
     },
     {
       "path": "docs/images/bot-product.jpg",
-      "bytes": 122053,
-      "sha256": "ce38080f150e7b4f446b755fecfda2b118cf3e5ad11928b2215b044f1838d5d2"
+      "bytes": 122119,
+      "sha256": "ad88f77f5050928c16e9cebe8fd3a1e42aaf5e423873205fdac6e260c4683a97"
     },
     {
       "path": "docs/validation.md",
-      "bytes": 3186,
-      "sha256": "e2df7d824fc4e421986681532a05230a7e80e13f3a190b4c456b484d5f52df7b"
+      "bytes": 4920,
+      "sha256": "f907c05204a96dcd7a187cdf349a5e8fa52d98442424e3ba9a9fee989dcef25f"
     },
     {
       "path": "frontend/.gitignore",
@@ -1821,6 +1847,31 @@
       "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
     },
     {
+      "path": "frontend/public/mainnet/bot-mainnet-deploy-receipt-20261008.json",
+      "bytes": 15715,
+      "sha256": "d5a5b6dc77f1b22cc06e11eb9f7dfcd21dae3a8eee9a89cf8302940eeb32a624"
+    },
+    {
+      "path": "frontend/public/mainnet/bot-mainnet-review-receipt-20261008.json",
+      "bytes": 8483,
+      "sha256": "41a7aaa52116a18114fcf58e78286df9bae06440487a1f651b123b815805b07b"
+    },
+    {
+      "path": "frontend/public/mainnet/bot-mainnet-v1-receipt-20261008.json",
+      "bytes": 8380,
+      "sha256": "3f64e0b6fe4412b2cfa8199c5d4767f78922cc6f0918f13d35889206593f0d86"
+    },
+    {
+      "path": "frontend/public/mainnet/bot-mainnet-v2-receipt-20261008.json",
+      "bytes": 7826,
+      "sha256": "09bb006485511b4854ac4f423b918eae5c7998403e59cabafa889629a38812ab"
+    },
+    {
+      "path": "frontend/public/mainnet/bot-mainnet-workflow-20261008.json",
+      "bytes": 11029,
+      "sha256": "0178d2bf0da11b16f9b55f7214e58ac576274f52a4eac04652e6bb240509adf9"
+    },
+    {
       "path": "frontend/src/App.tsx",
       "bytes": 19169,
       "sha256": "6453d59c6e7a10d53c28f992a175002d7aca5152b90f6d14544afeb0cc331a9e"
@@ -1839,6 +1890,11 @@
       "path": "frontend/src/bot-main.tsx",
       "bytes": 219,
       "sha256": "40aa18add83e4697883520a9dbbe1c3a78b2869010c34e5b3f25c86aa9311d52"
+    },
+    {
+      "path": "frontend/src/bot-mainnet-story-data.json",
+      "bytes": 14892,
+      "sha256": "a128e7dedc1068943f985d372f4d7161a50b4906da3aef78c118c3f631d46a5b"
     },
     {
       "path": "frontend/src/bot-story-data.json",
@@ -1932,18 +1988,18 @@
     },
     {
       "path": "frontend/src/product/CaseExplorer.tsx",
-      "bytes": 5735,
-      "sha256": "fe02c33f7ddd25940623341a2983e06f34edbd61b7a68ea928a83fc8fab22466"
+      "bytes": 5964,
+      "sha256": "2138d80c465996fbc9457231915e24d4dfa9f119a6ee709391c3ac517a95f1d5"
     },
     {
       "path": "frontend/src/product/Developers.tsx",
-      "bytes": 2855,
-      "sha256": "7dee7d93bbc0244775df317f39836b86822eb9712d09b2ae9fb6a25acffc37c2"
+      "bytes": 3342,
+      "sha256": "41cc029442bbe5c16381f67de60146b45ccb86bac86f6ddc78fb38c4db777ed6"
     },
     {
       "path": "frontend/src/product/Home.tsx",
-      "bytes": 2272,
-      "sha256": "0f449cba0aa7be0459f79afe31189fb766486e5b3f9f35d6ba380ab1b918fbf2"
+      "bytes": 2285,
+      "sha256": "28202398f70e81b77dfc4c9fd5b783c5355579c2d7c0a6a7c22c47bc3d30881d"
     },
     {
       "path": "frontend/src/product/ProductApp.tsx",
@@ -1957,8 +2013,8 @@
     },
     {
       "path": "frontend/src/product/Verify.tsx",
-      "bytes": 6185,
-      "sha256": "bad511ee2a33603df1ad448d34dbf017ce4b0425019bb3e75f632a00f8f6c44a"
+      "bytes": 6203,
+      "sha256": "6f09471a7debad18886a5c36ddf21d59f13309956f532c88cece76c6e8e611cd"
     },
     {
       "path": "frontend/src/product/archive-context.ts",
@@ -1982,8 +2038,8 @@
     },
     {
       "path": "frontend/src/product/data.ts",
-      "bytes": 2741,
-      "sha256": "16358965d0efe76ced846475537e2ac17cefdeeca0926967df790407d06780be"
+      "bytes": 3585,
+      "sha256": "d26f523aa425541b719d5a01b6e8562a5adf830065d06ca17e074d24d85404bd"
     },
     {
       "path": "frontend/src/product/icons.tsx",
@@ -2022,8 +2078,8 @@
     },
     {
       "path": "frontend/tests/product_browser_check.py",
-      "bytes": 4600,
-      "sha256": "df4c504aa46a489886d83a2ffc01045f6fc31115112358ef8df9e5ab2634f0c2"
+      "bytes": 5878,
+      "sha256": "6907a17c42d72970775d7d2f7bc947a2d0fb3958da646e371fe01ea79c349496"
     },
     {
       "path": "frontend/tsconfig.json",
@@ -2052,13 +2108,13 @@
     },
     {
       "path": "scripts/build_bot_story_data.py",
-      "bytes": 13686,
-      "sha256": "c5d1581c5b8f3266bf2294b678d24ddd689aca24bb843bcce17035585d434443"
+      "bytes": 21833,
+      "sha256": "00c0e985bc00323ebcd29ed293c32800425aae9463c5c9bb126971488be7df40"
     },
     {
       "path": "scripts/package_demo.py",
-      "bytes": 17600,
-      "sha256": "f582823416bfce920d2e7d5e14ad9fa14fc1889a8d60781c528a24488d4b971f"
+      "bytes": 17856,
+      "sha256": "28139134cae4e15b985e7aa8e033aef92486c3306cd88c145a246b9acf049a93"
     },
     {
       "path": "scripts/probe_gateway.py",
@@ -2279,6 +2335,11 @@
       "path": "tests/test_bot_frontend_context.py",
       "bytes": 32481,
       "sha256": "8a3d3655167953713b4537733319513505e99f87af9b2b221a06d3c91fc1a8a7"
+    },
+    {
+      "path": "tests/test_bot_mainnet_story_data.py",
+      "bytes": 5743,
+      "sha256": "553de6e32f5195e4ee84480219e3761197b357d5b72abaa22b4899aead6d6297"
     },
     {
       "path": "tests/test_bot_preflight.py",

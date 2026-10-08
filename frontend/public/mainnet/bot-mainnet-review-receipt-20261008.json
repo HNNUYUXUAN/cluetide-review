@@ -1,0 +1,168 @@
+{
+  "schema_version": "cluetide-bot-real-business-receipt/v1",
+  "observed_at_utc": "2026-10-08T01:17:19+00:00",
+  "observed_at_beijing": "2026-10-08T09:17:19+08:00",
+  "execution_scope": "bot_mainnet_677",
+  "chain_id": 677,
+  "prepared_public_request": {
+    "chain_id": 677,
+    "action": "add_review",
+    "account": "0x054801af006663b16b84cee370267eca2b94686c",
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "case_id": "gcc-uniswap93-adaptive-20261007",
+    "local_version_id": 32,
+    "onchain_version_id": "1",
+    "local_review_id": 7,
+    "evidence_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v2.zip"
+  },
+  "verification": {
+    "status": "verified",
+    "transaction_hash": "0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+    "tx_link": "https://scan.botchain.ai/tx/0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+    "confirmations": 307,
+    "minimum_confirmations": 3,
+    "contract_address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "getter_state": {
+      "case": {
+        "author": "0x054801af006663b16b84cee370267eca2b94686c",
+        "head_version_id": "1",
+        "version_count": "1",
+        "review_count": "1",
+        "created_at": "1791421702"
+      },
+      "version": {
+        "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+        "version_id": "1",
+        "parent_version_id": "0",
+        "author": "0x054801af006663b16b84cee370267eca2b94686c",
+        "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+        "schema_version": "cluetide.evidence.v1",
+        "evidence_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v1.zip",
+        "created_at": "1791421702"
+      },
+      "review": {
+        "review_id": "1",
+        "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+        "version_id": "1",
+        "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+        "reviewer": "0x054801af006663b16b84cee370267eca2b94686c",
+        "decision": "correction_requested",
+        "review_hash": "c226b90aead3c2e77941b9deeaa77f87be71d1a55c3c90597f6b81fff5a590af",
+        "review_uri": "https://hnnuyuxuan.github.io/cluetide-app/bot/bot-demo/uni-v2.zip",
+        "created_at": "1791422005"
+      }
+    },
+    "onchain_ids": {
+      "version_id": "1",
+      "review_id": "1"
+    },
+    "artifact": {
+      "contract_name": "ClueTideRegistry",
+      "compiler": "0.8.30+commit.73712a01",
+      "evm_version": "paris",
+      "source_sha256": "a41cd6a0eb310d63096db94cca9621cc70b1d963e4dd067fdbcaeca063dd6f64",
+      "artifact_sha256": "47330ce0eeb728bf1bbd7d897138d9757726708800057619a0d904e75315c6a3",
+      "bytecode_sha256": "9de904beee921c340dd3873f6f12e7896dd88a35eedda228dbb67b558b739ee3",
+      "runtime_sha256": "aad97004150622ee20c060b8ffc4c16ba0a809b7df94db6dd57f3297f85f4a63"
+    },
+    "commitments": {
+      "case_id_hex": "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+      "content_hash": "a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb",
+      "local_version_id": 32,
+      "onchain_version_id": "1",
+      "local_review_id": 7,
+      "review_hash": "c226b90aead3c2e77941b9deeaa77f87be71d1a55c3c90597f6b81fff5a590af",
+      "decision": "correction_requested"
+    },
+    "verification_scope": "canonical_at_read_time_with_confirmations",
+    "gas_used": "369308",
+    "effective_gas_price_wei": "20000000000",
+    "actual_fee_wei": "7386160000000000",
+    "gas_price_source": "receipt_effective_gas_price",
+    "block_number": "25916792",
+    "block_hash": "0x92ad5ec585e1b80b72513c10c34ed3e6fcbbefe8826d6a206d6c1125419a4cd4",
+    "read_observed_at_utc": "2026-10-08T01:17:17+00:00"
+  },
+  "tx_url": "https://scan.botchain.ai/tx/0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+  "receipt": {
+    "transaction_hash": "0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+    "status": 1,
+    "block_number": 25916792,
+    "block_hash": "0x92ad5ec585e1b80b72513c10c34ed3e6fcbbefe8826d6a206d6c1125419a4cd4",
+    "from": "0x054801af006663b16b84cee370267eca2b94686c",
+    "to": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+    "contract_address": null,
+    "gas_used": 369308,
+    "effective_gas_price_wei": "20000000000",
+    "fee_wei": "7386160000000000",
+    "nonce": 2,
+    "value_wei": "0"
+  },
+  "public_rpc": {
+    "rpc_url": "https://rpc.botchain.ai",
+    "chain_id": 677,
+    "confirmations_at_archive": 313,
+    "transaction": {
+      "blockHash": "0x92ad5ec585e1b80b72513c10c34ed3e6fcbbefe8826d6a206d6c1125419a4cd4",
+      "blockNumber": "0x18b7578",
+      "from": "0x054801af006663b16b84cee370267eca2b94686c",
+      "gas": "0x6d658",
+      "gasPrice": "0x4a817c800",
+      "maxFeePerGas": "0x4a817c800",
+      "maxPriorityFeePerGas": "0x4a817c800",
+      "hash": "0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+      "input": "0x19c514b481cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f60000000000000000000000000000000000000000000000000000000000000001a41f6d5233d353a90af7c28b387238d59bc05ffdbc6631de49c9a91392fdd6fb0000000000000000000000000000000000000000000000000000000000000002c226b90aead3c2e77941b9deeaa77f87be71d1a55c3c90597f6b81fff5a590af00000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000004168747470733a2f2f686e6e7579757875616e2e6769746875622e696f2f636c7565746964652d6170702f626f742f626f742d64656d6f2f756e692d76322e7a697000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": "0x2",
+      "to": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+      "transactionIndex": "0x0",
+      "value": "0x0",
+      "type": "0x2",
+      "accessList": [],
+      "chainId": "0x2a5",
+      "v": "0x0",
+      "r": "0xee1d906b0bd2bf9d068bf2a31e2e07980a7c111385ca61c86b5964de7e01ab66",
+      "s": "0x6aea7a24c08fa0ff14aa0400ad6c81e9da2db2ddb95870e37ecebc5ac8e1cd02",
+      "yParity": "0x0"
+    },
+    "receipt": {
+      "blockHash": "0x92ad5ec585e1b80b72513c10c34ed3e6fcbbefe8826d6a206d6c1125419a4cd4",
+      "blockNumber": "0x18b7578",
+      "contractAddress": null,
+      "cumulativeGasUsed": "0x5a29c",
+      "effectiveGasPrice": "0x4a817c800",
+      "from": "0x054801af006663b16b84cee370267eca2b94686c",
+      "gasUsed": "0x5a29c",
+      "logs": [
+        {
+          "address": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+          "topics": [
+            "0x8068743ccea36b7b059a20d39bf5d7d79507c04f933838f1dc3013b880587cff",
+            "0x81cbc8ebdc460b7695690ade4b0ca2090e1db2d61d71b10972cb4517e9fa95f6",
+            "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "0x0000000000000000000000000000000000000000000000000000000000000001"
+          ],
+          "data": "0x000000000000000000000000054801af006663b16b84cee370267eca2b94686c",
+          "blockNumber": "0x18b7578",
+          "transactionHash": "0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+          "transactionIndex": "0x0",
+          "blockHash": "0x92ad5ec585e1b80b72513c10c34ed3e6fcbbefe8826d6a206d6c1125419a4cd4",
+          "logIndex": "0x0",
+          "removed": false
+        }
+      ],
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000040000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000040000000040000000100000000000000000000000800000000000000000090000200",
+      "status": "0x1",
+      "to": "0x951f7b5c68adba4cefd7fa851cb8e030426e81aa",
+      "transactionHash": "0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd",
+      "transactionIndex": "0x0",
+      "type": "0x2"
+    },
+    "canonical_block": {
+      "number": "0x18b7578",
+      "hash": "0x92ad5ec585e1b80b72513c10c34ed3e6fcbbefe8826d6a206d6c1125419a4cd4",
+      "parentHash": "0x268e989cf2259b145f57d92db7f2c732fb5ab973bac2ecee3ff6a063f20be988",
+      "timestamp": "0x6ac6ee35"
+    }
+  },
+  "archival_scope": "Read-only verification and public RPC facts; canonical at the recorded read time."
+}

@@ -15,27 +15,30 @@ A report about a 100,000,000 UNI transfer becomes more useful when another reade
 1. **Original report.** Open the UNI case and inspect v1's evidence commitment.
 2. **Exact-version review.** The recorded review asks for a narrower interpretation and stays bound to v1.
 3. **Corrected report.** v2 separates the observed transfer and successful receipt from governance authorization. Supply change remains unknown within this investigation.
-4. **Inspect the record.** Open the transaction in the BOT testnet explorer, download its evidence bundle, and use the verification page to check the file.
+4. **Inspect the record.** Open the transaction in the BOT mainnet explorer, download its evidence bundle, and use the verification page to check the file.
 
 ![UNI case with version-bound review and on-chain record](docs/images/bot-case.jpg)
 
 The two citation links flagged in the original reports still need review. The English case narrative is an explanatory adaptation; downloadable evidence preserves its original report bytes and language.
 
-## Real testnet provenance
+## Verified mainnet provenance
 
-These records were archived on **8 October 2026** on **BOT Testnet, chain ID 968**. The application distinguishes archived verification from a new readback.
+On **8 October 2026**, the author signed four transactions on **BOT Mainnet, chain ID 677**. The public RPC confirmed successful receipts, canonical blocks, the registry runtime, exact content commitments, and complete version/review getters. The application distinguishes this archived verification from a new readback.
 
-**Registry:** [`0x951f7b5c68adba4cefd7fa851cb8e030426e81aa`](https://scan.bohr.life/address/0x951f7b5c68adba4cefd7fa851cb8e030426e81aa)
+**Registry:** [`0x951f7b5c68adba4cefd7fa851cb8e030426e81aa`](https://scan.botchain.ai/address/0x951f7b5c68adba4cefd7fa851cb8e030426e81aa)
 
 | Step | Relationship | Transaction |
 | --- | --- | --- |
-| v1 | Version 1, parent 0 | [Open v1 registration](https://scan.bohr.life/tx/0xda4dca0f923f6b7bfc04f55aaef36241c3d2d9cdff59b8d31aaa49bf2a177e90) |
-| Review | Review 1 binds to version 1 | [Open exact-version review](https://scan.bohr.life/tx/0x1c59b8810f17ffbe8d3bc1dc002ec2e8edfa792dab0db0bc9e38a6a6082ca33b) |
-| v2 | Version 2, parent 1 | [Open corrected version](https://scan.bohr.life/tx/0x628206902ad1e5301949307f9dacb9300d1706b94d735fb625d0727575b6aa5f) |
+| Registry deployment | Creation and runtime match the included artifact | [Open transaction](https://scan.botchain.ai/tx/0xd7d4d91b0b4158adb4da9cdccb0d71739fc670ba7801f382eb08742d3274fe8c) |
+| v1 registration | Version 1, parent 0 | [Open transaction](https://scan.botchain.ai/tx/0x936c81539bfeafbc14cdd83ee27059d9979262267b74d3062aaef1e37804d398) |
+| Exact-version review | Review 1 binds to version 1 | [Open transaction](https://scan.botchain.ai/tx/0x51af7682149dd9f28e6ceffe8e8044028d3ed437e2cfcfdc5f1dfa3facf7aabd) |
+| Corrected version | Version 2, parent 1 | [Open transaction](https://scan.botchain.ai/tx/0xb1a45ace22fee58c97a0c218cb67deeea07cc5b778fa13371e730c56bda72328) |
 
-The author and reviewer use the same wallet in this demonstration. The three business transactions consumed **0.02209022 testnet BOT**. A content commitment establishes bytes and version relationships; factual support and reviewer independence require their own evidence.
+The three business transactions consumed **0.02207558 BOT**; including deployment, the total was **0.04501682 BOT**. The final snapshot contains **two versions and one review**, with version 2 as the head and version 1 as its parent. The author and reviewer use the same wallet in this demonstration. Content commitments establish bytes and version relationships; factual support and reviewer independence require their own evidence.
 
-The source receipts, immutable bundles, and story index are available in [data/demo](data/demo) and [bot-story-data.json](frontend/src/bot-story-data.json). The contract's [Solidity source](contracts/ClueTideRegistry.sol) and [compiled artifact](contracts/artifacts/ClueTideRegistry.json) are included.
+The [mainnet proof archive](https://hnnuyuxuan.github.io/cluetide-app/bot/mainnet/bot-mainnet-workflow-20261008.json) provides the four transaction hashes, fees, receipt-file hashes, and complete final getters. Source receipts are in [data/demo](data/demo); the product snapshot is [bot-mainnet-story-data.json](frontend/src/bot-mainnet-story-data.json). The [historical testnet snapshot](frontend/src/bot-story-data.json) and its original receipts remain available as separate network records.
+
+The contract's [Solidity source](contracts/ClueTideRegistry.sol) and [compiled artifact](contracts/artifacts/ClueTideRegistry.json) are included. Deployment verification matched creation and runtime bytecode to this artifact. Compiler: Solidity 0.8.30, Paris EVM, optimizer 200 runs.
 
 ## Product routes
 
@@ -55,12 +58,12 @@ Hash routes work on GitHub Pages and support direct links. Both `index.html` and
 | --- | --- | --- |
 | Product and UNI version story | Available | Available |
 | Public evidence downloads and file checks | Available | Available |
-| Recorded testnet explorer links | Available | Available |
+| Recorded mainnet explorer links | Available | Available |
 | Investigation API and persistent case history | Requires local service | Available |
 | Transaction preparation and complete receipt/getter readback | Requires local service | Available |
 | Wallet signing | User wallet through local workflow | Explicit wallet confirmation |
 
-The static demo uses bundled public records. Starting the local application creates a separate local case store. Original testnet records refer to their archived local version identities; creating a fresh case does not recreate those identities or broadcast transactions.
+The static demo uses bundled public records. Starting the local application creates a separate local case store. Archived records refer to their archived local version identities; creating a fresh case does not recreate those identities or broadcast transactions.
 
 ## Run locally
 
@@ -112,7 +115,7 @@ flowchart LR
 - **Recovery:** sent transaction hashes and public context remain available for readback after a refresh. Account or network changes invalidate prepared signing context.
 - **Scale:** chain reads use a fixed block snapshot; review preflight advances through bounded batches with resumable server cursors.
 
-Ethereum is the investigation data source. BOT Testnet 968 and BOT Mainnet 677 are separate registry networks. The demonstrated contract and transactions are on testnet 968.
+Ethereum is the investigation data source. BOT Testnet 968 and BOT Mainnet 677 are separate registry networks. The primary product presents the verified mainnet 677 deployment and workflow. Historical testnet 968 records retain their original network identity.
 
 ## Verify and build
 
@@ -120,6 +123,7 @@ Ethereum is the investigation data source. BOT Testnet 968 and BOT Mainnet 677 a
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe scripts/build_bot_story_data.py --check
+.\.venv\Scripts\python.exe scripts/build_bot_story_data.py --network mainnet --check
 cd frontend
 npm test
 npm run build
