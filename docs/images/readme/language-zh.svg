@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="104" height="36" viewBox="0 0 104 36" role="img" aria-labelledby="title">
+  <title id="title">阅读中文版</title>
+  <rect width="104" height="36" rx="9" fill="#102D42"/>
+  <path d="M17 12h13M23.5 9v3M20 12c.8 5 3.5 8.4 8 10M28 12c-1 4.8-4.4 8.6-10 11" fill="none" stroke="#7AE2DC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="62" y="23" text-anchor="middle" fill="#FFF" font-family="'Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="600">中文</text>
+</svg>

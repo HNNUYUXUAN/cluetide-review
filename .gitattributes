@@ -3,3 +3,6 @@
 *.json text eol=lf
 *.png -text
 *.zip -text
+
+# README artwork and diagrams retain the bytes recorded in the asset manifest.
+/docs/images/readme/** -text

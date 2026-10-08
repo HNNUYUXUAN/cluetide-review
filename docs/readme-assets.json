@@ -1,0 +1,67 @@
+{
+  "format": "cluetide-readme-assets/v1",
+  "branch": "main",
+  "date": "2026-10-08",
+  "assets": [
+    {
+      "path": "docs/images/readme/bot.jpg",
+      "bytes": 73086,
+      "sha256": "c4404f6ec0549210e04949f9c0c5bcccb218e0b441ddd27365d163824c783903",
+      "kind": "actual_product_screenshot",
+      "source_url": "https://hnnuyuxuan.github.io/cluetide-app/bot/#/cases/uniswap93?step=v1",
+      "scope": "Original archived report and BOT Mainnet 677 record.",
+      "captured_file_time_utc": "2026-10-08T02:17:56.433393+00:00"
+    },
+    {
+      "path": "docs/images/readme/gcc.jpg",
+      "bytes": 75553,
+      "sha256": "e123d1d7d64627b40fb7056a0e7101cfbee6341fd6bc83b8f0585c5914dc939f",
+      "kind": "actual_product_screenshot",
+      "source_url": "https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/uniswap93",
+      "scope": "UNI investigation replay; synthetic report label visible.",
+      "captured_file_time_utc": "2026-10-08T02:17:05.272993+00:00"
+    },
+    {
+      "path": "docs/images/readme/hero.png",
+      "bytes": 1650324,
+      "sha256": "00621332b3407729f15c542bcad8e92749bc903cc27c658b9698320826b4c63f",
+      "kind": "generated_concept_illustration",
+      "generator": "OpenAI built-in imagegen",
+      "prompt": "Create a premium wide editorial product concept illustration for ClueTide, a software project about evidence-backed investigation and a traceable history of corrections. Landscape 16:9 composition. A calm precise isometric scene: on the left, several small navy and electric-blue data points and fine translucent signal traces converge into a neatly organized pale glass document in the middle; three restrained linked archival document layers extend to the right, transitioning from blue to turquoise. Documents are symbolic with subtle abstract line marks, not legible UI. The visual should communicate signal -> organized evidence -> traceable document history through spatial relationships. Off-white background, rich navy shadows, electric blue and teal accents, elegant lighting, clean airy editorial composition, lots of negative space, a tactile glass-and-paper material language. Polished serious developer product, beautiful rather than busy. No text, no lettering, no logo, no numbers, no currency icons, no shields, no people, no stock cyber-security lock imagery. This is conceptual artwork not a screen mockup. Whole composition within generous safe margins.",
+      "purpose": "Conceptual artwork, not an application screenshot or factual diagram.",
+      "observed_file_time_utc": "2026-10-08T02:12:55.849684+00:00"
+    },
+    {
+      "path": "docs/images/readme/journey-en.svg",
+      "bytes": 4156,
+      "sha256": "4085680e7fe18597fb8043201f2ef04a195e497c111cced4d218fd3c868d9927",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Bilingual diagram verified against current product behavior"
+    },
+    {
+      "path": "docs/images/readme/journey-zh.svg",
+      "bytes": 4008,
+      "sha256": "0bb531de0a74d2c1ce028005e8dccf7493e71266e1a59d9b097e40dda2e56a94",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Bilingual diagram verified against current product behavior"
+    },
+    {
+      "path": "docs/images/readme/language-en.svg",
+      "bytes": 593,
+      "sha256": "beddddc7776f888d21709e618c8c305ce5a30a6a632c2edec00c983cedc972ce",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Language navigation button"
+    },
+    {
+      "path": "docs/images/readme/language-zh.svg",
+      "bytes": 571,
+      "sha256": "ac45bceded4220ad9c31aba9c61564870a307c780b68e1be71873aa56b7cae27",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Language navigation button"
+    }
+  ]
+}

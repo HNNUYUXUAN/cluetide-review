@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="112" height="36" viewBox="0 0 112 36" role="img" aria-labelledby="title">
+  <title id="title">Read in English</title>
+  <rect x=".5" y=".5" width="111" height="35" rx="8.5" fill="#F1F8FA" stroke="#B8D3DE"/>
+  <circle cx="22" cy="18" r="8" fill="none" stroke="#147D8A" stroke-width="1.3"/>
+  <path d="M14 18h16M22 10c-5 4-5 12 0 16M22 10c5 4 5 12 0 16" fill="none" stroke="#147D8A" stroke-width="1.2"/>
+  <text x="69" y="23" text-anchor="middle" fill="#102D42" font-family="Arial,sans-serif" font-size="14" font-weight="600">English</text>
+</svg>

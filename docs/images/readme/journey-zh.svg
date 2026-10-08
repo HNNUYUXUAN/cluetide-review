@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title description">
+  <title id="title">ClueTide：证据可检查，更正可追溯</title>
+  <desc id="description">GCC 从链上转账出发，开展有限窗口调查并附引用，形成报告与证据 ZIP。BOT 登记内容承诺、记录针对准确版本的复核，并追加保留父版本的更正。两个产品各自运行，共用证据与版本的工作思路。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="m1 1 6 3.5L1 8" fill="none" stroke="#567785" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="1200" height="640" rx="24" fill="#F2F7FA"/>
+  <g font-family="'Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+    <text x="44" y="53" fill="#102D42" font-size="28" font-weight="700">证据可检查，更正可追溯</text>
+    <text x="44" y="87" fill="#526A79" font-size="18">从值得关注的转账，到有来路的解释与修订</text>
+    <rect x="40" y="116" width="1120" height="218" rx="18" fill="#FFFFFF" stroke="#C7DFE7"/>
+    <rect x="40" y="116" width="8" height="218" rx="4" fill="#22B6D1"/>
+    <text x="70" y="154" fill="#137D96" font-size="18" font-weight="700">GCC</text>
+    <text x="125" y="154" fill="#102D42" font-size="18">调查与证据</text>
+    <g fill="#ECF8FC" stroke="#BFDDE8">
+      <rect x="70" y="175" width="310" height="126" rx="12"/>
+      <rect x="444" y="175" width="310" height="126" rx="12"/>
+      <rect x="818" y="175" width="310" height="126" rx="12"/>
+    </g>
+    <g fill="#102D42" font-size="22" font-weight="700">
+      <text x="92" y="211">01  链上转账</text>
+      <text x="466" y="211">02  调查与引用</text>
+      <text x="840" y="211">03  证据包</text>
+    </g>
+    <g fill="#42616F" font-size="18">
+      <text x="92" y="248">关注 Ethereum 事件</text>
+      <text x="92" y="276">提出需要检查的问题</text>
+      <text x="466" y="248">限定窗口 · RPC 观察</text>
+      <text x="466" y="276">来源引用 · 解释边界</text>
+      <text x="840" y="248">报告版本 + 证据 ZIP</text>
+      <text x="840" y="276">检查字节与引用关系</text>
+    </g>
+    <path d="M392 238h38" fill="none" stroke="#567785" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M766 238h38" fill="none" stroke="#567785" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="600" y="366" text-anchor="middle" fill="#526A79" font-size="17">两个独立产品，共用证据与版本的工作思路</text>
+    <rect x="40" y="391" width="1120" height="218" rx="18" fill="#FFFFFF" stroke="#C1DDD8"/>
+    <rect x="40" y="391" width="8" height="218" rx="4" fill="#1EAB9C"/>
+    <text x="70" y="429" fill="#167F73" font-size="18" font-weight="700">BOT</text>
+    <text x="125" y="429" fill="#102D42" font-size="18">版本与复核</text>
+    <g fill="#ECF8F5" stroke="#BFDCD5">
+      <rect x="70" y="450" width="310" height="126" rx="12"/>
+      <rect x="444" y="450" width="310" height="126" rx="12"/>
+      <rect x="818" y="450" width="310" height="126" rx="12"/>
+    </g>
+    <g fill="#102D42" font-size="22" font-weight="700">
+      <text x="92" y="486">04  版本承诺</text>
+      <text x="466" y="486">05  指定版本复核</text>
+      <text x="840" y="486">06  追加更正</text>
+    </g>
+    <g fill="#42616F" font-size="18">
+      <text x="92" y="523">为内容登记摘要</text>
+      <text x="92" y="551">在 BOT Chain 保留记录</text>
+      <text x="466" y="523">复核绑定 v1</text>
+      <text x="466" y="551">意见与目标版本一起保留</text>
+      <text x="840" y="523">追加 v2 · 父版本为 v1</text>
+      <text x="840" y="551">沿版本关系追溯修订</text>
+    </g>
+    <path d="M392 513h38" fill="none" stroke="#567785" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M766 513h38" fill="none" stroke="#567785" stroke-width="2" marker-end="url(#arrow)"/>
+  </g>
+</svg>

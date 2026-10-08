@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title description">
+  <title id="title">ClueTide: inspectable evidence, traceable corrections</title>
+  <desc id="description">GCC starts from an on-chain transfer, investigates a bounded window with citations, and produces a versioned report and evidence ZIP. BOT registers a content commitment, binds a review to an exact version, and appends a correction with its parent preserved. The products run independently and share an evidence and version workflow.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="m1 1 6 3.5L1 8" fill="none" stroke="#567785" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="1200" height="640" rx="24" fill="#F2F7FA"/>
+  <g font-family="Arial,Helvetica,sans-serif">
+    <text x="44" y="53" fill="#102D42" font-size="28" font-weight="700">Inspectable evidence. Traceable corrections.</text>
+    <text x="44" y="87" fill="#526A79" font-size="18">From a transfer worth investigating to an explanation with a history</text>
+    <rect x="40" y="116" width="1120" height="218" rx="18" fill="#FFFFFF" stroke="#C7DFE7"/>
+    <rect x="40" y="116" width="8" height="218" rx="4" fill="#22B6D1"/>
+    <text x="70" y="154" fill="#137D96" font-size="18" font-weight="700">GCC</text>
+    <text x="125" y="154" fill="#102D42" font-size="18">Investigation and evidence</text>
+    <g fill="#ECF8FC" stroke="#BFDDE8">
+      <rect x="70" y="175" width="310" height="126" rx="12"/>
+      <rect x="444" y="175" width="310" height="126" rx="12"/>
+      <rect x="818" y="175" width="310" height="126" rx="12"/>
+    </g>
+    <g fill="#102D42" font-size="22" font-weight="700">
+      <text x="92" y="211">01  On-chain transfer</text>
+      <text x="466" y="211">02  Investigate and cite</text>
+      <text x="840" y="211">03  Evidence package</text>
+    </g>
+    <g fill="#42616F" font-size="18">
+      <text x="92" y="248">Observe an Ethereum event</text>
+      <text x="92" y="276">Frame the question to check</text>
+      <text x="466" y="248">Bounded window · RPC data</text>
+      <text x="466" y="276">Citations · interpretation limits</text>
+      <text x="840" y="248">Report version + evidence ZIP</text>
+      <text x="840" y="276">Check bytes and citation links</text>
+    </g>
+    <path d="M392 238h38" fill="none" stroke="#567785" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M766 238h38" fill="none" stroke="#567785" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="600" y="366" text-anchor="middle" fill="#526A79" font-size="17">Two independent products, one approach to evidence and versions</text>
+    <rect x="40" y="391" width="1120" height="218" rx="18" fill="#FFFFFF" stroke="#C1DDD8"/>
+    <rect x="40" y="391" width="8" height="218" rx="4" fill="#1EAB9C"/>
+    <text x="70" y="429" fill="#167F73" font-size="18" font-weight="700">BOT</text>
+    <text x="125" y="429" fill="#102D42" font-size="18">Versions and review</text>
+    <g fill="#ECF8F5" stroke="#BFDCD5">
+      <rect x="70" y="450" width="310" height="126" rx="12"/>
+      <rect x="444" y="450" width="310" height="126" rx="12"/>
+      <rect x="818" y="450" width="310" height="126" rx="12"/>
+    </g>
+    <g fill="#102D42" font-size="22" font-weight="700">
+      <text x="92" y="486">04  Commit a version</text>
+      <text x="466" y="486">05  Review that version</text>
+      <text x="840" y="486">06  Append a correction</text>
+    </g>
+    <g fill="#42616F" font-size="18">
+      <text x="92" y="523">Register the content hash</text>
+      <text x="92" y="551">Keep a record on BOT Chain</text>
+      <text x="466" y="523">Bind the review to v1</text>
+      <text x="466" y="551">Preserve its exact target</text>
+      <text x="840" y="523">Append v2 with parent v1</text>
+      <text x="840" y="551">Follow the revision history</text>
+    </g>
+    <path d="M392 513h38" fill="none" stroke="#567785" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M766 513h38" fill="none" stroke="#567785" stroke-width="2" marker-end="url(#arrow)"/>
+  </g>
+</svg>
