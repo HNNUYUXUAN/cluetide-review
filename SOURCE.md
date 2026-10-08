@@ -11,3 +11,7 @@ Release adaptations include the English product shell and route model, English w
 The two adaptive UNI evidence archives are the exact bytes associated with the recorded version commitments. Their narrative and original model output retain their source language. English UI summaries explain those artifacts while keeping observation, interpretation, and unresolved questions distinct.
 
 Original third-party notices and public source references remain applicable. The project MIT license covers ClueTide's own code. Generated hero imagery is a product illustration; on-chain evidence is represented by the linked data and transactions.
+
+## Bilingual product documentation · 2026-10-08
+
+The current README offers separate Chinese and English product narratives with language links, generated concept artwork, editable diagrams and actual product screenshots. [Visual provenance](docs/readme-assets.md) and its [asset manifest](docs/readme-assets.json) record the production briefs, image origins and exact bytes. These documentation assets are release additions; the source baseline and original evidence artifacts above retain their recorded identities. The release integrity manifest includes the final documentation and image files.

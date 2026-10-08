@@ -1,0 +1,67 @@
+{
+  "format": "cluetide-readme-assets/v1",
+  "branch": "BOT",
+  "date": "2026-10-08",
+  "assets": [
+    {
+      "path": "docs/images/readme/architecture-en.svg",
+      "bytes": 4247,
+      "sha256": "f1e02485e7817fa705722d4c6c2d4fcc3ccb40e29850d98968acbaf2a47d93e8",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Bilingual diagram verified against current product behavior"
+    },
+    {
+      "path": "docs/images/readme/architecture-zh.svg",
+      "bytes": 4173,
+      "sha256": "44f76afa813b6cd996170b1b1a0be25deb92acba3554bf94bd4b4b98a357588b",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Bilingual diagram verified against current product behavior"
+    },
+    {
+      "path": "docs/images/readme/case.jpg",
+      "bytes": 73086,
+      "sha256": "c4404f6ec0549210e04949f9c0c5bcccb218e0b441ddd27365d163824c783903",
+      "kind": "actual_product_screenshot",
+      "source_url": "https://hnnuyuxuan.github.io/cluetide-app/bot/#/cases/uniswap93?step=v1",
+      "scope": "Hosted original-report view with its archived BOT Mainnet 677 verification result.",
+      "captured_file_time_utc": "2026-10-08T02:17:56.433393+00:00"
+    },
+    {
+      "path": "docs/images/readme/hero.png",
+      "bytes": 1961251,
+      "sha256": "0eceb7f17484dc61879c8480f9cac90957bdc03cf45689fc837612eac951ce00",
+      "kind": "generated_concept_illustration",
+      "generator": "OpenAI built-in imagegen",
+      "prompt": "Create a premium 16:9 wide editorial concept illustration for ClueTide BOT, a product for traceable evidence versions and version-specific reviews. Deep near-black ink green studio background #051310, mint turquoise luminous edges #0CDEB0, restrained blue-teal highlights, sophisticated translucent glass and archival-paper material language. Show three distinct carefully spaced upright document objects in a calm isometric scene: original evidence folio on the left, a smaller review annotation card slightly above and behind it in the middle with a fine visible thread tethered specifically back to the original document, and a new revised evidence folio on the right with a separate elegant curved line preserving the connection back to the original. Underneath is a low minimal translucent ledger plinth, with a few luminous nodes along a thin rail. Symbolic engraved horizontal lines only. Serious beautiful product illustration with depth, soft shadows and controlled glow, sharp object silhouettes, generous negative space and safe margins. No words, no readable letters, no numbers, no currency logos, no shields, no checkmark implying correctness, no people, no busy futuristic city. This is conceptual art, not an actual UI or technical schematic.",
+      "purpose": "Conceptual artwork, not an application screenshot or factual diagram.",
+      "observed_file_time_utc": "2026-10-08T02:14:43.392415+00:00"
+    },
+    {
+      "path": "docs/images/readme/language-en.svg",
+      "bytes": 513,
+      "sha256": "e82d779d9a10804bb32b4deaefda140f1d5eb5306bb9b720ba4d9e9f3e811611",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Language navigation button"
+    },
+    {
+      "path": "docs/images/readme/language-zh.svg",
+      "bytes": 533,
+      "sha256": "d77a4985b6b38b9c31e541870ed846a923e2534655534e986a61346d9d4842c8",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Language navigation button"
+    },
+    {
+      "path": "docs/images/readme/verify.jpg",
+      "bytes": 90852,
+      "sha256": "9d05000dc5a51be7cb2e02e037f03e93c04b300f8596380b3a5955967af39ad2",
+      "kind": "actual_product_screenshot",
+      "source_url": "http://127.0.0.1:8765/bot.html#/cases/uniswap93?step=v1",
+      "scope": "Local service read-only transaction verification passed at 2026-10-08T02:18:31Z with 5610 confirmations; no wallet signing.",
+      "captured_file_time_utc": "2026-10-08T02:19:38.268755+00:00"
+    }
+  ]
+}

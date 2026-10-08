@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="136" height="36" viewBox="0 0 136 36" role="img" aria-labelledby="title">
+  <title id="title">English</title>
+  <rect x="0.5" y="0.5" width="135" height="35" rx="9" fill="#102b2b" stroke="#4ca89b"/>
+  <text x="19" y="23" fill="#f6f4ed" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600">English</text>
+  <path d="M108 13l5 5-5 5m-7-5h12" fill="none" stroke="#85d7c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

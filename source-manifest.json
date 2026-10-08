@@ -28,13 +28,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 9359,
-      "sha256": "9026359b63a6ea4ab8bf23c5be53a7dcf5333690721b6dc6b1411506a51fe038"
+      "bytes": 7732,
+      "sha256": "6012712462c0dda9659948d971e972d23917a2517658b0624da6d36732723810"
     },
     {
       "path": "SOURCE.md",
-      "bytes": 2002,
-      "sha256": "7c02a3810622e801474e4afa25f511ddde0b74c8711b813734afbf7f5be3ff22"
+      "bytes": 2602,
+      "sha256": "71e621b9463f576e37e3ca787ce041dd50d4f00f1d4f275377c5268d258b3e21"
     },
     {
       "path": "contracts/ClueTideRegistry.sol",
@@ -2475,6 +2475,61 @@
       "path": "tests/test_seed_publication.py",
       "bytes": 13646,
       "sha256": "a0dbb5d9dd24f39b102b9d6bd752ff8cfc66f98947c6fc81b7675a241beaa3e6"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "bytes": 7045,
+      "sha256": "9f0262f36b50b4e22d888875fce07596bd586caf4de017c61cb7ee6a61136cd3"
+    },
+    {
+      "path": "docs/images/readme/architecture-en.svg",
+      "bytes": 4247,
+      "sha256": "f1e02485e7817fa705722d4c6c2d4fcc3ccb40e29850d98968acbaf2a47d93e8"
+    },
+    {
+      "path": "docs/images/readme/architecture-zh.svg",
+      "bytes": 4173,
+      "sha256": "44f76afa813b6cd996170b1b1a0be25deb92acba3554bf94bd4b4b98a357588b"
+    },
+    {
+      "path": "docs/images/readme/case.jpg",
+      "bytes": 73086,
+      "sha256": "c4404f6ec0549210e04949f9c0c5bcccb218e0b441ddd27365d163824c783903"
+    },
+    {
+      "path": "docs/images/readme/hero.png",
+      "bytes": 1961251,
+      "sha256": "0eceb7f17484dc61879c8480f9cac90957bdc03cf45689fc837612eac951ce00"
+    },
+    {
+      "path": "docs/images/readme/language-en.svg",
+      "bytes": 513,
+      "sha256": "e82d779d9a10804bb32b4deaefda140f1d5eb5306bb9b720ba4d9e9f3e811611"
+    },
+    {
+      "path": "docs/images/readme/language-zh.svg",
+      "bytes": 533,
+      "sha256": "d77a4985b6b38b9c31e541870ed846a923e2534655534e986a61346d9d4842c8"
+    },
+    {
+      "path": "docs/images/readme/verify.jpg",
+      "bytes": 90852,
+      "sha256": "9d05000dc5a51be7cb2e02e037f03e93c04b300f8596380b3a5955967af39ad2"
+    },
+    {
+      "path": "docs/mainnet-proof.md",
+      "bytes": 8266,
+      "sha256": "28121b949f91f5150c12ba07c7440d1102e4b1a6823765a67e7de6b8645027fd"
+    },
+    {
+      "path": "docs/readme-assets.json",
+      "bytes": 3928,
+      "sha256": "a7735b14ccb8f7699d08c2de317ec3bdf526350ca17dbc769a72f599942d8fca"
+    },
+    {
+      "path": "docs/readme-assets.md",
+      "bytes": 2538,
+      "sha256": "4189b696e4d00d14ad6cf02358d6d58b0ff22a8c9031803e62879679e10a9e79"
     }
   ]
 }
