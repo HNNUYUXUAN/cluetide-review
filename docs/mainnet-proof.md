@@ -92,4 +92,4 @@ cd ..
 
 Tests cover archive integrity, publication consistency, exact-version review, transaction preparation/readback, wallet context, bounded RPC, and recovery. [Release validation](validation.md) records each execution's actual scope; [source provenance](../SOURCE.md) records the upstream baseline and selected release files. Run `python scripts/verify_sources.py` to compare the checkout with its source manifest.
 
-ClueTide's own source uses the [MIT License](../LICENSE). Original third-party notices remain in [data/attribution](../data/attribution). Repository access and submission eligibility must be checked at publication: a public-repository requirement needs a public repository or an organizer-approved private-access arrangement. The demo URL is publicly accessible.
+ClueTide's own source uses the [MIT License](../LICENSE). Original third-party notices remain in [data/attribution](../data/attribution). Explore the [source and setup](https://github.com/HNNUYUXUAN/cluetide-review/tree/BOT) or the [hosted application](https://hnnuyuxuan.github.io/cluetide-app/bot/).

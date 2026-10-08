@@ -4,7 +4,7 @@
   "source_baseline": "f88009336bb548d782b70124e1740535020caefd",
   "english_product_commit": "8a688ada3a2376280e7d60d47f5a92254c5e6590",
   "mainnet_product_commit": "31c7cd7912ca22eb6ccabd159c0f4076d9dfd41d",
-  "scope": "Final review release files excluding this manifest. Release adaptations are documented in SOURCE.md.",
+  "scope": "Product source, documentation and evidence files excluding this manifest. Release adaptations are documented in SOURCE.md.",
   "files": [
     {
       "path": ".gitattributes",
@@ -18,8 +18,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 703,
-      "sha256": "d0aad0c268db7e568fecbd97508d8e6eecca7ac4a796ff135f5ef0c514cc5580"
+      "bytes": 706,
+      "sha256": "3239da82549f7a59ac47ef188efdc82ebb93704ef3496e08b474ec4acfd5903a"
     },
     {
       "path": "LICENSE",
@@ -33,8 +33,8 @@
     },
     {
       "path": "SOURCE.md",
-      "bytes": 2602,
-      "sha256": "71e621b9463f576e37e3ca787ce041dd50d4f00f1d4f275377c5268d258b3e21"
+      "bytes": 2351,
+      "sha256": "0273f93b7e4f3bd11bacf78178fe42cffe0e52ef6ebeb1309319be15ea1551ba"
     },
     {
       "path": "contracts/ClueTideRegistry.sol",
@@ -2518,8 +2518,8 @@
     },
     {
       "path": "docs/mainnet-proof.md",
-      "bytes": 8266,
-      "sha256": "28121b949f91f5150c12ba07c7440d1102e4b1a6823765a67e7de6b8645027fd"
+      "bytes": 8205,
+      "sha256": "2696a353c56564eeb72ad32836ef38cc2eb5bce1d7eba76503fce9c7b4faace6"
     },
     {
       "path": "docs/readme-assets.json",

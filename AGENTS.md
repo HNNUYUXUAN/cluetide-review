@@ -1,6 +1,6 @@
 # ClueTide BOT release maintenance
 
-This branch contains the BOT review release. Read README.md, SOURCE.md, and docs/validation.md before changing the product.
+This branch maintains the ClueTide BOT product. Read README.md, SOURCE.md, and docs/validation.md before changing the product.
 
 Maintain the English product interface, exact-version review semantics, public evidence commitments, and wallet context safeguards. Preserve original evidence ZIPs, receipts, contract artifacts, and third-party license bytes. Document current behavior and validate changes with the relevant tests and browser workflow.
 
