@@ -37,3 +37,7 @@ ClueTide code uses the existing project [MIT license](LICENSE), copied with its 
 Run `python scripts/verify_sources.py` to check the indexed current bytes. SHA-256 proves byte consistency with the index, while provenance, provider trust, source interpretation and reviewer independence require their own evidence. The RPC finalized anchor is provider-reported. The bounded observations do not establish complete transaction causality or incident-wide loss.
 
 执行 `python scripts/verify_sources.py` 核对来源清单。字节一致性、来源真实性、提供者信任、解释与复核身份分别核验；有限窗口的观察支持明确范围内的结论。
+
+## Bilingual product documentation · 2026-10-08
+
+The current README offers separate Chinese and English product narratives with language links, generated concept artwork, editable diagrams and actual product screenshots. [Visual provenance](docs/readme-assets.md) and its [asset manifest](docs/readme-assets.json) record the production briefs, image origins and exact bytes. These documentation assets are release additions; the source baseline and original evidence artifacts above retain their recorded identities. The release integrity manifest includes the final documentation and image files.

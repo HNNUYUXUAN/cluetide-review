@@ -1,0 +1,76 @@
+{
+  "format": "cluetide-readme-assets/v1",
+  "branch": "GCC",
+  "date": "2026-10-08",
+  "assets": [
+    {
+      "path": "docs/images/readme/hero.png",
+      "bytes": 1828424,
+      "sha256": "35859985fe949da0d77baa9446f05c2730601a44676936b73825775adaced7ad",
+      "kind": "generated_concept_illustration",
+      "generator": "OpenAI built-in imagegen",
+      "prompt": "Premium wide editorial product concept illustration for ClueTide GCC, an Ethereum evidence investigation workbench. Landscape 16:9. White and very pale blue studio backdrop; sophisticated isometric glass-and-paper material language with strong navy structure, electric-blue edges and restrained turquoise accents. Composition: a few ordered translucent ledger blocks and flowing tiny signal points on the left, a central luminous magnifying lens hovering over a thin ledger page, and on the right a carefully assembled open evidence folio with several visible citation tabs connected by fine blue threads to the observed blocks. Explain the visual idea of examining a bounded set of observations and assembling sourced evidence. Human-crafted scientific editorial design, clean spacious geometry, gently tactile, precise beautiful lighting and shadows. No readable text, no letters, no numbers, no logos, no currency symbols, no checkmarks or security shields, no people. Not a literal interface or a claim of correctness. Strong visual hierarchy and generous safe margins. Cohesive companion to a pale glass document archive image.",
+      "purpose": "Conceptual artwork, not an application screenshot or factual diagram.",
+      "observed_file_time_utc": "2026-10-08T02:13:38.028932+00:00"
+    },
+    {
+      "path": "docs/images/readme/investigation.jpg",
+      "bytes": 75553,
+      "sha256": "e123d1d7d64627b40fb7056a0e7101cfbee6341fd6bc83b8f0585c5914dc939f",
+      "kind": "actual_product_screenshot",
+      "source_url": "https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/uniswap93",
+      "scope": "Investigation replay, step 1.",
+      "captured_file_time_utc": "2026-10-08T02:17:05.272993+00:00"
+    },
+    {
+      "path": "docs/images/readme/language-en.svg",
+      "bytes": 597,
+      "sha256": "f7183c58000540dcf0ce2775645eb76601943de01cb3c29334ad9c49547e25c7",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Language navigation button"
+    },
+    {
+      "path": "docs/images/readme/language-zh.svg",
+      "bytes": 613,
+      "sha256": "e8318169d439283073b33298aa498d5862e4a5506fc2b72a0dc13fb7ad6ba190",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Language navigation button"
+    },
+    {
+      "path": "docs/images/readme/review.jpg",
+      "bytes": 76178,
+      "sha256": "f0688d4772ec84456a527fd2b664fb0532c9f425b038e700bc15a267d5981927",
+      "kind": "actual_product_screenshot",
+      "source_url": "https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/uniswap93",
+      "scope": "Synthetic v1/v2 comparison and version-bound review, step 3.",
+      "captured_file_time_utc": "2026-10-08T02:17:18.938742+00:00"
+    },
+    {
+      "path": "docs/images/readme/verify.jpg",
+      "bytes": 86967,
+      "sha256": "50177d7e60ba009887c1bb634f24116b9388721102590a14a80020ec3dd4d3a2",
+      "kind": "actual_product_screenshot",
+      "source_url": "https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/uniswap93",
+      "scope": "Local browser verification panel awaiting a user-selected ZIP; no file result is shown.",
+      "captured_file_time_utc": "2026-10-08T02:17:40.287757+00:00"
+    },
+    {
+      "path": "docs/images/readme/workflow-en.svg",
+      "bytes": 4288,
+      "sha256": "c6bd731d9a6d99a08e3854d8589c4a8da247b2ec21aa6348a1fcfb791422a6de",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Bilingual diagram verified against current product behavior"
+    },
+    {
+      "path": "docs/images/readme/workflow-zh.svg",
+      "bytes": 4289,
+      "sha256": "db16382dacf993139fd057afafb19ffce4b57ddcd4149e89718b464724662585",
+      "kind": "editable_svg",
+      "creator": "Codex",
+      "purpose": "Bilingual diagram verified against current product behavior"
+    }
+  ]
+}

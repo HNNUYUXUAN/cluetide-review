@@ -1,67 +1,58 @@
+[![中文](docs/images/readme/language-zh.svg)](README.md) [![English](docs/images/readme/language-en.svg)](README.en.md)
+
 # ClueTide · GCC
 
-**让团队带着证据，判断链上异动。**  
-**From an Ethereum event to an explanation another person can verify.**
+**让链上异动，成为一份能交接的解释。**
 
-[项目总览 / Overview](https://github.com/HNNUYUXUAN/cluetide-review/tree/main) · [GCC Demo](https://hnnuyuxuan.github.io/cluetide-app/gcc/) · [BOT 赛道 / BOT track](https://github.com/HNNUYUXUAN/cluetide-review/tree/BOT) · [English](#english)
+[打开在线体验](https://hnnuyuxuan.github.io/cluetide-app/gcc/) · [ClueTide 项目总览](https://github.com/HNNUYUXUAN/cluetide-review/tree/main) · [了解 BOT](https://github.com/HNNUYUXUAN/cluetide-review/blob/BOT/README.zh-CN.md)
 
-![ClueTide 产品故事与调查入口](docs/images/gcc-product.jpg)
+一笔大额转账出现后，团队需要知道发生了什么，也需要知道下一位同事能否沿着相同证据重新判断。我们做 ClueTide GCC，是想把观察、补查、解释和复核连在一起：每项主张找到依据，每个未知保留位置，每次更正留下来处。
 
-## 中文
+![ClueTide GCC：从链上观察到证据交接的概念插画](docs/images/readme/hero.png)
+*产品概念插画；实际工作台与回放界面见下文。*
 
-ClueTide GCC 是 Ethereum 事件调查与证据复核工作台。调查从地址、ERC-20 代币和有限区块窗口开始：读取公开观察，识别需要解释的转账，按已有证据选择下一步补查，并把解释、引用和未知项交给下一位复核者。更正形成新版本，原版本和依据继续可查。
+## 从 1 亿 UNI 开始
 
-### 三分钟审阅
+打开 [UNI 案例](https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/uniswap93)，我们先看一件具体的事：在 Ethereum **24106368–24106388 的 21 块窗口**里，Timelock 向 dead 地址转出 **100,000,000 UNI**。回执支持这笔转账已经执行，提案 93 提供可以对照的治理背景。
 
-1. 打开 [UNI 案例](https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/uniswap93)，查看 1 亿 UNI 的 Transfer、交易回执和治理来源。
-2. 核对相邻区块的 supply 观察，切换 v1 / v2，查看更正如何明确证据边界。
-3. 下载当前版本，在“证据包复验”中重新读取，核对文件摘要、引用与父版本关系。
-4. 打开 [Euler 案例](https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/euler-20230313)，比较另一类事件中的相同调查方法。
-5. 按下方步骤运行本地服务，实际创建调查、提交版本复核和保存更正。
+接着看相邻区块的供给读数：两次 `totalSupply()` 均为 **1,000,000,000 UNI**。转账金额与总供给是需要分别核对的主张。这一处差别，决定了报告能说到哪里，也决定了我们还要查什么。
 
-详细路线见 [审阅指南](docs/REVIEW.md)。仓库是私有审阅暂存库，访问源码需要仓库授权；正式递交的公开源码条件与链接核对见 [递交检查](docs/SUBMISSION.md)。
+调查工作台从地址、ERC-20 代币和有限区块窗口出发。Agent 根据已有观察选择回执、交易、历史代币状态或来源材料，补查受调用预算和窗口约束。报告保留引用、解释与未知项，页面同时展示工具轨迹和质量提示，让你沿着依据阅读结论。
 
-### 可以体验什么
+![UNI 案例中的调查、证据引用与未知项](docs/images/readme/investigation.jpg)
+*实际产品界面：从公开历史观察逐步核对解释。*
 
-| 能力 | 在线静态 Demo | 本地完整服务 |
-| --- | --- | --- |
-| 产品故事、UNI / Euler 引导回放 | ✓ | ✓ |
-| 选择并下载 v1 / v2，浏览器本地 ZIP 复验 | ✓ | ✓ |
-| 创建调查、查看工具轨迹和质量提示 | — | ✓ |
-| 案件保存、服务端导入、指定版本复核与更正 | — | ✓ |
+## 一份解释，怎样交给下一位同事
 
-回放使用公开历史观察和明确标注的合成报告。本地启动默认使用公共缓存与离线模型；页面中的调查工作台需要同源 `/api`。浏览器复验在本地读取所选文件。
+我们把复核落在一个确切版本上。你选择 v1，意见就绑定 v1 的版本 ID 与内容摘要；作者在当前父版本上保存更正，形成 v2，原版本继续可读。新报告记录父版本 manifest 摘要，读者能核对这次修改承接的是哪一份案卷。
 
-### 两个案卷，明确的证据范围
+在 UNI 回放中，切换 v1 / v2，就能看到供给量边界怎样进入解释。公开回放使用真实历史观察与明确标注的合成报告，展示的是调查和更正流程。运行本地服务后，你可以亲自提交复核意见、修改解释并保存新版本；其中的作者和复核者是本地演示角色。
 
-| 案例 | 调查窗口 | 可直接核对的观察 | 解释边界 |
-| --- | --- | --- | --- |
-| [Uniswap proposal 93](data/cases/uniswap93/README.md) | Ethereum 24106368–24106388，21 块 | Timelock 向 dead 地址转出 100,000,000 UNI；相邻供给读数均为 1,000,000,000 UNI | 转账、治理背景与供给状态分别核对；当前窗口支持有限解释 |
-| [Euler 2023-03-13](data/cases/euler-20230313/README.md) | Ethereum 16817995–16817997，3 块 | Euler 主体 DAI 一笔流出、两笔流入，净 Transfer 流保留精确 raw 数值 | 净流只描述指定主体、代币和窗口；完整事件需更广材料 |
+![UNI 案例的版本选择、复核意见与更正内容](docs/images/readme/review.jpg)
+*实际产品界面：v1 / v2 合成报告与父版本关系。*
 
-案卷保留原始请求与响应、来源定位和 SHA-256。远端 finalized 锚点依赖 RPC 提供者；摘要证明字节一致性，来源真实性和因果解释仍需复核。[来源与方法](SOURCE.md)说明这些边界。
+交接时，下载选定版本的 ZIP，在“证据包复验”中打开。浏览器在本地核对文件摘要与引用结构；回放还会核对 v2 与 v1 的父摘要关系。哈希帮助确认收到的字节，事实解释仍需对照原始来源。
 
-### 架构
+案卷同时保留原始请求与响应、来源定位和 SHA-256，方便接手者沿着记录逐项回查，并核对取得范围。远端 finalized 锚点来自 RPC 提供者的报告；阅读时需要把提供者信任、字节一致性和解释的成立条件一起考虑。
 
-```mermaid
-flowchart LR
-    A[地址 · 代币 · 有限窗口<br/>Address · token · bounded window] --> B[公开缓存 / 只读 RPC<br/>Public cache / read-only RPC]
-    B --> C[观察与确定性告警<br/>Observations and alerts]
-    C --> D[Agent 有限补查<br/>Bounded follow-up tools]
-    D --> E[解释 · 引用 · 未知<br/>Explanation · citations · gaps]
-    E --> F[结构与质量校验<br/>Structure and quality checks]
-    F --> G[SQLite 原子发布<br/>Atomic version publication]
-    G --> H[证据 ZIP · 指定版本复核<br/>Evidence ZIP · version review]
-    H --> I[v2 与父版本摘要<br/>Revision with parent digest]
-    I --> G
-    G --> UI[React 工作台<br/>React workbench]
-```
+再试试 [Euler DAI 案例](https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/euler-20230313)：**16817995–16817997 的三块窗口**记录主体的一笔流出、两笔流入。相同方法让净 Transfer 流保留精确值，并把解释限定在主体、代币和窗口内；事件全貌需要继续补充材料。
 
-`src/cluetide` 提供采集、Agent、引用校验、质量提示、版本登记与 FastAPI；`frontend` 提供故事、回放、工作台与复验；`data/cases` 保留公开案卷；`tests` 和 `frontend/tests` 覆盖证据身份、精确金额、恢复和交接流程。评估核心支持强条件脚本、one-shot、adaptive 三种策略，解释比较时须同时说明证据覆盖、请求次数与运行条件。
+![浏览器本地证据包复验入口，等待选择 ZIP 文件](docs/images/readme/verify.jpg)
+*实际产品界面：选择证据 ZIP，在浏览器本地复验。*
 
-### 本地运行
+![观察、调查、解释、复核、更正的五步流程，以及证据、版本和父摘要关系](docs/images/readme/workflow-zh.svg)
 
-需要 **Python 3.12、Node.js 24、npm**。本轮在 Windows 实测；下方先克隆 GCC 分支，再执行 PowerShell 安装与启动命令：
+## 亲手走完一次调查
+
+[在线体验](https://hnnuyuxuan.github.io/cluetide-app/gcc/)可以直接阅读故事与案例，下载并复验案卷。本地服务让这条流程继续进入你自己的调查和版本记录。
+
+| 体验 | 在线静态 Demo | 本地服务 |
+| --- | :---: | :---: |
+| UNI / Euler 回放、v1 / v2 下载、浏览器 ZIP 复验 | ✓ | ✓ |
+| 创建调查、保存案件、查看工具轨迹 | — | ✓ |
+| 服务端导入、指定版本复核与更正 | — | ✓ |
+
+准备 **Python 3.12、Node.js 24 和 npm**，在 PowerShell 运行：
 
 ```powershell
 git clone --branch GCC --single-branch https://github.com/HNNUYUXUAN/cluetide-review.git cluetide-gcc
@@ -75,81 +66,8 @@ Pop-Location
 .\scripts\run-local.ps1
 ```
 
-打开 **http://127.0.0.1:5186/**。本地状态写入 `local-data/`；可通过 `CLUETIDE_DATA_DIR` 指定独立目录。开发服务器为 5187，构建预览为 4187，两者代理到本地 API 5186。Linux/macOS 命令、测试和打包见 [开发与验证](docs/DEVELOPMENT.md)。
+打开 [本地工作台](http://127.0.0.1:5186/)。默认使用公开缓存与离线模型，页面与 `/api` 由同一服务提供，案件保存在 `local-data/`。Windows 是本版验证平台；Linux/macOS 启动见 [English README](README.en.md)，测试、打包与配置见[开发说明](docs/DEVELOPMENT.md)，实测范围见[验证记录](docs/VALIDATION.md)。
 
-```powershell
-$env:CLUETIDE_DATA_DIR = Join-Path (Get-Location) 'local-only/test-state'
-$env:CLUETIDE_TEST_PYTHON = Join-Path (Get-Location) '.venv/Scripts/python.exe'
-.\.venv\Scripts\python.exe -m pytest -q
-Push-Location frontend
-npm test
-npm run build
-Pop-Location
-```
+我们保留[案卷原始来源](data/cases/uniswap93/README.md)、[Euler 证据范围](data/cases/euler-20230313/README.md)及[来源清单](source-manifest.json)，方便你继续核查。产品源码选自 `1b2fdd5d152f51e99d28563e10db39c94d015e3f`，选取和改编关系见 [SOURCE.md](SOURCE.md)。自有代码采用 [MIT 许可](LICENSE)，第三方材料遵循[各自的署名与条款](data/attribution/README.md)。完整体验路线见[操作指南](docs/REVIEW.md)。
 
-浏览器组件测试需要 Python Playwright 和已安装的 Chrome；请核对 skipped 数量。[本版验证](docs/VALIDATION.md)按实际运行范围记录结果。
-
-本次审阅目录已通过 **880 项全量后端测试、28 项前端测试（0 skipped）、生产构建与服务冒烟**。
-
-### 来源与许可
-
-GCC 审阅源码以 `1b2fdd5d152f51e99d28563e10db39c94d015e3f` 为来源，公开案卷、回放和第三方许可保留来源字节，选取和改编关系见 [SOURCE.md](SOURCE.md) 与 [source-manifest.json](source-manifest.json)。ClueTide 自有代码采用 [MIT License](LICENSE)；第三方代码、来源材料与摘录适用各自的署名及条款，见 [许可索引](data/attribution/README.md)。
-
----
-
-## English
-
-ClueTide GCC is an Ethereum investigation and evidence-review workbench. Start with an address, an ERC-20 token and a bounded block window. Inspect public observations, follow a suspicious transfer through additional reads, and hand over an explanation with citations and explicit knowledge gaps. Reviews bind to an exact version; corrections create a new version with a parent digest.
-
-### Review in three minutes
-
-1. Open the [UNI replay](https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/uniswap93). Inspect the 100 million UNI transfer, its receipt and governance sources.
-2. Compare adjacent supply reads and switch between v1 and v2 to inspect the scope clarification.
-3. Download the selected evidence ZIP and verify it in the browser. Check hashes, citations and the parent-version relationship.
-4. Open the [Euler replay](https://hnnuyuxuan.github.io/cluetide-app/gcc/#/demo/euler-20230313) to see the method applied to a different event.
-5. Run the local service to create an investigation, review its exact version and publish a correction.
-
-This private review repository requires reviewer access. [Submission notes](docs/SUBMISSION.md) distinguish repository access from the public-source requirement for formal submission.
-
-### Demo and local service
-
-The hosted static demo provides the story, UNI/Euler guided replays, version downloads and local browser ZIP verification. Creating investigations, server-side imports, persistent cases, reviews and revisions require the local FastAPI service. The replay combines public historical observations with visibly labelled synthetic reports. The default local launcher uses cached public evidence and an offline model.
-
-The UNI case covers **21 blocks, 24106368–24106388**: a **100,000,000 UNI** transfer from the Timelock to the dead address, with adjacent supply reads of **1,000,000,000 UNI**. Transfer activity, governance context and supply state are separate evidence questions. The Euler case covers **three blocks, 16817995–16817997** and three DAI transfers involving the specified subject. Net transfer flow describes that subject, token and window; broader incident interpretation needs broader evidence.
-
-Raw captures, source pointers and hashes accompany both cases. Provider-reported finalized anchors retain the provider trust assumption. Hash verification establishes byte consistency; factual accuracy and causal interpretation require source review. See [the reviewer guide](docs/REVIEW.md) and [provenance](SOURCE.md).
-
-### Run and validate
-
-Install **Python 3.12 and Node.js 24**. Release verification ran on Windows. The following Linux/macOS recipe has not been executed on this host; it clones the GCC branch before installation:
-
-```bash
-git clone --branch GCC --single-branch https://github.com/HNNUYUXUAN/cluetide-review.git cluetide-gcc
-cd cluetide-gcc
-python3.12 -m venv .venv
-.venv/bin/python -m pip install -r requirements-lock.txt
-cd frontend
-npm ci
-npm run build
-cd ..
-CLUETIDE_PREVIEW_ONLY=1 .venv/bin/python -m uvicorn cluetide.app:app --host 127.0.0.1 --port 5186
-```
-
-Open **http://127.0.0.1:5186/**. On Windows, use the PowerShell setup above and `scripts/run-local.ps1`. Keep a separate `CLUETIDE_DATA_DIR` for test state. Development runs on port 5187 and build preview on 4187; both proxy API requests to 5186.
-
-```bash
-CLUETIDE_DATA_DIR="$PWD/local-only/test-state" .venv/bin/python -m pytest -q
-cd frontend
-CLUETIDE_TEST_PYTHON="$(pwd)/../.venv/bin/python" npm test
-npm run build
-```
-
-Browser component tests require Playwright in the selected Python runtime and an installed Chrome browser. Check the skipped-test count. [Development](docs/DEVELOPMENT.md) covers packaging and source integrity; [validation](docs/VALIDATION.md) records the checks actually performed for this release.
-
-This review checkout passed **880 backend tests, 28 frontend tests (0 skipped), the production build and import/HTTP smoke checks**.
-
-The architecture above separates read-only collection, bounded agent tools, citation/quality checks, atomic SQLite publication and exact-version handover. Review `src/cluetide`, `frontend`, `data/cases` and `tests` in that order. The evaluation engine includes a strongly conditioned script, one-shot and adaptive strategies; comparisons must state evidence coverage, request counts and operating conditions.
-
-### Provenance and license
-
-The product source derives from commit `1b2fdd5d152f51e99d28563e10db39c94d015e3f`. [SOURCE.md](SOURCE.md) and [source-manifest.json](source-manifest.json) describe selected files and adaptations. ClueTide's own code is [MIT licensed](LICENSE). Third-party code, public-source excerpts and supporting materials retain their applicable original notices and terms in [the attribution directory](data/attribution/README.md).
+[配图来源](docs/readme-assets.md)

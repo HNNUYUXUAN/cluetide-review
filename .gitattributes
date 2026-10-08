@@ -6,3 +6,6 @@ data/** -text
 /frontend/public/gcc-demo/** -text
 /frontend/public/licenses/** -text
 /LICENSE -text
+
+# README artwork and diagrams retain the bytes recorded in the asset manifest.
+/docs/images/readme/** -text

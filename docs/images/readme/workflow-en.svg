@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="624" viewBox="0 0 1240 624" role="img" aria-labelledby="title description">
+  <title id="title">ClueTide GCC investigation and handoff workflow</title>
+  <desc id="description">Observe, investigate, explain, review and revise. Original evidence enters the v1 package. Reviews bind to the selected version ID and content digest. The v2 package retains corrections and the parent manifest digest, while the original version remains available.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 9 5 0 9" fill="none" stroke="#208b96" stroke-width="1.6"/></marker>
+    <style>text{font-family:'Segoe UI',Arial,sans-serif;fill:#173d58}.label{font-size:26px;font-weight:650}.body{font-size:21px;fill:#456479}.small{font-size:19px;fill:#456479}.number{font-size:18px;font-weight:700;fill:#087f8c}.line{fill:none;stroke:#208b96;stroke-width:2;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect x="1" y="1" width="1238" height="622" rx="22" fill="#f5faff" stroke="#d7e6ef"/>
+  <text x="30" y="51" font-size="29" font-weight="650">From an observation to an evidence package someone else can check</text>
+  <g fill="#fff" stroke="#cbdfe9">
+    <rect x="24" y="88" width="216" height="170" rx="16"/><rect x="268" y="88" width="216" height="170" rx="16"/>
+    <rect x="512" y="88" width="216" height="170" rx="16"/><rect x="756" y="88" width="216" height="170" rx="16"/>
+    <rect x="1000" y="88" width="216" height="170" rx="16"/>
+  </g>
+  <g class="number"><text x="44" y="120">01</text><text x="288" y="120">02</text><text x="532" y="120">03</text><text x="776" y="120">04</text><text x="1020" y="120">05</text></g>
+  <g class="label"><text x="44" y="158">Observe</text><text x="288" y="158">Investigate</text><text x="532" y="158">Explain</text><text x="776" y="158">Review</text><text x="1020" y="158">Revise</text></g>
+  <g class="body">
+    <text x="44" y="197">Address, token,</text><text x="44" y="228">bounded window</text>
+    <text x="288" y="197">Select next reads</text><text x="288" y="228">Stay within scope</text>
+    <text x="532" y="197">Cite each claim;</text><text x="532" y="228">retain unknowns</text>
+    <text x="776" y="197">Select a version;</text><text x="776" y="228">record a review</text>
+    <text x="1020" y="197">Save a revision</text><text x="1020" y="228">Link to its parent</text>
+  </g>
+  <path class="line" d="M241 175H265"/><path class="line" d="M485 175H509"/><path class="line" d="M729 175H753"/><path class="line" d="M973 175H997"/>
+  <text x="30" y="322" font-size="24" font-weight="650">Evidence and version relationships travel with the report</text>
+  <g fill="#fff" stroke="#cbdfe9"><rect x="32" y="354" width="244" height="154" rx="14"/><rect x="340" y="354" width="244" height="154" rx="14"/><rect x="656" y="354" width="244" height="154" rx="14"/></g>
+  <rect x="964" y="354" width="244" height="154" rx="14" fill="#eaf8f6" stroke="#83c7c1"/>
+  <g class="label"><text x="52" y="393">Evidence</text><text x="360" y="393">v1 ZIP</text><text x="676" y="393">Review record</text><text x="984" y="393">v2 ZIP</text></g>
+  <g class="small">
+    <text x="52" y="431">Logs, receipts, state</text><text x="52" y="463">Sources + raw bytes</text>
+    <text x="360" y="431">Report + evidence</text><text x="360" y="463">Manifest file digests</text>
+    <text x="676" y="431">Selected version ID</text><text x="676" y="463">Digest + comment</text>
+    <text x="984" y="431">Correction + evidence</text><text x="984" y="463">Review + parent hash</text>
+  </g>
+  <path class="line" d="M277 426H337"/><text x="281" y="413" class="small">pack</text>
+  <path class="line" d="M585 426H653"/><text x="595" y="413" class="small">bind</text>
+  <path class="line" d="M901 426H961"/><text x="904" y="413" class="small">carry</text>
+  <path class="line" d="M1086 509V558H462V510"/>
+  <rect x="559" y="544" width="422" height="29" fill="#f5faff"/>
+  <text x="770" y="565" text-anchor="middle" class="small">v2's parent manifest digest points to v1</text>
+  <text x="30" y="602" class="small">Download a version ZIP → Check file digests and citation structure → Read the sources to assess the facts</text>
+</svg>

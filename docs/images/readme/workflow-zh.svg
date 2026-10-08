@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="624" viewBox="0 0 1240 624" role="img" aria-labelledby="title description">
+  <title id="title">ClueTide GCC 调查与交接流程</title>
+  <desc id="description">五步流程为观察、调查、解释、复核、更正。原始证据进入 v1 案卷；复核绑定所选版本的 ID 与内容摘要；v2 保留更正及父版本 manifest 摘要，原版本继续可查。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 9 5 0 9" fill="none" stroke="#208b96" stroke-width="1.6"/></marker>
+    <style>text{font-family:'Segoe UI','Microsoft YaHei',sans-serif;fill:#173d58}.label{font-size:26px;font-weight:650}.body{font-size:21px;fill:#456479}.small{font-size:19px;fill:#456479}.number{font-size:18px;font-weight:700;fill:#087f8c}.line{fill:none;stroke:#208b96;stroke-width:2;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect x="1" y="1" width="1238" height="622" rx="22" fill="#f5faff" stroke="#d7e6ef"/>
+  <text x="30" y="51" font-size="29" font-weight="650">从一次观察，到下一位同事能够核对的案卷</text>
+  <g fill="#fff" stroke="#cbdfe9">
+    <rect x="24" y="88" width="216" height="170" rx="16"/><rect x="268" y="88" width="216" height="170" rx="16"/>
+    <rect x="512" y="88" width="216" height="170" rx="16"/><rect x="756" y="88" width="216" height="170" rx="16"/>
+    <rect x="1000" y="88" width="216" height="170" rx="16"/>
+  </g>
+  <g class="number"><text x="44" y="120">01</text><text x="288" y="120">02</text><text x="532" y="120">03</text><text x="776" y="120">04</text><text x="1020" y="120">05</text></g>
+  <g class="label"><text x="44" y="158">观察</text><text x="288" y="158">调查</text><text x="532" y="158">解释</text><text x="776" y="158">复核</text><text x="1020" y="158">更正</text></g>
+  <g class="body">
+    <text x="44" y="197">地址、代币</text><text x="44" y="228">与有限区块窗口</text>
+    <text x="288" y="197">按证据选择补查</text><text x="288" y="228">遵守范围与预算</text>
+    <text x="532" y="197">主张连接引用</text><text x="532" y="228">保留未知与边界</text>
+    <text x="776" y="197">选定确切版本</text><text x="776" y="228">核读并记录意见</text>
+    <text x="1020" y="197">基于当前父版本</text><text x="1020" y="228">保存新的解释</text>
+  </g>
+  <path class="line" d="M241 175H265"/><path class="line" d="M485 175H509"/><path class="line" d="M729 175H753"/><path class="line" d="M973 175H997"/>
+  <text x="30" y="322" font-size="24" font-weight="650">随报告一起交接的证据与版本关系</text>
+  <g fill="#fff" stroke="#cbdfe9"><rect x="32" y="354" width="244" height="154" rx="14"/><rect x="340" y="354" width="244" height="154" rx="14"/><rect x="656" y="354" width="244" height="154" rx="14"/></g>
+  <rect x="964" y="354" width="244" height="154" rx="14" fill="#eaf8f6" stroke="#83c7c1"/>
+  <g class="label"><text x="52" y="393">原始证据</text><text x="360" y="393">v1 案卷 ZIP</text><text x="676" y="393">复核记录</text><text x="984" y="393">v2 案卷 ZIP</text></g>
+  <g class="small">
+    <text x="52" y="431">转账 · 回执 · 状态</text><text x="52" y="463">来源定位与原始字节</text>
+    <text x="360" y="431">报告 · 引用 · 证据</text><text x="360" y="463">manifest 文件摘要</text>
+    <text x="676" y="431">所选版本 ID</text><text x="676" y="463">内容摘要与复核意见</text>
+    <text x="984" y="431">更正报告 · 原始证据</text><text x="984" y="463">复核记录 · 父摘要</text>
+  </g>
+  <path class="line" d="M277 426H337"/><text x="285" y="413" class="small">收录</text>
+  <path class="line" d="M585 426H653"/><text x="600" y="413" class="small">绑定</text>
+  <path class="line" d="M901 426H961"/><text x="909" y="413" class="small">承接</text>
+  <path class="line" d="M1086 509V558H462V510"/>
+  <rect x="559" y="544" width="422" height="29" fill="#f5faff"/>
+  <text x="770" y="565" text-anchor="middle" class="small">v2 的父 manifest 摘要指向 v1</text>
+  <text x="30" y="602" class="small">下载选定 ZIP → 浏览器核对文件摘要与引用结构 → 结合原始来源复核事实</text>
+</svg>

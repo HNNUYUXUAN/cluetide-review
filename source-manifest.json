@@ -10,8 +10,8 @@
       "source_commit": "1b2fdd5d152f51e99d28563e10db39c94d015e3f",
       "source_sha256": "b01f7d1b9b5d1ad7594e9c3486b743be4e182080fd555beed44d6df83137c889",
       "source_bytes": 186,
-      "sha256": "3c3d1cd1aeed492ff4ae09e15c51b535267cde32786416dbce7c1a7936ed6a05",
-      "bytes": 201,
+      "sha256": "964907d9482738e24cd5ab00a6fe3a3dd4a77da74104f7c65ffa51168e101b7f",
+      "bytes": 310,
       "derivation": "release_adaptation"
     },
     {
@@ -4605,6 +4605,194 @@
       "sha256": "90e7f0ad427805a8372226d3deb3d064a5becb98e401f12edc20dd7b36f50566",
       "bytes": 13646,
       "derivation": "preserved_bytes"
+    },
+    {
+      "path": ".gitignore",
+      "source_path": ".gitignore",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "fa0f0ca0effe2f84defa7591d1d34d8f9689d8b9c63230c5c680c8e44bcac7be",
+      "source_bytes": 165,
+      "derivation": "preserved_release_file",
+      "bytes": 165,
+      "sha256": "fa0f0ca0effe2f84defa7591d1d34d8f9689d8b9c63230c5c680c8e44bcac7be"
+    },
+    {
+      "path": "README.en.md",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 7056,
+      "sha256": "c3a5ffb8358eb73193dd518fd6c42c3252a278dd5009ae75bcb86ac557adc6f5"
+    },
+    {
+      "path": "README.md",
+      "source_path": "README.md",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "20d126fb02d6867a6dc87dc2898d9af5b44681143ef00a598873aac2e7216d02",
+      "source_bytes": 10864,
+      "derivation": "release_documentation",
+      "bytes": 5739,
+      "sha256": "2795e57d042856f1193b872c3aea594a663fdb7dff87a118301dfc9409f4ce1e"
+    },
+    {
+      "path": "SOURCE.md",
+      "source_path": "SOURCE.md",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "f29131fa380b0476ca992fb2babd41e1f6f32635422a8fb466f183bf7c886232",
+      "source_bytes": 4633,
+      "derivation": "release_documentation",
+      "bytes": 5233,
+      "sha256": "77db5417387676f32dd6858dc84bada016a4b4bb237b301147c55f6fc2758951"
+    },
+    {
+      "path": "data/attribution/README.md",
+      "source_path": "data/attribution/README.md",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "a8b63350b02269d25b1c1861dbfca2c8101a2b03f053ec1efe6c3aac6a464edc",
+      "source_bytes": 2125,
+      "derivation": "preserved_release_file",
+      "bytes": 2125,
+      "sha256": "a8b63350b02269d25b1c1861dbfca2c8101a2b03f053ec1efe6c3aac6a464edc"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "source_path": "docs/DEVELOPMENT.md",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "943aa8dc66f6674bc741d15ca582708f3e3d671b7054528cecee89d52f6516d4",
+      "source_bytes": 5074,
+      "derivation": "preserved_release_file",
+      "bytes": 5074,
+      "sha256": "943aa8dc66f6674bc741d15ca582708f3e3d671b7054528cecee89d52f6516d4"
+    },
+    {
+      "path": "docs/REVIEW.md",
+      "source_path": "docs/REVIEW.md",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "13b0c5d31f43954d040fb64359f1e7be4738209f8ce934aef81ca6e1adb708e8",
+      "source_bytes": 3299,
+      "derivation": "preserved_release_file",
+      "bytes": 3299,
+      "sha256": "13b0c5d31f43954d040fb64359f1e7be4738209f8ce934aef81ca6e1adb708e8"
+    },
+    {
+      "path": "docs/SUBMISSION.md",
+      "source_path": "docs/SUBMISSION.md",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "4c8472cf2fd4c92e505a45af2e2e745957415c2e51d3069a3bdd102509d69451",
+      "source_bytes": 1646,
+      "derivation": "preserved_release_file",
+      "bytes": 1646,
+      "sha256": "4c8472cf2fd4c92e505a45af2e2e745957415c2e51d3069a3bdd102509d69451"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "source_path": "docs/VALIDATION.md",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "4d0265da5f07ec1dd6bf1e1b49a7ccd6046ca14e1d58393ae7257b2f66cf42ff",
+      "source_bytes": 3397,
+      "derivation": "preserved_release_file",
+      "bytes": 3397,
+      "sha256": "4d0265da5f07ec1dd6bf1e1b49a7ccd6046ca14e1d58393ae7257b2f66cf42ff"
+    },
+    {
+      "path": "docs/images/readme/hero.png",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 1828424,
+      "sha256": "35859985fe949da0d77baa9446f05c2730601a44676936b73825775adaced7ad"
+    },
+    {
+      "path": "docs/images/readme/investigation.jpg",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 75553,
+      "sha256": "e123d1d7d64627b40fb7056a0e7101cfbee6341fd6bc83b8f0585c5914dc939f"
+    },
+    {
+      "path": "docs/images/readme/language-en.svg",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 597,
+      "sha256": "f7183c58000540dcf0ce2775645eb76601943de01cb3c29334ad9c49547e25c7"
+    },
+    {
+      "path": "docs/images/readme/language-zh.svg",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 613,
+      "sha256": "e8318169d439283073b33298aa498d5862e4a5506fc2b72a0dc13fb7ad6ba190"
+    },
+    {
+      "path": "docs/images/readme/review.jpg",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 76178,
+      "sha256": "f0688d4772ec84456a527fd2b664fb0532c9f425b038e700bc15a267d5981927"
+    },
+    {
+      "path": "docs/images/readme/verify.jpg",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 86967,
+      "sha256": "50177d7e60ba009887c1bb634f24116b9388721102590a14a80020ec3dd4d3a2"
+    },
+    {
+      "path": "docs/images/readme/workflow-en.svg",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 4288,
+      "sha256": "c6bd731d9a6d99a08e3854d8589c4a8da247b2ec21aa6348a1fcfb791422a6de"
+    },
+    {
+      "path": "docs/images/readme/workflow-zh.svg",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 4289,
+      "sha256": "db16382dacf993139fd057afafb19ffce4b57ddcd4149e89718b464724662585"
+    },
+    {
+      "path": "docs/readme-assets.json",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 4153,
+      "sha256": "67036b2ac5f2c1bc1628f60826f8ba3d777c955e8cc9d6ed3601051fccbf4660"
+    },
+    {
+      "path": "docs/readme-assets.md",
+      "source_path": null,
+      "source_commit": null,
+      "derivation": "release_documentation",
+      "bytes": 2478,
+      "sha256": "a14af296d6b6c755b2314f497b2a3d6e955dabe760fb211addbea2e93274d671"
+    },
+    {
+      "path": "frontend/README.md",
+      "source_path": "frontend/README.md",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "7d452296394ce17a5d7b2a696df41a3b507c6b4c547e378cbd2d5d353e78b598",
+      "source_bytes": 1014,
+      "derivation": "preserved_release_file",
+      "bytes": 1014,
+      "sha256": "7d452296394ce17a5d7b2a696df41a3b507c6b4c547e378cbd2d5d353e78b598"
+    },
+    {
+      "path": "scripts/verify_sources.py",
+      "source_path": "scripts/verify_sources.py",
+      "source_commit": "f7c36a56300a2a34f67e3287939776e4b913875d",
+      "source_sha256": "e494471347dce120566d44f192f3cec3992dfe58c5b2be90e890e9073313ea88",
+      "source_bytes": 1056,
+      "derivation": "preserved_release_file",
+      "bytes": 1056,
+      "sha256": "e494471347dce120566d44f192f3cec3992dfe58c5b2be90e890e9073313ea88"
     }
   ]
 }
