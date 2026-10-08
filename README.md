@@ -14,11 +14,11 @@ ClueTide connects event investigation, evidence interpretation, and version-awar
 ## 三分钟评审路线 · A three-minute review
 
 1. **GCC：观察 → 解释。** 打开 UNI 回放，再切换 Euler。检查观察窗口、原始来源、候选解释和待核事项，下载证据包并在复验工具中打开。
-2. **BOT：版本 → 复核 → 更正。** 沿 UNI 案卷查看 v1、绑定 v1 的复核及承接 v1 的 v2；打开真实 BOT 测试网交易，核对每一步的版本和内容承诺。
+2. **BOT：版本 → 复核 → 更正。** 沿 UNI 案卷查看 v1、绑定 v1 的复核及承接 v1 的 v2；打开真实 BOT 主网交易，核对每一步的版本和内容承诺。
 3. **复现。** 在所选赛道分支按 README 安装锁定依赖，运行本地完整服务，检查调查、导出、导入、复核和更正路径。
 
 1. **GCC: observation → interpretation.** Open the UNI replay, then Euler. Inspect the bounded window, source observations, candidate explanations, and unresolved questions. Download a bundle and open it in the verifier.
-2. **BOT: version → review → correction.** Follow the UNI case through v1, its version-bound review, and v2 with its parent preserved. Open the recorded BOT testnet transactions and inspect each commitment.
+2. **BOT: version → review → correction.** Follow the UNI case through v1, its version-bound review, and v2 with its parent preserved. Open the recorded BOT mainnet transactions and inspect each commitment.
 3. **Reproduce.** Follow the selected branch's README to install locked dependencies and run the full local service, including investigation, export, import, review, and correction.
 
 ## GCC · 调查与证据 / Investigation and evidence
@@ -33,9 +33,13 @@ GCC organizes investigations around public UNI and Euler events. Bounded windows
 
 ![ClueTide BOT English interface: evidence version provenance](docs/images/bot-product.jpg)
 
-BOT 将内容承诺、指定版本的复核以及父子版本关系写入 `ClueTideRegistry`。演示读取 2026-10-08 归档的真实测试网记录：两个版本、一次复核、三笔业务交易。
+BOT 将内容承诺、指定版本的复核以及父子版本关系写入 `ClueTideRegistry`。演示读取 2026-10-08 核验归档的 BOT 主网 677 记录：合约部署、两个版本、一次复核，共四笔成功交易。
 
-BOT records content commitments, reviews bound to exact versions, and parent-child relationships in `ClueTideRegistry`. The demo presents real testnet records archived on 8 October 2026: two versions, one review, and three transactions.
+BOT records content commitments, reviews bound to exact versions, and parent-child relationships in `ClueTideRegistry`. The demo presents verified BOT Mainnet 677 records archived on 8 October 2026: contract deployment, two versions, and one review across four successful transactions.
+
+**主网合约 / Mainnet registry:** [`0x951f7b5c68adba4cefd7fa851cb8e030426e81aa`](https://scan.botchain.ai/address/0x951f7b5c68adba4cefd7fa851cb8e030426e81aa) · [主网凭证 / Mainnet proof](https://hnnuyuxuan.github.io/cluetide-app/bot/mainnet/bot-mainnet-workflow-20261008.json)
+
+实际总 Gas：0.04501682 BOT。 / Actual total gas cost: 0.04501682 BOT.
 
 ```mermaid
 flowchart LR
