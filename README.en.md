@@ -50,8 +50,8 @@ We suggest starting with the public examples to follow a complete case. Run the 
 | **GCC** | [English development guide](https://github.com/HNNUYUXUAN/cluetide-review/blob/GCC/README.en.md) |
 | **BOT** | [English development guide](https://github.com/HNNUYUXUAN/cluetide-review/tree/BOT) |
 
-The source repository is currently private and requires repository access. Both web demos are publicly accessible. We maintain source provenance, dependency locks, and validation notes with each product. Our own source uses the [MIT License](LICENSE); evidence materials and third-party components include their applicable attribution and notices.
+We maintain source, setup instructions, dependency locks, and validation notes with each product. Our own source uses the [MIT License](LICENSE); evidence materials and third-party components include their applicable provenance, attribution, and notices.
 
-[Release verification](docs/release.md) · [Submission materials](docs/submission.md) · [中文](README.md)
+[Product release and validation](docs/release.md) · [Project and mainnet evidence](docs/submission.md) · [中文](README.md)
 
 [Image sources](docs/readme-assets.md)

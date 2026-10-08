@@ -50,8 +50,8 @@
 | **GCC** | [中文开发入口](https://github.com/HNNUYUXUAN/cluetide-review/tree/GCC) |
 | **BOT** | [中文开发入口](https://github.com/HNNUYUXUAN/cluetide-review/blob/BOT/README.zh-CN.md) |
 
-源码仓库当前为私有，访问需要仓库权限；两个在线体验可公开访问。我们在各分支保留来源、依赖锁定和验证说明，自有源码采用 [MIT 许可](LICENSE)，证据素材及第三方组件随附各自声明。
+我们在各分支维护源码、启动步骤、依赖锁定和验证说明。自有源码采用 [MIT 许可](LICENSE)，证据素材及第三方组件随附各自来源与声明。
 
-[发布验收](docs/release.md) · [提交资料](docs/submission.md) · [English](README.en.md)
+[产品发布与验证](docs/release.md) · [项目与主网凭证](docs/submission.md) · [English](README.en.md)
 
 [配图来源](docs/readme-assets.md)

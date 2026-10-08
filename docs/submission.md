@@ -1,4 +1,4 @@
-# 作品提交信息 · Submission details
+# ClueTide 项目与主网凭证 · Project and mainnet evidence
 
 | 字段 / Field | 内容 / Value |
 | --- | --- |
@@ -9,21 +9,20 @@
 | BOT 源码 / BOT source | https://github.com/HNNUYUXUAN/cluetide-review/tree/BOT |
 | GCC Demo | https://hnnuyuxuan.github.io/cluetide-app/gcc/ |
 | BOT Demo | https://hnnuyuxuan.github.io/cluetide-app/bot/ |
-| 当前仓库可见性 / Current visibility | 私有 / Private |
 
-## 可直接填写的说明
+## 产品说明
 
-ClueTide 的拟开源评审仓库当前为私有。main 分支提供 GCC 与 BOT 两个独立赛道的评审导航；各赛道分支附源码、图文说明、在线 Demo、来源与本地复现步骤。请主办方确认私有仓库的评审访问安排；如按公开仓库要求提交，由项目作者在正式提交前切换可见性。Demo 页面已采用公开案例及可分发材料。
+我们通过 ClueTide GCC 组织链上调查、证据和解释，通过 ClueTide BOT 保存内容承诺、指定版本复核与更正关系。`main` 提供两个产品的入口；`GCC` 与 `BOT` 分支分别维护源码、图文说明、在线应用、来源及本地运行步骤。在线应用提供公开案例，完整调查和持久化案件功能通过本地服务运行。
 
-本文件提供填写内容。表单提交、主办方联系及评审账号授权以实际执行记录为准。
+GCC 的 UNI 与 Euler 回放使用公开链上观测和明确标注的合成报告。BOT 的 UNI 案例展示真实归档模型报告及主网版本关系；作者与复核者在演示中使用同一钱包，两项引用仍缺少匹配的原始 RPC 观测。证据包、来源和验证范围均可沿产品文档核查。
 
-## Suggested form note
+## Product description
 
-ClueTide's review repository is currently private and prepared for open-source publication. The main branch directs reviewers to separate GCC and BOT branches, each with source, illustrated documentation, a live demo, attribution, and local reproduction steps. Please confirm a private-repository review arrangement with the organizers; otherwise, the project author can make the repository public before formal submission. The demo sites use public cases and distributable materials.
+We use ClueTide GCC to organize on-chain investigations, evidence, and explanations, and ClueTide BOT to preserve content commitments, exact-version reviews, and corrections. The `main` branch introduces both products. The `GCC` and `BOT` branches each maintain source, illustrated documentation, a hosted application, provenance, and local setup instructions. Hosted applications provide public cases; full investigations and persistent case history run through the local service.
 
-This file supplies the form content. Form submission, organizer contact, and reviewer access grants are recorded separately when performed.
+GCC's UNI and Euler replays combine public on-chain observations with clearly labelled synthetic reports. BOT's UNI case presents real archived model reports and mainnet version relationships. Its demonstration uses the same wallet for author and reviewer, and two citation references still lack matching raw RPC observations. Product documentation links the evidence packages, sources, and validation scope.
 
-## BOT 主网提交凭证 · Mainnet submission evidence
+## BOT 主网凭证 · Mainnet evidence
 
 **BOT Chain主网合约或应用地址**
 
@@ -45,4 +44,4 @@ This file supplies the form content. Form submission, organizer contact, and rev
 
 All four transactions succeeded. Mainnet RPC verification checked receipts, canonical blocks, deployment bytecode, and contract getters. The final state is version 2 with parent 1 and one review bound to version 1; total fees were 0.04501682 BOT. The [public mainnet archive](https://hnnuyuxuan.github.io/cluetide-app/bot/mainnet/bot-mainnet-workflow-20261008.json) contains the verification details.
 
-2026-10-08：上述两个字段已填写并从浏览器回读；整张报名表仍由作者补齐其他必填项后提交。 / These two fields were filled and read back on 8 October 2026; the author must complete the remaining required fields before submitting the full form.
+[产品发布与验证](release.md) · [BOT 来源说明](https://github.com/HNNUYUXUAN/cluetide-review/blob/BOT/SOURCE.md)
