@@ -68,6 +68,6 @@ Pop-Location
 
 打开 [本地工作台](http://127.0.0.1:5186/)。默认使用公开缓存与离线模型，页面与 `/api` 由同一服务提供，案件保存在 `local-data/`。Windows 是本版验证平台；Linux/macOS 启动见 [English README](README.en.md)，测试、打包与配置见[开发说明](docs/DEVELOPMENT.md)，实测范围见[验证记录](docs/VALIDATION.md)。
 
-我们保留[案卷原始来源](data/cases/uniswap93/README.md)、[Euler 证据范围](data/cases/euler-20230313/README.md)及[来源清单](source-manifest.json)，方便你继续核查。产品源码选自 `1b2fdd5d152f51e99d28563e10db39c94d015e3f`，选取和改编关系见 [SOURCE.md](SOURCE.md)。自有代码采用 [MIT 许可](LICENSE)，第三方材料遵循[各自的署名与条款](data/attribution/README.md)。完整体验路线见[操作指南](docs/REVIEW.md)。
+我们保留[案卷原始来源](data/cases/uniswap93/README.md)、[Euler 证据范围](data/cases/euler-20230313/README.md)及[来源清单](source-manifest.json)，方便你继续核查。源码基线与证据来源见 [SOURCE.md](SOURCE.md)。自有代码采用 [MIT 许可](LICENSE)，第三方材料遵循[各自的署名与条款](data/attribution/README.md)。完整体验路线见[操作指南](docs/REVIEW.md)。
 
 [配图来源](docs/readme-assets.md)

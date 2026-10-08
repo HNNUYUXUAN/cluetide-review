@@ -49,4 +49,4 @@ The full package includes runtime source, tests, lockfiles, built frontend, publ
 
 `scripts/gcc_evaluate.py` and `scripts/probe_gateway.py` are explicit live-evaluation tools. Their admission logic checks configured sessions and budgets. For deterministic review, use the default offline launcher and the preserved public regression fixtures. This release makes no new model-accuracy claim.
 
-三种策略的证据覆盖与请求方式不同；比较时同时报告运行条件、请求数量、耗时及语义核读。实时评估工具保留会话与预算准入逻辑。当前审阅以离线流程和公开回归 fixture 为验收入口。
+三种策略的证据覆盖与请求方式不同；比较时同时报告运行条件、请求数量、耗时及语义核读。实时评估工具保留会话与预算准入逻辑。离线流程和公开回归 fixture 提供确定性验证入口。

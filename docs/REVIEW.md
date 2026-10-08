@@ -1,4 +1,4 @@
-# GCC 审阅指南 / Reviewer guide
+# GCC 操作指南 / Product walkthrough
 
 ## 中文路线
 
@@ -12,7 +12,7 @@
 
 ![UNI 版本更正与证据边界](images/review.png)
 
-此图为 2026-10-08 已验收 UI 截图。回放报告为合成示例，公开链上观察和来源标识保留在页面及 ZIP 内。
+此图为 2026-10-08 的产品界面截图。回放报告为合成示例，公开链上观察和来源标识保留在页面及 ZIP 内。
 
 ## English route
 
@@ -24,7 +24,7 @@
 
 **Handover.** Load the downloaded ZIP in the verification tool. It checks the fixed members, canonical JSON, digests, citations and parent-version relationship. With the local service running, import an exact historical version, review that version and save a correction against an explicit parent.
 
-The image above is an accepted UI capture dated 2026-10-08. Replay reports are synthetic examples; the page and evidence ZIP retain labels for public observations and their sources.
+The image above captures the product interface on 2026-10-08. Replay reports are synthetic examples; the page and evidence ZIP retain labels for public observations and their sources.
 
 ## 检查入口 / Code entry points
 

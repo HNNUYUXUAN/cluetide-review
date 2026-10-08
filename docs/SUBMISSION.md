@@ -1,22 +1,22 @@
-# 递交与审阅访问 / Submission and reviewer access
+# ClueTide GCC 产品资料 / Product reference
 
-## 当前用途 / Current use
+## 产品入口 / Product entry points
 
-`HNNUYUXUAN/cluetide-review` is a private review staging repository. The `GCC` branch contains the runnable GCC product, documentation, public evidence and attribution. `main` introduces both tracks; `BOT` contains the separate BOT product.
+ClueTide GCC connects Ethereum observations, bounded investigations, cited explanations, and exact-version reviews. The `GCC` branch contains the runnable product, documentation, public evidence, and attribution. [ClueTide's overview](https://github.com/HNNUYUXUAN/cluetide-review/blob/main/README.en.md) introduces both products; the [BOT branch](https://github.com/HNNUYUXUAN/cluetide-review/tree/BOT) provides content commitments and version relationships on BOT Chain.
 
-该仓库用于私有审阅暂存。`GCC` 分支提供完整 GCC 产品，`main` 为双赛道入口，`BOT` 为独立 BOT 作品。审阅者需要相应仓库权限。
+ClueTide GCC 将 Ethereum 观测、有限窗口调查、带引用的解释和指定版本复核连接起来。`GCC` 分支维护可运行产品、说明、公开证据及署名。[项目总览](https://github.com/HNNUYUXUAN/cluetide-review/tree/main)介绍两个产品；[BOT 分支](https://github.com/HNNUYUXUAN/cluetide-review/blob/BOT/README.zh-CN.md)提供 BOT Chain 上的内容承诺与版本关系。
 
-## 表单内容 / Form-ready references
+## 资料索引 / Reference index
 
 | Field / 字段 | Value / 内容 |
 | --- | --- |
 | Product / 项目 | ClueTide GCC — Ethereum event investigation and evidence review |
 | Demo / 演示 | https://hnnuyuxuan.github.io/cluetide-app/gcc/ |
 | Source / 源码 | https://github.com/HNNUYUXUAN/cluetide-review/tree/GCC |
-| Reproduction / 复现 | README.md and docs/DEVELOPMENT.md |
+| Reproduction / 复现 | [README](../README.md) and [development notes](DEVELOPMENT.md) |
 | Evidence / 证据范围 | UNI 21-block and Euler 3-block public case snapshots |
 | License / 许可 | MIT for ClueTide code; original notices for third-party materials |
 
-A private repository does not yet satisfy a requirement for publicly accessible source code. Before formal submission, confirm the organizer's current source-access rule, resolve reviewer/public access, verify the demo and source links from the intended audience, and retain the actual submission receipt.
+The hosted application provides UNI and Euler replays, evidence downloads, and browser ZIP verification. Replay reports are labelled synthetic examples drawn from public observations. Running the local service adds investigations, persistent cases, imports, exact-version reviews, and corrections. [Source provenance](../SOURCE.md) and [validation records](VALIDATION.md) identify the source baseline and observed behavior.
 
-私有仓库尚不满足公开源码访问要求。正式递交前，应核对当期规则、确定审阅与公开访问方式、从实际访问者视角检查 Demo 和源码链接，并保存正式提交回执。本文件提供填写依据，递交状态以实际回执为准。
+在线应用提供 UNI 与 Euler 回放、证据下载和浏览器 ZIP 复验，回放报告明确标注为基于公开观测的合成示例。本地服务支持调查、持久化案件、导入、指定版本复核与更正。[来源说明](../SOURCE.md)和[验证记录](VALIDATION.md)提供源码基线及实测范围。

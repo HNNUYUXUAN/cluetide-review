@@ -8,9 +8,9 @@
 | Shared research baseline / 共同研究起点 | `cf19b51af64fa289de19ccd70ab26425c09584d3` | Original GCC frontend and common investigation core / 前端与共同调查核心 |
 | Independently packaged GCC / 独立打包来源 | `f21485d7078912c5894f4d599be26314a8b24782` | Historical independently reproduced product / 历史独立复现版本 |
 
-The selected source originated in `HNNUYUXUAN/cluetide`. This repository starts its own review history. [source-manifest.json](source-manifest.json) maps the selected source paths and original digests to current release digests. The release adapts packaging, documentation, the UI source link and the regression-fixture layout. Core investigation behavior follows the maintained GCC baseline.
+The selected source originated in `HNNUYUXUAN/cluetide`. [source-manifest.json](source-manifest.json) maps the selected source paths and original digests to current release digests. The release adapts packaging, documentation, the UI source link and the regression-fixture layout. Core investigation behavior follows the maintained GCC baseline.
 
-本版从原仓库 `HNNUYUXUAN/cluetide` 的 GCC 维护提交选取源码，并建立独立审阅历史。来源清单分别记录原路径、来源提交、原摘要和本版摘要。打包、说明、页面源码入口与回归 fixture 路径按本版结构维护，调查核心行为沿用该 GCC 基线。
+本版源码来自原仓库 `HNNUYUXUAN/cluetide` 的 GCC 维护提交。来源清单分别记录原路径、来源提交、原摘要和本版摘要。打包、说明、页面源码入口与回归 fixture 路径按本版结构维护，调查核心行为沿用该 GCC 基线。
 
 ## 公开证据 / Public evidence
 
@@ -38,6 +38,6 @@ Run `python scripts/verify_sources.py` to check the indexed current bytes. SHA-2
 
 执行 `python scripts/verify_sources.py` 核对来源清单。字节一致性、来源真实性、提供者信任、解释与复核身份分别核验；有限窗口的观察支持明确范围内的结论。
 
-## Bilingual product documentation · 2026-10-08
+## Documentation assets · 2026-10-08
 
-The current README offers separate Chinese and English product narratives with language links, generated concept artwork, editable diagrams and actual product screenshots. [Visual provenance](docs/readme-assets.md) and its [asset manifest](docs/readme-assets.json) record the production briefs, image origins and exact bytes. These documentation assets are release additions; the source baseline and original evidence artifacts above retain their recorded identities. The release integrity manifest includes the final documentation and image files.
+The Chinese and English READMEs include concept illustrations, diagrams, and product screenshots. [Image provenance](docs/readme-assets.md) records each asset's origin and capture context; the [asset manifest](docs/readme-assets.json) records exact bytes. The source manifest also indexes these documentation and image files.

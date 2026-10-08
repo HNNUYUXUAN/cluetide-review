@@ -74,6 +74,6 @@ For Linux/macOS, use `python3.12 -m venv .venv`, install through `.venv/bin/pyth
 CLUETIDE_PREVIEW_ONLY=1 .venv/bin/python -m uvicorn cluetide.app:app --host 127.0.0.1 --port 5186
 ```
 
-We retain the [UNI evidence](data/cases/uniswap93/README.md), [Euler evidence](data/cases/euler-20230313/README.md) and [source manifest](source-manifest.json) for further inspection. Product source derives from commit `1b2fdd5d152f51e99d28563e10db39c94d015e3f`; [SOURCE.md](SOURCE.md) explains selection and adaptation. Our code uses the [MIT license](LICENSE), with original [third-party attribution and terms](data/attribution/README.md) preserved. The [walkthrough](docs/REVIEW.md) provides a fuller route through the product.
+We retain the [UNI evidence](data/cases/uniswap93/README.md), [Euler evidence](data/cases/euler-20230313/README.md) and [source manifest](source-manifest.json) for further inspection. [SOURCE.md](SOURCE.md) identifies the source baseline and evidence provenance. Our code uses the [MIT license](LICENSE), with original [third-party attribution and terms](data/attribution/README.md) preserved. The [walkthrough](docs/REVIEW.md) provides a fuller route through the product.
 
 [Image sources](docs/readme-assets.md)

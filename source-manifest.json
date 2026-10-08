@@ -4621,8 +4621,8 @@
       "source_path": null,
       "source_commit": null,
       "derivation": "release_documentation",
-      "bytes": 7056,
-      "sha256": "c3a5ffb8358eb73193dd518fd6c42c3252a278dd5009ae75bcb86ac557adc6f5"
+      "bytes": 6998,
+      "sha256": "3f98db50cd7712b1c7cc3c587cb6ae7e8dc793748ad669592fb09dca96031fb1"
     },
     {
       "path": "README.md",
@@ -4631,8 +4631,8 @@
       "source_sha256": "20d126fb02d6867a6dc87dc2898d9af5b44681143ef00a598873aac2e7216d02",
       "source_bytes": 10864,
       "derivation": "release_documentation",
-      "bytes": 5739,
-      "sha256": "2795e57d042856f1193b872c3aea594a663fdb7dff87a118301dfc9409f4ce1e"
+      "bytes": 5681,
+      "sha256": "ad9b7843f364415885f6149df4b3b2dcedff52b50409dec1e2cfd697355d1d71"
     },
     {
       "path": "SOURCE.md",
@@ -4641,8 +4641,8 @@
       "source_sha256": "f29131fa380b0476ca992fb2babd41e1f6f32635422a8fb466f183bf7c886232",
       "source_bytes": 4633,
       "derivation": "release_documentation",
-      "bytes": 5233,
-      "sha256": "77db5417387676f32dd6858dc84bada016a4b4bb237b301147c55f6fc2758951"
+      "bytes": 4919,
+      "sha256": "605d0cd3f7d267b1fcfbbc7740af2043d10720a914ac4631ffb8c5be1ba607a0"
     },
     {
       "path": "data/attribution/README.md",
@@ -4661,8 +4661,8 @@
       "source_sha256": "943aa8dc66f6674bc741d15ca582708f3e3d671b7054528cecee89d52f6516d4",
       "source_bytes": 5074,
       "derivation": "preserved_release_file",
-      "bytes": 5074,
-      "sha256": "943aa8dc66f6674bc741d15ca582708f3e3d671b7054528cecee89d52f6516d4"
+      "bytes": 5071,
+      "sha256": "3daa03e3ca5988c2325181f725a944a8c4f50d81404603f2e3c1117c93376d75"
     },
     {
       "path": "docs/REVIEW.md",
@@ -4671,8 +4671,8 @@
       "source_sha256": "13b0c5d31f43954d040fb64359f1e7be4738209f8ce934aef81ca6e1adb708e8",
       "source_bytes": 3299,
       "derivation": "preserved_release_file",
-      "bytes": 3299,
-      "sha256": "13b0c5d31f43954d040fb64359f1e7be4738209f8ce934aef81ca6e1adb708e8"
+      "bytes": 3308,
+      "sha256": "3fabeb13122cc9179b2e30d6bb45ce58e7ddd211d2645b868c25a1dd0bac95ec"
     },
     {
       "path": "docs/SUBMISSION.md",
@@ -4681,8 +4681,8 @@
       "source_sha256": "4c8472cf2fd4c92e505a45af2e2e745957415c2e51d3069a3bdd102509d69451",
       "source_bytes": 1646,
       "derivation": "preserved_release_file",
-      "bytes": 1646,
-      "sha256": "4c8472cf2fd4c92e505a45af2e2e745957415c2e51d3069a3bdd102509d69451"
+      "bytes": 2304,
+      "sha256": "cfa13e285f6057c35d768d391f5ad835e5f74bc229700179b33c5e063d44addf"
     },
     {
       "path": "docs/VALIDATION.md",
