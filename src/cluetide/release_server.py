@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+import re
 from urllib.parse import urlsplit
 
 from fastapi import FastAPI, Request
@@ -33,10 +34,15 @@ def _deployment_origin(value: str | None) -> tuple[str | None, str | None]:
 
 def create_release_app(*, service: ReleaseService | None = None,
                        public_origin: str | None = None,
+                       codespaces_origin_rewrite: bool = False,
                        dist: Path | None = None) -> FastAPI:
     """Expose release APIs without the investigation or paid-model endpoints."""
-    service = service or ReleaseService(LOCAL_DATA / "release-witness")
     origin, host = _deployment_origin(public_origin)
+    if codespaces_origin_rewrite and (
+            not host or len(host.split(".")[0]) > 63
+            or not re.fullmatch(r"[a-z0-9](?:[a-z0-9-]*[a-z0-9])?-8787\.app\.github\.dev", host)):
+        raise ValueError("Codespaces origin rewriting requires a port 8787 app.github.dev origin")
+    service = service or ReleaseService(LOCAL_DATA / "release-witness")
     allowed_hosts = {"127.0.0.1", "localhost", "testserver"}
     if host:
         allowed_hosts.add(host)
@@ -52,7 +58,14 @@ def create_release_app(*, service: ReleaseService | None = None,
         if request.url.hostname not in allowed_hosts:
             return JSONResponse({"detail": "Application host is not configured"}, status_code=403)
         incoming_origin = request.headers.get("origin")
-        if incoming_origin and incoming_origin not in local_origins | ({origin} if origin else set()):
+        rewritten_same_origin = (
+            codespaces_origin_rewrite
+            and incoming_origin == "https://localhost:8787"
+            and request.url.hostname == host
+            and request.headers.get("sec-fetch-site") == "same-origin"
+        )
+        if (incoming_origin and incoming_origin not in local_origins | ({origin} if origin else set())
+                and not rewritten_same_origin):
             return JSONResponse({"detail": "Same-origin request required"}, status_code=403)
         if request.method != "GET" and request.headers.get("sec-fetch-site") == "cross-site":
             return JSONResponse({"detail": "Same-origin request required"}, status_code=403)
@@ -80,4 +93,7 @@ def create_release_app(*, service: ReleaseService | None = None,
     return application
 
 
-app = create_release_app(public_origin=os.environ.get("CLUETIDE_PUBLIC_ORIGIN"))
+app = create_release_app(
+    public_origin=os.environ.get("CLUETIDE_PUBLIC_ORIGIN"),
+    codespaces_origin_rewrite=os.environ.get("CLUETIDE_CODESPACES_ORIGIN_REWRITE") == "1",
+)

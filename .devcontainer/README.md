@@ -14,6 +14,14 @@ https://<codespace-name>-8787.app.github.dev
 
 The default forwarding domain is `app.github.dev`. The launcher sets `CLUETIDE_PUBLIC_ORIGIN` to the exact forwarded HTTPS origin before importing the application. GitHub terminates HTTPS; the container serves HTTP internally.
 
+Codespaces rewrites a matching public `Origin` header to `https://localhost:8787`. The launcher explicitly enables compatibility for this exact alias. The application accepts it only with its configured public host and `Sec-Fetch-Site: same-origin`; foreign origins and cross-site mutations remain rejected. Ordinary CLI requests without an Origin header use the same task-scoped package-write capability rules.
+
+Authenticated SSH sessions may omit platform environment variables. When maintaining this instance over SSH, provide the known Codespace name explicitly:
+
+```bash
+CODESPACE_NAME=<codespace-name> bash scripts/codespaces-start.sh
+```
+
 ## Sharing the review
 
 Port 8787 is forwarded automatically and remains private until its visibility is changed explicitly. An authorized operator can run:
