@@ -1,7 +1,7 @@
 """Bounded English release API, independently mountable on a release-only server."""
 import json
 
-from fastapi import APIRouter, HTTPException, Request, Response
+from fastapi import APIRouter, Header, HTTPException, Request, Response
 from pydantic import ValidationError
 from starlette.concurrency import run_in_threadpool
 
@@ -59,15 +59,20 @@ def create_release_router(service: ReleaseService) -> APIRouter:
         return await call(service.list_tasks)
 
     @router.post("/tasks", status_code=201)
-    async def create_task(request: Request):
-        return await call(service.create_task, await body(request, CreateTask))
+    async def create_task(request: Request, response: Response):
+        task = await call(service.create_task, await body(request, CreateTask))
+        key = await call(service.issue_task_write_key, task["task_id"])
+        response.headers["Cache-Control"] = "no-store"
+        return {**task, "write_key": key}
 
     @router.get("/tasks/{task_id}")
     async def task(task_id: str):
         return await call(service.get_task, task_id)
 
     @router.post("/tasks/{task_id}/versions", status_code=201)
-    async def version(task_id: str, request: Request):
+    async def version(task_id: str, request: Request,
+                      write_key: str | None = Header(default=None, alias="X-ClueTide-Task-Key")):
+        await call(service.authorize_task_write_key, task_id, write_key)
         return await call(service.create_version, task_id, await body(request, CreateVersion))
 
     @router.get("/tasks/{task_id}/bundle")

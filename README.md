@@ -33,6 +33,14 @@ python -m uvicorn cluetide.release_server:app --host 127.0.0.1 --port 8787 --no-
 
 [requirements.txt](requirements.txt) contains the same pinned runtime dependencies as [pyproject.toml](pyproject.toml). [requirements-dev.txt](requirements-dev.txt) adds the local test tools. The Solidity compiler is an optional, separately supplied build tool. [frontend/README.md](frontend/README.md) describes the UI entry points.
 
+## Codespaces review
+
+Create a GitHub Codespace from this branch to install the pinned Python dependencies, build the English UI, and start the release API automatically. The included [Codespaces configuration and operating guide](.devcontainer/README.md) explains this one-step environment setup, private state, startup logs, recovery, and explicit public-port sharing.
+
+The API and UI share `https://<codespace-name>-8787.app.github.dev`. The startup script configures this exact origin and binds the application to port 8787. Port visibility is private until an authorized operator explicitly makes it public.
+
+This is a temporary review environment. Provision the review Codespace with a **30-minute idle timeout**. GitHub stops a running session after at most **12 hours**, including active sessions; resuming requires a start and a fresh port visibility check. Workspace state survives stop/start and container rebuild, while deleting the Codespace removes its state. See [GitHub's Codespaces lifecycle](https://docs.github.com/en/codespaces/about-codespaces/the-codespace-lifecycle) and the operating guide for these limits and recovery steps.
+
 ## Workflow and wallet responsibility
 
 1. Create a task with fixed owner, proposer, reviewer, executor, receipt signer, and demo target. The reviewer wallet must differ from the proposer wallet.
@@ -52,6 +60,14 @@ python scripts/agent_release.py config
 python scripts/agent_release.py tasks
 python scripts/agent_release.py --help
 ```
+
+## Task package-write access
+
+Creating a task returns a task-scoped package-write capability once in the creation response. Treat this value as a secret. The browser retains it on the creating device. The Agent CLI removes it from standard output and stores it in the ignored private file `local-data/agent-write-access.json`, indexed by service origin and task ID. Preserve this access file privately when moving the Agent client. The CLI also accepts an explicitly supplied `CLUETIDE_TASK_WRITE_KEY` environment variable for version submission.
+
+Adding a version requires the capability in the `X-ClueTide-Task-Key` request header. Public task reads and downloaded bundles do not reveal it. A service operator can recover access by calling `ReleaseService.issue_task_write_key(task_id)` locally and delivering the new secret privately to the task creator; rotation invalidates the previous key. There is no public HTTP route for this operator recovery function.
+
+This capability controls off-chain package writes. Contract roles, version approval, approval consumption, and receipt commitments still require their independently checked on-chain roles and actual wallet signatures. Keeping a package-write capability does not grant a reviewer or executor wallet role.
 
 ## Deployment configuration
 
@@ -109,6 +125,7 @@ The compiler's required SHA-256 is `ccbd3ed44d5fbd26fe039702d403421f1212d2e8752e
 | [src/cluetide/releases.py](src/cluetide/releases.py) | Exact packages, controlled publisher, signed receipts |
 | [src/cluetide/release_chain.py](src/cluetide/release_chain.py) | Unsigned transactions and read-only verification |
 | [contracts](contracts) | Release witness source, artifact, and pinned compilation |
+| [.devcontainer](.devcontainer/README.md) | Automated temporary Codespaces review environment |
 | [tests](tests) | Release unit, API, bytecode, and integration checks |
 
 Shared Python modules and frontend type dependencies retain their source bytes. Third-party frontend notices are preserved in [frontend/public/licenses](frontend/public/licenses). Dependency licenses remain subject to their original terms.

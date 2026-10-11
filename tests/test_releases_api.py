@@ -1,8 +1,11 @@
 """Public request boundaries and real release routes with isolated test storage."""
 import json
+import hashlib
+import io
 import time
 import asyncio
 import threading
+import zipfile
 
 import httpx
 import pytest
@@ -30,7 +33,8 @@ async def test_api_exact_package_real_execution_and_safe_artifact_download(servi
             "proposer": OWNER, "reviewer": REVIEWER, "executor": EXECUTOR})
         assert response.status_code == 201
         task_id = response.json()["task_id"]
-        response = await client.post(f"/api/releases/tasks/{task_id}/versions", json={"summary": "Publish build",
+        write_key = response.json()["write_key"]
+        response = await client.post(f"/api/releases/tasks/{task_id}/versions", headers={"X-ClueTide-Task-Key": write_key}, json={"summary": "Publish build",
             "source_reference": "git:test", "artifact_text": "<h1>Approved build</h1>", "test_evidence": ["Build passed"],
             "expires_at": int(time.time()) + 3600})
         assert response.status_code == 201
@@ -113,3 +117,124 @@ async def test_concurrent_initial_config_and_task_list_both_complete(service_app
     assert config.status_code == tasks.status_code == 200
     assert config.json()["executor"]["receipt_signer"].startswith("0x")
     assert tasks.json() == {"tasks": []}
+
+
+def task_payload(title="Capability release"):
+    return {"title": title, "owner": OWNER, "proposer": OWNER,
+            "reviewer": REVIEWER, "executor": EXECUTOR}
+
+
+def version_payload():
+    return {"summary": "Bounded publication", "source_reference": "git:capability-test",
+            "artifact_text": "<h1>Exact release</h1>", "test_evidence": ["Build passed"],
+            "expires_at": int(time.time()) + 3600}
+
+
+@pytest.mark.asyncio
+async def test_task_capability_is_required_and_cannot_write_another_task(service_app):
+    service, app = service_app
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
+        first = (await client.post("/api/releases/tasks", json=task_payload("First release"))).json()
+        second = (await client.post("/api/releases/tasks", json=task_payload("Second release"))).json()
+        assert len(first["write_key"]) == len(second["write_key"]) == 43
+        assert first["write_key"] != second["write_key"]
+        path = f"/api/releases/tasks/{first['task_id']}/versions"
+        for key in (None, "invalid-key", "A" * 43, second["write_key"]):
+            headers = {} if key is None else {"X-ClueTide-Task-Key": key}
+            response = await client.post(path, headers=headers, json=version_payload())
+            assert response.status_code == 403
+            assert response.json() == {"detail": "A valid task write key is required to add a release package."}
+            if key:
+                assert key not in response.text
+        assert service.get_task(first["task_id"])["version_count"] == 0
+        response = await client.post(path, headers={"X-ClueTide-Task-Key": first["write_key"]}, json=version_payload())
+        assert response.status_code == 201
+        assert response.json()["version_id"] == 1
+
+
+@pytest.mark.asyncio
+async def test_capability_is_creation_only_and_not_in_public_records_or_downloads(service_app):
+    service, app = service_app
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
+        created = await client.post("/api/releases/tasks", json=task_payload())
+        assert created.headers["cache-control"] == "no-store"
+        task_id, key = created.json()["task_id"], created.json()["write_key"]
+        expected = "0x" + hashlib.sha256(key.encode("ascii")).hexdigest()
+        capability = service.root / "task-capabilities" / (task_id + ".json")
+        assert json.loads(capability.read_text("utf-8")) == {"task_id": task_id, "write_key_sha256": expected}
+        assert key not in capability.read_text("utf-8")
+        response = await client.post(f"/api/releases/tasks/{task_id}/versions",
+            headers={"X-ClueTide-Task-Key": key}, json=version_payload())
+        assert response.status_code == 201
+        bundle_url = response.json()["bundle_url"]
+        executed = await client.post(f"/api/releases/tasks/{task_id}/execute",
+            json={"version_id": 1, "attempt_id": "1", "start_transaction_hash": TX})
+        assert executed.status_code == 200
+        paths = ["/api/releases/config", "/api/releases/tasks", f"/api/releases/tasks/{task_id}",
+                 bundle_url, executed.json()["receipt_url"], executed.json()["artifact_url"]]
+        for path in paths:
+            response = await client.get(path)
+            assert response.status_code == 200
+            assert key.encode() not in response.content
+            assert expected.encode() not in response.content
+            assert b"write_key" not in response.content
+            if path == bundle_url:
+                with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
+                    assert set(archive.namelist()) == {"manifest.json", "artifact.html"}
+                    for name in archive.namelist():
+                        assert key.encode() not in archive.read(name)
+                        assert expected.encode() not in archive.read(name)
+                        assert b"write_key" not in archive.read(name)
+        assert "write_key" not in (service.root / "tasks" / task_id / "task.json").read_text("utf-8")
+
+
+@pytest.mark.asyncio
+async def test_task_capability_survives_service_restart(service_app):
+    service, app = service_app
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
+        created = (await client.post("/api/releases/tasks", json=task_payload())).json()
+    restarted = ReleaseService(service.root, chain=ConfirmedChain(), signing_key=bytes.fromhex("07" * 32))
+    restarted_app = FastAPI()
+    restarted_app.include_router(create_release_router(restarted))
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=restarted_app), base_url="http://test") as client:
+        response = await client.post(f"/api/releases/tasks/{created['task_id']}/versions",
+            headers={"X-ClueTide-Task-Key": created["write_key"]}, json=version_payload())
+    assert response.status_code == 201
+    assert response.json()["version_id"] == 1
+
+
+@pytest.mark.asyncio
+async def test_local_operator_recovers_legacy_task_and_rotates_write_key(service_app):
+    service, app = service_app
+    task = service.create_task(task_payload())
+    path = f"/api/releases/tasks/{task['task_id']}/versions"
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
+        denied = await client.post(path, json=version_payload())
+        assert denied.status_code == 403
+        key = service.issue_task_write_key(task["task_id"])
+        first = await client.post(path, headers={"X-ClueTide-Task-Key": key}, json=version_payload())
+        assert first.status_code == 201
+        recovered = service.issue_task_write_key(task["task_id"])
+        assert recovered != key
+        old = await client.post(path, headers={"X-ClueTide-Task-Key": key}, json=version_payload())
+        assert old.status_code == 403
+        new = await client.post(path, headers={"X-ClueTide-Task-Key": recovered}, json=version_payload())
+        assert new.status_code == 201
+        assert new.json()["version_id"] == 2
+        assert (await client.post(f"/api/releases/tasks/{task['task_id']}/write-key")).status_code == 404
+        assert "write_key" not in (await client.get(f"/api/releases/tasks/{task['task_id']}")).text
+
+
+@pytest.mark.asyncio
+async def test_corrupt_private_capability_fails_closed_with_fixed_error(service_app):
+    service, app = service_app
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
+        created = (await client.post("/api/releases/tasks", json=task_payload())).json()
+        path = service.root / "task-capabilities" / (created["task_id"] + ".json")
+        path.write_text(json.dumps({"task_id": created["task_id"], "write_key_sha256": "private-corrupt-value"}), "utf-8")
+        response = await client.post(f"/api/releases/tasks/{created['task_id']}/versions",
+            headers={"X-ClueTide-Task-Key": created["write_key"]}, json=version_payload())
+        assert response.status_code == 503
+        assert response.json() == {"detail": "The task write capability failed its integrity check."}
+        assert "private-corrupt-value" not in response.text
+        assert service.get_task(created["task_id"])["version_count"] == 0

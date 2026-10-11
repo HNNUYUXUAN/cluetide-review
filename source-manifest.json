@@ -2,6 +2,30 @@
   "schema": "cluetide.release-source-export.v1",
   "files": [
     {
+      "path": ".devcontainer/README.md",
+      "bytes": 6041,
+      "sha256": "680fcb3cb7359e89b78bfa0b75093e3c035ef4957fb7fbf62573bdc935026084",
+      "origin": "source_copy"
+    },
+    {
+      "path": ".devcontainer/devcontainer.json",
+      "bytes": 573,
+      "sha256": "c7954ed4ffe5cb30b3a4642ee917e804e2d16f3e2c7f75ac690b8c87bc2a5d79",
+      "origin": "source_copy"
+    },
+    {
+      "path": ".devcontainer/requirements.txt",
+      "bytes": 169,
+      "sha256": "18ecea8ce2bf0c58796b2a43418208a61ee1ae6a5cc68bc1cfd30972307bc7f4",
+      "origin": "source_copy"
+    },
+    {
+      "path": ".devcontainer/test_codespaces.py",
+      "bytes": 9562,
+      "sha256": "aa0b43701875ba40710f4518a311ab7bb5cbf90f415407f87753564224e5d6e0",
+      "origin": "source_copy"
+    },
+    {
       "path": ".gitattributes",
       "bytes": 8,
       "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
@@ -15,8 +39,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 9456,
-      "sha256": "20a6f89ae4d1e73d888a8059adfdabab882effee4e339bf2a4c7283bfcae8e0e",
+      "bytes": 11975,
+      "sha256": "f87bf2687b7c505e36bbc45c679e8d7d2111758340c18db2ee2e477f56a622d4",
       "origin": "package_metadata"
     },
     {
@@ -123,14 +147,14 @@
     },
     {
       "path": "frontend/src/release/ReleaseApp.tsx",
-      "bytes": 44646,
-      "sha256": "44c3d6c0607dd647c83f1eb8014323c7636c7ed7968bd490988b3ca51b6c676b",
+      "bytes": 45388,
+      "sha256": "d7dd0beff35255053ca8b7bfe7661ba69c4292d13f4adda8dbcc71bf96a2723b",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/api.ts",
-      "bytes": 2285,
-      "sha256": "72552d16832704dac1c964de8533f2353ab9aad1cda0618c2b46657f6a349c98",
+      "bytes": 3131,
+      "sha256": "4a81ad846d76133a1736ec8f4cd4ff8cd878f2db25b9494dba3c5ebb5300eab8",
       "origin": "source_copy"
     },
     {
@@ -158,6 +182,12 @@
       "origin": "source_copy"
     },
     {
+      "path": "frontend/src/release/task-access.ts",
+      "bytes": 1548,
+      "sha256": "4e9f05348294b899c3825bc04a1379a1ecd6f6ae194bfe8f4f8d5a0dceb76852",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/src/release/ui.tsx",
       "bytes": 4101,
       "sha256": "d2d325a5b59b032fb03c3c4adfa18b5af6437138e9dfa51ac50f40a11ae503e7",
@@ -173,6 +203,12 @@
       "path": "frontend/src/types.ts",
       "bytes": 5576,
       "sha256": "8a39325b403985a23a9aa0e9dabaaa507180c704a1fea710f10b45e99bd4189f",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/tests/release-access.test.mjs",
+      "bytes": 3476,
+      "sha256": "a48b70d72c4c73e5ed4ce9718ee5af6f012727576c6d64b65db586f9be4a15b2",
       "origin": "source_copy"
     },
     {
@@ -219,8 +255,26 @@
     },
     {
       "path": "scripts/agent_release.py",
-      "bytes": 5183,
-      "sha256": "951a0d1b7557b8a3a70ccbb31698b7acaf66193513077134db1136954ac04a0a",
+      "bytes": 7339,
+      "sha256": "55c1f7826916b4ed6b6b0b88cf573dd3af2b1fc3595e0bf0d1ab22535c3a78e2",
+      "origin": "source_copy"
+    },
+    {
+      "path": "scripts/codespaces-install.sh",
+      "bytes": 783,
+      "sha256": "c2c3017b6c7b24dd4a23fa5be6f64d5259c8c60f152c4a7e1016c3b4ab8aefbd",
+      "origin": "source_copy"
+    },
+    {
+      "path": "scripts/codespaces-runtime.py",
+      "bytes": 9135,
+      "sha256": "2b1f3333e4591fabf58c5b93472f815d0cbd34e87fbce8a856ac7c3d30a3a2e9",
+      "origin": "source_copy"
+    },
+    {
+      "path": "scripts/codespaces-start.sh",
+      "bytes": 658,
+      "sha256": "4680d69d4976dae9ed1177ae3f444f030305b1a5804e54eccc301c4138f288c8",
       "origin": "source_copy"
     },
     {
@@ -267,14 +321,14 @@
     },
     {
       "path": "src/cluetide/releases.py",
-      "bytes": 46028,
-      "sha256": "d1743d0a77b51599632fc81daa71f3d56615b060a2ead8e4e5d7848e1065c7e5",
+      "bytes": 47726,
+      "sha256": "b3e65d7883385c55ba5a502e817bf795b70ab3ffee18046f035218c5d0be5f63",
       "origin": "source_copy"
     },
     {
       "path": "src/cluetide/releases_api.py",
-      "bytes": 5515,
-      "sha256": "30044867e98a8f492d0e66e56b39a953fcbf53111f8505c718cd21b3e31ddc36",
+      "bytes": 5882,
+      "sha256": "557b4f13c820e4110bff4bd008d72ff5899a3c7a6a28918e957ebe7a7c0cca6b",
       "origin": "source_copy"
     },
     {
@@ -287,6 +341,12 @@
       "path": "src/cluetide/settings.py",
       "bytes": 1029,
       "sha256": "1458a7ec5f101ff77d8ce6a4225611eb328f9f2c236fdcf72635b023f9971c3d",
+      "origin": "source_copy"
+    },
+    {
+      "path": "tests/test_release_agent.py",
+      "bytes": 2996,
+      "sha256": "ce3d3af7099757b171c49347bc8711a8e42cc38e1c456ab9bda0ab9d5910203a",
       "origin": "source_copy"
     },
     {
@@ -321,8 +381,8 @@
     },
     {
       "path": "tests/test_releases_api.py",
-      "bytes": 5906,
-      "sha256": "87df71baf82841d94e66ca6d8d282666092659478d22a06bd01f8a1ea9681748",
+      "bytes": 13379,
+      "sha256": "07448edfc11ef533a32f67f9a4d14b64be494213a451e1e7329bb95ff82f2e8c",
       "origin": "source_copy"
     }
   ]

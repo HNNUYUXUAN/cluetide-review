@@ -4,6 +4,7 @@ from __future__ import annotations
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import hashlib
+import hmac
 import json
 import os
 from pathlib import Path
@@ -495,6 +496,38 @@ class ReleaseService:
                     "version_count": 0, "chain_records": []}
             self._save(self._task_path(task_id), task, immutable=True)
             return self._detail(task)
+
+    def issue_task_write_key(self, task_id):
+        """Create or rotate an off-chain package capability for a local operator."""
+        task_id = identifier(task_id)
+        with self._locked():
+            self._task(task_id)
+            key = secrets.token_urlsafe(32)
+            self._save(self.root / "task-capabilities" / (task_id + ".json"), {
+                "task_id": task_id, "write_key_sha256": digest(key.encode("ascii")),
+            })
+            return key
+
+    def authorize_task_write_key(self, task_id, key):
+        """Require the task-scoped capability before an untrusted package write."""
+        task_id = identifier(task_id)
+        with self._locked():
+            rejected = "A valid task write key is required to add a release package."
+            if not isinstance(key, str) or not re.fullmatch(r"[A-Za-z0-9_-]{43}", key):
+                raise ReleaseError(rejected, 403)
+            try:
+                capability = self._json(self.root / "task-capabilities" / (task_id + ".json"))
+            except ReleaseError as error:
+                if error.status == 404:
+                    raise ReleaseError(rejected, 403) from None
+                raise
+            expected = capability.get("write_key_sha256")
+            if (set(capability) != {"task_id", "write_key_sha256"}
+                    or capability.get("task_id") != task_id
+                    or not isinstance(expected, str) or not _HASH.fullmatch(expected)):
+                raise ReleaseError("The task write capability failed its integrity check.", 503)
+            if not hmac.compare_digest(digest(key.encode("ascii")), expected):
+                raise ReleaseError(rejected, 403)
 
     def list_tasks(self):
         with self._locked():

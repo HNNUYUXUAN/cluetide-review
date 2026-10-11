@@ -3,16 +3,47 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import sys
+import tempfile
 from urllib.parse import urlsplit
 
 import httpx
 
 
+def read_access(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    if path.stat().st_size > 262144:
+        raise ValueError()
+    value = json.loads(path.read_text("utf-8"))
+    if not isinstance(value, dict) or not all(isinstance(k, str) and isinstance(v, str) for k, v in value.items()):
+        raise ValueError()
+    return value
+
+
+def save_access(path: Path, identity: str, key: str) -> None:
+    access = read_access(path)
+    access[identity] = key
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, name = tempfile.mkstemp(prefix="agent-access-", dir=path.parent)
+    temporary = Path(name)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+            json.dump(access, stream, indent=2)
+            stream.write("\n")
+        temporary.replace(path)
+        path.chmod(0o600)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", default="http://127.0.0.1:8787", help="ClueTide release service URL")
+    parser.add_argument("--access-file", type=Path, default=Path(__file__).resolve().parents[1] / "local-data" / "agent-write-access.json",
+                        help="Private file retaining task package-write capabilities")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("config")
     commands.add_parser("tasks")
@@ -54,7 +85,7 @@ def main() -> int:
                 or parsed.query or parsed.fragment or parsed.path not in {"", "/"}
                 or (parsed.scheme == "http" and parsed.hostname not in {"127.0.0.1", "localhost", "::1"})):
             raise ValueError()
-        method, path, payload, params = "GET", "", None, None
+        method, path, payload, params, headers = "GET", "", None, None, {}
         values = vars(args)
         if args.command in {"config", "tasks"}:
             path = "/" + args.command
@@ -62,6 +93,12 @@ def main() -> int:
             method, path = "POST", "/tasks"
             payload = {key: values[key] for key in ("title", "owner", "proposer", "reviewer", "executor")}
         elif args.command == "submit-version":
+            identity = args.url.rstrip("/").lower() + "|" + args.task_id.lower()
+            key = os.environ.get("CLUETIDE_TASK_WRITE_KEY") or read_access(args.access_file).get(identity)
+            if not key:
+                print(json.dumps({"status": "unavailable", "message": "Use the creator's private access file or set CLUETIDE_TASK_WRITE_KEY to add a package."}), file=sys.stderr)
+                return 1
+            headers["X-ClueTide-Task-Key"] = key
             artifact = Path(args.artifact)
             if artifact.stat().st_size > 32768:
                 raise ValueError()
@@ -80,14 +117,22 @@ def main() -> int:
         elif args.command == "receipt":
             path, params = "/attempts/" + args.attempt_id + "/receipt", {"task_id": args.task_id}
         with httpx.Client(timeout=75, trust_env=False, follow_redirects=False) as client:
-            response = client.request(method, args.url.rstrip("/") + "/api/releases" + path, json=payload, params=params)
+            response = client.request(method, args.url.rstrip("/") + "/api/releases" + path, json=payload, params=params, headers=headers)
         if not response.is_success:
             print(json.dumps({"status": "unavailable", "http_status": response.status_code,
                               "message": "The release request could not complete. Inspect the service state before retrying."}))
             return 1
-        print(json.dumps(response.json(), ensure_ascii=True, indent=2))
+        result = response.json()
+        if args.command == "create-task":
+            key = result.pop("write_key")
+            if not isinstance(key, str) or not 32 <= len(key) <= 128:
+                raise ValueError()
+            identity = args.url.rstrip("/").lower() + "|" + result["task_id"].lower()
+            save_access(args.access_file, identity, key)
+            result["package_write_access"] = "Saved in the private Agent access file. Keep that file with the task creator."
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0
-    except (ValueError, OSError, UnicodeError, httpx.HTTPError):
+    except (ValueError, KeyError, TypeError, OSError, UnicodeError, httpx.HTTPError):
         print(json.dumps({"status": "unavailable", "message": "Check the release service URL and bounded UTF-8 artifact."}), file=sys.stderr)
         return 1
 
