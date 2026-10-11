@@ -129,3 +129,66 @@ def test_codespaces_keeps_exact_public_origin_and_cli_requests(service, tmp_path
         assert client.get("/api/health", headers={"Host": CODESPACES_HOST}).status_code == 200
         assert client.get("/api/health", headers={"Host": CODESPACES_HOST,
                                                   "Origin": CODESPACES_ORIGIN}).status_code == 200
+
+
+CODESPACES_PROXY_HEADERS = {**CODESPACES_HEADERS, "Host": "localhost:8787",
+                           "X-Forwarded-Host": CODESPACES_HOST}
+
+
+def test_codespaces_proxy_preserves_exact_forwarded_authority(service, tmp_path):
+    with client_for(service, tmp_path, CODESPACES_ORIGIN, codespaces_origin_rewrite=True) as client:
+        assert client.get("/api/health", headers=CODESPACES_PROXY_HEADERS).status_code == 200
+        response = client.post("/api/releases/tasks", headers=CODESPACES_PROXY_HEADERS, json={
+            "title": "Proxy browser release", "owner": "0x" + "11" * 20,
+            "proposer": "0x" + "22" * 20, "reviewer": "0x" + "33" * 20,
+            "executor": "0x" + "44" * 20,
+        })
+        assert response.status_code == 201
+
+
+@pytest.mark.parametrize("forwarded", [None, "other-8787.app.github.dev",
+                                       CODESPACES_HOST + ",other.example", " " + CODESPACES_HOST])
+def test_codespaces_proxy_requires_single_exact_forwarded_host(service, tmp_path, forwarded):
+    headers = {**CODESPACES_PROXY_HEADERS}
+    if forwarded is None:
+        headers.pop("X-Forwarded-Host")
+    else:
+        headers["X-Forwarded-Host"] = forwarded
+    with client_for(service, tmp_path, CODESPACES_ORIGIN, codespaces_origin_rewrite=True) as client:
+        assert client.get("/api/health", headers=headers).status_code == 403
+
+
+def test_codespaces_proxy_rejects_duplicate_forwarded_host(service, tmp_path):
+    headers = list(CODESPACES_PROXY_HEADERS.items()) + [("X-Forwarded-Host", CODESPACES_HOST)]
+    with client_for(service, tmp_path, CODESPACES_ORIGIN, codespaces_origin_rewrite=True) as client:
+        assert client.get("/api/health", headers=headers).status_code == 403
+
+
+@pytest.mark.parametrize("host", ["localhost", "localhost:5177", "127.0.0.1:8787", "other.example"])
+def test_codespaces_forwarded_host_cannot_authorize_other_upstream_hosts(service, tmp_path, host):
+    with client_for(service, tmp_path, CODESPACES_ORIGIN, codespaces_origin_rewrite=True) as client:
+        assert client.get("/api/health", headers={**CODESPACES_PROXY_HEADERS, "Host": host}).status_code == 403
+
+
+def test_codespaces_proxy_alias_requires_explicit_mode(service, tmp_path):
+    with client_for(service, tmp_path, CODESPACES_ORIGIN) as client:
+        assert client.get("/api/health", headers=CODESPACES_PROXY_HEADERS).status_code == 403
+
+
+@pytest.mark.parametrize("site", [None, "cross-site", "same-site"])
+def test_codespaces_proxy_still_requires_same_origin_browser(service, tmp_path, site):
+    headers = {**CODESPACES_PROXY_HEADERS}
+    if site is None:
+        headers.pop("Sec-Fetch-Site")
+    else:
+        headers["Sec-Fetch-Site"] = site
+    with client_for(service, tmp_path, CODESPACES_ORIGIN, codespaces_origin_rewrite=True) as client:
+        assert client.get("/api/health", headers=headers).status_code == 403
+        assert client.post("/api/releases/tasks", headers=headers, json={}).status_code == 403
+
+
+def test_codespaces_proxy_does_not_authorize_foreign_origin(service, tmp_path):
+    with client_for(service, tmp_path, CODESPACES_ORIGIN, codespaces_origin_rewrite=True) as client:
+        headers = {**CODESPACES_PROXY_HEADERS, "Origin": "https://other.example"}
+        assert client.get("/api/health", headers=headers).status_code == 403
+        assert client.post("/api/releases/tasks", headers=headers, json={}).status_code == 403

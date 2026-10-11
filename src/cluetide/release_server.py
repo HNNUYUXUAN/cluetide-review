@@ -61,7 +61,10 @@ def create_release_app(*, service: ReleaseService | None = None,
         rewritten_same_origin = (
             codespaces_origin_rewrite
             and incoming_origin == "https://localhost:8787"
-            and request.url.hostname == host
+            and (request.url.hostname == host or (
+                request.headers.getlist("host") == ["localhost:8787"]
+                and request.headers.getlist("x-forwarded-host") == [host]
+            ))
             and request.headers.get("sec-fetch-site") == "same-origin"
         )
         if (incoming_origin and incoming_origin not in local_origins | ({origin} if origin else set())

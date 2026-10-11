@@ -3,8 +3,8 @@
   "files": [
     {
       "path": ".devcontainer/README.md",
-      "bytes": 7120,
-      "sha256": "aa47f938a6c0cd6e6a677b7bb05a5d419c5361d3efe380f30899893d3f540100",
+      "bytes": 7337,
+      "sha256": "38a79901ec83e5882470f75a8afde5e2a60b5e579118b851e354b8df6a6b40bd",
       "origin": "source_copy"
     },
     {
@@ -315,8 +315,8 @@
     },
     {
       "path": "src/cluetide/release_server.py",
-      "bytes": 4408,
-      "sha256": "0fed788f97cc6d8e8c1acd6d5a3a2528623578ab537b77e11120ce60fe2fe92a",
+      "bytes": 4573,
+      "sha256": "c60b1efa128754865c2db5f2b4f8051f47e13e8f162a6540b003611c0a7c7b63",
       "origin": "source_copy"
     },
     {
@@ -363,8 +363,8 @@
     },
     {
       "path": "tests/test_release_server.py",
-      "bytes": 7191,
-      "sha256": "c8a71eb3257761676e597635869891cf65fa5aa2c0152fdbd3ec26aad3fb550b",
+      "bytes": 10591,
+      "sha256": "2ba1499d7b53d524f188f0b255c0b2f52b755b59abe7b982b234bb57e212d747",
       "origin": "source_copy"
     },
     {
