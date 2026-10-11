@@ -5,8 +5,10 @@
     "ghcr.io/devcontainers/features/sshd:1": {
       "version": "latest"
     },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "24"
+    "ghcr.io/devcontainers/features/node:2": {
+      "version": "24",
+      "installYarnUsingApt": false,
+      "pnpmVersion": "none"
     }
   },
   "remoteUser": "vscode",

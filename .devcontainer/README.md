@@ -2,7 +2,7 @@
 
 This container runs the English Agent Release Witness interface and its release API at one origin. It uses Python 3.12, Node.js 24, and the pinned runtime dependencies in [requirements.txt](requirements.txt). The installation script builds the frontend with `npm ci` and `npm run build`. The same entry points work with the full source tree and the public release source package.
 
-The official SSH server feature supports operator maintenance through the authenticated `gh codespace ssh` connection. Application sharing still uses the separately configured port 8787. The SSH feature does not make an additional public review port.
+The official SSH server feature supports operator maintenance through the authenticated `gh codespace ssh` connection. Application sharing uses the separately configured port 8787. The Node.js feature supplies Node 24 and npm for the frontend build; Yarn's APT repository and pnpm are not required by this application.
 
 Create a Codespace from the branch containing this directory. Initial setup runs [codespaces-install.sh](../scripts/codespaces-install.sh); each container start runs [codespaces-start.sh](../scripts/codespaces-start.sh). The API binds `0.0.0.0:8787` and serves the built frontend. A startup hook succeeds only after the local `/api/health` endpoint identifies the release application.
 
@@ -24,7 +24,7 @@ gh codespace ports visibility 8787:public --codespace "$CODESPACE_NAME"
 
 Public visibility permits unauthenticated internet access to the entire release application and API. Use a dedicated review Codespace with synthetic data and its generated receipt signer. GitHub organization policy may prevent public forwarding. GitHub resets public visibility to private after a Codespace restart, so verify the port setting before sharing the URL.
 
-The release application prepares unsigned transactions and reads chain results. Wallet holders review, sign, and pay for each transaction in their browser wallet. The new release witness mainnet deployment is pending until its deployment and runtime verification are completed and configured through the release application.
+The release application prepares unsigned transactions and reads chain results. Wallet holders review, sign, and pay for each transaction in their browser wallet. After wallet deployment and runtime verification, the operator configures the verified address with `CLUETIDE_RELEASE_CONTRACT` or the private `release-witness/chain.json` file. The public deployment-verification API reads the result without changing operator configuration.
 
 ## State, logs, and recovery
 
