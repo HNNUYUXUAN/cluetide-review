@@ -3,14 +3,14 @@
   "files": [
     {
       "path": ".devcontainer/README.md",
-      "bytes": 6041,
-      "sha256": "680fcb3cb7359e89b78bfa0b75093e3c035ef4957fb7fbf62573bdc935026084",
+      "bytes": 6293,
+      "sha256": "fb53f4132d7c76dc6db79f965dbe0f646e4f3e55fae74aea329a99c96a711459",
       "origin": "source_copy"
     },
     {
       "path": ".devcontainer/devcontainer.json",
-      "bytes": 573,
-      "sha256": "c7954ed4ffe5cb30b3a4642ee917e804e2d16f3e2c7f75ac690b8c87bc2a5d79",
+      "bytes": 653,
+      "sha256": "4cd58dd2da6b8bf47b480245e8e3fe94a4ec20b6fabefd5c389b65a9b9d3e4ba",
       "origin": "source_copy"
     },
     {

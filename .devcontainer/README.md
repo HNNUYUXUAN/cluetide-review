@@ -2,6 +2,8 @@
 
 This container runs the English Agent Release Witness interface and its release API at one origin. It uses Python 3.12, Node.js 24, and the pinned runtime dependencies in [requirements.txt](requirements.txt). The installation script builds the frontend with `npm ci` and `npm run build`. The same entry points work with the full source tree and the public release source package.
 
+The official SSH server feature supports operator maintenance through the authenticated `gh codespace ssh` connection. Application sharing still uses the separately configured port 8787. The SSH feature does not make an additional public review port.
+
 Create a Codespace from the branch containing this directory. Initial setup runs [codespaces-install.sh](../scripts/codespaces-install.sh); each container start runs [codespaces-start.sh](../scripts/codespaces-start.sh). The API binds `0.0.0.0:8787` and serves the built frontend. A startup hook succeeds only after the local `/api/health` endpoint identifies the release application.
 
 The external origin is derived from GitHub's `CODESPACE_NAME` and `GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN` environment variables:
