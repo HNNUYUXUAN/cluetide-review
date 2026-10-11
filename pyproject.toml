@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cluetide-release-witness"
+version = "0.1.0"
+description = "Exact release approval, controlled publication and signed execution receipts"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi==0.142.2",
+  "uvicorn==0.54.0",
+  "httpx==0.28.1",
+  "pydantic==2.13.5",
+  "starlette==1.7.0",
+  "python-dotenv==1.2.4",
+  "rfc8785==0.1.4",
+  "eth-account==0.14.0",
+  "eth-abi==6.0.0",
+  "eth-utils==6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==9.1.1",
+  "pytest-asyncio==1.4.0",
+  "web3==8.0.0",
+  "eth-tester==0.14.0b1",
+  "py-evm==0.12.1b1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
