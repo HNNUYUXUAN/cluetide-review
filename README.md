@@ -59,3 +59,5 @@ Approval binds the current version, target and expiry. Consuming it grants one e
 Run `python -m pytest -q` in the package and `npm test` / `npm run build` in `frontend`. Tests include Python/JavaScript JCS and ABI fixtures, recorded EIP-712 receipt verification, real compiled bytecode on a local EVM, browser-package import, publication and recovery. Local test transactions stay in the test chain.
 
 `source-manifest.json` binds exported files to their exact bytes. Solidity source and compiled artifact are under `contracts/`; the artifact pins Solidity 0.8.30 and EVM paris. Frontend dependency notices are retained under `frontend/public/licenses`.
+
+Current public-wallet evidence: [seven-transaction acceptance](docs/public-wallet-acceptance.md), including revised-version approval, actual publication and signed receipt.

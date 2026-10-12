@@ -1,0 +1,48 @@
+{
+  "schema": "cluetide.public-revision-check.v1",
+  "checked_at": "2026-10-12T04:46:34.766233+00:00",
+  "chain_id": 677,
+  "contract": "0xCA71b77708674f5f2407c0Ad4e599EAF5eb07281",
+  "task_id": "0xb34ed8325749ed1182bbad3f61e3490a3af78f1912bac49c1ccc1dc8c414690a",
+  "block_number": 26394628,
+  "block_hash": "0x5a3f169a2c675ca75229fbbcdbf1fad958752a40b0bbadb32b2a62a776e4c0b9",
+  "minimum_confirmations": 3,
+  "v1": {
+    "versionId": 1,
+    "parentVersionId": 0,
+    "manifestHash": "0x3f1041f90ed5cbcf6971e564f7471ac93c92a8d5f9817ad53d3525bf4d7ea3e5",
+    "artifactHash": "0x47b7d3ccc731cc6eac707e070d90b3dc73edaf21de80a939ad659d496e45e747",
+    "deadline": 1791866160,
+    "decision": 1,
+    "approvedAt": 1791780085,
+    "attemptId": 0
+  },
+  "v2": {
+    "versionId": 2,
+    "parentVersionId": 1,
+    "manifestHash": "0x0db83692d90ac3916706664e6ee1cedd70b07b848c0a931e68ab4609b12c7b37",
+    "artifactHash": "0xd90118354c28a4f730e628303f8984c795066e6bcfb7075f4118fd1032f77881",
+    "deadline": 1791866520,
+    "decision": 0,
+    "approvedAt": 0,
+    "attemptId": 0
+  },
+  "checks": [
+    {
+      "version_id": 1,
+      "action": "consume",
+      "outcome": "reverted",
+      "error": "StaleVersion",
+      "mode": "eth_call",
+      "gas_paid": "0"
+    },
+    {
+      "version_id": 2,
+      "action": "consume",
+      "outcome": "reverted",
+      "error": "InvalidDecision",
+      "mode": "eth_call",
+      "gas_paid": "0"
+    }
+  ]
+}

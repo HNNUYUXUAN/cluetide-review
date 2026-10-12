@@ -39,8 +39,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5202,
-      "sha256": "640bcc92753841f6c946d0062003baaa8ddc286a60c25e58bde610e5dbd260bf",
+      "bytes": 5376,
+      "sha256": "a66f79b16b16b1ba130913cb37735b6c22cc24e1b3c455d59b8666effba6ce43",
       "origin": "package_metadata"
     },
     {
@@ -59,6 +59,78 @@
       "path": "contracts/compile_release.py",
       "bytes": 2783,
       "sha256": "cd45c14b18bb517858ca3ddb1d7f070624c585c16c4655d893e976c2cd4ab152",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-revision-check-20261012.json",
+      "bytes": 1486,
+      "sha256": "3682b649205cc7b1013dff0d20b4a6a7abb96bb4a3deeb7a80c0761659ef17b3",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/acceptance.json",
+      "bytes": 8740,
+      "sha256": "7850dc5f4c9bafc8b293a6e9a2b9ee68a3d5bf08dac19acb4f833c9182448a09",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/execution-receipt.json",
+      "bytes": 3021,
+      "sha256": "d84dd63b3141e3b826d21f85b980faa83d4dcd272deccc63c14b81a0cc18ac86",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/manifest.json",
+      "bytes": 1323,
+      "sha256": "8de6c416405a750c3d7af78170574cd3efe6c1caeb61bf64b9ce4d465a24569e",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/published-artifact.html",
+      "bytes": 194,
+      "sha256": "d90118354c28a4f730e628303f8984c795066e6bcfb7075f4118fd1032f77881",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/task.json",
+      "bytes": 3499,
+      "sha256": "97807fe720a7b0458d87d7e0d9e4778926c319b9233e1afdce386ecc5f63cac9",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/v1-artifact.html",
+      "bytes": 173,
+      "sha256": "47b7d3ccc731cc6eac707e070d90b3dc73edaf21de80a939ad659d496e45e747",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/v1-manifest.json",
+      "bytes": 930,
+      "sha256": "3f1041f90ed5cbcf6971e564f7471ac93c92a8d5f9817ad53d3525bf4d7ea3e5",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/v2-artifact.html",
+      "bytes": 194,
+      "sha256": "d90118354c28a4f730e628303f8984c795066e6bcfb7075f4118fd1032f77881",
+      "origin": "source_copy"
+    },
+    {
+      "path": "data/demo/public-wallet-20261012/v2-manifest.json",
+      "bytes": 937,
+      "sha256": "0db83692d90ac3916706664e6ee1cedd70b07b848c0a931e68ab4609b12c7b37",
+      "origin": "source_copy"
+    },
+    {
+      "path": "docs/public-wallet-acceptance.md",
+      "bytes": 3243,
+      "sha256": "41883fc83f77d8384502cc29d018f63b285f05f76e5993f3f68137f97db9fff5",
+      "origin": "source_copy"
+    },
+    {
+      "path": "docs/public-wallet-recording.md",
+      "bytes": 2845,
+      "sha256": "ef4b758e9a7bc38196b302e62213587d4623924afc4c4338388146dc01b26353",
       "origin": "source_copy"
     },
     {
