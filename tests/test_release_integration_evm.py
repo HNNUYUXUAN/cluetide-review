@@ -199,6 +199,26 @@ def test_real_local_publish_signed_onchain_receipt_and_repeat(release):
     assert not any(method.startswith("eth_send") for method in bridge.calls)
 
 
+def test_browser_package_import_into_fresh_publisher_and_real_execution(release, tmp_path):
+    source, bridge, _ = release
+    task = create(release)
+    package = version(release, task)
+    execute = start(release, task, package)
+    root = tmp_path / "imported-publisher"
+    root.mkdir()
+    shutil.copyfile(source.root / "chain.json", root / "chain.json")
+    gateway = ChainGateway(root, service=source._adapter().service)
+    publisher = ReleaseService(root, chain=gateway, signing_key=bridge.tester.backend.account_keys[4].to_bytes())
+    payload = {"task": {key: task[key] for key in ("title", "owner", "proposer", "reviewer", "executor", "task_id", "receipt_signer", "target_id", "created_at")},
+               "manifest": package["manifest"], "artifact_text": "<!doctype html><h1>Approved release</h1>"}
+    imported = publisher.import_version(payload)
+    assert imported["manifest_hash"] == package["manifest_hash"]
+    assert int(imported["read_block_number"]) == bridge.web3.eth.block_number - 2
+    assert publisher.import_version(payload) == imported
+    assert publisher.execute(task["task_id"], execute)["status"] == "succeeded"
+    assert publisher.receipt("1", task["task_id"])["verification"]["signature_valid"] is True
+
+
 @pytest.mark.parametrize("decision", ["revoke", "request_correction"])
 def test_real_revocation_or_correction_prevents_publication(release, decision):
     service, _, contract = release

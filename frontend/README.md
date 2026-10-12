@@ -1,11 +1,9 @@
 # Release Witness frontend
 
-The English React and TypeScript application presents exact release packages, designated wallet approvals, one-time execution starts, signed receipts, and independent checks.
+The root entry implements the public English wallet product. It uses the existing witness ABI, browser EIP-1193 wallets, RFC 8785 canonical manifests and SHA-256 artifact commitments. Publication uses the separately configured controlled service. The former server-backed workspace remains at `bot.html`.
 
-Use Node.js 24. Run `npm ci`, `npm test`, and `npm run build` here. Run `npm run dev` on `http://127.0.0.1:5177/` with the release API on port 8787. `/api` requests are proxied to that API. `npm run preview` uses port 4177. The backend serves the production build and API together on port 8787.
+Use Node.js 24. Run `npm ci`, `npm test`, then `npm run build`. Vite development runs at 5177 and static preview at 4177. Deploy the root production build under the Pages `/release/` directory; relative asset paths and hash routes support direct links and refresh.
 
-Both `index.html` and `bot.html` load the release application. Wallet actions use the browser extension after explicit user review. The configured product network is BOT Mainnet 677. Deployment and end-to-end mainnet wallet evidence for this new release workflow are pending.
+The original MiMo-inspired concepts inform typography, warm-white color and horizontal entry rows. All interface controls and text are rendered in HTML/CSS; transaction states come from actual wallet and chain results.
 
-The release sources depend on shared wallet and transaction types; their source dependencies are included for TypeScript checking. React, React DOM, and Scheduler license notices are preserved under [public/licenses](public/licenses).
-
-See the [root README](../README.md) for installation, private state, deployment configuration, trust boundaries, and local EVM tests.
+See the [root README](../README.md) for workflow, configuration, private state and mainnet evidence scope.

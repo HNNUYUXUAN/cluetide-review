@@ -10,6 +10,7 @@ from urllib.parse import urlsplit
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.cors import CORSMiddleware
 
 from .releases import ReleaseService
 from .releases_api import create_release_router
@@ -35,9 +36,11 @@ def _deployment_origin(value: str | None) -> tuple[str | None, str | None]:
 def create_release_app(*, service: ReleaseService | None = None,
                        public_origin: str | None = None,
                        codespaces_origin_rewrite: bool = False,
+                       frontend_origins: tuple[str, ...] = (),
                        dist: Path | None = None) -> FastAPI:
     """Expose release APIs without the investigation or paid-model endpoints."""
     origin, host = _deployment_origin(public_origin)
+    frontend_origins = tuple(_deployment_origin(value)[0] for value in frontend_origins)
     if codespaces_origin_rewrite and (
             not host or len(host.split(".")[0]) > 63
             or not re.fullmatch(r"[a-z0-9](?:[a-z0-9-]*[a-z0-9])?-8787\.app\.github\.dev", host)):
@@ -67,10 +70,10 @@ def create_release_app(*, service: ReleaseService | None = None,
             ))
             and request.headers.get("sec-fetch-site") == "same-origin"
         )
-        if (incoming_origin and incoming_origin not in local_origins | ({origin} if origin else set())
+        if (incoming_origin and incoming_origin not in local_origins | set(frontend_origins) | ({origin} if origin else set())
                 and not rewritten_same_origin):
             return JSONResponse({"detail": "Same-origin request required"}, status_code=403)
-        if request.method != "GET" and request.headers.get("sec-fetch-site") == "cross-site":
+        if request.method != "GET" and request.headers.get("sec-fetch-site") == "cross-site" and incoming_origin not in frontend_origins:
             return JSONResponse({"detail": "Same-origin request required"}, status_code=403)
         response = await call_next(request)
         response.headers["X-Content-Type-Options"] = "nosniff"
@@ -78,12 +81,17 @@ def create_release_app(*, service: ReleaseService | None = None,
         response.headers["X-Frame-Options"] = "DENY"
         response.headers["Content-Security-Policy"] = (
             "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "
-            "img-src 'self' data:; font-src 'self'; connect-src 'self'; "
+            "img-src 'self' data:; font-src 'self'; connect-src 'self' https://rpc.botchain.ai; "
             "object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
         )
         return response
 
     application.add_middleware(RequestBodyLimitMiddleware)
+    if frontend_origins:
+        application.add_middleware(CORSMiddleware, allow_origins=list(frontend_origins),
+                                  allow_methods=["GET", "POST"],
+                                  allow_headers=["Content-Type", "X-ClueTide-Task-Key"],
+                                  allow_credentials=False, max_age=600)
 
     @application.get("/api/health")
     def health():
@@ -99,4 +107,5 @@ def create_release_app(*, service: ReleaseService | None = None,
 app = create_release_app(
     public_origin=os.environ.get("CLUETIDE_PUBLIC_ORIGIN"),
     codespaces_origin_rewrite=os.environ.get("CLUETIDE_CODESPACES_ORIGIN_REWRITE") == "1",
+    frontend_origins=tuple(filter(None, os.environ.get("CLUETIDE_FRONTEND_ORIGINS", "").split(","))),
 )

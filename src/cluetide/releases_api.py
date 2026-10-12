@@ -7,6 +7,7 @@ from starlette.concurrency import run_in_threadpool
 
 from .releases import (ChainRequest, CreateTask, CreateVersion, ExecuteRequest, MAX_REQUEST_BYTES,
                        ReadRequest, ReleaseError, ReleaseService, VerifyRequest, attempt_identifier, identifier)
+from .release_imports import ImportPackage
 
 
 def _unique(pairs):
@@ -57,6 +58,10 @@ def create_release_router(service: ReleaseService) -> APIRouter:
     @router.get("/tasks")
     async def tasks():
         return await call(service.list_tasks)
+
+    @router.post("/imports")
+    async def import_package(request: Request):
+        return await call(service.import_version, await body(request, ImportPackage))
 
     @router.post("/tasks", status_code=201)
     async def create_task(request: Request, response: Response):

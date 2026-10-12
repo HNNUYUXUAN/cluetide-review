@@ -21,8 +21,8 @@
     },
     {
       "path": ".devcontainer/test_codespaces.py",
-      "bytes": 9562,
-      "sha256": "aa0b43701875ba40710f4518a311ab7bb5cbf90f415407f87753564224e5d6e0",
+      "bytes": 9581,
+      "sha256": "ba84e3a188443811b89affe922c43f2fff8f1f754b27abcc9b00bda81817e0e2",
       "origin": "source_copy"
     },
     {
@@ -39,8 +39,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 11975,
-      "sha256": "f87bf2687b7c505e36bbc45c679e8d7d2111758340c18db2ee2e477f56a622d4",
+      "bytes": 5202,
+      "sha256": "640bcc92753841f6c946d0062003baaa8ddc286a60c25e58bde610e5dbd260bf",
       "origin": "package_metadata"
     },
     {
@@ -63,8 +63,8 @@
     },
     {
       "path": "frontend/README.md",
-      "bytes": 1147,
-      "sha256": "c5cfe01231a38941427b688c3c8675a76be82f6ef2a36850ca0379cf2de6a796",
+      "bytes": 927,
+      "sha256": "3f7907efd51b50de8a2d26f854da3644f9caf89bd9497bbd32fc3c3608d55e40",
       "origin": "package_metadata"
     },
     {
@@ -76,25 +76,31 @@
     {
       "path": "frontend/index.html",
       "bytes": 611,
-      "sha256": "b791289df19b6c3a8662fc9ee62ce94002376dc7a5cf0b306e0dc974413b685a",
+      "sha256": "2782b56aaf7d3377911ae377fa0e888d7150bb3becbf9fa38a75dfcb3132d68a",
       "origin": "source_copy"
     },
     {
       "path": "frontend/package-lock.json",
-      "bytes": 61223,
-      "sha256": "421e3e5256f10f483f50bb310a4de9b9ddf62fc88b6d597c05bbe636773dca92",
+      "bytes": 70717,
+      "sha256": "0052cf942c6578f840f0aa6323825a2e257295ae5fdcb57984345584ba84e589",
       "origin": "source_copy"
     },
     {
       "path": "frontend/package.json",
-      "bytes": 531,
-      "sha256": "b2af4a52780a8c2c19e2b77249bf783b2bf57b78e9f8cc1d8da5aaf992a9d790",
+      "bytes": 636,
+      "sha256": "c5aa9f9a915fdaa3a8dcfd6ac01c45496ace74ba73e2d3e640bb44bd1f1207d5",
       "origin": "source_copy"
     },
     {
       "path": "frontend/public/favicon.svg",
       "bytes": 225,
       "sha256": "cb963281e16ed264554e929164cae8e08b416826f4c15c9c1072f672db5268d3",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/public/licenses/BROWSER-DEPENDENCIES.txt",
+      "bytes": 30065,
+      "sha256": "0e76578df4ab0a7ff733960b37093a0d167850b9a5c5d816cb6fe84c191330fb",
       "origin": "source_copy"
     },
     {
@@ -141,8 +147,26 @@
     },
     {
       "path": "frontend/src/main.tsx",
-      "bytes": 196,
-      "sha256": "9a5e212179a9bc71f3509fea91057111d912645f934feb297e069e0e6cdee90c",
+      "bytes": 209,
+      "sha256": "e04ba079a0b928dce1cea32bfba856b514febf56397a1700f736b5348a6710ae",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/PublicHome.tsx",
+      "bytes": 2439,
+      "sha256": "09e87ddae7cf884c51dc52c55b72a8ebada2d683f1798e3443f48446c47d3a95",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/PublicReleaseApp.tsx",
+      "bytes": 30580,
+      "sha256": "982f176f4011baf79fb811471f3e9dada24f05dd54ee234c1268e785e58ba587",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/PublicTask.tsx",
+      "bytes": 9588,
+      "sha256": "1ec5a125f398038fb621684c97b4629a10285eaafc7f1b9c7d49292b7ec8e4ee",
       "origin": "source_copy"
     },
     {
@@ -164,15 +188,57 @@
       "origin": "source_copy"
     },
     {
+      "path": "frontend/src/release/browser-chain.ts",
+      "bytes": 11478,
+      "sha256": "5dfc68a185787e4246f72716779a3937f38163f0958c9f35847bd0ca603a8bee",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/browser-store.ts",
+      "bytes": 1898,
+      "sha256": "5d746fc2b1b578cb4558fc61084817162625a959e47886e77a37b7106eda4e58",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/src/release/model.ts",
       "bytes": 9688,
       "sha256": "92cb53be7e6d799894a6b59c17fab34206280c41935b662521d12879e403a395",
       "origin": "source_copy"
     },
     {
+      "path": "frontend/src/release/package.ts",
+      "bytes": 7668,
+      "sha256": "9cd7b4feff2db00d164d7818cde2d7c3ae50de3bfab53ba67e9e7f582b028d39",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/src/release/primitives.ts",
       "bytes": 2717,
       "sha256": "932e84d692349c1e49ea5007085f962c95c2157012448f20e2d403cf8589e455",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/public-config.ts",
+      "bytes": 580,
+      "sha256": "f60af1b930a2596969eb7efefedd9066f2631f64c4fe18f73e42d1f70eb8a9b7",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/public-release.css",
+      "bytes": 17146,
+      "sha256": "ccf9a937a0cb272c52bf5dac8c81e0d0daf1d4358a21e571ef0b31356a060b0e",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/publisher.ts",
+      "bytes": 6839,
+      "sha256": "1816cc4a527bf80a8a39bd0e439fd54e68b49ff25446fb202e4c5dd74adbc3b3",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/release-contract.json",
+      "bytes": 15457,
+      "sha256": "0e24eb3b6203bd82f13fac7ddc8439befdeda947c77177e305279e830b8b67a3",
       "origin": "source_copy"
     },
     {
@@ -194,6 +260,18 @@
       "origin": "source_copy"
     },
     {
+      "path": "frontend/src/release/verified-receipt.json",
+      "bytes": 3079,
+      "sha256": "e37aeb704fa3bee137ad75f5216dd55243b8c991e706a72424298331156ace83",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/verified-release.json",
+      "bytes": 5627,
+      "sha256": "7edbf093e613f93df6cb6277cd6585d7622a2c20dadc0775dcc69ee4694211c7",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/src/release/wallet.ts",
       "bytes": 3084,
       "sha256": "420c68db1b21d507ceb64a648c167f997917b879081465717a0876da40f61b62",
@@ -206,6 +284,12 @@
       "origin": "source_copy"
     },
     {
+      "path": "frontend/tests/fixtures/release-public.json",
+      "bytes": 9051,
+      "sha256": "1ae4a506d5703ae863c3682deee3b0361a2215a5c0933f0ffc5d69db42db0a29",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/tests/release-access.test.mjs",
       "bytes": 3476,
       "sha256": "a48b70d72c4c73e5ed4ce9718ee5af6f012727576c6d64b65db586f9be4a15b2",
@@ -215,6 +299,12 @@
       "path": "frontend/tests/release-boundaries.test.mjs",
       "bytes": 4592,
       "sha256": "d950fba07a40ea704bd2bdd237f22e177bd0cecfca7e029f4dd004f567ab04a3",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/tests/release-public.test.mjs",
+      "bytes": 4380,
+      "sha256": "4df956c525b35eeaa4fa262b072932721f6ee0ec6989644caf12d93554bab6d8",
       "origin": "source_copy"
     },
     {
@@ -267,8 +357,8 @@
     },
     {
       "path": "scripts/codespaces-runtime.py",
-      "bytes": 9190,
-      "sha256": "7848ba3d69f1ebc57081e4716cfd12074135e57a894ddea745bd610e3fb2ff9c",
+      "bytes": 9263,
+      "sha256": "85c221c584daf8b9e4bac196b57681a275f96187e018b41998e2e5ae48c3f710",
       "origin": "source_copy"
     },
     {
@@ -309,26 +399,32 @@
     },
     {
       "path": "src/cluetide/release_chain.py",
-      "bytes": 24868,
-      "sha256": "599a49a907f70abce32a6516797771c3df2fc19221205b50f657c0d5edf97bb4",
+      "bytes": 25064,
+      "sha256": "e6ee64fd61ac460030a3f410e83268030697a6314545cd0ffb4ef159c027c7c3",
+      "origin": "source_copy"
+    },
+    {
+      "path": "src/cluetide/release_imports.py",
+      "bytes": 6553,
+      "sha256": "ea17ae514f3e23d3fbfda4ed17f91c0bf0c3cd079be403cf6886400efc307e9f",
       "origin": "source_copy"
     },
     {
       "path": "src/cluetide/release_server.py",
-      "bytes": 4573,
-      "sha256": "c60b1efa128754865c2db5f2b4f8051f47e13e8f162a6540b003611c0a7c7b63",
+      "bytes": 5312,
+      "sha256": "047cc8b1f89a940ea72aad2d718fb092abd2c052133fc04e616bced30487c13d",
       "origin": "source_copy"
     },
     {
       "path": "src/cluetide/releases.py",
-      "bytes": 47726,
-      "sha256": "b3e65d7883385c55ba5a502e817bf795b70ab3ffee18046f035218c5d0be5f63",
+      "bytes": 48079,
+      "sha256": "d5d239be2e5d932ca303220764df4275b792a54110e668ccfa6035b8cb8a884d",
       "origin": "source_copy"
     },
     {
       "path": "src/cluetide/releases_api.py",
-      "bytes": 5882,
-      "sha256": "557b4f13c820e4110bff4bd008d72ff5899a3c7a6a28918e957ebe7a7c0cca6b",
+      "bytes": 6089,
+      "sha256": "e8307b51e962900a618d4c3437feda2f2afc0b5fca453f744aa130f59c2d3a54",
       "origin": "source_copy"
     },
     {
@@ -356,9 +452,15 @@
       "origin": "source_copy"
     },
     {
+      "path": "tests/test_release_imports.py",
+      "bytes": 5298,
+      "sha256": "6d227f81ed3748e2285b317bfd8f177cd8f5b0ea05958a49cbef3103fa5a8905",
+      "origin": "source_copy"
+    },
+    {
       "path": "tests/test_release_integration_evm.py",
-      "bytes": 15766,
-      "sha256": "4a5b074817c0a6845ad9c2b48935c1ef2596da68f354adb264de9e474b210b43",
+      "bytes": 17010,
+      "sha256": "a56c7b88ea74834efef8d0747c802480e2d4f2a1d26c34a7965ecf6d58219fff",
       "origin": "source_copy"
     },
     {

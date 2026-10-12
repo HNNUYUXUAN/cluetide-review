@@ -71,6 +71,7 @@ class Runtime:
             "CLUETIDE_DATA_DIR": str(self.root / "local-data"),
             "CLUETIDE_PUBLIC_ORIGIN": self.origin,
             "CLUETIDE_CODESPACES_ORIGIN_REWRITE": "1",
+            "CLUETIDE_FRONTEND_ORIGINS": "https://hnnuyuxuan.github.io",
             "CLUETIDE_PREVIEW_ONLY": "1",
             "PYDANTIC_AI_NO_BANNER": "1",
             "PYTHONPATH": str(self.root / "src"),

@@ -1,0 +1,57 @@
+{
+  "receipt": {
+    "artifact_hash": "0x28a3f4a5fa679b3f0a204dc5529fd5167ecaa6e237b9a098e70cad16a5949cef",
+    "attempt_id": "1",
+    "authorization_tx": "0xfeb3205fee60e44158af89b861df484972b5c545564ce97a1f39f0b9482c7c20",
+    "chain_grant": {
+      "artifact_hash": "0x28a3f4a5fa679b3f0a204dc5529fd5167ecaa6e237b9a098e70cad16a5949cef",
+      "attempt_id": "1",
+      "authorization_tx": "0xfeb3205fee60e44158af89b861df484972b5c545564ce97a1f39f0b9482c7c20",
+      "block_hash": "0xc3da29c30d635b74cf034c0538f1e9fd80b81e878284fdff4dc2f63259dfab7d",
+      "block_number": 26335216,
+      "chain_id": 677,
+      "confirmations": 52,
+      "contract_address": "0xca71b77708674f5f2407c0ad4e599eaf5eb07281",
+      "executor": "0x054801af006663b16b84cee370267eca2b94686c",
+      "manifest_hash": "0xe3a84ac7c2652ab09b7e856260c2723b2b6bd52a86c37ca09d01e0cf73df448f",
+      "observed_at": "2026-10-11T16:24:28+00:00",
+      "read_block_hash": "0xccd45886f7acc42dd1b53b7deb45772a4d675cb8c93e0123cd69dce61ba014ae",
+      "read_block_number": 26335268,
+      "receipt_signer": "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4",
+      "status": "verified",
+      "target_id": "0xe79766b1b54ae3144def6c3347cb8e940cdbea1734bde44912ec589c70bc3e82",
+      "task_id": "0xa0a98d07aa732385222db48034464e6574ca3f57fa2ba7195659f818ff053731",
+      "version_id": 1
+    },
+    "chain_id": 677,
+    "completed_at": "2026-10-11T16:24:28+00:00",
+    "contract_address": "0xca71b77708674f5f2407c0ad4e599eaf5eb07281",
+    "environment": "isolated-demo",
+    "evidence": {
+      "artifact_url": "/api/releases/attempts/1/artifact?task_id=0xa0a98d07aa732385222db48034464e6574ca3f57fa2ba7195659f818ff053731",
+      "bundle_url": "/api/releases/tasks/0xa0a98d07aa732385222db48034464e6574ca3f57fa2ba7195659f818ff053731/bundle?version=1"
+    },
+    "executor": "0x054801af006663b16b84cee370267eca2b94686c",
+    "manifest_hash": "0xe3a84ac7c2652ab09b7e856260c2723b2b6bd52a86c37ca09d01e0cf73df448f",
+    "operation": "publish_static",
+    "output_hash": "0x28a3f4a5fa679b3f0a204dc5529fd5167ecaa6e237b9a098e70cad16a5949cef",
+    "receipt_signer": "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4",
+    "schema": "cluetide.execution-receipt.v1",
+    "stage": "output_verified",
+    "started_at": "2026-10-11T16:24:28+00:00",
+    "status": "succeeded",
+    "target_id": "0xe79766b1b54ae3144def6c3347cb8e940cdbea1734bde44912ec589c70bc3e82",
+    "task_id": "0xa0a98d07aa732385222db48034464e6574ca3f57fa2ba7195659f818ff053731",
+    "version_id": 1
+  },
+  "receipt_hash": "0xf0112315ea96058c5cfe6c6ffb6eb90c8405c7a5d57653762fddeef904c0eac1",
+  "signature": "0xcff4c364d1f9b38031532f2565884cd96a789f5c90100d723044b3644d8bda4d626f51d101efb420945889533fec5c2b81586c49f0065beb77a89b7109a16ed61c",
+  "signature_scheme": "EIP-712",
+  "signer": "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4",
+  "verification": {
+    "signature_valid": true,
+    "artifact_matches": true,
+    "current_target_matches": true,
+    "scope": "Executor signature and available local artifact bytes"
+  }
+}

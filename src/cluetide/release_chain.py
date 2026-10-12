@@ -263,7 +263,7 @@ class ReleaseChainService:
         return self._read_at_current(payload)
 
     def _read_at_current(self, payload, origin=None):
-        allowed = {"chain_id", "contract_address", "task_id", "version_id", "attempt_id"}
+        allowed = {"chain_id", "contract_address", "task_id", "version_id", "attempt_id", "confirmations"}
         if not isinstance(payload, dict) or set(payload) - allowed:
             raise ReleaseChainError("invalid_request")
         artifact = self.artifact()
@@ -275,7 +275,10 @@ class ReleaseChainService:
         with self.client_factory() as client:
             rpc = BotRPC(payload.get("chain_id"), client)
             rpc.verify_chain()
-            block = _quantity(rpc.request("eth_blockNumber", []))
+            depth = _uint(payload.get("confirmations", 1), maximum=64)
+            block = _quantity(rpc.request("eth_blockNumber", [])) - depth + 1
+            if block < 0:
+                raise ReleaseChainError("insufficient_confirmations")
             anchor = self._anchor(rpc, block)
             rpc.code(address, artifact, hex(block))
             state = self._state(rpc, address, commitments, hex(block))

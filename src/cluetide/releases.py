@@ -281,6 +281,10 @@ class ChainGateway:
             raise ReleaseError("The chain task target does not match this release task.")
         return result
 
+    def read_import(self, *, task, version_id):
+        return self._call(self.service.read, {**self._base(), "task_id": task["task_id"],
+                         "version_id": str(version_id), "confirmations": 3})
+
     def authorize_execution(self, *, task, version, attempt_id, start_transaction_hash):
         base = self._base()
         result = self._call(self.service.authorize_execution, {**base, "task_id": task["task_id"],
@@ -496,6 +500,10 @@ class ReleaseService:
                     "version_count": 0, "chain_records": []}
             self._save(self._task_path(task_id), task, immutable=True)
             return self._detail(task)
+
+    def import_version(self, payload):
+        from .release_imports import import_version
+        return import_version(self, payload)
 
     def issue_task_write_key(self, task_id):
         """Create or rotate an off-chain package capability for a local operator."""

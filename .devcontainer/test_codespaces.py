@@ -126,7 +126,7 @@ class CodespacesChecks(unittest.TestCase):
         if not (ROOT / "frontend" / "dist" / "index.html").is_file():
             self.skipTest("Build the frontend to exercise its same-origin UI")
         shutil.copytree(ROOT / "frontend" / "dist", self.root / "frontend" / "dist", dirs_exist_ok=True)
-        for module in ("__init__", "release_chain", "releases", "releases_api", "release_server",
+        for module in ("__init__", "release_chain", "releases", "release_imports", "releases_api", "release_server",
                        "bot", "bundles", "registry", "request_limits", "settings"):
             target = self.root / "src" / "cluetide" / f"{module}.py"
             target.parent.mkdir(parents=True, exist_ok=True)

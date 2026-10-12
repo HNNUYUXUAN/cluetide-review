@@ -1,0 +1,152 @@
+{
+  "task": {
+    "task_id": "0x1212121212121212121212121212121212121212121212121212121212121212",
+    "title": "Golden release",
+    "owner": "0x1111111111111111111111111111111111111111",
+    "proposer": "0x1111111111111111111111111111111111111111",
+    "reviewer": "0x2222222222222222222222222222222222222222",
+    "executor": "0x1111111111111111111111111111111111111111",
+    "receipt_signer": "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4",
+    "target": "demo-site",
+    "target_id": "0x010aaab313bd5779ca86d3e2440adc26aee3d447c7b1d2432e773add2da4a865",
+    "created_at": "2026-10-12T00:00:00.000Z",
+    "version_count": 1,
+    "attempts": [],
+    "versions": [
+      {
+        "version_id": 1,
+        "manifest": {
+          "schema": "cluetide.release-manifest.v1",
+          "task_id": "0x1212121212121212121212121212121212121212121212121212121212121212",
+          "version_id": 1,
+          "parent_version_id": 0,
+          "summary": "Release é 😀",
+          "source_reference": "git:golden",
+          "artifact": {
+            "filename": "artifact.html",
+            "sha256": "0xf6e96c92d1098e9cb42b5ebcc48838aaa1720a53870fcc68ae15eb4395d093a9",
+            "bytes": 64
+          },
+          "operation": "publish_static",
+          "target": "demo-site",
+          "target_id": "0x010aaab313bd5779ca86d3e2440adc26aee3d447c7b1d2432e773add2da4a865",
+          "policy_version": "cluetide.demo-release.v1",
+          "expires_at": 2100000000,
+          "test_evidence": [
+            "Golden fixture"
+          ]
+        },
+        "manifest_hash": "0x202f36e9ddf0cf3dbe6d2be0e1a944ae8ee83455ea6f6f9b2ad84b92057594ac",
+        "artifact_hash": "0xf6e96c92d1098e9cb42b5ebcc48838aaa1720a53870fcc68ae15eb4395d093a9",
+        "artifact_text": "<!doctype html>\n<html lang=\"en\"><h1>Release é 😀</h1></html>\n",
+        "summary": "Release é 😀",
+        "expires_at": 2100000000,
+        "bundle_url": ""
+      }
+    ]
+  },
+  "version": {
+    "version_id": 1,
+    "manifest": {
+      "schema": "cluetide.release-manifest.v1",
+      "task_id": "0x1212121212121212121212121212121212121212121212121212121212121212",
+      "version_id": 1,
+      "parent_version_id": 0,
+      "summary": "Release é 😀",
+      "source_reference": "git:golden",
+      "artifact": {
+        "filename": "artifact.html",
+        "sha256": "0xf6e96c92d1098e9cb42b5ebcc48838aaa1720a53870fcc68ae15eb4395d093a9",
+        "bytes": 64
+      },
+      "operation": "publish_static",
+      "target": "demo-site",
+      "target_id": "0x010aaab313bd5779ca86d3e2440adc26aee3d447c7b1d2432e773add2da4a865",
+      "policy_version": "cluetide.demo-release.v1",
+      "expires_at": 2100000000,
+      "test_evidence": [
+        "Golden fixture"
+      ]
+    },
+    "manifest_hash": "0x202f36e9ddf0cf3dbe6d2be0e1a944ae8ee83455ea6f6f9b2ad84b92057594ac",
+    "artifact_hash": "0xf6e96c92d1098e9cb42b5ebcc48838aaa1720a53870fcc68ae15eb4395d093a9",
+    "artifact_text": "<!doctype html>\n<html lang=\"en\"><h1>Release é 😀</h1></html>\n",
+    "summary": "Release é 😀",
+    "expires_at": 2100000000,
+    "bundle_url": ""
+  },
+  "canonical_manifest": "{\"artifact\":{\"bytes\":64,\"filename\":\"artifact.html\",\"sha256\":\"0xf6e96c92d1098e9cb42b5ebcc48838aaa1720a53870fcc68ae15eb4395d093a9\"},\"expires_at\":2100000000,\"operation\":\"publish_static\",\"parent_version_id\":0,\"policy_version\":\"cluetide.demo-release.v1\",\"schema\":\"cluetide.release-manifest.v1\",\"source_reference\":\"git:golden\",\"summary\":\"Release é 😀\",\"target\":\"demo-site\",\"target_id\":\"0x010aaab313bd5779ca86d3e2440adc26aee3d447c7b1d2432e773add2da4a865\",\"task_id\":\"0x1212121212121212121212121212121212121212121212121212121212121212\",\"test_evidence\":[\"Golden fixture\"],\"version_id\":1}",
+  "calldata": {
+    "create_task": "0xbbbc1c9e1212121212121212121212121212121212121212121212121212121212121212000000000000000000000000111111111111111111111111111111111111111100000000000000000000000022222222222222222222222222222222222222220000000000000000000000001111111111111111111111111111111111111111000000000000000000000000c0a54fc7daa998a2e8bacc015eeafd4591ac15a4010aaab313bd5779ca86d3e2440adc26aee3d447c7b1d2432e773add2da4a865",
+    "submit_version": "0x1d159ac212121212121212121212121212121212121212121212121212121212121212120000000000000000000000000000000000000000000000000000000000000000202f36e9ddf0cf3dbe6d2be0e1a944ae8ee83455ea6f6f9b2ad84b92057594acf6e96c92d1098e9cb42b5ebcc48838aaa1720a53870fcc68ae15eb4395d093a9000000000000000000000000000000000000000000000000000000007d2b7500",
+    "approve": "0xe6df9b2312121212121212121212121212121212121212121212121212121212121212120000000000000000000000000000000000000000000000000000000000000001202f36e9ddf0cf3dbe6d2be0e1a944ae8ee83455ea6f6f9b2ad84b92057594acf6e96c92d1098e9cb42b5ebcc48838aaa1720a53870fcc68ae15eb4395d093a9000000000000000000000000000000000000000000000000000000007d2b7500",
+    "request_correction": "0xec41e12b12121212121212121212121212121212121212121212121212121212121212120000000000000000000000000000000000000000000000000000000000000001",
+    "revoke": "0xbb46942f12121212121212121212121212121212121212121212121212121212121212120000000000000000000000000000000000000000000000000000000000000001",
+    "start_execution": "0xdd53ca6812121212121212121212121212121212121212121212121212121212121212120000000000000000000000000000000000000000000000000000000000000001202f36e9ddf0cf3dbe6d2be0e1a944ae8ee83455ea6f6f9b2ad84b92057594acf6e96c92d1098e9cb42b5ebcc48838aaa1720a53870fcc68ae15eb4395d093a9"
+  },
+  "jcs_values": {
+    "😀": "emoji",
+    "€": "currency",
+    "small": 1e-07,
+    "integer": 9007199254740991,
+    "line": "a\nb"
+  },
+  "jcs_hash": "0x81c5f2f80da61dc1b9935fb1f962ce0eae5977ba74140aa856070dad52ccf18f",
+  "receipt": {
+    "receipt": {
+      "artifact_hash": "0x28a3f4a5fa679b3f0a204dc5529fd5167ecaa6e237b9a098e70cad16a5949cef",
+      "attempt_id": "1",
+      "authorization_tx": "0xfeb3205fee60e44158af89b861df484972b5c545564ce97a1f39f0b9482c7c20",
+      "chain_grant": {
+        "artifact_hash": "0x28a3f4a5fa679b3f0a204dc5529fd5167ecaa6e237b9a098e70cad16a5949cef",
+        "attempt_id": "1",
+        "authorization_tx": "0xfeb3205fee60e44158af89b861df484972b5c545564ce97a1f39f0b9482c7c20",
+        "block_hash": "0xc3da29c30d635b74cf034c0538f1e9fd80b81e878284fdff4dc2f63259dfab7d",
+        "block_number": 26335216,
+        "chain_id": 677,
+        "confirmations": 52,
+        "contract_address": "0xca71b77708674f5f2407c0ad4e599eaf5eb07281",
+        "executor": "0x054801af006663b16b84cee370267eca2b94686c",
+        "manifest_hash": "0xe3a84ac7c2652ab09b7e856260c2723b2b6bd52a86c37ca09d01e0cf73df448f",
+        "observed_at": "2026-10-11T16:24:28+00:00",
+        "read_block_hash": "0xccd45886f7acc42dd1b53b7deb45772a4d675cb8c93e0123cd69dce61ba014ae",
+        "read_block_number": 26335268,
+        "receipt_signer": "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4",
+        "status": "verified",
+        "target_id": "0xe79766b1b54ae3144def6c3347cb8e940cdbea1734bde44912ec589c70bc3e82",
+        "task_id": "0xa0a98d07aa732385222db48034464e6574ca3f57fa2ba7195659f818ff053731",
+        "version_id": 1
+      },
+      "chain_id": 677,
+      "completed_at": "2026-10-11T16:24:28+00:00",
+      "contract_address": "0xca71b77708674f5f2407c0ad4e599eaf5eb07281",
+      "environment": "isolated-demo",
+      "evidence": {
+        "artifact_url": "/api/releases/attempts/1/artifact?task_id=0xa0a98d07aa732385222db48034464e6574ca3f57fa2ba7195659f818ff053731",
+        "bundle_url": "/api/releases/tasks/0xa0a98d07aa732385222db48034464e6574ca3f57fa2ba7195659f818ff053731/bundle?version=1"
+      },
+      "executor": "0x054801af006663b16b84cee370267eca2b94686c",
+      "manifest_hash": "0xe3a84ac7c2652ab09b7e856260c2723b2b6bd52a86c37ca09d01e0cf73df448f",
+      "operation": "publish_static",
+      "output_hash": "0x28a3f4a5fa679b3f0a204dc5529fd5167ecaa6e237b9a098e70cad16a5949cef",
+      "receipt_signer": "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4",
+      "schema": "cluetide.execution-receipt.v1",
+      "stage": "output_verified",
+      "started_at": "2026-10-11T16:24:28+00:00",
+      "status": "succeeded",
+      "target_id": "0xe79766b1b54ae3144def6c3347cb8e940cdbea1734bde44912ec589c70bc3e82",
+      "task_id": "0xa0a98d07aa732385222db48034464e6574ca3f57fa2ba7195659f818ff053731",
+      "version_id": 1
+    },
+    "receipt_hash": "0xf0112315ea96058c5cfe6c6ffb6eb90c8405c7a5d57653762fddeef904c0eac1",
+    "signature": "0xcff4c364d1f9b38031532f2565884cd96a789f5c90100d723044b3644d8bda4d626f51d101efb420945889533fec5c2b81586c49f0065beb77a89b7109a16ed61c",
+    "signature_scheme": "EIP-712",
+    "signer": "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4",
+    "verification": {
+      "signature_valid": true,
+      "artifact_matches": true,
+      "current_target_matches": true,
+      "scope": "Executor signature and available local artifact bytes"
+    }
+  }
+}
