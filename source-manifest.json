@@ -225,8 +225,8 @@
     },
     {
       "path": "frontend/src/release/public-release.css",
-      "bytes": 17146,
-      "sha256": "ccf9a937a0cb272c52bf5dac8c81e0d0daf1d4358a21e571ef0b31356a060b0e",
+      "bytes": 17149,
+      "sha256": "ad1f247b598275e0348100d9cf5342a7c0866ae9e2f64206faacc17f1ecce118",
       "origin": "source_copy"
     },
     {
