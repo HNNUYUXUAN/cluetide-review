@@ -231,8 +231,8 @@
     },
     {
       "path": "frontend/src/release/PublicReleaseApp.tsx",
-      "bytes": 30637,
-      "sha256": "4c00ec67eb9f9b4d51b3de3c2458c1880f91ee00235cbcc2b487ef36838d1353",
+      "bytes": 30896,
+      "sha256": "87b803c40139fb84881101aa8da28dee57b161df606688eba410612274bc711a",
       "origin": "source_copy"
     },
     {
