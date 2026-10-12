@@ -159,14 +159,14 @@
     },
     {
       "path": "frontend/src/release/PublicReleaseApp.tsx",
-      "bytes": 30580,
-      "sha256": "982f176f4011baf79fb811471f3e9dada24f05dd54ee234c1268e785e58ba587",
+      "bytes": 30637,
+      "sha256": "4c00ec67eb9f9b4d51b3de3c2458c1880f91ee00235cbcc2b487ef36838d1353",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/PublicTask.tsx",
-      "bytes": 9588,
-      "sha256": "1ec5a125f398038fb621684c97b4629a10285eaafc7f1b9c7d49292b7ec8e4ee",
+      "bytes": 9624,
+      "sha256": "b9c5625b4916dfdd005553ff40ee398f437519ac0812394a7d0fde9f762d5a75",
       "origin": "source_copy"
     },
     {
