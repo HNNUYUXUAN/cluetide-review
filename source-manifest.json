@@ -621,8 +621,8 @@
     },
     {
       "path": "scripts/vercel_build.py",
-      "bytes": 1151,
-      "sha256": "6d94c526fe47b7eaf22fe52a8284015a25f2af1ec94a18a5075de315517a8685",
+      "bytes": 1176,
+      "sha256": "158ffcf05449c581ddef0bd4b13eb686ed657f027d5f20181499c9dcc8ee28d1",
       "origin": "source_copy"
     },
     {

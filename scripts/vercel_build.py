@@ -17,6 +17,7 @@ def main():
     subprocess.run(["uv", "pip", "install", "--python", sys.executable, "-r", "requirements-dev.txt"], cwd=root, check=True)
     environment = os.environ.copy()
     environment["CLUETIDE_TEST_DATABASE_URL"] = environment["DATABASE_URL"]
+    environment["PYTHONPATH"] = str(root / "src")
     return subprocess.run([sys.executable, "-m", "pytest", "tests/test_release_persistent.py", "-q", "--maxfail=1"],
                           cwd=root, env=environment).returncode
 
