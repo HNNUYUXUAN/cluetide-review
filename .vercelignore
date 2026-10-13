@@ -6,7 +6,8 @@ local-only/
 *.key
 *.log
 data/
-tests/
+tests/*
+!tests/test_release*.py
 history/
 literature/
 P2A/

@@ -56,3 +56,20 @@ def test_api_config_is_sixty_seconds_and_frontend_proxy_is_generated_only_for_ac
     assert config["functions"]["app.py"]["maxDuration"] == 60
     assert config["regions"] == ["iad1"]
     assert config["framework"] == "fastapi"
+
+
+@pytest.mark.parametrize("invalid", [{"VERCEL_ENV": "production"},
+    {"CLUETIDE_STORAGE_NAMESPACE": "production"}, {"CLUETIDE_RELEASE_SIGNING_KEY": "test-only"},
+    {"DATABASE_URL": ""}])
+def test_database_build_validation_refuses_unisolated_configuration(invalid, monkeypatch):
+    import os
+    import runpy
+    from unittest.mock import patch
+    root = Path(__file__).resolve().parents[1]
+    hook = runpy.run_path(str(root / "scripts/vercel_build.py"))["main"]
+    environment = {"CLUETIDE_RUN_DATABASE_TESTS": "1", "VERCEL_ENV": "preview",
+                   "CLUETIDE_STORAGE_NAMESPACE": "preview", "DATABASE_URL": "test-only", **invalid}
+    with patch.dict(os.environ, environment, clear=True), patch("subprocess.run") as run:
+        with pytest.raises(SystemExit):
+            hook()
+        run.assert_not_called()

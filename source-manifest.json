@@ -45,8 +45,8 @@
     },
     {
       "path": ".vercelignore",
-      "bytes": 118,
-      "sha256": "fd7f38fa8572a863c77bb1731cf3ae0b01105c8168965041f997b694cb84e4f4",
+      "bytes": 143,
+      "sha256": "62988eccc0076f4a0b8877475ec8f552a09c61feb0a5b85eae7b3659b77c1d0d",
       "origin": "source_copy"
     },
     {
@@ -171,8 +171,8 @@
     },
     {
       "path": "docs/vercel-deployment.md",
-      "bytes": 9479,
-      "sha256": "deafeb6570c06304516285767c576aeeee6f82c25d9089560bfc5f58bdb1dc5e",
+      "bytes": 10105,
+      "sha256": "4429adee28c2954eaccea69642165de0f86b169f2ad20709fa94aca9f3d234d2",
       "origin": "source_copy"
     },
     {
@@ -620,6 +620,12 @@
       "origin": "source_copy"
     },
     {
+      "path": "scripts/vercel_build.py",
+      "bytes": 1151,
+      "sha256": "6d94c526fe47b7eaf22fe52a8284015a25f2af1ec94a18a5075de315517a8685",
+      "origin": "source_copy"
+    },
+    {
       "path": "src/cluetide/__init__.py",
       "bytes": 95,
       "sha256": "76293c9a8ac51f4598d31aea4e4ab234696a0c42308b481dcd481fb66882b790",
@@ -735,8 +741,8 @@
     },
     {
       "path": "tests/test_release_deployment.py",
-      "bytes": 2576,
-      "sha256": "0fd75baa5a25deb836005ed6e2251360a42d134eef936652c7f81ec3f2060ed7",
+      "bytes": 3408,
+      "sha256": "ea5e718c21f155af981d58caa79ba3c77152ef2e661aa5bc03d45e0be0b46489",
       "origin": "source_copy"
     },
     {
@@ -813,8 +819,8 @@
     },
     {
       "path": "vercel.json",
-      "bytes": 256,
-      "sha256": "43d365e7d03a3a459866a984e7a6f85717739ecaf2839f6790be0d0ba091a319",
+      "bytes": 432,
+      "sha256": "8cd5fe9ad3d65aaa36a823d6f93d02984a489772d31982f8a40d7b29e7b31f0f",
       "origin": "source_copy"
     }
   ]
