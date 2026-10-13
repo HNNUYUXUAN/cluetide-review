@@ -4,13 +4,21 @@ This runbook maps the organizer's October 2026 deployment tutorial to the releas
 
 | Tutorial section | Project configuration | Evidence required |
 |---|---|---|
-| 22–25: account and GitHub import | Existing personal Hobby account; existing `HNNUYUXUAN/cluetide-review`; production branch `workshop-codex/agent-release-witness` | Limited repository authorization; actual project names and connected branch |
+| 22–25: account and GitHub import | Existing personal Hobby account; existing `HNNUYUXUAN/cluetide-review`; API branch `workshop-codex/agent-release-witness`; frontend branch `vercel-production` | Limited repository authorization; actual project names and connected branch |
 | 26–28, 41: frontend build | Vite; root `frontend`; Node 24; `npm ci`; `npm run build`; output `dist` | Fresh install, build logs, anonymous HTML and asset readback |
 | 29, 43–44: backend and database | Separate FastAPI project at repository root; Python 3.12; `app.py`; 60 seconds; region `iad1`; Neon Free PostgreSQL nearby | API deployment, persistent database and secret configuration |
 | 32–34: navigation and resources | Hash routing; same-origin `/api/*` proxy; generated `frontend/vercel.json` | Fixed-version URL, refresh, API and desktop/390-pixel checks |
 | 45: Web3 | BOT Mainnet 677; fixed witness and receipt signer; three confirmations | Wallet and actual mainnet receipt evidence |
 | 52: anonymous access | Use the actual production platform domains | Independent unauthenticated HTTP and browser readback |
 | 58–61: source and delivery | Explicit source allowlist; signing key and database URL stay in backend secrets | Source manifest; acceptance bundle; inspected recording; submission status |
+
+## Observed deployment state (13 October 2026)
+
+- Frontend: https://cluetide.vercel.app/ ; project `cluetide`, root `frontend`, Vite. The first successful production deployment uses public source `624f2b8fc4840d13088db2a43b958650e08cb2c5`.
+- API: https://cluetide-release-api.vercel.app/ ; project `cluetide-release-api`, repository root and FastAPI.
+- Both the anonymous frontend and its same-origin `/api/health` return HTTP 200. Anonymous package import, refresh recovery and a 390-pixel viewport pass before the publication service is ready.
+- Neon Free resources `cluetide-release-production` and `cluetide-release-preview` are separate databases in `iad1`, connected only to their corresponding Vercel environments. App authentication is disabled because this product uses designated wallet roles.
+- Production signing identity injection, schema initialization, migrated-record verification, cold starts and production writer cutover remain deployment gates. The existing Pages entry is retained until cutover validation passes.
 
 ## Configure the API
 
@@ -43,7 +51,7 @@ After the API project's actual platform domain exists, generate and commit the p
 python scripts/configure_vercel_frontend.py --api-origin https://ACTUAL-API-PROJECT.vercel.app
 ```
 
-Import the same GitHub repository as the frontend project. Set root `frontend`, Vite, Node 24, install `npm ci`, build `npm run build`, output `dist`, and the same explicit production branch. Only `/api/:path*` is rewritten to the API. Keep hash routes and asset paths intact. Set the exact frontend origin on the backend before mutation tests.
+Import the same GitHub repository as the frontend project. Set root `frontend`, Vite, Node 24, install `npm ci`, build `npm run build`, output `dist`, and the explicit `vercel-production` deployment branch. Keep that branch at the same verified commit as `workshop-codex/agent-release-witness`. The import UI accepts the deployment branch URL and exposes the actual `frontend` directory before deployment. Only `/api/:path*` is rewritten to the API. Keep hash routes and asset paths intact. Set the exact frontend origin on the backend before mutation tests.
 
 ## Migrate and cut over
 

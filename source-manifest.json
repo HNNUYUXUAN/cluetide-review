@@ -171,8 +171,8 @@
     },
     {
       "path": "docs/vercel-deployment.md",
-      "bytes": 7839,
-      "sha256": "1559eae031fac3c8a5c2cecdd6baee01c5b3bd455604c4c754b3ce3c90a45ddf",
+      "bytes": 9119,
+      "sha256": "a679ee09e02cb711d6464020869619b7b7213586bd7ee4499276bf4314b200c0",
       "origin": "source_copy"
     },
     {
@@ -279,8 +279,8 @@
     },
     {
       "path": "frontend/src/release/PublicTask.tsx",
-      "bytes": 11883,
-      "sha256": "7aa64058547d70142152b859f042429a8acd53d7d1f9127b02fee129628a28c6",
+      "bytes": 11845,
+      "sha256": "9ba1598e48666285918235bfd775fac6e16635b17c0ce649e987f1691e1d91df",
       "origin": "source_copy"
     },
     {
