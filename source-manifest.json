@@ -21,8 +21,8 @@
     },
     {
       "path": ".devcontainer/test_codespaces.py",
-      "bytes": 14908,
-      "sha256": "17538685e964f9b9c3dd1d7d69f191eba0f86e35297247b30f69496d2ae10e7f",
+      "bytes": 15341,
+      "sha256": "13dbb064c893ff5ea7ab6ca52abbfe462673a9994b7fd886138367b57f732df3",
       "origin": "source_copy"
     },
     {
@@ -51,8 +51,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5768,
-      "sha256": "5fc01c5742cea86d55d5e714cd107577535fdaa102e9e8c770411f228ec2bf5c",
+      "bytes": 6144,
+      "sha256": "14276d9aa19dd13c999413200fcde22a7b4c8bf90cfb8d02c1612eaa7cbe17dc",
       "origin": "package_metadata"
     },
     {
@@ -171,14 +171,14 @@
     },
     {
       "path": "docs/vercel-deployment.md",
-      "bytes": 9119,
-      "sha256": "a679ee09e02cb711d6464020869619b7b7213586bd7ee4499276bf4314b200c0",
+      "bytes": 9479,
+      "sha256": "deafeb6570c06304516285767c576aeeee6f82c25d9089560bfc5f58bdb1dc5e",
       "origin": "source_copy"
     },
     {
       "path": "frontend/README.md",
-      "bytes": 927,
-      "sha256": "3f7907efd51b50de8a2d26f854da3644f9caf89bd9497bbd32fc3c3608d55e40",
+      "bytes": 988,
+      "sha256": "8850bcab18e6ae1d10e01e75bc279b74e80a8aed95e8aaf481f4c15fdfe16e91",
       "origin": "package_metadata"
     },
     {
@@ -585,8 +585,8 @@
     },
     {
       "path": "scripts/codespaces-runtime.py",
-      "bytes": 11995,
-      "sha256": "eeb91c510d30c914d43e9e0661138aa1f3a043f540aaf3dc157688ee72b46771",
+      "bytes": 12234,
+      "sha256": "fee93b136e8ee3fd757e4d977923b708628265bbe7721bff9d331fac08b710eb",
       "origin": "source_copy"
     },
     {
@@ -681,8 +681,8 @@
     },
     {
       "path": "src/cluetide/release_readiness.py",
-      "bytes": 3328,
-      "sha256": "4fe3239666f66a1862f8e4a0fe85b70288299fc967e056b5279346a21839a134",
+      "bytes": 3294,
+      "sha256": "bdb465478c4eb7307120e014a33e3f5d448a09ccff6df8d20f3744a9429faa31",
       "origin": "source_copy"
     },
     {
@@ -699,14 +699,14 @@
     },
     {
       "path": "src/cluetide/releases.py",
-      "bytes": 50781,
-      "sha256": "754f4fb055088a4828f7584a688aa182a4c8e6086ed2ecdb3409433353a4ba73",
+      "bytes": 51245,
+      "sha256": "dbf356c4c29bacfe0b77e75f2f0f1f63cfc12eaa6794deda4526513f81af7d4c",
       "origin": "source_copy"
     },
     {
       "path": "src/cluetide/releases_api.py",
-      "bytes": 7773,
-      "sha256": "db164768f15599a84ebc59ef5a0145a82f16fa203447c44696b7666c7d95a348",
+      "bytes": 7725,
+      "sha256": "2f5e0eaec6ded03de2e6b9317707f3dc065b039e94e5a23e30c6c0fb4447a17d",
       "origin": "source_copy"
     },
     {
@@ -783,8 +783,8 @@
     },
     {
       "path": "tests/test_release_server.py",
-      "bytes": 10591,
-      "sha256": "2ba1499d7b53d524f188f0b255c0b2f52b755b59abe7b982b234bb57e212d747",
+      "bytes": 11656,
+      "sha256": "e0fb754f8f3d58877f73d416752245bd14211d421aa624ce69a49fd12fc1e114",
       "origin": "source_copy"
     },
     {

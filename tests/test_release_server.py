@@ -192,3 +192,21 @@ def test_codespaces_proxy_does_not_authorize_foreign_origin(service, tmp_path):
         headers = {**CODESPACES_PROXY_HEADERS, "Origin": "https://other.example"}
         assert client.get("/api/health", headers=headers).status_code == 403
         assert client.post("/api/releases/tasks", headers=headers, json={}).status_code == 403
+
+
+def test_file_publisher_pause_survives_process_recreation(service, tmp_path, monkeypatch):
+    from test_releases import OWNER, REVIEWER, EXECUTOR
+    payload = {"title": "Migration pause", "owner": OWNER, "proposer": OWNER,
+               "reviewer": REVIEWER, "executor": EXECUTOR}
+    monkeypatch.setenv("CLUETIDE_RELEASE_WRITES_ENABLED", "1")
+    with client_for(service, tmp_path) as client:
+        assert client.post("/api/releases/tasks", json=payload).status_code == 201
+        marker = service.root / "writer-paused"
+        marker.write_bytes(b"Vercel production cutover\n")
+        assert client.post("/api/releases/tasks", json=payload).status_code == 503
+        assert client.get("/api/releases/tasks").status_code == 200
+    recreated = ReleaseService(service.root, signing_key=bytes.fromhex("11" * 32))
+    with client_for(recreated, tmp_path) as client:
+        assert client.post("/api/releases/tasks", json=payload).status_code == 503
+        marker.unlink()
+        assert client.post("/api/releases/tasks", json=payload).status_code == 201

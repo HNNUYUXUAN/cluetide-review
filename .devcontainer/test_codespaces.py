@@ -45,6 +45,13 @@ class CodespacesChecks(unittest.TestCase):
         })
         return identity
 
+    def test_persistent_writer_pause_survives_environment_recreation(self):
+        marker = self.root / "local-data" / "release-witness" / "writer-paused"
+        marker.parent.mkdir(parents=True)
+        marker.write_bytes(b"Vercel production cutover\n")
+        with patch.dict(os.environ, {"CLUETIDE_RELEASE_WRITES_ENABLED": "1"}):
+            self.assertEqual(self.config.environment()["CLUETIDE_RELEASE_WRITES_ENABLED"], "0")
+
     def test_forwarded_origin_validation(self):
         self.assertEqual(runtime.public_origin({"CODESPACE_NAME": "review-demo"}),
                          "https://review-demo-8787.app.github.dev")

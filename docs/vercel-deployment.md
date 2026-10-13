@@ -18,7 +18,7 @@ This runbook maps the organizer's October 2026 deployment tutorial to the releas
 - API: https://cluetide-release-api.vercel.app/ ; project `cluetide-release-api`, repository root and FastAPI.
 - Both the anonymous frontend and its same-origin `/api/health` return HTTP 200. Anonymous package import, refresh recovery and a 390-pixel viewport pass before the publication service is ready.
 - Neon Free resources `cluetide-release-production` and `cluetide-release-preview` are separate databases in `iad1`, connected only to their corresponding Vercel environments. App authentication is disabled because this product uses designated wallet roles.
-- Production signing identity injection, schema initialization, migrated-record verification, cold starts and production writer cutover remain deployment gates. The existing Pages entry is retained until cutover validation passes.
+- Both database schemas are initialized with writers paused. The production readiness endpoint confirms PostgreSQL, the existing receipt signer and fixed contract. Migrated-record verification, cold starts and production writer cutover remain deployment gates. The existing Pages entry is retained until cutover validation passes.
 
 ## Configure the API
 
@@ -56,13 +56,13 @@ Import the same GitHub repository as the frontend project. Set root `frontend`, 
 ## Migrate and cut over
 
 1. Take a protected backup of the existing runtime and generate a SHA-256 inventory. Preserve original bytes and the existing signer; signing keys are excluded from the migration inventory and public source.
-2. Pause old API writes using `CLUETIDE_RELEASE_WRITES_ENABLED=0`, restart it, and verify reads still work and mutation requests are refused. Keep the database writer paused.
+2. Create `OLD_STATE/writer-paused` while holding the old release-store lock, then restart with `CLUETIDE_RELEASE_WRITES_ENABLED=0`. Both API requests and the Codespace startup path honor the persisted marker, so a future process or Codespace restore stays read-only. Verify reads still work and mutation requests are refused. Keep the database writer paused.
 3. Import the final frozen state using `release_storage_admin.py --namespace production --manifest PRIVATE_PATH import-files --source OLD_STATE --old-writer-paused`. It copies tasks, versions, hashed task capabilities, feedback, attempts, target markers, artifacts and receipts. Immutable conflicts and extra records stop cutover. Manifest hashes, feedback signatures and receipt signatures are independently revalidated.
 4. Run `verify`, inspect readiness and confirm the fixed signer. Enable the database writer with `writer --state enabled`, then enable the Production application flag. Old writes remain paused.
 5. Add the actual service domain to private Agent access with `agent_release.py --url NEW_ORIGIN --access-file PRIVATE_PATH migrate-service --from-url OLD_ORIGIN`. The old binding remains; capabilities are never transmitted by this command.
 6. Verify anonymous frontend/API reads, imports, fixed links and original downloads. Update Pages to a redirect preserving `location.hash` only after these pass. Browser-local material crosses origins through explicit export/import.
 
-Rollback starts by pausing the new database writer. Export to a fresh protected directory with `export-files --destination FRESH_DIRECTORY`, compare the full inventory, restore the old file store including all new state, then enable the old writer. Never run two production writers.
+Rollback starts by pausing the new database writer. Export to a fresh protected directory with `export-files --destination FRESH_DIRECTORY`, compare the full inventory, restore the old file store including all new state, then remove the old `writer-paused` marker and enable the old writer only after all state checks pass. Never run two production writers.
 
 ## Execution and recovery guarantees
 

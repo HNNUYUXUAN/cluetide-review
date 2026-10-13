@@ -76,6 +76,9 @@ class Runtime:
             "PYDANTIC_AI_NO_BANNER": "1",
             "PYTHONPATH": str(self.root / "src"),
         })
+        pause_marker = self.root / "local-data" / "release-witness" / "writer-paused"
+        if pause_marker.exists() or pause_marker.is_symlink() or pause_marker.is_junction():
+            result["CLUETIDE_RELEASE_WRITES_ENABLED"] = "0"
         return result
 
 

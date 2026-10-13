@@ -4,13 +4,13 @@
 
 **Persistent deployment and user recovery — 2026-10-13.** The source now provides Agent-package-first onboarding, explicit assigned-wallet guidance, persistent transaction journals, bounded hash recovery, request-driven service retry, PostgreSQL persistence and task-wide fenced execution leases. See the [first-use and recovery guide](docs/first-use-and-recovery.md) and [Vercel deployment runbook](docs/vercel-deployment.md). The Vercel production migration, cold-start evidence and fresh mainnet recording remain deployment acceptance gates; the existing public Pages release stays the production reference until cutover is verified.
 
-[Open the public product](https://hnnuyuxuan.github.io/cluetide-app/release/).
+[Open the public interface](https://cluetide.vercel.app/). The Vercel API is identity-verified with writes paused during migration. The [earlier mainnet entry](https://hnnuyuxuan.github.io/cluetide-app/release/) remains available until cutover validation completes.
 
 ClueTide helps Web3 project partners ship an Agent-prepared project page together. The proposer preserves the exact HTML, source reference and tests; the reviewer approves that version or signs correction requirements; the executor consumes one authorization and publishes; collaborators retain independent delivery evidence.
 
 ## Public collaboration
 
-1. Connect MetaMask on BOT Mainnet 677. Create a release with a distinct designated reviewer, then register the task and exact package.
+1. Import an Agent package to inspect its purpose, exact changes and tests without a wallet. Follow the next-step panel to connect the assigned MetaMask account on BOT Mainnet 677 and register or review the exact version. A browser demonstration task is also available.
 2. Choose **Publish review package & copy link**. The original materials become publicly downloadable. A fixed-version link opens that version directly, while newer versions require an explicit switch.
 3. Review the purpose, actual line changes, inert preview and test evidence. **Request correction** records the decision, followed by a Gas-free EIP-712 feedback signature. Interrupted signing or upload resumes against that same transaction.
 4. Use the Agent's `feedback` or `wait` command to retrieve exact revision requirements. A revised package needs its own approval.
@@ -43,7 +43,7 @@ On Windows use `.venv/Scripts/python.exe` and `./scripts/run-local.ps1`. The bro
 - `CLUETIDE_DATA_DIR`: private persistent runtime root, default `local-data`.
 - `CLUETIDE_RELEASE_CONTRACT`: verified deployed witness contract.
 - `CLUETIDE_PUBLIC_ORIGIN`: exact HTTPS service origin.
-- `CLUETIDE_FRONTEND_ORIGINS`: allowed browser origins; the review service permits `https://hnnuyuxuan.github.io`.
+- `CLUETIDE_FRONTEND_ORIGINS`: allowed browser origins; the Vercel API permits `https://cluetide.vercel.app`; the earlier service permits `https://hnnuyuxuan.github.io`.
 
 The browser pins the BOT chain, witness bytecode, contract, target and receipt signer. The operator retains the private signer and backups across upgrades. Source exports contain no private runtime state.
 

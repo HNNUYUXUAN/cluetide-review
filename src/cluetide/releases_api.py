@@ -1,6 +1,5 @@
 """Bounded English release API, independently mountable on a release-only server."""
 import json
-import os
 
 from fastapi import APIRouter, Header, HTTPException, Request, Response
 from pydantic import ValidationError
@@ -31,7 +30,7 @@ def create_release_router(service: ReleaseService) -> APIRouter:
 
     def invoke(operation, *args, **kwargs):
         try:
-            if operation.__name__ in {"create_task", "create_version", "issue_task_write_key", "import_version", "submit_feedback", "execute", "prepare", "verify"} and os.environ.get("CLUETIDE_RELEASE_WRITES_ENABLED", "1") != "1":
+            if operation.__name__ in {"create_task", "create_version", "issue_task_write_key", "import_version", "submit_feedback", "execute", "prepare", "verify"} and service.writes_paused():
                 raise ReleaseError("Production writes are paused. Save the original request and retry after cutover.", 503)
             return operation(*args, **kwargs)
         except ReleaseError as exc:

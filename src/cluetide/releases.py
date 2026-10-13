@@ -460,6 +460,18 @@ class ReleaseService:
     def _save(self, path: Path, value: dict, *, immutable=False):
         self._write(path, canonical_json_bytes(value), immutable=immutable)
 
+    def writes_paused(self):
+        """Keep a migrated file publisher paused across process recreation."""
+        if os.environ.get("CLUETIDE_RELEASE_WRITES_ENABLED", "1") != "1":
+            return True
+        if not isinstance(self.root, Path):
+            return False
+        marker = self.root / "writer-paused"
+        try:
+            return marker.exists() or marker.is_symlink() or marker.is_junction()
+        except OSError:
+            return True
+
     def _signer(self):
         if self._key is None:
             path = self._safe(self.root / "executor-signing.key")

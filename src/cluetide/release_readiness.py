@@ -23,7 +23,7 @@ def readiness(service, *, check_chain=True):
                 enabled = service.writes_enabled and service.store.writer_enabled()
                 result["storage"] = "postgresql"
             else:
-                enabled = os.environ.get("CLUETIDE_RELEASE_WRITES_ENABLED", "1") == "1"
+                enabled = not service.writes_paused()
                 result["storage"] = "local-files"
             result["signer"] = "matched" if service._signer().address.lower() == SIGNER else "mismatch"
             configured = service._adapter().config()
