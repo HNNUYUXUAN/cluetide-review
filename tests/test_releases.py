@@ -79,7 +79,7 @@ def test_package_download_preserves_canonical_manifest_and_prebuilt_bytes(releas
     first = service.bundle(task["task_id"], 1)
     assert first == service.bundle(task["task_id"], 1)
     with zipfile.ZipFile(io.BytesIO(first)) as archive:
-        assert archive.namelist() == ["manifest.json", "artifact.html"]
+        assert archive.namelist() == ["task.json", "manifest.json", "artifact.html"]
         manifest = archive.read("manifest.json")
         assert digest(manifest) == version["manifest_hash"]
         assert canonical_json_bytes(json.loads(manifest)) == manifest

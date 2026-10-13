@@ -8,6 +8,8 @@ from starlette.concurrency import run_in_threadpool
 from .releases import (ChainRequest, CreateTask, CreateVersion, ExecuteRequest, MAX_REQUEST_BYTES,
                        ReadRequest, ReleaseError, ReleaseService, VerifyRequest, attempt_identifier, identifier)
 from .release_imports import ImportPackage
+from .release_exchange import MAX_VERSION_REQUEST_BYTES
+from .release_feedback import FeedbackRequest, MAX_FEEDBACK_REQUEST_BYTES
 
 
 def _unique(pairs):
@@ -36,11 +38,11 @@ def create_release_router(service: ReleaseService) -> APIRouter:
         except OSError:
             raise HTTPException(503, detail="The release storage is unavailable. Preserve the execution state and retry verification.") from None
 
-    async def body(request, model):
+    async def body(request, model, limit=MAX_REQUEST_BYTES):
         payload = bytearray()
         async for chunk in request.stream():
             payload.extend(chunk)
-            if len(payload) > MAX_REQUEST_BYTES:
+            if len(payload) > limit:
                 raise HTTPException(413, detail="The release request exceeds the size limit.")
         try:
             value = json.loads(payload, object_pairs_hook=_unique, parse_constant=_finite)
@@ -61,7 +63,7 @@ def create_release_router(service: ReleaseService) -> APIRouter:
 
     @router.post("/imports")
     async def import_package(request: Request):
-        return await call(service.import_version, await body(request, ImportPackage))
+        return await call(service.import_version, await body(request, ImportPackage, MAX_VERSION_REQUEST_BYTES))
 
     @router.post("/tasks", status_code=201)
     async def create_task(request: Request, response: Response):
@@ -78,7 +80,20 @@ def create_release_router(service: ReleaseService) -> APIRouter:
     async def version(task_id: str, request: Request,
                       write_key: str | None = Header(default=None, alias="X-ClueTide-Task-Key")):
         await call(service.authorize_task_write_key, task_id, write_key)
-        return await call(service.create_version, task_id, await body(request, CreateVersion))
+        return await call(service.create_version, task_id, await body(request, CreateVersion, MAX_VERSION_REQUEST_BYTES))
+
+    @router.post("/tasks/{task_id}/feedback")
+    async def submit_feedback(task_id: str, request: Request):
+        return await call(service.submit_feedback, task_id, await body(request, FeedbackRequest, MAX_FEEDBACK_REQUEST_BYTES))
+
+    @router.get("/tasks/{task_id}/feedback")
+    async def feedback(task_id: str, version: str | None = None):
+        version_id = None
+        if version is not None:
+            if not version.isascii() or not version.isdigit() or len(version) > 2 or not 1 <= int(version) <= 50:
+                raise HTTPException(422, detail="A valid release version is required.")
+            version_id = int(version)
+        return await call(service.feedback, task_id, version_id)
 
     @router.get("/tasks/{task_id}/bundle")
     async def bundle(task_id: str, version: str | None = None):

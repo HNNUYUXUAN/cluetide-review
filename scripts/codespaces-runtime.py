@@ -159,6 +159,53 @@ def port_in_use(port: int) -> bool:
         return connection.connect_ex(("127.0.0.1", port)) == 0
 
 
+def recover_listener(runtime: Runtime, proc_root: Path = Path("/proc")) -> dict | None:
+    """Adopt a resumed listener only after proving its process and service identity."""
+    try:
+        inodes = set()
+        for table in ("tcp", "tcp6"):
+            for line in (proc_root / "net" / table).read_text("ascii").splitlines()[1:]:
+                fields = line.split()
+                if fields[3] == "0A" and int(fields[1].split(":")[1], 16) == runtime.port:
+                    inodes.add(fields[9])
+        if not inodes:
+            return None
+        holders = []
+        matched_inodes = set()
+        for directory in proc_root.iterdir():
+            if not directory.name.isdecimal():
+                continue
+            try:
+                sockets = {os.readlink(fd) for fd in (directory / "fd").iterdir()}
+                owned_inodes = {inode for inode in inodes if f"socket:[{inode}]" in sockets}
+                if not owned_inodes:
+                    continue
+                identity = process_identity(int(directory.name), proc_root)
+                if (directory.stat().st_uid != os.getuid()
+                        or (directory / "cwd").resolve() != runtime.root.resolve()
+                        or (directory / "exe").resolve() != runtime.python.resolve()
+                        or not identity or identity["command"] != runtime.command):
+                    return None
+                environment = dict(item.split(b"=", 1) for item in
+                                   (directory / "environ").read_bytes().split(b"\0") if b"=" in item)
+                expected = runtime.environment()
+                for name in ("CLUETIDE_PUBLIC_ORIGIN", "CLUETIDE_DATA_DIR", "PYTHONPATH",
+                             "CLUETIDE_FRONTEND_ORIGINS"):
+                    if environment.get(name.encode()) != expected[name].encode():
+                        return None
+                holders.append(identity)
+                matched_inodes.update(owned_inodes)
+            except (OSError, ValueError):
+                continue
+        if len(holders) == 1 and matched_inodes == inodes and healthy(runtime):
+            # Re-read after the HTTP check to detect PID reuse during inspection.
+            if process_identity(holders[0]["pid"], proc_root) == holders[0]:
+                return holders[0]
+    except (OSError, ValueError, IndexError):
+        pass
+    return None
+
+
 def ready_message(runtime: Runtime, pid: int, reused: bool) -> None:
     print(f"Application {'already running' if reused else 'ready'} (PID {pid}).")
     print(f"Forwarded origin: {runtime.origin}")
@@ -183,6 +230,12 @@ def start(runtime: Runtime, timeout: float = STARTUP_TIMEOUT) -> None:
                 return
             raise StartupError(f"The existing application is not healthy; inspect {runtime.log_path}")
     if port_in_use(runtime.port):
+        identity = recover_listener(runtime)
+        if identity:
+            write_state(runtime.pid_path, {"pid": identity["pid"], "identity": identity,
+                        "root": str(runtime.root), "origin": runtime.origin, "status": "ready"})
+            ready_message(runtime, identity["pid"], reused=True)
+            return
         raise StartupError(f"Port {runtime.port} is occupied by a process outside this PID record")
 
     with runtime.log_path.open("ab", buffering=0) as log:

@@ -5,8 +5,8 @@ from datetime import datetime
 
 from pydantic import Field, field_validator
 
-from .bundles import canonical_json_bytes
-from .releases import (CreateTask, CreateVersion, StrictModel, ReleaseError, POLICY,
+from .release_exchange import validate_manifest
+from .releases import (CreateTask, StrictModel, ReleaseError, POLICY,
                        digest, identifier, now)
 
 
@@ -15,6 +15,12 @@ class ImportTask(CreateTask):
     receipt_signer: str
     target_id: str
     created_at: str = Field(max_length=64)
+
+    @field_validator("title")
+    @classmethod
+    def title_text(cls, value):
+        value.encode("utf-8")
+        return value
 
     @field_validator("task_id", "target_id")
     @classmethod
@@ -37,6 +43,7 @@ class ImportPackage(StrictModel):
     task: ImportTask
     manifest: dict
     artifact_text: str
+    manifest_text: str | None = None
 
 
 def import_version(service, payload):
@@ -46,21 +53,14 @@ def import_version(service, payload):
     version_id, parent = manifest.get("version_id"), manifest.get("parent_version_id")
     if type(version_id) is not int or not 1 <= version_id <= 50 or type(parent) is not int or parent != version_id - 1:
         raise ReleaseError("The imported version sequence is invalid.", 422)
-    data = CreateVersion.model_validate({"summary": manifest.get("summary"), "source_reference": manifest.get("source_reference"),
-        "test_evidence": manifest.get("test_evidence"), "expires_at": manifest.get("expires_at"),
-        "artifact_text": payload.artifact_text})
-    artifact = data.artifact_text.encode("utf-8")
     target_id = digest((POLICY + "/" + task_id).encode())
+    try:
+        manifest_bytes, artifact = validate_manifest(manifest, payload.artifact_text, task_id, target_id, payload.manifest_text)
+    except (ValueError, TypeError, KeyError, UnicodeError):
+        raise ReleaseError("The imported files differ from their release manifest.", 422) from None
     artifact_hash = digest(artifact)
-    expected = {"schema": "cluetide.release-manifest.v1", "task_id": task_id,
-        "version_id": version_id, "parent_version_id": parent, "summary": data.summary,
-        "source_reference": data.source_reference,
-        "artifact": {"filename": "artifact.html", "sha256": artifact_hash, "bytes": len(artifact)},
-        "operation": "publish_static", "target": "demo-site", "target_id": target_id,
-        "policy_version": POLICY, "expires_at": data.expires_at, "test_evidence": data.test_evidence}
-    if canonical_json_bytes(manifest) != canonical_json_bytes(expected) or task_data["target_id"] != target_id:
+    if task_data["target_id"] != target_id:
         raise ReleaseError("The imported files differ from their release manifest.", 422)
-    manifest_bytes = canonical_json_bytes(manifest)
     manifest_hash = digest(manifest_bytes)
     with service._locked():
         if task_data["receipt_signer"] != service._signer().address.lower():
@@ -73,7 +73,7 @@ def import_version(service, payload):
         if any(str(chain_task.get(key)).lower() != task_data[key] for key in ("owner", "proposer", "reviewer", "executor", "receipt_signer")) or chain_task.get("target_hash") != target_id:
             raise ReleaseError("The imported task differs from the confirmed chain roles or target.")
         required = {"version_id": str(version_id), "parent_version_id": str(parent), "manifest_hash": manifest_hash,
-                    "artifact_hash": artifact_hash, "deadline": str(data.expires_at)}
+                    "artifact_hash": artifact_hash, "deadline": str(manifest["expires_at"])}
         if any(chain_version.get(key) != value for key, value in required.items()):
             raise ReleaseError("The imported version differs from the confirmed chain commitments.")
         path = service._task_path(task_id)
@@ -100,7 +100,7 @@ def import_version(service, payload):
             if task["version_count"] >= version_id:
                 raise ReleaseError("An earlier imported package is missing. Restore its evidence first.")
             version = {"version_id": version_id, "parent_version_id": parent, "manifest_hash": manifest_hash,
-                       "artifact_hash": artifact_hash, "expires_at": data.expires_at, "created_at": now(),
+                       "artifact_hash": artifact_hash, "expires_at": manifest["expires_at"], "created_at": now(),
                        "bundle_url": f"/api/releases/tasks/{task_id}/bundle?version={version_id}"}
             service._write(directory / "manifest.json", manifest_bytes, immutable=True)
             service._write(directory / "artifact.html", artifact, immutable=True)

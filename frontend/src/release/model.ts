@@ -10,9 +10,15 @@ export interface PrepareRequest {action: Action; account: string; task_id?: stri
 export interface Prepared {action: Action | "propose_version" | "consume"; chain_id?: number; transaction: BotTransaction; commitments: Record<string, unknown>; fees?: {gas_limit: string | null; gas_price_wei: string | null; estimated_max_fee_wei: string | null; balance_wei: string | null; sufficient_balance: boolean | null}; [key: string]: unknown}
 export interface Getter {task?: Record<string, unknown> | null; version?: Record<string, unknown> | null; attempt?: Record<string, unknown> | null}
 export interface Verification {status: "pending" | "confirming" | "verified" | "failed"; transaction_hash: string; confirmations?: number; contract_address?: string; getter_state?: Getter; onchain_ids?: {version_id?: string; attempt_id?: string}; reason?: string; gas_used?: string; effective_gas_price?: string; [key: string]: unknown}
-export interface Receipt {receipt: Record<string, unknown>; receipt_hash: string; signature: string; signer: string; verification: Record<string, unknown>}
+export interface Receipt {receipt: Record<string, unknown>; receipt_hash: string; signature: string; signer: string; signature_scheme?:string; verification: Record<string, unknown>}
 export type IntentStatus = "awaiting_wallet" | "unknown" | "pending" | "confirming" | "verified" | "failed" | "rejected" | "not_broadcast";
 export interface Intent {id: string; created_at: string; request: PrepareRequest; prepared: Prepared; status: IntentStatus; transaction_hash?: string; verification?: Verification; message?: string}
+export interface StartReference {schema:"cluetide.start-reference.v1"; task_id:string; version_id:number; transaction_hash:string}
+export interface VerifiedStartGrant extends StartReference {
+  attempt_id:string; executor:string; manifest_hash:string; artifact_hash:string; observed_at:string;
+  snapshot:{block_number:string;block_hash:string}; transaction_block:{number:string;hash:string};
+  confirmations:number; getter_state:Getter; receipt_recorded:boolean;
+}
 export const actionLabels: Record<Action, string> = {deploy: "Deploy witness contract", create_task: "Register release", submit_version: "Submit exact version", approve: "Approve this version", request_correction: "Request correction", revoke: "Revoke approval", start_execution: "Authorize one start", record_receipt: "Record receipt"};
 export const decisionLabels: Record<string, string> = {"0":"Awaiting review", "1":"Approved", "2":"Approval revoked", "3":"Correction requested", "4":"Start consumed"};
 export const record = (value: unknown): value is Record<string, unknown> => !!value && typeof value === "object" && !Array.isArray(value);
@@ -71,7 +77,7 @@ export function authorizationState(version:Version|undefined,getter:Getter|null,
   const deadline=Number(chain?.deadline);
   const expired=exact&&Number.isFinite(deadline)&&deadline<=now;
   const decision=exact?String(chain?.decision):"";
-  const label=superseded?"superseded":expired&&decision!=="4"?"approval_expired":exact?decisionLabels[decision]?.toLowerCase().replaceAll(" ","_")||"unknown":"chain_state_unknown";
+  const label=exact&&decision==="4"?"start_consumed":superseded?"superseded":expired?"approval_expired":exact?decisionLabels[decision]?.toLowerCase().replaceAll(" ","_")||"unknown":"chain_state_unknown";
   const reviewable=exact&&!superseded&&!expired;
   return {exact,superseded,expired,label,canApprove:reviewable&&decision==="0",canRevoke:reviewable&&["0","1"].includes(decision),canRequestCorrection:reviewable&&["0","1"].includes(decision),canStart:reviewable&&decision==="1"};
 }

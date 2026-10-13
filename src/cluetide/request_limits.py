@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
+import re
+
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 
 JSON_BODY_LIMIT_BYTES = 64 * 1024
 IMPORT_BODY_LIMIT_BYTES = 21 * 1024 * 1024
+RELEASE_VERSION_BODY_LIMIT_BYTES = 512 * 1024
+RELEASE_FEEDBACK_BODY_LIMIT_BYTES = 256 * 1024
 _MUTATING_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
 _REJECTION_BODY = b'{"detail":"API request body exceeds the size limit"}'
 
@@ -57,6 +61,10 @@ class RequestBodyLimitMiddleware:
             return
         limit = (self.import_limit_bytes if method == "POST" and path == "/api/bundles/import"
                  else self.json_limit_bytes)
+        if method == "POST" and (path == "/api/releases/imports" or re.fullmatch(r"/api/releases/tasks/0x[0-9a-fA-F]{64}/versions", path)):
+            limit = RELEASE_VERSION_BODY_LIMIT_BYTES
+        elif method == "POST" and re.fullmatch(r"/api/releases/tasks/0x[0-9a-fA-F]{64}/feedback", path):
+            limit = RELEASE_FEEDBACK_BODY_LIMIT_BYTES
         rejected = False
         oversized = False
         received_bytes = 0

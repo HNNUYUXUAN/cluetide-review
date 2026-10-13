@@ -1,6 +1,6 @@
 """Local startup checks; all application state is temporary."""
 
-from contextlib import redirect_stdout
+from contextlib import ExitStack, redirect_stdout
 import importlib.util
 import io
 import json
@@ -90,6 +90,96 @@ class CodespacesChecks(unittest.TestCase):
                 runtime.start(self.config)
         launch.assert_not_called()
 
+    def listener_fixture(self, *, pid=456):
+        proc = self.root / "proc"
+        (proc / "net").mkdir(parents=True, exist_ok=True)
+        (proc / "net" / "tcp").write_text(
+            "sl local_address rem_address st tx_queue tr retrnsmt uid timeout inode\n"
+            f"0: 00000000:{self.config.port:04X} 00000000:0000 0A 0:0 0:0 0 0 0 98765\n", encoding="ascii")
+        (proc / "net" / "tcp6").write_text("header\n", encoding="ascii")
+        directory = proc / str(pid)
+        (directory / "fd").mkdir(parents=True, exist_ok=True)
+        (directory / "fd" / "7").write_bytes(b"")
+        fields = ["S"] + ["0"] * 18 + ["9988"] + ["0"] * 4
+        (directory / "stat").write_text(f"{pid} (python) " + " ".join(fields), encoding="utf-8")
+        (directory / "cmdline").write_bytes(b"\0".join(os.fsencode(v) for v in self.config.command) + b"\0")
+        (directory / "environ").write_bytes(b"\0".join(
+            key.encode() + b"=" + value.encode() for key, value in self.config.environment().items()) + b"\0")
+        return proc, directory
+
+    def listener_context(self, directory, *, owner=True, cwd=None, python=None, healthy=True):
+        stack = ExitStack()
+        resolve = Path.resolve
+
+        def resolve_process(path, *args, **kwargs):
+            if path == directory / "cwd":
+                return cwd or resolve(self.root)
+            if path == directory / "exe":
+                return python or resolve(self.config.python)
+            return resolve(path, *args, **kwargs)
+
+        stack.enter_context(patch.object(runtime.os, "getuid", return_value=directory.stat().st_uid + (0 if owner else 1), create=True))
+        stack.enter_context(patch.object(runtime.os, "readlink", return_value="socket:[98765]"))
+        stack.enter_context(patch.object(runtime.Path, "resolve", resolve_process))
+        stack.enter_context(patch.object(runtime, "healthy", return_value=healthy))
+        return stack
+
+    def test_resumed_listener_is_adopted_with_matching_process_and_service(self):
+        proc, directory = self.listener_fixture()
+        with self.listener_context(directory):
+            identity = runtime.recover_listener(self.config, proc)
+        self.assertEqual(identity["pid"], 456)
+        with patch.object(runtime, "port_in_use", return_value=True), \
+                patch.object(runtime, "recover_listener", return_value=identity), \
+                patch.object(runtime.subprocess, "Popen") as launch, redirect_stdout(io.StringIO()):
+            runtime.start(self.config)
+        launch.assert_not_called()
+        self.assertEqual(runtime.read_state(self.config.pid_path)["identity"], identity)
+
+    def test_resumed_listener_requires_exact_owner_cwd_interpreter_and_health(self):
+        proc, directory = self.listener_fixture()
+        for change in ({"owner": False}, {"cwd": self.root / "other"},
+                       {"python": self.root / "other-python"}, {"healthy": False}):
+            with self.subTest(change=change), self.listener_context(directory, **change):
+                self.assertIsNone(runtime.recover_listener(self.config, proc))
+
+    def test_resumed_listener_requires_exact_command_and_environment(self):
+        proc, directory = self.listener_fixture()
+        command = (directory / "cmdline").read_bytes()
+        environment = (directory / "environ").read_bytes()
+        mutations = (("cmdline", command + b"--reload\0"),
+                     ("environ", environment.replace(self.config.origin.encode(), b"https://other.example")),
+                     ("environ", environment.replace(b"CLUETIDE_DATA_DIR=", b"OTHER_DATA_DIR=")),
+                     ("environ", environment.replace(b"https://hnnuyuxuan.github.io", b"https://other.example")))
+        for name, payload in mutations:
+            with self.subTest(name=name):
+                (directory / name).write_bytes(payload)
+                with self.listener_context(directory):
+                    self.assertIsNone(runtime.recover_listener(self.config, proc))
+                (directory / "cmdline").write_bytes(command)
+                (directory / "environ").write_bytes(environment)
+
+    def test_resumed_listener_rechecks_pid_after_health_request(self):
+        proc, directory = self.listener_fixture()
+        identity = runtime.process_identity(456, proc)
+        with self.listener_context(directory), patch.object(runtime, "process_identity", side_effect=[identity, None]):
+            self.assertIsNone(runtime.recover_listener(self.config, proc))
+
+    def test_resumed_listener_requires_an_unambiguous_socket_owner(self):
+        proc, directory = self.listener_fixture()
+        other = proc / "789"
+        shutil.copytree(directory, other)
+        with self.listener_context(directory):
+            self.assertIsNone(runtime.recover_listener(self.config, proc))
+
+    def test_resumed_listener_requires_ownership_of_every_listening_socket(self):
+        proc, directory = self.listener_fixture()
+        table = proc / "net" / "tcp"
+        with table.open("a", encoding="ascii") as stream:
+            stream.write(f"1: 00000000:{self.config.port:04X} 00000000:0000 0A 0:0 0:0 0 0 0 88888\n")
+        with self.listener_context(directory):
+            self.assertIsNone(runtime.recover_listener(self.config, proc))
+
     def test_changed_origin_does_not_reuse_process(self):
         identity = self.save_process(origin="https://previous-8787.app.github.dev")
         with patch.object(runtime, "process_identity", return_value=identity):
@@ -126,7 +216,7 @@ class CodespacesChecks(unittest.TestCase):
         if not (ROOT / "frontend" / "dist" / "index.html").is_file():
             self.skipTest("Build the frontend to exercise its same-origin UI")
         shutil.copytree(ROOT / "frontend" / "dist", self.root / "frontend" / "dist", dirs_exist_ok=True)
-        for module in ("__init__", "release_chain", "releases", "release_imports", "releases_api", "release_server",
+        for module in ("__init__", "release_chain", "releases", "release_imports", "release_exchange", "release_feedback", "releases_api", "release_server",
                        "bot", "bundles", "registry", "request_limits", "settings"):
             target = self.root / "src" / "cluetide" / f"{module}.py"
             target.parent.mkdir(parents=True, exist_ok=True)

@@ -45,6 +45,11 @@ def now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def has_text(value: str) -> bool:
+    """Use the same whitespace set as the browser's Unicode trim operation."""
+    return bool(value.strip("\u0009\u000a\u000b\u000c\u000d\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff"))
+
+
 def identifier(value: str) -> str:
     if not isinstance(value, str) or not _HASH.fullmatch(value) or int(value, 16) == 0:
         raise ReleaseError("A valid release identifier is required.", 422)
@@ -70,6 +75,14 @@ class CreateTask(StrictModel):
     reviewer: str
     executor: str
 
+    @field_validator("title")
+    @classmethod
+    def title_text(cls, value):
+        if not has_text(value):
+            raise ValueError("A task title is required")
+        value.encode("utf-8")
+        return value
+
     @field_validator("owner", "proposer", "reviewer", "executor")
     @classmethod
     def address(cls, value):
@@ -91,18 +104,28 @@ class CreateVersion(StrictModel):
     test_evidence: list[str] = Field(min_length=1, max_length=12)
     expires_at: int = Field(gt=0, le=2**53 - 1)
 
+    @field_validator("summary", "source_reference")
+    @classmethod
+    def required_text(cls, value):
+        if not has_text(value):
+            raise ValueError("Release text is required")
+        value.encode("utf-8")
+        return value
+
     @field_validator("artifact_text")
     @classmethod
     def bounded_artifact(cls, value):
-        if len(value.encode("utf-8")) > MAX_ARTIFACT_BYTES or "\x00" in value:
+        if len(value.encode("utf-8")) > MAX_ARTIFACT_BYTES or "\x00" in value or not has_text(value):
             raise ValueError("Invalid artifact")
         return value
 
     @field_validator("test_evidence")
     @classmethod
     def bounded_evidence(cls, value):
-        if any(not item or len(item) > 1000 for item in value):
+        if any(not has_text(item) or len(item) > 1000 for item in value):
             raise ValueError("Invalid test evidence")
+        for item in value:
+            item.encode("utf-8")
         return value
 
 
@@ -242,8 +265,9 @@ class ChainGateway:
             payload.update(parent_version_id=str(version["parent_version_id"]), manifest_hash=version["manifest_hash"],
                            artifact_hash=version["artifact_hash"], deadline=version["expires_at"])
         elif action in {"approve", "request_correction", "revoke"}:
-            if account != task["reviewer"]:
-                raise ReleaseError("Use the designated reviewer's wallet for this action.")
+            allowed = {task["reviewer"], task["owner"]} if action == "revoke" else {task["reviewer"]}
+            if account not in allowed:
+                raise ReleaseError("Use an authorized review wallet for this action.")
             payload["version_id"] = str(version["version_id"])
             if action == "approve":
                 payload.update(manifest_hash=version["manifest_hash"], artifact_hash=version["artifact_hash"], deadline=version["expires_at"])
@@ -423,7 +447,8 @@ class ReleaseService:
         try:
             if path.stat().st_size > 1024 * 1024:
                 raise ValueError()
-            value = json.loads(path.read_text("utf-8"))
+            from .release_exchange import strict_json
+            value = strict_json(path.read_bytes())
             if not isinstance(value, dict):
                 raise ValueError()
             return value
@@ -461,13 +486,15 @@ class ReleaseService:
         return self.chain
 
     def config(self):
+        from .release_exchange import MAX_PACKAGE_BYTES, MAX_VERSION_REQUEST_BYTES
         with self._locked():
             signer = self._signer().address.lower()
             chain = self._adapter().config()
         return {"schema_version": 1, "chain": chain,
                 "executor": {"receipt_signer": signer, "operation": "publish_static", "target": "demo-site",
                              "scope": "Isolated demonstration release directory"},
-                "limits": {"artifact_bytes": MAX_ARTIFACT_BYTES, "request_bytes": MAX_REQUEST_BYTES}}
+                "limits": {"artifact_bytes": MAX_ARTIFACT_BYTES, "request_bytes": MAX_REQUEST_BYTES,
+                           "version_request_bytes": MAX_VERSION_REQUEST_BYTES, "package_bytes": MAX_PACKAGE_BYTES}}
 
     def _task_path(self, task_id):
         return self._safe(self.root / "tasks" / identifier(task_id) / "task.json")
@@ -478,8 +505,10 @@ class ReleaseService:
         if task.get("task_id") != identifier(task_id):
             raise ReleaseError("The task failed its integrity check.")
         try:
-            roles = CreateTask.model_validate({key: task[key] for key in ("title", "owner", "proposer", "reviewer", "executor")})
-            if (any(task[key] != getattr(roles, key) for key in ("owner", "proposer", "reviewer", "executor"))
+            from .release_exchange import bounded_text
+            bounded_text(task["title"], 160)
+            roles = {key: CreateTask.address(task[key]) for key in ("owner", "proposer", "reviewer", "executor")}
+            if (any(task[key] != roles[key] for key in roles) or roles["proposer"] == roles["reviewer"]
                     or task["target"] != "demo-site"
                     or task["target_id"] != digest((POLICY + "/" + task_id).encode())
                     or not _ADDRESS.fullmatch(task["receipt_signer"])):
@@ -558,8 +587,7 @@ class ReleaseService:
         artifact = artifact_path.read_bytes()
         try:
             artifact.decode("utf-8")
-            if (manifest_bytes != canonical_json_bytes(manifest)
-                    or digest(manifest_bytes) != version["manifest_hash"]
+            if (digest(manifest_bytes) != version["manifest_hash"]
                     or digest(artifact) != version["artifact_hash"]
                     or manifest["artifact"] != {"filename": "artifact.html", "sha256": version["artifact_hash"], "bytes": len(artifact)}
                     or manifest["task_id"] != task["task_id"] or manifest["version_id"] != version_id
@@ -571,7 +599,7 @@ class ReleaseService:
                 raise ValueError()
         except (ValueError, KeyError, TypeError, UnicodeError):
             raise ReleaseError("The release package failed its integrity check.") from None
-        return {**version, "manifest": manifest}
+        return {**version, "manifest": manifest, "manifest_text": manifest_bytes.decode("utf-8")}
 
     def create_version(self, task_id, payload):
         task_id = identifier(task_id)
@@ -616,21 +644,45 @@ class ReleaseService:
             return self._detail(self._task(task_id))
 
     def bundle(self, task_id, version_id=None):
+        from .release_exchange import MAX_PACKAGE_BYTES, verify_package
         with self._locked():
             task = self._task(task_id)
             version = self._version(task, version_id or task["version_count"])
             directory = self._version_path(task_id, version["version_id"])
+            public_task = {key: task[key] for key in ("task_id", "title", "created_at", "owner", "proposer",
+                           "reviewer", "executor", "receipt_signer", "target", "target_id")}
+            versions = []
+            for number in range(1, version["version_id"] + 1):
+                original = self._version(task, number)
+                versions.append({**original, "summary": original["manifest"]["summary"],
+                    "artifact_text": self._safe(self._version_path(task_id, number) / "artifact.html").read_bytes().decode("utf-8")})
+            public_task.update(version_count=version["version_id"], versions=versions, attempts=[], chain_records=[])
+            entries = {"task.json": canonical_json_bytes(public_task)}
+            for name in ("manifest.json", "artifact.html"):
+                payload = self._safe(directory / name).read_bytes()
+                expected = version["manifest_hash"] if name == "manifest.json" else version["artifact_hash"]
+                if digest(payload) != expected:
+                    raise ReleaseError("The release package changed during download preparation.")
+                entries[name] = payload
+            if sum(map(len, entries.values())) > MAX_PACKAGE_BYTES:
+                raise ReleaseError("This complete package exceeds the 4 MiB exchange limit.", 413)
             output = io.BytesIO()
             with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-                for name in ("manifest.json", "artifact.html"):
-                    payload = self._safe(directory / name).read_bytes()
-                    expected = version["manifest_hash"] if name == "manifest.json" else version["artifact_hash"]
-                    if digest(payload) != expected:
-                        raise ReleaseError("The release package changed during download preparation.")
+                for name, payload in entries.items():
                     info = zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0))
                     info.compress_type = zipfile.ZIP_DEFLATED
                     archive.writestr(info, payload)
-            return output.getvalue()
+            payload = output.getvalue()
+            verify_package(payload)
+            return payload
+
+    def submit_feedback(self, task_id, payload):
+        from .release_feedback import submit_feedback
+        return submit_feedback(self, task_id, payload)
+
+    def feedback(self, task_id, version_id=None):
+        from .release_feedback import get_feedback
+        return get_feedback(self, task_id, version_id)
 
     def _chain_context(self, request):
         if request.action == "deploy":

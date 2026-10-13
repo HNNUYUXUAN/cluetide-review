@@ -1,10 +1,12 @@
 import { verifyTypedData } from "viem";
 import type { Address, Hex } from "viem";
 import { publicConfig } from "./public-config.ts";
-import { canonicalBytes, sha256 } from "./package.ts";
+import { canonicalBytes, sha256, strictJsonParse, utf8Decode } from "./package.ts";
 import type { LocalTask, LocalVersion } from "./package.ts";
-import type { Attempt, Config, Intent, Receipt } from "./model.ts";
-import { readPublicChain } from "./browser-chain.ts";
+import type { Attempt, Config, Receipt, VerifiedStartGrant } from "./model.ts";
+import { isVerifiedStartGrant, verifyStartReference } from "./browser-chain.ts";
+import { saveEvidence } from "./evidence-store.ts";
+import type { StoredAcceptanceEvidence } from "./evidence-store.ts";
 
 export const publisherBase=()=>typeof location!=="undefined"&&["127.0.0.1","localhost"].includes(location.hostname)?"":publicConfig.publisher;
 async function request<T>(path:string,body?:unknown):Promise<T>{
@@ -25,17 +27,19 @@ export async function syncPublisher(task:LocalTask,throughVersion:number){
     const version=task.versions.find(v=>v.version_id===id);
     if(!version)throw new Error("Import all preceding package versions before preparing publication.");
     const {task_id,title,owner,proposer,reviewer,executor,receipt_signer,target_id,created_at}=task;
-    const result=await request<{status:string;task_id:string;manifest_hash:string;artifact_hash:string}>("/imports",{task:{task_id,title,owner,proposer,reviewer,executor,receipt_signer,target_id,created_at},manifest:version.manifest,artifact_text:version.artifact_text});
+    const result=await request<{status:string;task_id:string;manifest_hash:string;artifact_hash:string}>("/imports",{task:{task_id,title,owner,proposer,reviewer,executor,receipt_signer,target_id,created_at},manifest:version.manifest,...(version.manifest_text===undefined?{}:{manifest_text:version.manifest_text}),artifact_text:version.artifact_text});
     if(result.status!=="imported"||result.task_id!==task_id||result.manifest_hash!==version.manifest_hash||result.artifact_hash!==version.artifact_hash)throw new Error("The service did not confirm the exact imported package.");
   }
 }
-export async function executePublication(task:LocalTask,version:LocalVersion,start:Intent):Promise<Attempt>{
-  const attempt=start.verification?.onchain_ids?.attempt_id;
-  if(!attempt||!start.transaction_hash)throw new Error("Verify the start transaction before requesting publication.");
+export async function executePublication(task:LocalTask,version:LocalVersion,start:VerifiedStartGrant):Promise<Attempt>{
+  if(!isVerifiedStartGrant(start))throw new Error("Verify the start transaction online before requesting publication.");
+  const current=await verifyStartReference(start,task,version);
+  if(current.receipt_recorded)throw new Error("This attempt already has a recorded receipt. Verify its publication result.");
   await syncPublisher(task,version.version_id);
-  return request<Attempt>(`/tasks/${task.task_id}/execute`,{version_id:version.version_id,attempt_id:attempt,start_transaction_hash:start.transaction_hash});
+  return request<Attempt>(`/tasks/${task.task_id}/execute`,{version_id:version.version_id,attempt_id:current.attempt_id,start_transaction_hash:current.transaction_hash});
 }
 export async function verifyReceiptEnvelope(task:LocalTask,version:LocalVersion,attemptId:string,envelope:Receipt,startHash?:string){
+  if(!envelope||typeof envelope!=="object"||envelope.signature_scheme!=="EIP-712"||!envelope.receipt||typeof envelope.receipt!=="object"||typeof envelope.signature!=="string"||typeof envelope.signer!=="string")throw new Error("The executor receipt envelope failed validation.");
   const r=envelope.receipt;
   const expected={schema:"cluetide.execution-receipt.v1",chain_id:677,contract_address:publicConfig.contract,task_id:task.task_id,version_id:version.version_id,attempt_id:attemptId,manifest_hash:version.manifest_hash,artifact_hash:version.artifact_hash,target_id:task.target_id,operation:"publish_static",environment:"isolated-demo",executor:task.executor,receipt_signer:task.receipt_signer};
   if(Object.entries(expected).some(([key,value])=>r[key]!==value)||!['succeeded','failed'].includes(String(r.status))||r.output_hash!==(r.status==="succeeded"?version.artifact_hash:null)||startHash&&r.authorization_tx!==startHash||envelope.signer.toLowerCase()!==task.receipt_signer||await sha256(canonicalBytes(r))!==envelope.receipt_hash)throw new Error("The receipt identity, output or commitments do not match this execution.");
@@ -46,23 +50,41 @@ export async function verifyReceiptEnvelope(task:LocalTask,version:LocalVersion,
 }
 export async function loadVerifiedReceipt(task:LocalTask,version:LocalVersion,attemptId:string,startHash?:string){
   const archived=task.task_id===publicConfig.verifiedTask&&attemptId==="1";
-  const envelope:Receipt=archived?(await import("./verified-receipt.json")).default as unknown as Receipt:await request<Receipt>(`/attempts/${attemptId}/receipt?task_id=${task.task_id}`);
+  const receiptUrl=archived?new URL("./verified-receipt.json",import.meta.url).href:publisherBase()+`/api/releases/attempts/${attemptId}/receipt?task_id=${task.task_id}`;
+  const receiptBytes=await readResponseBytes(receiptUrl,512*1024);
+  const envelope=strictJsonParse(utf8Decode(receiptBytes)) as Receipt;
   const result=await verifyReceiptEnvelope(task,version,attemptId,envelope,startHash);
-  let artifactMatches=false;
+  let artifactMatches=false,artifactBytes:Uint8Array|undefined,artifactUrl="";
   if(result===1){
-    if(archived){artifactMatches=await sha256(new TextEncoder().encode(version.artifact_text))===version.artifact_hash;}
+    if(archived){artifactBytes=new TextEncoder().encode(version.artifact_text);artifactMatches=await sha256(artifactBytes)===version.artifact_hash;}
     else{
-    const response=await fetch(publisherBase()+`/api/releases/attempts/${attemptId}/artifact?task_id=${task.task_id}`,{credentials:"omit",signal:AbortSignal.timeout(15_000)});
-    if(!response.ok)throw new Error("The published artifact is unavailable for independent comparison.");
-    const declared=Number(response.headers.get("content-length"));
-    if(declared>publicConfig.artifactBytes)throw new Error("The published artifact exceeds the configured limit.");
-    const bytes=new Uint8Array(await response.arrayBuffer());
-    artifactMatches=bytes.length<=publicConfig.artifactBytes&&await sha256(bytes)===version.artifact_hash;
+    artifactUrl=publisherBase()+`/api/releases/attempts/${attemptId}/artifact?task_id=${task.task_id}`;
+    artifactBytes=await readResponseBytes(artifactUrl,publicConfig.artifactBytes);
+    artifactMatches=await sha256(artifactBytes)===version.artifact_hash;
     }
     if(!artifactMatches)throw new Error("The downloaded artifact differs from the approved package.");
   }
-  let chainMatches=false,chainError="";
-  try{const state=await readPublicChain(task.task_id,version.version_id,attemptId);chainMatches=state.getter_state.attempt?.receipt_hash===envelope.receipt_hash&&String(state.getter_state.attempt?.result)===String(result);}
+  let chainMatches=false,chainError="",chainStatus:"matched"|"unrecorded"|"mismatch"|"unavailable"="unavailable",chainObservation:StoredAcceptanceEvidence["observations"]["chain"];
+  try{
+    const grant=await verifyStartReference({schema:"cluetide.start-reference.v1",task_id:task.task_id,version_id:version.version_id,transaction_hash:String(envelope.receipt.authorization_tx)},task,version);
+    chainMatches=grant.attempt_id===attemptId&&grant.getter_state.attempt?.receipt_hash===envelope.receipt_hash&&String(grant.getter_state.attempt?.result)===String(result);
+    chainStatus=chainMatches?"matched":grant.attempt_id===attemptId&&grant.getter_state.attempt?.receipt_hash==="0x"+"0".repeat(64)?"unrecorded":"mismatch";
+    if(chainStatus==="mismatch")chainError="The current confirmed receipt commitment differs from this signed receipt. Inspect the exact attempt before continuing.";
+    chainObservation={block_number:grant.snapshot.block_number,block_hash:grant.snapshot.block_hash,confirmations:publicConfig.confirmations,getter_state:grant.getter_state};
+  }
   catch{chainError="Chain commitment could not be checked. Retry when the RPC is available.";}
-  return {envelope,result,artifactMatches,attemptId,archived,chainMatches,chainError};
+  const observedAt=new Date().toISOString();
+  const evidence:StoredAcceptanceEvidence={task,version_id:version.version_id,attempt_id:attemptId,observed_at:observedAt,start_reference:{schema:"cluetide.start-reference.v1",task_id:task.task_id,version_id:version.version_id,transaction_hash:String(envelope.receipt.authorization_tx)},receipt_bytes:receiptBytes,artifact_bytes:artifactBytes,transactions:[{action:"start_execution",transaction_hash:String(envelope.receipt.authorization_tx)}],observations:{...(chainObservation?{chain:chainObservation}:{}),...(artifactUrl?{artifact:{url:artifactUrl,downloaded_at:observedAt}}:{})}};
+  let persistenceError="";try{await saveEvidence(evidence);}catch(error){persistenceError=error instanceof Error?error.message:"Acceptance evidence could not be saved.";}
+  return {envelope,result,artifactMatches,attemptId,archived,chainMatches,chainStatus,chainError,evidence,persistenceError,observedAt};
+}
+export async function readResponseBytes(url:string,limit:number):Promise<Uint8Array>{
+  const response=await fetch(url,{credentials:"omit",signal:AbortSignal.timeout(15_000)});
+  if(!response.ok)throw new Error(`Evidence download returned HTTP ${response.status}. Retry when the publication service is available.`);
+  const declared=Number(response.headers.get("content-length"));
+  if(declared>limit)throw new Error("The downloaded evidence exceeds its size limit.");
+  if(!response.body)throw new Error("The evidence response has no readable body.");
+  const reader=response.body.getReader(),chunks:Uint8Array[]=[];let size=0;
+  try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>limit){await reader.cancel();throw new Error("The downloaded evidence exceeds its size limit.");}chunks.push(value);}}finally{reader.releaseLock();}
+  const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.length;}return bytes;
 }

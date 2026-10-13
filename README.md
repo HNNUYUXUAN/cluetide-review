@@ -1,26 +1,23 @@
 # ClueTide Agent Release Witness
 
-Approve an exact release. Verify what shipped.
+**Approve an exact release. Verify what shipped.**
 
-[Open the public product](https://hnnuyuxuan.github.io/cluetide-app/release/)
+[Open the public product](https://hnnuyuxuan.github.io/cluetide-app/release/).
 
-The public website connects an EVM wallet directly to BOT Mainnet 677. Create a task, prepare a built HTML artifact and evidence, register its exact version, and invite the designated reviewer. A controlled publisher checks the one-time authorization, publishes the approved artifact and signs an execution receipt.
+ClueTide helps Web3 project partners ship an Agent-prepared project page together. The proposer preserves the exact HTML, source reference and tests; the reviewer approves that version or signs correction requirements; the executor consumes one authorization and publishes; collaborators retain independent delivery evidence.
 
-## Public workflow
+## Public collaboration
 
-1. Click **Connect Wallet**, choose your wallet and switch to BOT Mainnet 677.
-2. Choose **Create release**. Your connected account is the owner, proposer and executor; select another reviewer address. The prefilled address is a demonstration reviewer, whose holder decides whether to approve.
-3. **Register release** is the first mainnet transaction. Add the artifact, source reference and test evidence, then **Submit exact version**.
-4. Export the package and share it with the task link. The reviewer imports the exact bytes and approves or requests a correction using their assigned wallet.
-5. The executor checks the publication service, imports the confirmed package and authorizes one start. Publication uses an isolated demo directory. Verify the receipt signature, chain commitment and downloaded output separately.
+1. Connect MetaMask on BOT Mainnet 677. Create a release with a distinct designated reviewer, then register the task and exact package.
+2. Choose **Publish review package & copy link**. The original materials become publicly downloadable. A fixed-version link opens that version directly, while newer versions require an explicit switch.
+3. Review the purpose, actual line changes, inert preview and test evidence. **Request correction** records the decision, followed by a Gas-free EIP-712 feedback signature. Interrupted signing or upload resumes against that same transaction.
+4. Use the Agent's `feedback` or `wait` command to retrieve exact revision requirements. A revised package needs its own approval.
+5. Authorize one start, publish, and inspect the receipt. Another device can recover the consumed attempt from its exact package and start transaction hash.
+6. Record the receipt and export the acceptance bundle. Its offline verifier checks original bytes and signatures; current confirmed chain records and a freshly downloaded artifact are checked separately online.
 
-Task registration, version submission and review continue to work when the temporary publication service sleeps. Actual publication needs that service online. Every transaction requires the wallet holder's confirmation and BOT gas. Original files are stored on the current device until explicitly shared or imported to the service; download a task backup before clearing browser storage.
+The witness contract is [0xca71b77708674f5f2407c0ad4e599eaf5eb07281](https://scan.botchain.ai/address/0xca71b77708674f5f2407c0ad4e599eaf5eb07281). Every business transaction needs the holder's wallet confirmation and BOT Gas. Revisions require renewed approval; a confirmed start grants one attempt even if a deadline later passes or another version is registered. The controlled publisher attests to its execution, file equality proves content integrity, and tests and human review establish business quality.
 
-## Mainnet evidence
-
-Contract: [0xca71b77708674f5f2407c0ad4e599eaf5eb07281](https://scan.botchain.ai/address/0xca71b77708674f5f2407c0ad4e599eaf5eb07281).
-
-On 12 October 2026 the release workflow completed six real mainnet transactions, including deployment, at a total cost of 0.03896024 BOT. Its signed receipt and archived artifact are available under **Explore verified release**; the application checks the current chain separately. Both demonstration role wallets were controlled by the same participant. Public-browser acceptance of this source revision and recording coverage are reported in the accompanying release evidence.
+The temporary Codespace service may sleep. Chain reads, wallet review and file imports remain available. Check the timestamped service status before sharing or publishing. See the [collaboration guide](docs/collaboration-guide.md) and [formal recording runbook](docs/collaboration-recording.md).
 
 ## Install and run
 
@@ -37,27 +34,23 @@ cd ..
 .venv/bin/python -m uvicorn cluetide.release_server:app --host 127.0.0.1 --port 8787
 ```
 
-On Windows use `.venv/Scripts/python.exe` and `./scripts/run-local.ps1`. Open `http://127.0.0.1:8787/`. Vite development uses port 5177 with an API proxy; static preview uses port 4177. The root frontend is the public direct-wallet product. `bot.html` retains the server-backed release workspace.
+On Windows use `.venv/Scripts/python.exe` and `./scripts/run-local.ps1`. The browser entry is `/`; `bot.html` retains the service-backed workspace. Development uses port 5177 and proxies the API to 8787. See [Codespaces setup](.devcontainer/README.md).
 
-The included [Codespaces configuration](.devcontainer/README.md) installs dependencies and starts the review service. Its idle and session limits require checking availability before a later publication session.
+## Configuration and evidence
 
-## Configuration and boundaries
+- `CLUETIDE_DATA_DIR`: private persistent runtime root, default `local-data`.
+- `CLUETIDE_RELEASE_CONTRACT`: verified deployed witness contract.
+- `CLUETIDE_PUBLIC_ORIGIN`: exact HTTPS service origin.
+- `CLUETIDE_FRONTEND_ORIGINS`: allowed browser origins; the review service permits `https://hnnuyuxuan.github.io`.
 
-- `CLUETIDE_DATA_DIR`: persistent private state root; default `local-data`.
-- `CLUETIDE_RELEASE_CONTRACT`: verified witness address.
-- `CLUETIDE_PUBLIC_ORIGIN`: exact HTTPS origin serving the API.
-- `CLUETIDE_FRONTEND_ORIGINS`: comma-separated HTTPS frontend origins allowed to call the API. The configured review startup permits `https://hnnuyuxuan.github.io`.
+The browser pins the BOT chain, witness bytecode, contract, target and receipt signer. The operator retains the private signer and backups across upgrades. Source exports contain no private runtime state.
 
-Browser network, contract, reviewer example and publisher endpoint are public configuration in `frontend/src/release/public-config.ts`. No private signing material is included. The service preserves its private execution signer across upgrades and independently validates the on-chain task before importing bytes.
+Package writes on the service-created workflow require its creator's task capability. Public `POST /api/releases/imports` independently checks confirmed chain roles and commitments for each immutable version. The Agent requires `--public` for writes to a remote service. Original artifacts retain UTF-8 BOM and CRLF; strict package checks reject duplicate JSON keys, unsafe ZIP members, inconsistent copies and excessive expansion. Artifacts are at most 32 KiB; complete packages are at most 4 MiB, and version/import requests at most 512 KiB.
 
-`POST /api/releases/imports` accepts one task descriptor, exact manifest and HTML artifact per request. It reads a canonical block with three confirmations, verifies roles, signer, target, manifest and artifact, and imports versions in order. Matching imports are idempotent. Imports do not issue task write keys. Existing task and version APIs retain their capability checks.
+`cluetide.acceptance-bundle.v1` carries original versions, raw receipt bytes, downloaded artifact bytes, transaction references and timestamped observations. Imported historical confirmations are observations, not a new chain check. Browser evidence persists in a separate IndexedDB store; export it before clearing local storage.
 
-Approval binds the current version, target and expiry. Consuming it grants one execution attempt; later changes cannot recall that grant. Recovery reconciles the recorded attempt with actual files before another execution. Signatures authenticate the configured executor's statement; artifact comparison verifies available bytes. Software quality remains subject to tests and human review.
+## Validation and mainnet scope
 
-## Verification and source
+Run `python -m pytest -q`, `python .devcontainer/test_codespaces.py`, and the frontend test/build commands. Tests use isolated state and local EVM transactions. The source manifest identifies every exported file by SHA-256. Solidity 0.8.30 and the Paris EVM artifact remain fixed.
 
-Run `python -m pytest -q` in the package and `npm test` / `npm run build` in `frontend`. Tests include Python/JavaScript JCS and ABI fixtures, recorded EIP-712 receipt verification, real compiled bytecode on a local EVM, browser-package import, publication and recovery. Local test transactions stay in the test chain.
-
-`source-manifest.json` binds exported files to their exact bytes. Solidity source and compiled artifact are under `contracts/`; the artifact pins Solidity 0.8.30 and EVM paris. Frontend dependency notices are retained under `frontend/public/licenses`.
-
-Current public-wallet evidence: [seven-transaction acceptance](docs/public-wallet-acceptance.md), including revised-version approval, actual publication and signed receipt.
+The [2026-10-12 public-wallet acceptance](docs/public-wallet-acceptance.md) completed seven mainnet transactions, revised-version approval, actual publication and receipt recording for 0.01629482 BOT. Both role wallets were controlled by one participant. The current collaboration upgrade's formal three-version recording is tracked separately in its runbook; engineering checks do not substitute for those new wallet transactions or a continuous recording.

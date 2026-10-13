@@ -180,7 +180,7 @@ async def test_capability_is_creation_only_and_not_in_public_records_or_download
             assert b"write_key" not in response.content
             if path == bundle_url:
                 with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
-                    assert set(archive.namelist()) == {"manifest.json", "artifact.html"}
+                    assert set(archive.namelist()) == {"task.json", "manifest.json", "artifact.html"}
                     for name in archive.namelist():
                         assert key.encode() not in archive.read(name)
                         assert expected.encode() not in archive.read(name)

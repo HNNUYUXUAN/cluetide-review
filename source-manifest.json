@@ -21,8 +21,8 @@
     },
     {
       "path": ".devcontainer/test_codespaces.py",
-      "bytes": 9581,
-      "sha256": "ba84e3a188443811b89affe922c43f2fff8f1f754b27abcc9b00bda81817e0e2",
+      "bytes": 14908,
+      "sha256": "17538685e964f9b9c3dd1d7d69f191eba0f86e35297247b30f69496d2ae10e7f",
       "origin": "source_copy"
     },
     {
@@ -39,8 +39,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5376,
-      "sha256": "a66f79b16b16b1ba130913cb37735b6c22cc24e1b3c455d59b8666effba6ce43",
+      "bytes": 5128,
+      "sha256": "106d2a898b92efabf018d239647f6fcf4a9b09a647419e9a2a068dd2e3e1f633",
       "origin": "package_metadata"
     },
     {
@@ -119,6 +119,18 @@
       "path": "data/demo/public-wallet-20261012/v2-manifest.json",
       "bytes": 937,
       "sha256": "0db83692d90ac3916706664e6ee1cedd70b07b848c0a931e68ab4609b12c7b37",
+      "origin": "source_copy"
+    },
+    {
+      "path": "docs/collaboration-guide.md",
+      "bytes": 4007,
+      "sha256": "21d178c85cbbc00e114a0769ff9fea4ee890f5e0c51645910c1b5f50f7f213e4",
+      "origin": "source_copy"
+    },
+    {
+      "path": "docs/collaboration-recording.md",
+      "bytes": 3809,
+      "sha256": "aefa6e09f82d195633ad11b55900c00fbcbc90970964cf6a1aef0a2cd7b087f8",
       "origin": "source_copy"
     },
     {
@@ -225,26 +237,38 @@
     },
     {
       "path": "frontend/src/release/PublicHome.tsx",
-      "bytes": 2439,
-      "sha256": "09e87ddae7cf884c51dc52c55b72a8ebada2d683f1798e3443f48446c47d3a95",
+      "bytes": 3663,
+      "sha256": "65b3e6209fde54ec48c49eee3f977e6688b1cd7d4050b0418966fbff8aba592c",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/PublicReleaseApp.tsx",
-      "bytes": 30896,
-      "sha256": "87b803c40139fb84881101aa8da28dee57b161df606688eba410612274bc711a",
+      "bytes": 43490,
+      "sha256": "7225701e5c18e075aaed3a25630637b71a13c7c6ff1481e21d7917c4c04b9d60",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/PublicTask.tsx",
-      "bytes": 9624,
-      "sha256": "b9c5625b4916dfdd005553ff40ee398f437519ac0812394a7d0fde9f762d5a75",
+      "bytes": 10245,
+      "sha256": "6c3124e9229c8c33f6bcc329db8367b0a49f9a8fa00e6b89638a2b5bf837b96a",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/ReleaseApp.tsx",
       "bytes": 45388,
       "sha256": "d7dd0beff35255053ca8b7bfe7661ba69c4292d13f4adda8dbcc71bf96a2723b",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/ReviewEvidence.tsx",
+      "bytes": 1603,
+      "sha256": "86240098860a93fa0708b6be350585a0466ca13c54c28091ddbb4a847e9b352d",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/acceptance.ts",
+      "bytes": 6818,
+      "sha256": "b7c060156ae82ed12dffd109c3724fb17bad6c77287c5dbcd6d8dedeb7768281",
       "origin": "source_copy"
     },
     {
@@ -261,26 +285,44 @@
     },
     {
       "path": "frontend/src/release/browser-chain.ts",
-      "bytes": 11478,
-      "sha256": "5dfc68a185787e4246f72716779a3937f38163f0958c9f35847bd0ca603a8bee",
+      "bytes": 21349,
+      "sha256": "fa17e39dbfa2aa86a4c6b2d1ebb36fd2cee00e16287ce365faaf8498ec917576",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/browser-store.ts",
-      "bytes": 1898,
-      "sha256": "5d746fc2b1b578cb4558fc61084817162625a959e47886e77a37b7106eda4e58",
+      "bytes": 2209,
+      "sha256": "55f8beaa4545e4ad5f249f8efafee2d55199f4d816d009ac583631294be7162f",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/evidence-store.ts",
+      "bytes": 2784,
+      "sha256": "4b03b10a4cbb34b5c72e5f9f4bdfb20fefa761ab987fc867ddc0117b01ed9660",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/exchange.ts",
+      "bytes": 8179,
+      "sha256": "58843a5f9ff8550f7af5f11f35c8d4d495f8141f0fe34aad0a0b9d140a987c5d",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/feedback.ts",
+      "bytes": 8792,
+      "sha256": "e2ae5c055aa3599abe06f4f2e4cbcd80b5ea6511d5fc5938a5141e8ec079b157",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/model.ts",
-      "bytes": 9688,
-      "sha256": "92cb53be7e6d799894a6b59c17fab34206280c41935b662521d12879e403a395",
+      "bytes": 10203,
+      "sha256": "04daad9fc96158840fa5a58df561fd03daf115b79c57364885b0cec9343a442f",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/package.ts",
-      "bytes": 7668,
-      "sha256": "9cd7b4feff2db00d164d7818cde2d7c3ae50de3bfab53ba67e9e7f582b028d39",
+      "bytes": 14297,
+      "sha256": "64fa820c2c1cc310621f33a7d207fb8e6e1a7f25e70b4c886a488ed6c05d8221",
       "origin": "source_copy"
     },
     {
@@ -297,14 +339,20 @@
     },
     {
       "path": "frontend/src/release/public-release.css",
-      "bytes": 17149,
-      "sha256": "ad1f247b598275e0348100d9cf5342a7c0866ae9e2f64206faacc17f1ecce118",
+      "bytes": 18972,
+      "sha256": "41d9e81fa7319d89322e0f72fe4415b5d3f7f794197f53735df154cbb273b7ac",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/publication-status.ts",
+      "bytes": 1078,
+      "sha256": "df823b4d1f6bd7c480c47e9232d9e3edf04f17719acd03c563dc39e7377dc630",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/publisher.ts",
-      "bytes": 6839,
-      "sha256": "1816cc4a527bf80a8a39bd0e439fd54e68b49ff25446fb202e4c5dd74adbc3b3",
+      "bytes": 10034,
+      "sha256": "d609e1cfcfa2a610bff81aabdde774d08578eb690b7ece2c013cdac4fcef8abb",
       "origin": "source_copy"
     },
     {
@@ -317,6 +365,18 @@
       "path": "frontend/src/release/release.css",
       "bytes": 22175,
       "sha256": "533075a72f92e8ab4862ca1188560826f906f539ad70d676fbcfba4684180e1c",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/review-display.ts",
+      "bytes": 2947,
+      "sha256": "a1b654d1383c02c4105bb18aefded07b35c7c84406bc4b0e923a7a0409a2406b",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/review-sharing.ts",
+      "bytes": 1974,
+      "sha256": "40e94d99253d1e42876193b6b35a2337ab45bb42f0f87f4c3d7666996f2d8347",
       "origin": "source_copy"
     },
     {
@@ -362,6 +422,12 @@
       "origin": "source_copy"
     },
     {
+      "path": "frontend/tests/release-acceptance.test.mjs",
+      "bytes": 4809,
+      "sha256": "e51611f31e02d939c1368d40de4969000c04fe2d253018770f70455b3bc2f4b1",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/tests/release-access.test.mjs",
       "bytes": 3476,
       "sha256": "a48b70d72c4c73e5ed4ce9718ee5af6f012727576c6d64b65db586f9be4a15b2",
@@ -374,15 +440,45 @@
       "origin": "source_copy"
     },
     {
+      "path": "frontend/tests/release-exchange.test.mjs",
+      "bytes": 9586,
+      "sha256": "df7b39e1758c744acd6cc0db9181d90d313346e6e5934d3267c51e61b034629e",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/tests/release-feedback-browser.test.mjs",
+      "bytes": 3116,
+      "sha256": "f43406f13e5ad418d36c2704df8d2c512ed9e212a7795f47385bb6508ac9f74b",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/tests/release-public.test.mjs",
       "bytes": 4380,
       "sha256": "4df956c525b35eeaa4fa262b072932721f6ee0ec6989644caf12d93554bab6d8",
       "origin": "source_copy"
     },
     {
+      "path": "frontend/tests/release-publication-status.test.mjs",
+      "bytes": 1773,
+      "sha256": "aebc48b81f250bb2475ec55c58fd159d890d02f93711abb4cadc9f65a6d072cd",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/tests/release-races.test.mjs",
       "bytes": 7585,
       "sha256": "8ffc9b588ac1399007e1da795af1212d1db2bbc8899c9d8fa762c744f4bbf526",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/tests/release-recovery.test.mjs",
+      "bytes": 7881,
+      "sha256": "5a98bc65ffc184f1e7d2a52dce65d1e3271639b06c77f40790f8d982783671a2",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/tests/release-review-display.test.mjs",
+      "bytes": 1578,
+      "sha256": "557085969e3e3c26f1a8fd46445d5f8f1c95fd8aa5ac495fcd5dbef74f3569c4",
       "origin": "source_copy"
     },
     {
@@ -417,8 +513,8 @@
     },
     {
       "path": "scripts/agent_release.py",
-      "bytes": 7339,
-      "sha256": "55c1f7826916b4ed6b6b0b88cf573dd3af2b1fc3595e0bf0d1ab22535c3a78e2",
+      "bytes": 14340,
+      "sha256": "43dc3dc30b30ebbff629ea40007b745cf176c829e2aa8f178ec40ff5d9f9ed8f",
       "origin": "source_copy"
     },
     {
@@ -429,14 +525,20 @@
     },
     {
       "path": "scripts/codespaces-runtime.py",
-      "bytes": 9263,
-      "sha256": "85c221c584daf8b9e4bac196b57681a275f96187e018b41998e2e5ae48c3f710",
+      "bytes": 11995,
+      "sha256": "eeb91c510d30c914d43e9e0661138aa1f3a043f540aaf3dc157688ee72b46771",
       "origin": "source_copy"
     },
     {
       "path": "scripts/codespaces-start.sh",
       "bytes": 658,
       "sha256": "4680d69d4976dae9ed1177ae3f444f030305b1a5804e54eccc301c4138f288c8",
+      "origin": "source_copy"
+    },
+    {
+      "path": "scripts/release_preflight.py",
+      "bytes": 12679,
+      "sha256": "5114c2d94694852006170c2411a32fd8e5ada04d30ef5fd870f57dc99d3473a4",
       "origin": "source_copy"
     },
     {
@@ -476,9 +578,21 @@
       "origin": "source_copy"
     },
     {
+      "path": "src/cluetide/release_exchange.py",
+      "bytes": 16347,
+      "sha256": "b4654989f2c7a3e3f308823ec0cd95b3fb96d89dcd2a2d78dfdc33347cef1eef",
+      "origin": "source_copy"
+    },
+    {
+      "path": "src/cluetide/release_feedback.py",
+      "bytes": 7730,
+      "sha256": "5ac1e93b7afdbe7274f3cea93be9d8a51ba0da2742b10d3dbf5154c1097dafbf",
+      "origin": "source_copy"
+    },
+    {
       "path": "src/cluetide/release_imports.py",
-      "bytes": 6553,
-      "sha256": "ea17ae514f3e23d3fbfda4ed17f91c0bf0c3cd079be403cf6886400efc307e9f",
+      "bytes": 6071,
+      "sha256": "74fdb4d2ed6c2671cbe37f09b3c5e0ed8bb273ef2c716fc539f8ad23b54b91c7",
       "origin": "source_copy"
     },
     {
@@ -489,20 +603,20 @@
     },
     {
       "path": "src/cluetide/releases.py",
-      "bytes": 48079,
-      "sha256": "d5d239be2e5d932ca303220764df4275b792a54110e668ccfa6035b8cb8a884d",
+      "bytes": 50781,
+      "sha256": "754f4fb055088a4828f7584a688aa182a4c8e6086ed2ecdb3409433353a4ba73",
       "origin": "source_copy"
     },
     {
       "path": "src/cluetide/releases_api.py",
-      "bytes": 6089,
-      "sha256": "e8307b51e962900a618d4c3437feda2f2afc0b5fca453f744aa130f59c2d3a54",
+      "bytes": 6997,
+      "sha256": "89962f297c5ab83984e3a16d4b491212e41cefa5a2ab6dedf3b4b10dfac87a8c",
       "origin": "source_copy"
     },
     {
       "path": "src/cluetide/request_limits.py",
-      "bytes": 4212,
-      "sha256": "e3a7682a5e02215495e6a188b5fc19c776a3e0a6406729e20fcd490580f01a31",
+      "bytes": 4668,
+      "sha256": "8081601799ec365ece0e4564e2069fa8362abeddbfbb55adeac1da8402a5a6da",
       "origin": "source_copy"
     },
     {
@@ -513,14 +627,26 @@
     },
     {
       "path": "tests/test_release_agent.py",
-      "bytes": 2996,
-      "sha256": "ce3d3af7099757b171c49347bc8711a8e42cc38e1c456ab9bda0ab9d5910203a",
+      "bytes": 9279,
+      "sha256": "1a2b038d7adf2b72245f259972ca49094e933f6b3d66d2fc97b0a27c2b20d833",
       "origin": "source_copy"
     },
     {
       "path": "tests/test_release_chain.py",
       "bytes": 15108,
       "sha256": "7e5c3c2998efa2ae4937f72bb1f35d7bf223590237af165f38a1a097786e36f8",
+      "origin": "source_copy"
+    },
+    {
+      "path": "tests/test_release_exchange.py",
+      "bytes": 10140,
+      "sha256": "7fb15182a6556758f1bf2c0b37418093211822def01d9a3b7891c3a67392c77e",
+      "origin": "source_copy"
+    },
+    {
+      "path": "tests/test_release_feedback.py",
+      "bytes": 10374,
+      "sha256": "48440d9f2087ec6c1f8f3dfef764407dea80a37060ae0726b8993ee4b4642ba3",
       "origin": "source_copy"
     },
     {
@@ -533,6 +659,18 @@
       "path": "tests/test_release_integration_evm.py",
       "bytes": 17010,
       "sha256": "a56c7b88ea74834efef8d0747c802480e2d4f2a1d26c34a7965ecf6d58219fff",
+      "origin": "source_copy"
+    },
+    {
+      "path": "tests/test_release_interop.py",
+      "bytes": 6073,
+      "sha256": "8dcb070ad17d3840a5c62fd86b0ed195eafecbf63e701061ab1ec7c56c15c323",
+      "origin": "source_copy"
+    },
+    {
+      "path": "tests/test_release_preflight.py",
+      "bytes": 8049,
+      "sha256": "691fdb387e5acb5d591cff496324c7f52fb1ff66efbd31d04d76de95dea68667",
       "origin": "source_copy"
     },
     {
@@ -549,14 +687,14 @@
     },
     {
       "path": "tests/test_releases.py",
-      "bytes": 13677,
-      "sha256": "d6bba3ff0de3081b75605b8cf50797ba827ca74e3f3f506a049df989f5cc2032",
+      "bytes": 13690,
+      "sha256": "3e3c5c32d0e1782e1a407e6368b8cf42b43ab20b0aeed2d9002c961369569ed7",
       "origin": "source_copy"
     },
     {
       "path": "tests/test_releases_api.py",
-      "bytes": 13379,
-      "sha256": "07448edfc11ef533a32f67f9a4d14b64be494213a451e1e7329bb95ff82f2e8c",
+      "bytes": 13392,
+      "sha256": "a8e4705546e9bbff27092280fbf999d4649d336975f71c652e0b0d1a547ee5bf",
       "origin": "source_copy"
     }
   ]
