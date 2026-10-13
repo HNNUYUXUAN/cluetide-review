@@ -542,6 +542,12 @@
       "origin": "source_copy"
     },
     {
+      "path": "frontend/vercel.json",
+      "bytes": 510,
+      "sha256": "b7d7c9b5d60f34624277d5082c25f63f152fd32bc8083b74032bfaea0b087ddc",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/vite.config.ts",
       "bytes": 600,
       "sha256": "0224463a667a48aaa8efe271c10a03e61d6d48b29fbb0c89ab806c42192a8ca5",
