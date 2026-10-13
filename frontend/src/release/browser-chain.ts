@@ -7,6 +7,7 @@ import type { LocalTask, LocalVersion } from "./package.ts";
 import type { WalletProvider } from "../bot-wallet.ts";
 import type { Action, Getter, Intent, Prepared, PrepareRequest, StartReference, Verification, VerifiedStartGrant } from "./model.ts";
 import { isTransactionHash } from "./primitives.ts";
+import {reconcileJournal} from "./transaction-journal.ts";
 
 export const botChain=defineChain({id:677,name:"BOT Mainnet",nativeCurrency:{name:"BOT",symbol:"BOT",decimals:18},rpcUrls:{default:{http:[publicConfig.rpc]}},blockExplorers:{default:{name:"BOT Explorer",url:publicConfig.explorer}}});
 const abi=contractArtifact.abi as Abi;
@@ -74,17 +75,17 @@ export function actionData(action:Action,task:LocalTask,version?:LocalVersion,re
   }
   return encodeFunctionData({abi,functionName:names[action],args});
 }
-export async function preparePublic(request:PrepareRequest,task:LocalTask,version:LocalVersion|undefined,provider:WalletProvider,receipt?:{attemptId:string;receiptHash:string;result:number;signature:string}):Promise<Prepared>{
-  const client=clientFor(provider),block=await anchor(client),account=request.account as Address;
+export async function preparePublic(request:PrepareRequest,task:LocalTask,version:LocalVersion|undefined,_provider:WalletProvider,receipt?:{attemptId:string;receiptHash:string;result:number;signature:string}):Promise<Prepared>{
+  const client=clientFor(),block=await anchor(client),account=request.account as Address;
   const required=request.action==="create_task"?task.owner:request.action==="submit_version"?task.proposer:request.action==="start_execution"?task.executor:["approve","request_correction"].includes(request.action)?task.reviewer:null;
   if(required&&required.toLowerCase()!==account.toLowerCase())throw new Error("Connect the designated wallet for this action.");
   if(request.action==="revoke"&&![task.owner,task.reviewer].includes(account.toLowerCase()))throw new Error("Only the owner or reviewer can revoke approval.");
   const data=actionData(request.action,task,version,receipt);
   await client.call({account,to:address,data,value:0n,blockNumber:block.number});
-  const [estimate,price,balance]=await Promise.all([client.estimateGas({account,to:address,data,value:0n}),client.getGasPrice(),client.getBalance({address:account})]);
+  const [estimate,price,balance,nonce]=await Promise.all([client.estimateGas({account,to:address,data,value:0n}),client.getGasPrice(),client.getBalance({address:account}),client.getTransactionCount({address:account,blockTag:"pending"})]);
   const gas=(estimate*120n+99n)/100n,maxFee=gas*price;
   if(balance<maxFee)throw new Error("Your BOT balance is below the estimated maximum gas fee. Fund this wallet before signing.");
-  return {action:request.action,chain_id:677,ready_to_send:true,transaction:{from:account,to:address,chainId:"0x2a5",data,value:"0x0",gas:`0x${gas.toString(16)}`,gasPrice:`0x${price.toString(16)}`},commitments:{task_id:task.task_id,...(version?{version_id:version.version_id,manifest_hash:version.manifest_hash,artifact_hash:version.artifact_hash,expires_at:version.expires_at}:{}),...(receipt?{attempt_id:receipt.attemptId,receipt_hash:receipt.receiptHash,result:receipt.result}:{})},fees:{gas_limit:gas.toString(),gas_price_wei:price.toString(),estimated_max_fee_wei:maxFee.toString(),balance_wei:balance.toString(),sufficient_balance:true}};
+  return {action:request.action,chain_id:677,ready_to_send:true,prepared_block:block.number.toString(),prepared_nonce:nonce.toString(),transaction:{from:account,to:address,chainId:"0x2a5",data,value:"0x0",gas:`0x${gas.toString(16)}`,gasPrice:`0x${price.toString(16)}`},commitments:{task_id:task.task_id,...(version?{version_id:version.version_id,manifest_hash:version.manifest_hash,artifact_hash:version.artifact_hash,expires_at:version.expires_at}:{}),...(receipt?{attempt_id:receipt.attemptId,receipt_hash:receipt.receiptHash,result:receipt.result}:{})},fees:{gas_limit:gas.toString(),gas_price_wei:price.toString(),estimated_max_fee_wei:maxFee.toString(),balance_wei:balance.toString(),sufficient_balance:true}};
 }
 const grants=new WeakSet<object>();
 export const isVerifiedStartGrant=(value:unknown):value is VerifiedStartGrant=>!!value&&typeof value==="object"&&grants.has(value);
@@ -96,10 +97,11 @@ async function verifyStart(client:Client,reference:StartReference,expected:Start
   try{[tx,receipt]=await Promise.all([client.getTransaction({hash}),client.getTransactionReceipt({hash})]);}
   catch(error){if(error instanceof TransactionNotFoundError||error instanceof TransactionReceiptNotFoundError)return {verification:{...base,status:"pending"}};throw error;}
   const data=encodeFunctionData({abi,functionName:"consume",args:[reference.task_id as Hex,BigInt(reference.version_id),expected.manifest_hash,expected.artifact_hash]});
-  if(tx.hash.toLowerCase()!==hash.toLowerCase()||receipt.transactionHash.toLowerCase()!==hash.toLowerCase()||tx.from.toLowerCase()!==expected.executor.toLowerCase()||tx.to?.toLowerCase()!==address||tx.chainId!==677||tx.value!==0n||tx.input.toLowerCase()!==data.toLowerCase())throw new Error("The start transaction differs from the executor, contract, network or exact version.");
+  if(tx.hash.toLowerCase()!==hash.toLowerCase()||receipt.transactionHash.toLowerCase()!==hash.toLowerCase()||tx.from.toLowerCase()!==expected.executor.toLowerCase()||tx.to?.toLowerCase()!==address||tx.chainId!==677||tx.value!==0n||tx.input.toLowerCase()!==data.toLowerCase())throw Object.assign(new Error("The start transaction differs from the executor, contract, network or exact version."),{code:"PARAMETER_MISMATCH"});
   if(receipt.status!=="success")return {verification:{...base,status:"failed",reason:"The start transaction reverted on chain."}};
   const txBlock=await anchor(client,receipt.blockNumber);
-  if(txBlock.hash!==receipt.blockHash||tx.blockHash!==receipt.blockHash)throw new Error("The start transaction block is no longer canonical.");
+  if(txBlock.hash!==receipt.blockHash)throw new Error("The start transaction block is no longer canonical.");
+  if(tx.blockHash!==receipt.blockHash||tx.blockNumber!==receipt.blockNumber)return {verification:{...base,status:"confirming",reason:"Waiting for chain data to synchronize. The saved request remains unchanged."}};
   const consumed:Record<string,unknown>[]=[];
   for(const log of receipt.logs){
     if(log.address.toLowerCase()!==address)continue;
@@ -133,10 +135,12 @@ export async function verifyPublicIntent(intent:Intent, provider?:WalletProvider
   try{[tx,receipt]=await Promise.all([client.getTransaction({hash}),client.getTransactionReceipt({hash})]);}
   catch(error){if(error instanceof TransactionNotFoundError||error instanceof TransactionReceiptNotFoundError)return {...base,status:"pending"};throw error;}
   const expected=intent.prepared.transaction;
-  if(tx.from.toLowerCase()!==expected.from.toLowerCase()||tx.to?.toLowerCase()!==address||tx.input.toLowerCase()!==expected.data.toLowerCase()||tx.value!==0n||tx.chainId!==677)throw new Error("The transaction differs from the saved account, contract, network or action.");
+  if(tx.from.toLowerCase()!==expected.from.toLowerCase()||tx.to?.toLowerCase()!==address||tx.input.toLowerCase()!==expected.data.toLowerCase()||tx.value!==0n||tx.chainId!==677)throw Object.assign(new Error("The transaction differs from the saved account, contract, network or action."),{code:"PARAMETER_MISMATCH"});
   if(receipt.status!=="success")return {...base,status:"failed",reason:"The transaction reverted on chain."};
   const block=await anchor(client,receipt.blockNumber);
-  if(block.hash!==receipt.blockHash||tx.blockHash!==receipt.blockHash)throw new Error("The transaction block is no longer canonical.");
+  if(block.hash!==receipt.blockHash)throw new Error("The transaction block is no longer canonical.");
+  if(tx.hash.toLowerCase()!==hash.toLowerCase()||receipt.transactionHash.toLowerCase()!==hash.toLowerCase())throw Object.assign(new Error("The RPC returned a different transaction identity."),{code:"PARAMETER_MISMATCH"});
+  if(tx.blockHash!==receipt.blockHash||tx.blockNumber!==receipt.blockNumber)return {...base,status:"confirming",reason:"Waiting for chain data to synchronize. The saved request remains unchanged."};
   const head=await client.getBlockNumber(),confirmations=head-receipt.blockNumber+1n;
   const result:Verification={...base,status:confirmations>=3n?"verified":"confirming",confirmations:Number(confirmations),block_number:receipt.blockNumber.toString(),block_hash:receipt.blockHash,gas_used:receipt.gasUsed.toString(),effective_gas_price:receipt.effectiveGasPrice.toString(),actual_fee_wei:(receipt.gasUsed*receipt.effectiveGasPrice).toString()};
   const c=intent.prepared.commitments,versionId=intent.request.version_id?Number(intent.request.version_id):undefined;
@@ -170,4 +174,19 @@ export async function verifyCorrectionReference(task:LocalTask,version:LocalVers
   if(state.version?.decision!=="3"||state.version.manifest_hash!==version.manifest_hash||state.version.artifact_hash!==version.artifact_hash||state.version.deadline!==String(version.expires_at))throw new Error("The correction decision differs from the exact version commitments.");
   if((await clientFor(provider).getBlock({blockNumber:BigInt(String(result.block_number))})).hash!==result.block_hash)throw new Error("The correction block changed during verification. Retry the chain read.");
   return {...result,getter_state:state,read_block_number:confirmed.read_block_number,read_block_hash:confirmed.block_hash};
+}
+
+export async function recoverPublicIntentHash(intent:Intent,knownHashes:string[]=[]){
+  const client=clientFor();
+  return reconcileJournal(intent,knownHashes,{
+    head:()=>client.getBlockNumber(),
+    hashes:async(from,to,taskId)=>{
+      const logs=await client.request({method:"eth_getLogs",params:[{address,fromBlock:`0x${from.toString(16)}`,toBlock:`0x${to.toString(16)}`,topics:[null,taskId as Hex]}]});
+      return logs.filter(log=>!log.removed&&isTransactionHash(log.transactionHash)).map(log=>log.transactionHash!);
+    },
+    matches:async(hash,item)=>{
+      const tx=await client.getTransaction({hash:hash as Hex}),expected=item.prepared.transaction;
+      return tx.from.toLowerCase()===expected.from.toLowerCase()&&tx.to?.toLowerCase()===address&&tx.chainId===677&&tx.value===0n&&tx.input.toLowerCase()===expected.data.toLowerCase();
+    },
+  });
 }

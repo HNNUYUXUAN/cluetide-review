@@ -22,5 +22,8 @@
     "@vitejs/plugin-react": "5.0.3",
     "typescript": "5.9.2",
     "vite": "7.3.7"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }

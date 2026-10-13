@@ -32,10 +32,10 @@ export class IntentVerifier {
     try{
       const result=await this.dependencies.verify({...intent.request},transactionHash);
       if(!isCurrent())return null;
-      this.dependencies.save(intent.id,{status:result.status,verification:result,message:result.reason?safeText(result.reason):undefined});
+      this.dependencies.save(intent.id,{status:result.status,verification:{...result,observed_at:new Date().toISOString()},message:result.reason?safeText(result.reason):undefined});
       return result;
     }catch(error){
-      if(isCurrent())this.dependencies.save(intent.id,{status:"unknown",verification:undefined,message:safeText(error,"The transaction could not be checked. Its outcome remains unknown.")});
+      if(isCurrent())this.dependencies.save(intent.id,{status:(error as {code?:string})?.code==="PARAMETER_MISMATCH"?"mismatch":"unknown",verification:undefined,message:safeText(error,"The transaction could not be checked. Its outcome remains unknown.")});
       return null;
     }
   }
@@ -43,7 +43,7 @@ export class IntentVerifier {
 
 export function mergeIntent(current:Intent,changes:Partial<Intent>):Intent {
   const next={...current,...changes};
-  if(intentIdentity(current)!==intentIdentity(next))return {...next,verification:undefined,message:undefined};
+  if(intentIdentity(current)!==intentIdentity(next))return {...next,transaction_hashes:[...new Set([...(current.transaction_hashes||[]),...(current.transaction_hash?[current.transaction_hash]:[])])].slice(-20),verification:undefined,message:undefined};
   return next;
 }
 

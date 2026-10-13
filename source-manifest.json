@@ -32,16 +32,34 @@
       "origin": "package_metadata"
     },
     {
+      "path": ".github/workflows/release-validation.yml",
+      "bytes": 1151,
+      "sha256": "6d9cdcfe346149005568a2f29a16a564df7bfda10327f9d3a3894db00a718a0c",
+      "origin": "source_copy"
+    },
+    {
       "path": ".gitignore",
       "bytes": 152,
       "sha256": "a2650f6e72923a4d3313617d3e371a8eb1adbea98ac490a8c15ba2323ba3e97c",
       "origin": "package_metadata"
     },
     {
+      "path": ".vercelignore",
+      "bytes": 118,
+      "sha256": "fd7f38fa8572a863c77bb1731cf3ae0b01105c8168965041f997b694cb84e4f4",
+      "origin": "source_copy"
+    },
+    {
       "path": "README.md",
-      "bytes": 5128,
-      "sha256": "106d2a898b92efabf018d239647f6fcf4a9b09a647419e9a2a068dd2e3e1f633",
+      "bytes": 5768,
+      "sha256": "5fc01c5742cea86d55d5e714cd107577535fdaa102e9e8c770411f228ec2bf5c",
       "origin": "package_metadata"
+    },
+    {
+      "path": "app.py",
+      "bytes": 122,
+      "sha256": "4d65e59e4d48ebb4a5c4d1adc46948c3cdbfda7208afd18096e8312a66a18fbb",
+      "origin": "source_copy"
     },
     {
       "path": "contracts/ClueTideReleaseWitness.sol",
@@ -134,6 +152,12 @@
       "origin": "source_copy"
     },
     {
+      "path": "docs/first-use-and-recovery.md",
+      "bytes": 3381,
+      "sha256": "caaef427cf7a251349798e504cf1c7c6634bdac9a2ca7e4fc25b4b59d1ef7b04",
+      "origin": "source_copy"
+    },
+    {
       "path": "docs/public-wallet-acceptance.md",
       "bytes": 3243,
       "sha256": "41883fc83f77d8384502cc29d018f63b285f05f76e5993f3f68137f97db9fff5",
@@ -143,6 +167,12 @@
       "path": "docs/public-wallet-recording.md",
       "bytes": 2845,
       "sha256": "ef4b758e9a7bc38196b302e62213587d4623924afc4c4338388146dc01b26353",
+      "origin": "source_copy"
+    },
+    {
+      "path": "docs/vercel-deployment.md",
+      "bytes": 7839,
+      "sha256": "1559eae031fac3c8a5c2cecdd6baee01c5b3bd455604c4c754b3ce3c90a45ddf",
       "origin": "source_copy"
     },
     {
@@ -165,14 +195,14 @@
     },
     {
       "path": "frontend/package-lock.json",
-      "bytes": 70717,
-      "sha256": "0052cf942c6578f840f0aa6323825a2e257295ae5fdcb57984345584ba84e589",
+      "bytes": 70771,
+      "sha256": "618c1802b8613bf131e8e9c9eef409026b209ded26edbff4f0ff018d55084df1",
       "origin": "source_copy"
     },
     {
       "path": "frontend/package.json",
-      "bytes": 636,
-      "sha256": "c5aa9f9a915fdaa3a8dcfd6ac01c45496ace74ba73e2d3e640bb44bd1f1207d5",
+      "bytes": 678,
+      "sha256": "8b232695de2a008552f0cb8fa731b3da93a3cbc10c9369ca6e26c87b6eb13940",
       "origin": "source_copy"
     },
     {
@@ -237,20 +267,20 @@
     },
     {
       "path": "frontend/src/release/PublicHome.tsx",
-      "bytes": 3663,
-      "sha256": "65b3e6209fde54ec48c49eee3f977e6688b1cd7d4050b0418966fbff8aba592c",
+      "bytes": 4724,
+      "sha256": "83c99f875f98310386b053b732ba741453a58be3f79bcb0981e09a1c65e61e5b",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/PublicReleaseApp.tsx",
-      "bytes": 43490,
-      "sha256": "7225701e5c18e075aaed3a25630637b71a13c7c6ff1481e21d7917c4c04b9d60",
+      "bytes": 50236,
+      "sha256": "efe8b70889690767a6ac2e9fbd179d10e3a8bd15703d3151e992c5c76733268b",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/PublicTask.tsx",
-      "bytes": 10245,
-      "sha256": "6c3124e9229c8c33f6bcc329db8367b0a49f9a8fa00e6b89638a2b5bf837b96a",
+      "bytes": 11883,
+      "sha256": "7aa64058547d70142152b859f042429a8acd53d7d1f9127b02fee129628a28c6",
       "origin": "source_copy"
     },
     {
@@ -279,14 +309,14 @@
     },
     {
       "path": "frontend/src/release/async-identity.ts",
-      "bytes": 5705,
-      "sha256": "c9fd67c3a3d1609a8f470047582407c5137168ba693cfa8f94b7458b5567dec1",
+      "bytes": 6051,
+      "sha256": "984e4e453becbd8d96be975c1bb4f2d436e79030a943bbf580ebc617bfae40d6",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/browser-chain.ts",
-      "bytes": 21349,
-      "sha256": "fa17e39dbfa2aa86a4c6b2d1ebb36fd2cee00e16287ce365faaf8498ec917576",
+      "bytes": 23254,
+      "sha256": "e39f72fd312b214ad9ed9a1d7469ae733049f12531bc80db92fcbda4f184f299",
       "origin": "source_copy"
     },
     {
@@ -309,14 +339,14 @@
     },
     {
       "path": "frontend/src/release/feedback.ts",
-      "bytes": 8792,
-      "sha256": "e2ae5c055aa3599abe06f4f2e4cbcd80b5ea6511d5fc5938a5141e8ec079b157",
+      "bytes": 9002,
+      "sha256": "316397e692af9194fa90499ea0d00ec47756da42bc501f3f4242af3ddf085f10",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/model.ts",
-      "bytes": 10203,
-      "sha256": "04daad9fc96158840fa5a58df561fd03daf115b79c57364885b0cec9343a442f",
+      "bytes": 10341,
+      "sha256": "74c2f562dcd3602204a3e49b0e1d7ccffdbfcf876613856f9869465b0a58aaa6",
       "origin": "source_copy"
     },
     {
@@ -339,8 +369,8 @@
     },
     {
       "path": "frontend/src/release/public-release.css",
-      "bytes": 18972,
-      "sha256": "41d9e81fa7319d89322e0f72fe4415b5d3f7f794197f53735df154cbb273b7ac",
+      "bytes": 19573,
+      "sha256": "37635e3b29cedb33046b1dc3330d328f4cdbc7e824714670acf7a90bca435079",
       "origin": "source_copy"
     },
     {
@@ -351,8 +381,8 @@
     },
     {
       "path": "frontend/src/release/publisher.ts",
-      "bytes": 10034,
-      "sha256": "d609e1cfcfa2a610bff81aabdde774d08578eb690b7ece2c013cdac4fcef8abb",
+      "bytes": 11544,
+      "sha256": "de6852127254ac1a22194f1028587812fd450a3cf687b736dfda5a037f187a00",
       "origin": "source_copy"
     },
     {
@@ -380,9 +410,21 @@
       "origin": "source_copy"
     },
     {
+      "path": "frontend/src/release/service-recovery.ts",
+      "bytes": 2241,
+      "sha256": "ade2fac5564ae2e8a3022820b101f92c18dd428e63d062886b02eded9fc68d0c",
+      "origin": "source_copy"
+    },
+    {
       "path": "frontend/src/release/task-access.ts",
       "bytes": 1548,
       "sha256": "4e9f05348294b899c3825bc04a1379a1ecd6f6ae194bfe8f4f8d5a0dceb76852",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/transaction-journal.ts",
+      "bytes": 4485,
+      "sha256": "f0fcd06e52ba95473248440cc7723df5537cbd3dc8aa75d4d8803bc21e64f40c",
       "origin": "source_copy"
     },
     {
@@ -405,8 +447,14 @@
     },
     {
       "path": "frontend/src/release/wallet.ts",
-      "bytes": 3084,
-      "sha256": "420c68db1b21d507ceb64a648c167f997917b879081465717a0876da40f61b62",
+      "bytes": 3795,
+      "sha256": "0d6500068e982f57d87cd112d907e63a0f63ba47984df29671202ced5f76b6bf",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/src/release/workflow.ts",
+      "bytes": 2556,
+      "sha256": "3dfeaf7648dcbc1dec9b02820241a6b3d208f12004e8f0a0b27dd9eb6e07450d",
       "origin": "source_copy"
     },
     {
@@ -449,6 +497,12 @@
       "path": "frontend/tests/release-feedback-browser.test.mjs",
       "bytes": 3116,
       "sha256": "f43406f13e5ad418d36c2704df8d2c512ed9e212a7795f47385bb6508ac9f74b",
+      "origin": "source_copy"
+    },
+    {
+      "path": "frontend/tests/release-journal.test.mjs",
+      "bytes": 6530,
+      "sha256": "147ea23506babcb30a4c951d7e120d125dfc78a1ae67c759ea5ae54805ac6024",
       "origin": "source_copy"
     },
     {
@@ -495,8 +549,8 @@
     },
     {
       "path": "pyproject.toml",
-      "bytes": 811,
-      "sha256": "d87bd2189a84a94dab96d6750d6e28ba2774c6e07531c2fcfad9566ce12a9abb",
+      "bytes": 839,
+      "sha256": "6e19506850aba537528ef7daa79d4843cf761a0842f80fec43f7bf540dfaa20c",
       "origin": "package_metadata"
     },
     {
@@ -507,14 +561,14 @@
     },
     {
       "path": "requirements.txt",
-      "bytes": 169,
-      "sha256": "18ecea8ce2bf0c58796b2a43418208a61ee1ae6a5cc68bc1cfd30972307bc7f4",
+      "bytes": 192,
+      "sha256": "465e99d0db56785992dd7a1341f0a1ad19502eaf49ecb5aa12082d6e65a2a4e9",
       "origin": "package_metadata"
     },
     {
       "path": "scripts/agent_release.py",
-      "bytes": 14340,
-      "sha256": "43dc3dc30b30ebbff629ea40007b745cf176c829e2aa8f178ec40ff5d9f9ed8f",
+      "bytes": 16932,
+      "sha256": "45a28132efb49eb7429d5338a8db12ccb9499390ecb7679f0913c49f6dddaf6a",
       "origin": "source_copy"
     },
     {
@@ -536,9 +590,21 @@
       "origin": "source_copy"
     },
     {
+      "path": "scripts/configure_vercel_frontend.py",
+      "bytes": 1225,
+      "sha256": "4f05b144f75fb616f61aada8d65ed4e4ffbb7395412247fb67e337ab9a7a0fdd",
+      "origin": "source_copy"
+    },
+    {
       "path": "scripts/release_preflight.py",
       "bytes": 12679,
       "sha256": "5114c2d94694852006170c2411a32fd8e5ada04d30ef5fd870f57dc99d3473a4",
+      "origin": "source_copy"
+    },
+    {
+      "path": "scripts/release_storage_admin.py",
+      "bytes": 6633,
+      "sha256": "5a28ad4fabfbe73d95adf9cd8acdd0ef80d1b7fc85dcd1baa7bb3bac8968d8c8",
       "origin": "source_copy"
     },
     {
@@ -578,6 +644,12 @@
       "origin": "source_copy"
     },
     {
+      "path": "src/cluetide/release_deployment.py",
+      "bytes": 1070,
+      "sha256": "68481371cdd2f1236472aeaa7fd2fb5a40fb19a5d419ec8e22f63aa8e1caac6f",
+      "origin": "source_copy"
+    },
+    {
       "path": "src/cluetide/release_exchange.py",
       "bytes": 16347,
       "sha256": "b4654989f2c7a3e3f308823ec0cd95b3fb96d89dcd2a2d78dfdc33347cef1eef",
@@ -596,9 +668,27 @@
       "origin": "source_copy"
     },
     {
+      "path": "src/cluetide/release_persistent.py",
+      "bytes": 9514,
+      "sha256": "2f4f42d47303d87ac942b0a91b0d32f6694d15c9aed8912df3cfaf5d2bdb4a82",
+      "origin": "source_copy"
+    },
+    {
+      "path": "src/cluetide/release_readiness.py",
+      "bytes": 3328,
+      "sha256": "4fe3239666f66a1862f8e4a0fe85b70288299fc967e056b5279346a21839a134",
+      "origin": "source_copy"
+    },
+    {
       "path": "src/cluetide/release_server.py",
-      "bytes": 5312,
-      "sha256": "047cc8b1f89a940ea72aad2d718fb092abd2c052133fc04e616bced30487c13d",
+      "bytes": 5757,
+      "sha256": "a49ec2c06fe531a9080db9c329bbd2dbe4263e5276fc97e82493f2fb65c75129",
+      "origin": "source_copy"
+    },
+    {
+      "path": "src/cluetide/release_storage.py",
+      "bytes": 10556,
+      "sha256": "1bad1f6ba03ccebf2e77fc726becabfec699d2cffe52eb222776017639476ce2",
       "origin": "source_copy"
     },
     {
@@ -609,8 +699,8 @@
     },
     {
       "path": "src/cluetide/releases_api.py",
-      "bytes": 6997,
-      "sha256": "89962f297c5ab83984e3a16d4b491212e41cefa5a2ab6dedf3b4b10dfac87a8c",
+      "bytes": 7773,
+      "sha256": "db164768f15599a84ebc59ef5a0145a82f16fa203447c44696b7666c7d95a348",
       "origin": "source_copy"
     },
     {
@@ -635,6 +725,12 @@
       "path": "tests/test_release_chain.py",
       "bytes": 15108,
       "sha256": "7e5c3c2998efa2ae4937f72bb1f35d7bf223590237af165f38a1a097786e36f8",
+      "origin": "source_copy"
+    },
+    {
+      "path": "tests/test_release_deployment.py",
+      "bytes": 2576,
+      "sha256": "0fd75baa5a25deb836005ed6e2251360a42d134eef936652c7f81ec3f2060ed7",
       "origin": "source_copy"
     },
     {
@@ -668,6 +764,12 @@
       "origin": "source_copy"
     },
     {
+      "path": "tests/test_release_persistent.py",
+      "bytes": 12650,
+      "sha256": "0c49e879743c462e9cb0afd056135904ad4370bde447001f2c382b5d445049f7",
+      "origin": "source_copy"
+    },
+    {
       "path": "tests/test_release_preflight.py",
       "bytes": 8049,
       "sha256": "691fdb387e5acb5d591cff496324c7f52fb1ff66efbd31d04d76de95dea68667",
@@ -677,6 +779,12 @@
       "path": "tests/test_release_server.py",
       "bytes": 10591,
       "sha256": "2ba1499d7b53d524f188f0b255c0b2f52b755b59abe7b982b234bb57e212d747",
+      "origin": "source_copy"
+    },
+    {
+      "path": "tests/test_release_service_migration.py",
+      "bytes": 1896,
+      "sha256": "b9773ee99bb411e605a67ed55d5ac61d248f67a9f4ac41470d9bf29cf49817ce",
       "origin": "source_copy"
     },
     {
@@ -695,6 +803,12 @@
       "path": "tests/test_releases_api.py",
       "bytes": 13392,
       "sha256": "a8e4705546e9bbff27092280fbf999d4649d336975f71c652e0b0d1a547ee5bf",
+      "origin": "source_copy"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 256,
+      "sha256": "43d365e7d03a3a459866a984e7a6f85717739ecaf2839f6790be0d0ba091a319",
       "origin": "source_copy"
     }
   ]

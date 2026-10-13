@@ -104,6 +104,44 @@ def save_access(path: Path, identity: str, key: str) -> None:
         temporary.unlink(missing_ok=True)
 
 
+def service_origin(value):
+    parsed = urlsplit(value)
+    if (parsed.scheme not in {"http", "https"} or not parsed.hostname or parsed.username or parsed.password
+            or parsed.path not in {"", "/"} or parsed.query or parsed.fragment
+            or parsed.scheme == "http" and parsed.hostname not in {"localhost", "127.0.0.1", "::1"}):
+        raise ValueError("Use an HTTPS service origin")
+    return value.rstrip("/").lower()
+
+
+def migrate_service_access(client, new_url, old_url, access_file, task_id=None):
+    from cluetide.release_readiness import CONTRACT, SIGNER
+    new, old = service_origin(new_url), service_origin(old_url)
+    response = client.get(new + "/api/releases/readiness")
+    response.raise_for_status()
+    identity = strict_json(response.content)
+    if (identity.get("schema") != "cluetide.readiness.v1" or identity.get("chain_id") != 677
+            or identity.get("contract_address") != CONTRACT or identity.get("receipt_signer") != SIGNER
+            or identity.get("contract") != "matched" or identity.get("signer") != "matched"):
+        raise ValueError("The new service identity did not match")
+    access = read_access(access_file)
+    selected = [(key.split("|", 1)[1], capability) for key, capability in access.items()
+                if key.startswith(old + "|") and (task_id is None or key == old + "|" + task_id.lower())]
+    if not selected:
+        raise ValueError("No source-domain binding found")
+    for task, capability in selected:
+        response = client.get(new + "/api/releases/tasks/" + task)
+        response.raise_for_status()
+        record = strict_json(response.content)
+        if record.get("task_id") != task or record.get("receipt_signer") != SIGNER:
+            raise ValueError("The migrated task is unavailable")
+        if new + "|" + task in access and access[new + "|" + task] != capability:
+            raise ValueError("The new domain already has different access")
+    for task, capability in selected:
+        save_access(access_file, new + "|" + task, capability)
+    return {"status": "service_binding_added", "tasks": len(selected), "source_binding_retained": True,
+            "new_service": new, "identity": "fixed contract and receipt signer matched"}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", default="http://127.0.0.1:8787", help="ClueTide release service URL")
@@ -112,6 +150,9 @@ def main() -> int:
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("config")
     commands.add_parser("tasks")
+    migration = commands.add_parser("migrate-service")
+    migration.add_argument("--from-url", required=True)
+    migration.add_argument("--task-id")
     create = commands.add_parser("create-task")
     create.add_argument("--public", action="store_true", help="Publish task metadata to the selected public service")
     for name in ("title", "owner", "proposer", "reviewer", "executor"):
@@ -226,6 +267,9 @@ def main() -> int:
             else:
                 params = {"version": args.version_id} if args.version_id is not None else None
         with httpx.Client(timeout=75, trust_env=False, follow_redirects=False) as client:
+            if args.command == "migrate-service":
+                print(json.dumps(migrate_service_access(client, args.url, args.from_url, args.access_file, args.task_id)))
+                return 0
             if args.command == "wait":
                 if not 1 <= args.interval <= 60 or not 0 <= args.timeout <= 86400:
                     raise ValueError()

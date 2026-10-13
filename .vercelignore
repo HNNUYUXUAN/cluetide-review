@@ -1,0 +1,14 @@
+.venv/
+**/node_modules/
+local-data/
+local-only/
+.env*
+*.key
+*.log
+data/
+tests/
+history/
+literature/
+P2A/
+Review/
+A2A/

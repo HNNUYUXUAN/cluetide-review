@@ -21,6 +21,16 @@ export function discoverWallets(onChange:(choices:WalletChoice[])=>void):()=>voi
   return () => window.removeEventListener("eip6963:announceProvider",announce);
 }
 export { connectWallet, walletSnapshot, parseAccounts, parseChainId };
+export async function selectRoleAccount(provider:WalletProvider,expected:string):Promise<WalletSnapshot>{
+  try{await provider.request({method:"wallet_requestPermissions",params:[{eth_accounts:{}}]});}
+  catch(error){
+    if((error as {code?:number})?.code!==4200&&(error as {code?:number})?.code!==-32601)throw error;
+    throw new Error(`Select ${expected} in your wallet's account menu and reconnect this site. This wallet does not support account selection requests.`);
+  }
+  const snapshot=await walletSnapshot(provider);
+  if(snapshot.account.toLowerCase()!==expected.toLowerCase())throw new Error(`Select the assigned account ${expected} in your wallet, then return to this page.`);
+  return snapshot;
+}
 export async function switchToBot(provider:WalletProvider):Promise<WalletSnapshot> {
   try { await provider.request({method:"wallet_switchEthereumChain",params:[{chainId:"0x2a5"}]}); }
   catch (error) {

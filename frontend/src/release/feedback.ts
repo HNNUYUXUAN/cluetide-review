@@ -44,14 +44,14 @@ export async function signFeedback(draft:FeedbackDraft,task:LocalTask,version:Lo
   if(draft.task_id!==task.task_id||draft.version_id!==version.version_id||draft.manifest_hash!==version.manifest_hash)throw new Error("The feedback draft belongs to another exact version.");
   const account=await walletSnapshot(provider);
   if(account.chainId!==677||account.account.toLowerCase()!==task.reviewer)throw new Error("Connect the designated reviewer on BOT Mainnet to sign the feedback message.");
-  await verifyCorrectionReference(task,version,String(draft.correction_transaction_hash),provider);
+  await verifyCorrectionReference(task,version,String(draft.correction_transaction_hash));
   const typed=await feedbackTypedData(draft);
   const walletTyped={...typed,types:{...typed.types,EIP712Domain:[{name:"name",type:"string"},{name:"version",type:"string"},{name:"chainId",type:"uint256"},{name:"verifyingContract",type:"address"}]}};
   const signature=await provider.request({method:"eth_signTypedData_v4",params:[account.account,JSON.stringify(walletTyped)]});
   if(typeof signature!=="string")throw new Error("The wallet did not return a feedback signature.");
   const valid=await verifyTypedData({...typed,address:task.reviewer as Address,message:{...typed.message,versionId:BigInt(draft.version_id)},signature:signature as Hex});
   if(!valid)throw new Error("The feedback signature does not match the designated reviewer.");
-  const signed={...draft,content_hash:typed.message.contentHash,signature};saveFeedbackDraft(signed);return signed;
+  const signed={...draft,content_hash:typed.message.contentHash,signature};try{saveFeedbackDraft(signed);}catch(error){throw Object.assign(error instanceof Error?error:new Error("Save the signed feedback immediately."),{signed_feedback:signed});}return signed;
 }
 export async function uploadFeedback(draft:FeedbackDraft):Promise<ReviewFeedback>{
   if(!draft.signature||!draft.content_hash)throw new Error("Sign the feedback message before uploading it.");

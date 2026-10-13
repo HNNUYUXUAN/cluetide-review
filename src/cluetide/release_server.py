@@ -45,10 +45,20 @@ def create_release_app(*, service: ReleaseService | None = None,
             not host or len(host.split(".")[0]) > 63
             or not re.fullmatch(r"[a-z0-9](?:[a-z0-9-]*[a-z0-9])?-8787\.app\.github\.dev", host)):
         raise ValueError("Codespaces origin rewriting requires a port 8787 app.github.dev origin")
-    service = service or ReleaseService(LOCAL_DATA / "release-witness")
+    if service is None:
+        if os.environ.get("VERCEL") == "1":
+            from .release_deployment import production_service
+            service = production_service()
+        else:
+            service = ReleaseService(LOCAL_DATA / "release-witness")
     allowed_hosts = {"127.0.0.1", "localhost", "testserver"}
     if host:
         allowed_hosts.add(host)
+    if os.environ.get("VERCEL") == "1":
+        for key in ("VERCEL_URL", "VERCEL_PROJECT_PRODUCTION_URL"):
+            value = os.environ.get(key, "")
+            if re.fullmatch(r"[a-zA-Z0-9-]+\.vercel\.app", value):
+                allowed_hosts.add(value)
     local_origins = {
         f"http://{name}:{port}"
         for name in ("127.0.0.1", "localhost")

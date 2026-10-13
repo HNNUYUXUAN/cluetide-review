@@ -11,8 +11,8 @@ export interface Prepared {action: Action | "propose_version" | "consume"; chain
 export interface Getter {task?: Record<string, unknown> | null; version?: Record<string, unknown> | null; attempt?: Record<string, unknown> | null}
 export interface Verification {status: "pending" | "confirming" | "verified" | "failed"; transaction_hash: string; confirmations?: number; contract_address?: string; getter_state?: Getter; onchain_ids?: {version_id?: string; attempt_id?: string}; reason?: string; gas_used?: string; effective_gas_price?: string; [key: string]: unknown}
 export interface Receipt {receipt: Record<string, unknown>; receipt_hash: string; signature: string; signer: string; signature_scheme?:string; verification: Record<string, unknown>}
-export type IntentStatus = "awaiting_wallet" | "unknown" | "pending" | "confirming" | "verified" | "failed" | "rejected" | "not_broadcast";
-export interface Intent {id: string; created_at: string; request: PrepareRequest; prepared: Prepared; status: IntentStatus; transaction_hash?: string; verification?: Verification; message?: string}
+export type IntentStatus = "awaiting_wallet" | "unknown" | "pending" | "confirming" | "verified" | "failed" | "rejected" | "not_broadcast" | "mismatch";
+export interface Intent {id: string; created_at: string; request: PrepareRequest; prepared: Prepared; status: IntentStatus; transaction_hash?: string; transaction_hashes?:string[]; verification?: Verification; message?: string}
 export interface StartReference {schema:"cluetide.start-reference.v1"; task_id:string; version_id:number; transaction_hash:string}
 export interface VerifiedStartGrant extends StartReference {
   attempt_id:string; executor:string; manifest_hash:string; artifact_hash:string; observed_at:string;
@@ -62,7 +62,7 @@ export function loadIntents(raw: string | null): Intent[] {
   try {
     const parsed: unknown = JSON.parse(raw || "[]");
     if (!Array.isArray(parsed)) return [];
-    return parsed.filter((item): item is Intent => record(item) && typeof item.id === "string" && typeof item.created_at === "string" && record(item.request) && typeof item.request.action === "string" && item.request.action in actionLabels && isAddress(item.request.account) && record(item.prepared) && record(item.prepared.transaction) && (item.transaction_hash === undefined || isTransactionHash(item.transaction_hash)) && ["awaiting_wallet","unknown","pending","confirming","verified","failed","rejected","not_broadcast"].includes(String(item.status))).slice(-50).map(item => ({...item, status: item.status === "awaiting_wallet" ? "unknown" : item.status}));
+    return parsed.filter((item): item is Intent => record(item) && typeof item.id === "string" && typeof item.created_at === "string" && record(item.request) && typeof item.request.action === "string" && item.request.action in actionLabels && isAddress(item.request.account) && record(item.prepared) && record(item.prepared.transaction) && (item.transaction_hash === undefined || isTransactionHash(item.transaction_hash)) && ["awaiting_wallet","unknown","pending","confirming","verified","failed","rejected","not_broadcast","mismatch"].includes(String(item.status))).slice(-200).map(item => ({...item, status: item.status === "awaiting_wallet" ? "unknown" : item.status}));
   } catch { return []; }
 }
 export function validateRoles(roles: {owner: string; proposer: string; reviewer: string; executor: string}): string | null {

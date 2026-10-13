@@ -2,6 +2,8 @@
 
 **Approve an exact release. Verify what shipped.**
 
+**Persistent deployment and user recovery — 2026-10-13.** The source now provides Agent-package-first onboarding, explicit assigned-wallet guidance, persistent transaction journals, bounded hash recovery, request-driven service retry, PostgreSQL persistence and task-wide fenced execution leases. See the [first-use and recovery guide](docs/first-use-and-recovery.md) and [Vercel deployment runbook](docs/vercel-deployment.md). The Vercel production migration, cold-start evidence and fresh mainnet recording remain deployment acceptance gates; the existing public Pages release stays the production reference until cutover is verified.
+
 [Open the public product](https://hnnuyuxuan.github.io/cluetide-app/release/).
 
 ClueTide helps Web3 project partners ship an Agent-prepared project page together. The proposer preserves the exact HTML, source reference and tests; the reviewer approves that version or signs correction requirements; the executor consumes one authorization and publishes; collaborators retain independent delivery evidence.

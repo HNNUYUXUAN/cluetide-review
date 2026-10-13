@@ -7,16 +7,19 @@ import type { Attempt, Config, Receipt, VerifiedStartGrant } from "./model.ts";
 import { isVerifiedStartGrant, verifyStartReference } from "./browser-chain.ts";
 import { saveEvidence } from "./evidence-store.ts";
 import type { StoredAcceptanceEvidence } from "./evidence-store.ts";
+import {retryRead} from "./service-recovery.ts";
 
-export const publisherBase=()=>typeof location!=="undefined"&&["127.0.0.1","localhost"].includes(location.hostname)?"":publicConfig.publisher;
+export const publisherBase=()=>typeof location!=="undefined"&&(["127.0.0.1","localhost"].includes(location.hostname)||location.hostname.endsWith(".vercel.app"))?"":publicConfig.publisher;
 async function request<T>(path:string,body?:unknown):Promise<T>{
   let response:Response;
-  try{response=await fetch(publisherBase()+"/api/releases"+path,{method:body===undefined?"GET":"POST",headers:body===undefined?undefined:{"Content-Type":"application/json"},body:body===undefined?undefined:JSON.stringify(body),credentials:"omit",signal:AbortSignal.timeout(15_000)});}
+  try{const perform=async(signal:AbortSignal)=>{const result=await fetch(publisherBase()+"/api/releases"+path,{method:body===undefined?"GET":"POST",headers:body===undefined?undefined:{"Content-Type":"application/json"},body:body===undefined?undefined:JSON.stringify(body),credentials:"omit",signal});if(body===undefined&&[429,502,503,504].includes(result.status))throw new Error("The service is resuming.");return result;};response=body===undefined?await retryRead(perform):await perform(AbortSignal.timeout(15_000));}
   catch{throw new Error("The publication service is unavailable. Your package and chain records remain on this device. Retry when the service is online.");}
   if(!response.ok){let detail="";try{detail=(await response.json()).detail;}catch{/* The HTTP status remains the observable failure. */}throw new Error(typeof detail==="string"&&detail?detail:`The publication service returned HTTP ${response.status}.`);}
   return response.json() as Promise<T>;
 }
 export async function checkPublisher(task?:LocalTask):Promise<Config>{
+  const ready=await request<{schema:string;chain_id:number;contract_address:string;receipt_signer:string;writes_enabled:boolean}>("/readiness");
+  if(ready.schema!=="cluetide.readiness.v1"||ready.chain_id!==677||ready.contract_address!==publicConfig.contract||ready.receipt_signer!==publicConfig.receiptSigner||!ready.writes_enabled)throw new Error("The publication service is restoring or writes are paused. Chain review, file import and evidence export remain available.");
   const config=await request<Config>("/config");
   if(config.chain.chain_id!==677||config.chain.contract_address?.toLowerCase()!==publicConfig.contract||config.executor.operation!=="publish_static"||config.executor.target!=="demo-site"||config.executor.receipt_signer.toLowerCase()!==(task?.receipt_signer||publicConfig.receiptSigner).toLowerCase())throw new Error("The publication service identity or target does not match this task.");
   return config;
@@ -36,7 +39,11 @@ export async function executePublication(task:LocalTask,version:LocalVersion,sta
   const current=await verifyStartReference(start,task,version);
   if(current.receipt_recorded)throw new Error("This attempt already has a recorded receipt. Verify its publication result.");
   await syncPublisher(task,version.version_id);
-  return request<Attempt>(`/tasks/${task.task_id}/execute`,{version_id:version.version_id,attempt_id:current.attempt_id,start_transaction_hash:current.transaction_hash});
+  const statusPath=`/tasks/${task.task_id}/attempts/${current.attempt_id}/status`;
+  const before=await request<Attempt&{can_resume:boolean;receipt_available:boolean}>(statusPath);
+  if(before.receipt_available||!before.can_resume)return before;
+  try{return await request<Attempt>(`/tasks/${task.task_id}/execute`,{version_id:version.version_id,attempt_id:current.attempt_id,start_transaction_hash:current.transaction_hash});}
+  catch{const observed=await request<Attempt&{can_resume:boolean}>(statusPath);return observed;}
 }
 export async function verifyReceiptEnvelope(task:LocalTask,version:LocalVersion,attemptId:string,envelope:Receipt,startHash?:string){
   if(!envelope||typeof envelope!=="object"||envelope.signature_scheme!=="EIP-712"||!envelope.receipt||typeof envelope.receipt!=="object"||typeof envelope.signature!=="string"||typeof envelope.signer!=="string")throw new Error("The executor receipt envelope failed validation.");
@@ -79,12 +86,15 @@ export async function loadVerifiedReceipt(task:LocalTask,version:LocalVersion,at
   return {envelope,result,artifactMatches,attemptId,archived,chainMatches,chainStatus,chainError,evidence,persistenceError,observedAt};
 }
 export async function readResponseBytes(url:string,limit:number):Promise<Uint8Array>{
-  const response=await fetch(url,{credentials:"omit",signal:AbortSignal.timeout(15_000)});
-  if(!response.ok)throw new Error(`Evidence download returned HTTP ${response.status}. Retry when the publication service is available.`);
+  return retryRead(async signal=>{
+  const response=await fetch(url,{credentials:"omit",signal});
+  if([429,502,503,504].includes(response.status))throw new Error("The publication service is resuming.");
+  if(!response.ok)throw Object.assign(new Error(`Evidence download returned HTTP ${response.status}. Retry when the publication service is available.`),{retryable:false});
   const declared=Number(response.headers.get("content-length"));
-  if(declared>limit)throw new Error("The downloaded evidence exceeds its size limit.");
-  if(!response.body)throw new Error("The evidence response has no readable body.");
+  if(declared>limit)throw Object.assign(new Error("The downloaded evidence exceeds its size limit."),{retryable:false});
+  if(!response.body)throw Object.assign(new Error("The evidence response has no readable body."),{retryable:false});
   const reader=response.body.getReader(),chunks:Uint8Array[]=[];let size=0;
-  try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>limit){await reader.cancel();throw new Error("The downloaded evidence exceeds its size limit.");}chunks.push(value);}}finally{reader.releaseLock();}
+  try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>limit){await reader.cancel();throw Object.assign(new Error("The downloaded evidence exceeds its size limit."),{retryable:false});}chunks.push(value);}}finally{reader.releaseLock();}
   const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.length;}return bytes;
+  });
 }
