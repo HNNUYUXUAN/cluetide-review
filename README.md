@@ -2,9 +2,9 @@
 
 **Approve an exact release. Verify what shipped.**
 
-**Persistent deployment and user recovery — 2026-10-13.** The source now provides Agent-package-first onboarding, explicit assigned-wallet guidance, persistent transaction journals, bounded hash recovery, request-driven service retry, PostgreSQL persistence and task-wide fenced execution leases. See the [first-use and recovery guide](docs/first-use-and-recovery.md) and [Vercel deployment runbook](docs/vercel-deployment.md). The Vercel production migration, cold-start evidence and fresh mainnet recording remain deployment acceptance gates; the existing public Pages release stays the production reference until cutover is verified.
+**Vercel production and user recovery — 2026-10-14.** [Open ClueTide](https://cluetide.vercel.app/). The API uses request-started Vercel Functions and persistent Neon PostgreSQL. Agent-package-first onboarding, assigned-wallet guidance, durable transaction journals, bounded hash recovery, task-wide execution leases and portable evidence support the complete collaboration flow. See the [first-use and recovery guide](docs/first-use-and-recovery.md) and [deployment runbook](docs/vercel-deployment.md).
 
-[Open the public interface](https://cluetide.vercel.app/). The Vercel API is identity-verified with writes paused during migration. The [earlier mainnet entry](https://hnnuyuxuan.github.io/cluetide-app/release/) remains available until cutover validation completes.
+Production migration preserved 49 original records: six tasks, nine versions, one signed correction and two signed receipts. Anonymous downloads match the old originals after redeployment; the old publisher stays read-only. Three observed database cold starts completed in 5.047, 3.844 and 5.328 seconds. The new clean-storage mainnet acceptance and continuous recording remain separate delivery gates.
 
 ClueTide helps Web3 project partners ship an Agent-prepared project page together. The proposer preserves the exact HTML, source reference and tests; the reviewer approves that version or signs correction requirements; the executor consumes one authorization and publishes; collaborators retain independent delivery evidence.
 
@@ -19,7 +19,7 @@ ClueTide helps Web3 project partners ship an Agent-prepared project page togethe
 
 The witness contract is [0xca71b77708674f5f2407c0ad4e599eaf5eb07281](https://scan.botchain.ai/address/0xca71b77708674f5f2407c0ad4e599eaf5eb07281). Every business transaction needs the holder's wallet confirmation and BOT Gas. Revisions require renewed approval; a confirmed start grants one attempt even if a deadline later passes or another version is registered. The controlled publisher attests to its execution, file equality proves content integrity, and tests and human review establish business quality.
 
-The temporary Codespace service may sleep. Chain reads, wallet review and file imports remain available. Check the timestamped service status before sharing or publishing. See the [collaboration guide](docs/collaboration-guide.md) and [formal recording runbook](docs/collaboration-recording.md).
+The publication service starts on actual requests; its database can idle between requests. Check the timestamped service status before sharing or publishing. Chain reads, wallet review and file imports remain available during an interruption. See the [collaboration guide](docs/collaboration-guide.md) and [formal recording runbook](docs/collaboration-recording.md).
 
 ## Install and run
 
@@ -56,3 +56,5 @@ Package writes on the service-created workflow require its creator's task capabi
 Run `python -m pytest -q`, `python .devcontainer/test_codespaces.py`, and the frontend test/build commands. Tests use isolated state and local EVM transactions. The source manifest identifies every exported file by SHA-256. Solidity 0.8.30 and the Paris EVM artifact remain fixed.
 
 The [2026-10-12 public-wallet acceptance](docs/public-wallet-acceptance.md) completed seven mainnet transactions, revised-version approval, actual publication and receipt recording for 0.01629482 BOT. Both role wallets were controlled by one participant. The current collaboration upgrade's formal three-version recording is tracked separately in its runbook; engineering checks do not substitute for those new wallet transactions or a continuous recording.
+
+The public release source retains its original [MIT license](LICENSE). Frontend dependency notices are preserved in `frontend/public/licenses`.

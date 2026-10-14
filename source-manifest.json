@@ -50,9 +50,15 @@
       "origin": "source_copy"
     },
     {
+      "path": "LICENSE",
+      "bytes": 1099,
+      "sha256": "719d68061febe43c4b54dfc7d19d09c353f20cbd1281d1b72c68ef6179c7ba88",
+      "origin": "package_metadata"
+    },
+    {
       "path": "README.md",
-      "bytes": 6144,
-      "sha256": "14276d9aa19dd13c999413200fcde22a7b4c8bf90cfb8d02c1612eaa7cbe17dc",
+      "bytes": 6364,
+      "sha256": "f474ce6bc54f2659ac56bbbd99b3d5642f162744adb3cabfa9a1db10f6e27e5d",
       "origin": "package_metadata"
     },
     {
@@ -171,8 +177,8 @@
     },
     {
       "path": "docs/vercel-deployment.md",
-      "bytes": 10105,
-      "sha256": "4429adee28c2954eaccea69642165de0f86b169f2ad20709fa94aca9f3d234d2",
+      "bytes": 10817,
+      "sha256": "4f62e9bb2943f79ee147879b539b5d9291e50498e07339783a1aa3a030b32f2f",
       "origin": "source_copy"
     },
     {

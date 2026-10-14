@@ -12,13 +12,16 @@ This runbook maps the organizer's October 2026 deployment tutorial to the releas
 | 52: anonymous access | Use the actual production platform domains | Independent unauthenticated HTTP and browser readback |
 | 58–61: source and delivery | Explicit source allowlist; signing key and database URL stay in backend secrets | Source manifest; acceptance bundle; inspected recording; submission status |
 
-## Observed deployment state (13 October 2026)
+## Observed deployment state (14 October 2026)
 
 - Frontend: https://cluetide.vercel.app/ ; project `cluetide`, root `frontend`, Vite. The first successful production deployment uses public source `624f2b8fc4840d13088db2a43b958650e08cb2c5`.
 - API: https://cluetide-release-api.vercel.app/ ; project `cluetide-release-api`, repository root and FastAPI.
 - Both the anonymous frontend and its same-origin `/api/health` return HTTP 200. Anonymous package import, refresh recovery and a 390-pixel viewport pass before the publication service is ready.
 - Neon Free resources `cluetide-release-production` and `cluetide-release-preview` are separate databases in `iad1`, connected only to their corresponding Vercel environments. App authentication is disabled because this product uses designated wallet roles.
-- Both database schemas are initialized with writers paused. The production readiness endpoint confirms PostgreSQL, the existing receipt signer and fixed contract. Migrated-record verification, cold starts and production writer cutover remain deployment gates. The existing Pages entry is retained until cutover validation passes.
+- Production is the single enabled writer; Preview uses its separate database with writes disabled. The old publisher has a persistent pause marker and refuses valid unsigned preparation requests while preserving reads.
+- The frozen backup contains 53 files. All 49 transferable records match the production database inventory; six tasks, nine versions, one signed feedback and two signed receipts pass integrity checks. Public task JSON, package members, feedback, receipts and published bytes match before and after Production redeployment.
+- Neon integration passed all 13 scenarios in the actual `iad1` Vercel Preview build in 14.50 seconds. Three real database cold starts completed in 5.047, 3.844 and 5.328 seconds; the second and third PostgreSQL process startup timestamps fall within their measured API requests.
+- Validated Production deployment: `7G7dzvE6ev1Bhf17yo9hdcrTPasx`, source `d6cff8fb2390900ade6591d0fc45427fa0f348f4`. Formal new-task wallet acceptance, recording inspection and review submission are tracked separately.
 
 ## Configure the API
 
