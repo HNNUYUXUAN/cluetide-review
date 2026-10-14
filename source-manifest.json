@@ -147,8 +147,8 @@
     },
     {
       "path": "docs/collaboration-guide.md",
-      "bytes": 4007,
-      "sha256": "21d178c85cbbc00e114a0769ff9fea4ee890f5e0c51645910c1b5f50f7f213e4",
+      "bytes": 4226,
+      "sha256": "21030318d481137df3b178d166d3909e56f95022fdeb22e8d4b2d13d22936ce1",
       "origin": "source_copy"
     },
     {
@@ -279,14 +279,14 @@
     },
     {
       "path": "frontend/src/release/PublicReleaseApp.tsx",
-      "bytes": 50236,
-      "sha256": "efe8b70889690767a6ac2e9fbd179d10e3a8bd15703d3151e992c5c76733268b",
+      "bytes": 50837,
+      "sha256": "4a32664436b61d6dc0a988768bb7aa8cafeb9755d39b5a618a7d8e4bf96fb1a8",
       "origin": "source_copy"
     },
     {
       "path": "frontend/src/release/PublicTask.tsx",
-      "bytes": 11845,
-      "sha256": "9ba1598e48666285918235bfd775fac6e16635b17c0ce649e987f1691e1d91df",
+      "bytes": 11856,
+      "sha256": "468a16ae1663c15e85173fcee6d720b3d8a6a6b9608c75aaea70f817452e417f",
       "origin": "source_copy"
     },
     {
@@ -369,8 +369,8 @@
     },
     {
       "path": "frontend/src/release/public-config.ts",
-      "bytes": 580,
-      "sha256": "f60af1b930a2596969eb7efefedd9066f2631f64c4fe18f73e42d1f70eb8a9b7",
+      "bytes": 550,
+      "sha256": "d20b388a60f1ac25283a7d45b278c37283b7631e184fc46fde9095fd7e00fd29",
       "origin": "source_copy"
     },
     {
@@ -609,8 +609,8 @@
     },
     {
       "path": "scripts/release_preflight.py",
-      "bytes": 12679,
-      "sha256": "5114c2d94694852006170c2411a32fd8e5ada04d30ef5fd870f57dc99d3473a4",
+      "bytes": 12627,
+      "sha256": "5f854f69955b148a1baef6b6abf0e0c201d08e2082173b616882bc20f7b13c28",
       "origin": "source_copy"
     },
     {
@@ -789,8 +789,8 @@
     },
     {
       "path": "tests/test_release_preflight.py",
-      "bytes": 8049,
-      "sha256": "691fdb387e5acb5d591cff496324c7f52fb1ff66efbd31d04d76de95dea68667",
+      "bytes": 8061,
+      "sha256": "703062716b05dc9005a02384147552ca3b0abfe29e0c868ff5e2878b50fb63bb",
       "origin": "source_copy"
     },
     {

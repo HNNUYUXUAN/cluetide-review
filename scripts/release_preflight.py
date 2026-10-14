@@ -18,9 +18,9 @@ from cluetide.release_chain import ReleaseArtifact, ReleaseChainError
 from cluetide.release_exchange import MAX_PACKAGE_BYTES, strict_json, verify_package
 from cluetide.releases import ReleaseError
 
-PUBLIC_ORIGIN = "https://cluetide-release-review-r4xpxrwg7xvrh5xp5-8787.app.github.dev"
-FRONTEND_ORIGIN = "https://hnnuyuxuan.github.io"
-SITE_URL = FRONTEND_ORIGIN + "/cluetide-app/release/"
+PUBLIC_ORIGIN = "https://cluetide-release-api.vercel.app"
+FRONTEND_ORIGIN = "https://cluetide.vercel.app"
+SITE_URL = FRONTEND_ORIGIN + "/"
 RPC_URL = "https://rpc.botchain.ai"
 CONTRACT = "0xca71b77708674f5f2407c0ad4e599eaf5eb07281"
 RECEIPT_SIGNER = "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4"

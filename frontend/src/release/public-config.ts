@@ -5,7 +5,7 @@ export const publicConfig = Object.freeze({
   explorer: "https://scan.botchain.ai",
   reviewer: "0xf888ff14ddcad446850756660042ccc330336565",
   receiptSigner: "0xc0a54fc7daa998a2e8bacc015eeafd4591ac15a4",
-  publisher: "https://cluetide-release-review-r4xpxrwg7xvrh5xp5-8787.app.github.dev",
+  publisher: "https://cluetide-release-api.vercel.app",
   policy: "cluetide.demo-release.v1",
   artifactBytes: 32768,
   confirmations: 3,

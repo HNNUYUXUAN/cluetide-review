@@ -52,7 +52,7 @@ def transport():
                 if changes.get("reorg") and reads > 1:
                     result["hash"] = "0x" + "bb" * 32
             return httpx.Response(200, json={"jsonrpc": "2.0", "id": 1, "result": changes.get(method, result)})
-        if request.url.host == "hnnuyuxuan.github.io":
+        if request.url.host == httpx.URL(preflight.SITE_URL).host:
             return httpx.Response(200, content=b"<!doctype html><html lang='en'></html>", headers={"content-type": "text/html"})
         if changes.get(request.url.path):
             return changes[request.url.path]
