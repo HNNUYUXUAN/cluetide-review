@@ -147,8 +147,8 @@
     },
     {
       "path": "docs/collaboration-guide.md",
-      "bytes": 4226,
-      "sha256": "21030318d481137df3b178d166d3909e56f95022fdeb22e8d4b2d13d22936ce1",
+      "bytes": 4380,
+      "sha256": "3c00a539612f92a7456d75ef5741fdb9735b0bbf95bacb1ac9eb96cbfc85a89b",
       "origin": "source_copy"
     },
     {
@@ -657,8 +657,8 @@
     },
     {
       "path": "src/cluetide/release_chain.py",
-      "bytes": 25064,
-      "sha256": "e6ee64fd61ac460030a3f410e83268030697a6314545cd0ffb4ef159c027c7c3",
+      "bytes": 25672,
+      "sha256": "c3b7df1bf5879b2b556afd30526008056292878fcd32dbfd70d1b69bb445870e",
       "origin": "source_copy"
     },
     {
@@ -741,8 +741,8 @@
     },
     {
       "path": "tests/test_release_chain.py",
-      "bytes": 15108,
-      "sha256": "7e5c3c2998efa2ae4937f72bb1f35d7bf223590237af165f38a1a097786e36f8",
+      "bytes": 17353,
+      "sha256": "50062494e911d0a1affad11c0251014aa6099122906953c4fc8914a212aca0ce",
       "origin": "source_copy"
     },
     {

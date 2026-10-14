@@ -17,7 +17,7 @@ python scripts/agent_release.py --url https://SERVICE feedback --task-id TASK --
 python scripts/agent_release.py --url https://SERVICE wait --task-id TASK --version-id 2 --interval 5 --timeout 300
 ```
 
-Run `--help` for exact command fields. `wait` returns machine-readable decision, expiry, replacement, execution and receipt states. Public writes require `--public`; the Agent prepares unsigned transactions for wallet handoff. The task capability file stays private.
+Run `--help` for exact command fields. `wait` returns machine-readable decision, expiry, replacement, execution and receipt states. Public writes require `--public`; the Agent prepares unsigned transactions for wallet handoff. Before chain registration, `wait` reports `unregistered` for an absent task or version after checking the fixed contract and canonical observation block. The task capability file stays private.
 
 ## Device recovery and acceptance
 

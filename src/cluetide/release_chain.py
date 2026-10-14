@@ -221,15 +221,23 @@ class ReleaseChainService:
         except Exception:
             raise ReleaseChainError("invalid_getter_response") from None
 
-    def _state(self, rpc, address, commitments, block):
-        state = {"task": self._getter(rpc, address, "task", commitments["task_id"], None, block)}
+    def _state(self, rpc, address, commitments, block, *, allow_missing_task=False):
+        task = self._getter(rpc, address, "task", commitments["task_id"], None, block, allow_missing=allow_missing_task)
+        state = {"task": task}
+        if task is None:
+            for kind in ("version", "attempt"):
+                if kind + "_id" in commitments:
+                    state[kind] = None
+            return state
         if "version_id" in commitments:
-            state["version"] = self._getter(rpc, address, "version", commitments["task_id"], commitments["version_id"], block)
+            state["version"] = (None if allow_missing_task and int(commitments["version_id"]) > int(task["version_count"])
+                                else self._getter(rpc, address, "version", commitments["task_id"], commitments["version_id"], block))
         attempt_id = commitments.get("attempt_id")
-        if attempt_id is None and "version" in state and state["version"]["attempt_id"] != "0":
+        if attempt_id is None and state.get("version") and state["version"]["attempt_id"] != "0":
             attempt_id = state["version"]["attempt_id"]
         if attempt_id:
-            state["attempt"] = self._getter(rpc, address, "attempt", commitments["task_id"], attempt_id, block)
+            state["attempt"] = (None if allow_missing_task and int(attempt_id) > int(task["attempt_count"])
+                                else self._getter(rpc, address, "attempt", commitments["task_id"], attempt_id, block))
         return state
 
     def prepare(self, payload):
@@ -260,9 +268,9 @@ class ReleaseChainService:
             "ready_to_send": balance >= fee, "warnings": ["insufficient_balance"] if balance < fee else []}
 
     def read(self, payload):
-        return self._read_at_current(payload)
+        return self._read_at_current(payload, allow_missing_task=True)
 
-    def _read_at_current(self, payload, origin=None):
+    def _read_at_current(self, payload, origin=None, *, allow_missing_task=False):
         allowed = {"chain_id", "contract_address", "task_id", "version_id", "attempt_id", "confirmations"}
         if not isinstance(payload, dict) or set(payload) - allowed:
             raise ReleaseChainError("invalid_request")
@@ -281,7 +289,7 @@ class ReleaseChainService:
                 raise ReleaseChainError("insufficient_confirmations")
             anchor = self._anchor(rpc, block)
             rpc.code(address, artifact, hex(block))
-            state = self._state(rpc, address, commitments, hex(block))
+            state = self._state(rpc, address, commitments, hex(block), allow_missing_task=allow_missing_task)
             self._anchor(rpc, block, anchor)
             if origin is not None:
                 self._anchor(rpc, origin[0], origin[1])

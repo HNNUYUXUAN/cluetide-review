@@ -318,3 +318,51 @@ def test_rpc_budget_and_response_size_remain_bounded():
     with httpx.Client(transport=httpx.MockTransport(oversized)) as client:
         with pytest.raises(ReleaseChainError, match="rpc_response_too_large"):
             BotRPC(677, client).verify_chain()
+
+
+def missing_task_rpc(fixture, data):
+    original = fixture.handle
+    calls = []
+    def handle(request):
+        body = json.loads(request.content)
+        if body["method"] == "eth_call":
+            calls.append(body["params"][0]["data"])
+            task_call = _calldata(GETTERS["task"][0], GETTERS["task"][1], [bytes.fromhex(TASK[2:])])
+            if body["params"][0]["data"] == task_call:
+                return httpx.Response(200, json={"jsonrpc": "2.0", "id": body["id"],
+                    "error": {"code": 3, "message": "execution reverted", "data": data}})
+        return original(request)
+    fixture.service.client_factory = lambda: httpx.Client(transport=httpx.MockTransport(handle))
+    return calls
+
+
+def test_unregistered_read_returns_absent_records_after_canonical_checks():
+    fixture = FixtureRPC()
+    calls = missing_task_rpc(fixture, "0x" + Web3.keccak(text="UnknownTask()")[:4].hex())
+    result = fixture.service.read(dict(chain_id=677, contract_address=CONTRACT, task_id=TASK, version_id=1, attempt_id=1))
+    assert result["getter_state"] == {"task": None, "version": None, "attempt": None}
+    assert result["read_block_hash"] == BLOCK_HASH and fixture.block_reads == 2
+    assert len(calls) == 1
+
+
+def test_missing_read_does_not_hide_an_unexpected_contract_revert():
+    fixture = FixtureRPC()
+    missing_task_rpc(fixture, "0xdeadbeef")
+    with pytest.raises(ReleaseChainError, match="rpc_error"):
+        fixture.service.read(dict(chain_id=677, contract_address=CONTRACT, task_id=TASK))
+
+
+def test_registered_task_reports_future_version_and_attempt_as_absent():
+    fixture = FixtureRPC()
+    fixture.task[6:8] = [0, 0]
+    result = fixture.service.read(dict(chain_id=677, contract_address=CONTRACT, task_id=TASK, version_id=1, attempt_id=1))
+    assert result["getter_state"]["task"]["version_count"] == "0"
+    assert result["getter_state"]["version"] is None and result["getter_state"]["attempt"] is None
+    assert fixture.block_reads == 2
+
+
+def test_verified_transaction_still_requires_existing_task():
+    fixture = FixtureRPC()
+    missing_task_rpc(fixture, "0x" + Web3.keccak(text="UnknownTask()")[:4].hex())
+    with pytest.raises(ReleaseChainError, match="rpc_error"):
+        fixture.verify()
